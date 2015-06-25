@@ -144,11 +144,11 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 		try {
 			if (vertexCoverSize > 0) {
-				//log.debug("real k=" + vertexCoverSize);
+				// log.debug("real k=" + vertexCoverSize);
 				// Graph<Integer, Integer> gStar = reducedInstance.getG();
 
-				domAVcFpt(vertexCover, g2, r);
-
+				//domAVcFpt(vertexCover, g2, r);
+				binaryDomAVcFpt(vertexCover,g2,R_START,r-1);
 			} else {
 				this.hasLessR = true;
 				this.ds2 = ds1;
@@ -230,6 +230,41 @@ public class DDSFPT implements IAlgorithm, ITask {
 		GraphView.presentGraph(g, sections, width, height);
 	}
 
+	private void binaryDomAVcFpt(Collection<Integer> vertexCover,
+			Graph<Integer, Integer> gStar, int low, int high) throws MOutofNException,
+			NChooseMNoSolutionException, ExceedLongMaxException,
+			ArraysNotSameLengthException{
+		hasLessR = false;
+
+		DomVCFPT ag = null;
+		List<Integer> lastSolution = null;
+		do {
+			int tryR = (high + low) / 2;
+			ag = new DomVCFPT(gStar, (List<Integer>) vertexCover, tryR);
+			try {
+				ag.computing();
+				if (ag.hasLessR()) {
+					this.hasLessR = true;
+					lastSolution = ag.getDominatingVertexCoverSet();
+					high = tryR - 1;
+				} else {
+					low = tryR + 1;
+					high=high-1;
+				}
+			} catch (Exception e) {
+				low = tryR + 1;
+				
+			}
+
+		} while (low <= high);
+		if (lastSolution != null) {
+			// List<Integer> SStar = ag.getDominatingVertexCoverSet();
+			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, lastSolution);
+		} else {
+			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, vertexCover);
+		}
+	}
+
 	private void domAVcFpt(Collection<Integer> vertexCover,
 			Graph<Integer, Integer> gStar, int r) throws MOutofNException,
 			NChooseMNoSolutionException, ExceedLongMaxException,
@@ -257,7 +292,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 					if (tryR > r) {
 						// r may be bigger so that the running time will be very
 						// big.in this worst case, using vertex cover as ds2.
-						//log.debug("using vertex cover as the ds2 in worst case.");
+						// log.debug("using vertex cover as the ds2 in worst case.");
 						break;
 					}
 				}
@@ -267,7 +302,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 				if (tryR > r) {
 					// r may be bigger so that the running time will be very
 					// big.in this worst case, using vertex cover as ds2.
-					//log.debug("using vertex cover as the ds2 in worst case.");
+					// log.debug("using vertex cover as the ds2 in worst case.");
 					break;
 				}
 			}
@@ -377,3 +412,4 @@ public class DDSFPT implements IAlgorithm, ITask {
 	// }
 
 }
+

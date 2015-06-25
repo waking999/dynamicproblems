@@ -44,7 +44,7 @@ public class DSGreedyTest {
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String destFile = "out/output-DSGreedy-KONECT.csv";
+		String destFile = "out/output-KONECT.csv";
 
 		String path = "src/test/resources/KONECT/";
 		String[] files = {// "000027_zebra.konet", "000034_zachary.konet",

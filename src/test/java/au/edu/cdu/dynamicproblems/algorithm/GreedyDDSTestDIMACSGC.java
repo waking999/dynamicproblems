@@ -20,7 +20,7 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 public class GreedyDDSTestDIMACSGC {
 	private Logger log = LogUtil.getLogger(GreedyDDSTestDIMACSGC.class);
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
@@ -106,71 +106,105 @@ public class GreedyDDSTestDIMACSGC {
 		}
 	}
 
-	@Ignore
 	@Test
-	public void test_fpsol() throws MOutofNException, ExceedLongMaxException,
+	public void testKONECT() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
-		String destFile = "out/output-fpsol.csv";
+		String destFile = "out/output-DSGreedy-KONECT.csv";
 
-		log.debug("------------------fpsol2i1");
-		FileOperation.saveCVSFile(destFile, "------------------fpsol2i1");
-		for (int i = 1; i <= 1; i++) {
-			log.debug("------------------" + i);
-			FileOperation.saveCVSFile(destFile, "------------------" + i);
-			test_fpsol2i1(destFile);
+		String path = "src/test/resources/KONECT/";
+		String[] files = {// "000027_zebra.konet", "000034_zachary.konet",
+		// "000062_dolphins.konet", "000112_David_Copperfield.konet",
+		// "000198_Jazz_musicians.konet",
+		"000212_pdzbase.konet"
+		// "001133_rovira.konet", "001174_euroroad.konet",
+		// "001858_hamster.konet",
+		// "002426_hamster_ful.konet",
+		// "002888_facebook.konet",
+		// "003133_Human_protein_Vidal.konet",
+		// "004941_powergrid.konet",
+		// "006327_reactome.konet",
+		// "010680_Pretty_Good_Privacy.konet",
+		// "06474_Route_views.konet"
+		};
+		int[][] krArray = { { 30, 30 } };
+		for (String file : files) {
+			log.debug("------------------" + file);
 
+			for (int i = 1; i <= 1; i++) {
+				log.debug(i + "----------------");
+				if (destFile != null) {
+					FileOperation.saveCVSFile(destFile, i + "----------------");
+				}
+				runGreedyDDSKR(path + file, krArray, destFile);
+			}
 		}
-		log.debug("------------------fpsol2i2");
-		FileOperation.saveCVSFile(destFile, "------------------fpsol2i2");
-		for (int i = 1; i <= 1; i++) {
-			log.debug("------------------" + i);
-			FileOperation.saveCVSFile(destFile, "------------------" + i);
-			test_fpsol2i2(destFile);
-
-		}
-
-		log.debug("------------------fpsol2i3");
-		FileOperation.saveCVSFile(destFile, "------------------fpsol2i3");
-		for (int i = 1; i <= 1; i++) {
-			log.debug("------------------" + i);
-			FileOperation.saveCVSFile(destFile, "------------------" + i);
-			test_fpsol2i3(destFile);
-
-		}
 	}
 
-	private void test_fpsol2i1(String destFile) throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-
-		String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.1.col";
-
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-
-		runGreedyDDSKR(inputFile, krArray, destFile);
-
-	}
-
-	private void test_fpsol2i2(String destFile) throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-
-		String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.2.col";
-
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-
-		runGreedyDDSKR(inputFile, krArray, destFile);
-
-	}
-
-	private void test_fpsol2i3(String destFile) throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-
-		String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.3.col";
-
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-
-		runGreedyDDSKR(inputFile, krArray, destFile);
-
-	}
+	// @Ignore
+	// @Test
+	// public void test_fpsol() throws MOutofNException, ExceedLongMaxException,
+	// ArraysNotSameLengthException, IOException {
+	// String destFile = "out/output-fpsol.csv";
+	//
+	// log.debug("------------------fpsol2i1");
+	// FileOperation.saveCVSFile(destFile, "------------------fpsol2i1");
+	// for (int i = 1; i <= 1; i++) {
+	// log.debug("------------------" + i);
+	// FileOperation.saveCVSFile(destFile, "------------------" + i);
+	// test_fpsol2i1(destFile);
+	//
+	// }
+	// log.debug("------------------fpsol2i2");
+	// FileOperation.saveCVSFile(destFile, "------------------fpsol2i2");
+	// for (int i = 1; i <= 1; i++) {
+	// log.debug("------------------" + i);
+	// FileOperation.saveCVSFile(destFile, "------------------" + i);
+	// test_fpsol2i2(destFile);
+	//
+	// }
+	//
+	// log.debug("------------------fpsol2i3");
+	// FileOperation.saveCVSFile(destFile, "------------------fpsol2i3");
+	// for (int i = 1; i <= 1; i++) {
+	// log.debug("------------------" + i);
+	// FileOperation.saveCVSFile(destFile, "------------------" + i);
+	// test_fpsol2i3(destFile);
+	//
+	// }
+	// }
+	//
+	// private void test_fpsol2i1(String destFile) throws MOutofNException,
+	// ExceedLongMaxException, ArraysNotSameLengthException, IOException {
+	//
+	// String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.1.col";
+	//
+	// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+	//
+	// runGreedyDDSKR(inputFile, krArray, destFile);
+	//
+	// }
+	//
+	// private void test_fpsol2i2(String destFile) throws MOutofNException,
+	// ExceedLongMaxException, ArraysNotSameLengthException, IOException {
+	//
+	// String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.2.col";
+	//
+	// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+	//
+	// runGreedyDDSKR(inputFile, krArray, destFile);
+	//
+	// }
+	//
+	// private void test_fpsol2i3(String destFile) throws MOutofNException,
+	// ExceedLongMaxException, ArraysNotSameLengthException, IOException {
+	//
+	// String inputFile = "src/test/resources/DIMACS-GC/fpsol2.i.3.col";
+	//
+	// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+	//
+	// runGreedyDDSKR(inputFile, krArray, destFile);
+	//
+	// }
 
 	private void runGreedyDDSKR(String inputFile, int[][] krArray,
 			String destFile) throws MOutofNException, ExceedLongMaxException,
@@ -185,8 +219,8 @@ public class GreedyDDSTestDIMACSGC {
 		for (int[] kr : krArray) {
 			int k = kr[0];
 			int rUpper = kr[1];
-
-			for (int r = 1; r <= rUpper; r++) {
+			int r=rUpper;
+			//for (int r = 1; r <= rUpper; r++) {
 
 				GreedyDDS ag = new GreedyDDS("GreedyDDSTest", am, k, r);
 
@@ -198,12 +232,12 @@ public class GreedyDDSTestDIMACSGC {
 				Assert.assertTrue(AlgorithmUtil.isDS(
 						AlgorithmUtil.prepareGraph(am), ds));
 				result = ag.getResult(r);
-
+				
 				log.debug(result.getString());
 				if (destFile != null) {
 					FileOperation.saveCVSFile(destFile, result.getString());
 				}
-			}
+			//}
 		}
 	}
 
