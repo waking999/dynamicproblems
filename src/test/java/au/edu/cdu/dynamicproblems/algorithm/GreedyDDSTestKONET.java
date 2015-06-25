@@ -22,7 +22,7 @@ public class GreedyDDSTestKONET {
 	@Test
 	public void test_konet() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
-		String destFile = "out/output-KONET.csv";
+		String destFile = "out/output-KONECT.csv";
 
 		// log.debug("------------------zebra");
 		// FileOperation.saveCVSFile(destFile, "------------------zebra");
