@@ -31618,951 +31618,421 @@
 12:43:57,573 DEBUG [root] src/test/resources/BHOSLIB/frb30-15-mis/frb30-15-4.mis,1000,16,1125513419079
 12:44:07,695 DEBUG [root] src/test/resources/BHOSLIB/frb30-15-mis/frb30-15-5.mis,10,18,10114645110
 12:45:48,869 DEBUG [root] src/test/resources/BHOSLIB/frb30-15-mis/frb30-15-5.mis,100,17,111293687057
-13:02:42,428 DEBUG [root] src/test/resources/BHOSLIB/frb30-15-mis/frb30-15-5.mis,1000,16,1124901971414
-13:02:52,710 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-1.mis,10,23,10266571318
-13:04:35,058 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-1.mis,100,20,112620010054
-13:21:36,359 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-1.mis,1000,19,1133970145902
-13:21:46,589 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-2.mis,10,22,10219594744
-13:23:28,774 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-2.mis,100,20,112409526377
-13:40:31,367 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-2.mis,1000,20,1135051212391
-13:40:41,623 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-3.mis,10,21,10246430498
-13:42:23,943 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-3.mis,100,20,112571300553
-13:59:26,763 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-3.mis,1000,19,1135440200907
-13:59:37,001 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-4.mis,10,21,10229061642
-14:01:19,387 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-4.mis,100,21,112620851810
-14:18:21,178 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-4.mis,1000,20,1134460206981
-14:18:31,397 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-5.mis,10,22,10209884249
-14:20:13,482 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-5.mis,100,20,112299864075
-14:37:15,822 DEBUG [root] src/test/resources/BHOSLIB/frb35-17-mis/frb35-17-5.mis,1000,18,1134688180146
-14:37:26,216 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-1.mis,10,25,10379542882
-14:39:09,700 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-1.mis,100,23,113868417989
-14:56:24,173 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-1.mis,1000,23,1148390399495
-14:56:34,510 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-2.mis,10,26,10325846952
-14:58:17,768 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-2.mis,100,24,113589706906
-15:15:30,600 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-2.mis,1000,23,1146470842630
-15:15:40,939 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-3.mis,10,24,10325710526
-15:17:24,129 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-3.mis,100,22,113520370435
-15:34:36,936 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-3.mis,1000,21,1146377020892
-15:34:47,298 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-4.mis,10,26,10349196097
-15:36:30,765 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-4.mis,100,24,113821634684
-15:53:45,770 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-4.mis,1000,22,1148873574067
-15:53:56,148 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-5.mis,10,24,10366154301
-15:55:39,578 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-5.mis,100,24,113800625549
-16:12:53,467 DEBUG [root] src/test/resources/BHOSLIB/frb40-19-mis/frb40-19-5.mis,1000,22,1147739404595
-16:13:03,974 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-1.mis,10,27,10489063929
-16:14:48,847 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-1.mis,100,26,115367591775
-16:32:16,426 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-1.mis,1000,25,1162996289002
-16:32:26,977 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-2.mis,10,28,10536782168
-16:34:11,863 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-2.mis,100,27,115427964854
-16:51:42,592 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-2.mis,1000,25,1166207178322
-16:51:53,109 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-3.mis,10,26,10502956014
-16:53:38,149 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-3.mis,100,26,115548287708
-17:11:07,861 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-3.mis,1000,26,1165309175542
-17:11:18,382 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-4.mis,10,29,10505312082
-17:13:03,281 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-4.mis,100,27,115409180387
-17:30:33,109 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-4.mis,1000,26,1165285183047
-17:30:43,622 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-5.mis,10,27,10497462493
-17:32:28,599 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-5.mis,100,26,115479433300
-17:49:58,135 DEBUG [root] src/test/resources/BHOSLIB/frb45-21-mis/frb45-21-5.mis,1000,25,1165063793974
-17:50:08,992 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-1.mis,10,33,10832513819
-17:51:57,165 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-1.mis,100,32,119010847005
-18:09:59,105 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-1.mis,1000,30,1200999974787
-18:10:09,937 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-2.mis,10,34,10811694910
-18:11:58,149 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-2.mis,100,32,119028777629
-18:30:00,185 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-2.mis,1000,31,1201113668853
-18:30:11,014 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-3.mis,10,34,10804582845
-18:31:59,165 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-3.mis,100,31,118960365706
-18:50:01,196 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-3.mis,1000,31,1201040620670
-18:50:12,050 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-4.mis,10,34,10829814538
-18:52:00,184 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-4.mis,100,31,118969349649
-19:10:02,022 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-4.mis,1000,30,1200857122650
-19:10:12,854 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-5.mis,10,33,10807833109
-19:12:00,924 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-5.mis,100,31,118881829303
-19:30:01,008 DEBUG [root] src/test/resources/BHOSLIB/frb53-24-mis/frb53-24-5.mis,1000,30,1199015832347
-19:30:12,056 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-1.mis,10,35,11020744754
-19:32:02,021 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-1.mis,100,34,120990829109
-19:50:21,491 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-1.mis,1000,32,1220511686488
-19:50:32,510 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-2.mis,10,32,10995045567
-19:52:22,451 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-2.mis,100,32,120941046484
-20:10:41,255 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-2.mis,1000,32,1219798391852
-20:10:52,283 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-3.mis,10,35,10999309397
-20:12:42,214 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-3.mis,100,32,120935575238
-20:31:00,620 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-3.mis,1000,32,1219395374721
-20:31:11,687 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-4.mis,10,36,11037440898
-20:33:01,634 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-4.mis,100,32,120989840926
-20:51:19,636 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-4.mis,1000,32,1219044537359
-20:51:30,627 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-5.mis,10,34,10962637723
-20:53:20,455 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-5.mis,100,32,120795531437
-21:11:39,090 DEBUG [root] src/test/resources/BHOSLIB/frb56-25-mis/frb56-25-5.mis,1000,32,1219483646449
-21:11:50,245 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-1.mis,10,35,11123691388
-21:13:41,532 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-1.mis,100,35,122416139533
-21:32:13,966 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-1.mis,1000,34,1234904000758
-21:32:25,100 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-2.mis,10,38,11106658778
-21:34:16,305 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-2.mis,100,35,122316384582
-21:52:48,998 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-2.mis,1000,34,1235062852772
-21:53:00,127 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-3.mis,10,36,11096985464
-21:54:51,245 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-3.mis,100,35,122220364314
-22:13:22,760 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-3.mis,1000,33,1233787331271
-22:13:33,924 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-4.mis,10,35,11129182776
-22:15:25,332 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-4.mis,100,33,122542350019
-22:33:57,866 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-4.mis,1000,33,1235128863216
-22:34:09,140 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-5.mis,10,37,11241118977
-22:36:00,174 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-5.mis,100,34,122280462003
-22:54:30,546 DEBUG [root] src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-5.mis,1000,34,1232704325933
-14:06:33,502 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,15488444492
-14:08:59,560 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,161553771995
-14:33:08,893 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1610955623588
-14:33:18,959 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10063259014
-14:34:59,487 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110595249265
-14:51:46,068 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1117224318288
-14:52:07,341 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,10,21048972477
-14:55:37,836 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,231553702723
-15:30:53,172 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2346987130856
-15:31:23,897 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,30352440771
-15:36:27,439 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,333908756269
-16:26:58,889 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3365503435980
-16:27:09,055 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10159264506
-16:28:50,683 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,111792530945
-16:45:46,883 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1128040499121
-16:47:00,040 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,10,72280756385
-16:58:09,921 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,742193238388
-18:45:41,870 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,7194435557115
-18:45:52,785 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,10895042264
-18:47:42,084 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,3,120198282600
-19:05:52,831 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1210994138301
-19:06:05,338 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,8,12463422766
-19:08:09,416 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,7,136546782333
-19:28:53,374 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1380561176811
-19:29:03,896 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10509111202
-19:30:49,100 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,115717661468
-19:48:21,069 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,7,1167734729050
-19:48:31,524 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10440781200
-19:50:15,878 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,114800091931
-20:07:39,246 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1158215773249
-20:09:09,813 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,89263685505
-20:23:50,901 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,970392947752
-22:47:11,035 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,9570916836609
-22:47:21,150 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,5,10111541301
-22:49:02,576 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,5,111542987249
-23:05:53,795 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1122807767131
-23:06:03,949 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10149680708
-23:07:45,194 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111399706491
-23:24:37,528 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,4,1123779729474
-23:24:48,059 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10518597238
-23:26:33,159 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,115623356128
-23:44:03,966 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1166477494792
-23:44:14,476 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10498337938
-23:45:59,590 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,115616661749
-00:03:30,389 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1166463622027
-00:03:42,465 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12038705611
-00:05:43,055 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,132634564012
-00:25:48,783 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1338416493246
-00:26:00,873 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12040222433
-00:28:01,448 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,132620211142
-00:48:07,007 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1338234328989
-00:48:17,141 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10129190013
-00:49:58,484 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111476527584
-01:06:52,237 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1125275383304
-01:07:02,371 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10130055169
-01:08:43,798 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111561684257
-01:25:37,735 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1125543753717
-01:25:48,362 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,2,10612860858
-01:27:34,539 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,116794866807
-01:45:16,660 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1178964803059
-01:45:27,374 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,3,10699745218
-01:47:13,590 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,116920279956
-02:04:49,619 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1172997579170
-02:05:00,192 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,3,10558490603
-02:06:45,741 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,116111869436
-02:24:20,764 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1171183127727
-02:24:36,220 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,15369187559
-02:27:06,287 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,165442370668
-02:52:20,728 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1679952684262
-02:52:30,942 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10207883039
-02:54:12,860 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112130349490
-03:11:12,149 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1131465689449
-03:11:22,242 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,8,10090789324
-03:13:03,155 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111007952490
-03:29:52,146 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1120044640760
-03:30:03,913 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,18,11727950898
-03:32:01,176 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,4,128996161413
-03:51:33,999 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1301872268267
-03:52:42,890 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,34,67641570097
-04:03:13,145 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,4,697925670053
-05:52:35,140 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,4,7260217678705
-05:52:48,339 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,29,12920027016
-05:54:55,714 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,29,140300288952
-06:16:08,030 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,25,1412674118914
-06:16:23,875 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,22,15749420884
-06:19:00,587 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,19,172468132365
-06:45:09,211 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,15,1741162856083
-06:45:27,824 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,5,18471522531
-06:48:31,964 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,4,202619822149
-07:19:15,186 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,4,2045926216189
-07:19:25,300 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,18,10109742931
-07:21:06,365 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,18,111179652156
-07:37:57,511 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,15,1122371302105
-07:38:07,676 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,10,10159845222
-07:39:49,296 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,8,111784481831
-07:56:45,775 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,8,1128308882456
-07:56:56,000 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10218342047
-07:58:38,112 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,4,112334148065
-08:15:39,676 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1133944524759
-08:15:50,175 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,28,10486502195
-08:17:35,012 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,24,115329195503
-08:35:02,875 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,22,1163239296714
-08:35:13,877 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,16,10978542397
-08:37:03,570 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,13,120676750925
-08:55:20,237 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,11,1217393564250
-08:55:31,715 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11443652230
-08:57:26,094 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,125827473606
-09:16:28,959 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,3,1268744092044
-09:16:43,186 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,14154017976
-09:19:04,716 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,155690775170
-09:42:48,281 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1579323661748
-09:42:58,327 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10044518066
-09:44:38,839 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110561341865
-10:01:23,941 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1115711416812
-10:01:44,810 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,10,20662544478
-10:05:17,719 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,233581011863
-10:40:48,099 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2364062739626
-10:41:19,089 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,30680640964
-10:46:25,118 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,336723779525
-11:37:23,991 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3395741938631
-11:37:34,176 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10178088931
-11:39:16,030 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112037451717
-11:56:14,292 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1130347364123
-11:57:20,839 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,10,65684567629
-12:09:00,084 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,764962975093
-14:03:24,522 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,10,7629725658772
-14:03:35,538 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,10993773601
-14:05:25,750 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,3,121211017872
-14:23:45,231 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1220742996556
-14:23:57,867 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,9,12591162905
-14:26:03,877 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,138606839998
-14:47:02,768 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,8,1397557028498
-14:47:13,312 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,7,10530922310
-14:48:58,538 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,6,115761982103
-15:06:33,473 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1170746134909
-15:06:43,952 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10464817891
-15:08:28,634 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115151980968
-15:25:55,813 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1162379660236
-15:27:30,710 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,92850882337
-15:42:52,376 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1014562209833
-18:14:01,692 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,10084298828209
-18:14:11,824 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,6,10128791966
-18:15:53,076 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,5,111384922022
-18:32:46,010 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1124366552027
-18:32:56,148 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10134353949
-18:34:37,550 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111541125678
-18:51:31,305 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,4,1125342952279
-18:51:41,888 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10571257411
-18:53:27,701 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,116388634610
-19:11:05,939 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1174675436387
-19:11:16,528 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10576603629
-19:13:02,335 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,116388783293
-19:30:40,605 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1174707478977
-19:30:52,995 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12353288118
-19:32:56,470 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,135834071379
-19:53:30,190 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1369610398338
-19:53:42,599 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,5,12371916998
-19:55:45,967 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,135745690793
-20:16:20,109 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1369944744904
-20:16:30,273 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10159233904
-20:18:11,835 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111726279152
-20:35:06,979 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1126917052249
-20:35:17,149 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,3,10163649490
-20:36:58,670 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111691990156
-20:53:54,027 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1127095525657
-20:54:04,721 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,3,10679740007
-20:55:51,559 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,117523539753
-21:13:39,867 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1185880562497
-21:13:50,584 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,2,10703147665
-21:15:37,475 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,117599361387
-21:33:26,496 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1186669964007
-21:33:37,195 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,3,10684870502
-21:35:24,101 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,117595618431
-21:53:13,569 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1187114101011
-21:53:30,060 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,16400054801
-21:56:05,913 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,172260564993
-22:22:18,527 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1744947118428
-22:22:28,780 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,12,10248510960
-22:24:11,219 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112692104951
-22:41:15,852 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1137372113226
-22:41:25,957 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,7,10102921249
-22:43:06,948 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111098908658
-22:59:57,055 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121252180465
-23:00:09,113 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,14,12018588700
-23:02:09,371 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,8,132282267299
-23:22:12,231 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1335198168551
-23:23:22,789 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,34,69613519204
-23:35:04,697 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,18,771553517115
-01:38:08,340 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,13,8155540047972
-01:38:22,401 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,33,13392192824
-01:40:34,101 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,29,145097614418
-02:02:30,634 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,26,1461691917515
-02:02:47,233 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,20,16498972027
-02:05:31,480 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,18,180752903848
-02:32:54,417 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,15,1823766350802
-02:33:13,996 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,5,19430822039
-02:36:27,908 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,213351978317
-03:08:48,560 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,5,2154094057453
-03:08:58,691 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,22,10127260025
-03:10:39,991 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,17,111431726789
-03:27:32,903 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,15,1124391655153
-03:27:43,116 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,11,10207026182
-03:29:25,079 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,9,112175240686
-03:46:25,184 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,8,1132327047691
-03:46:35,476 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10284486907
-03:48:18,317 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,4,113130499778
-04:05:26,740 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1141601663895
-04:05:37,344 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,28,10591554220
-04:07:23,268 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,25,116519738233
-04:25:02,778 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,20,1176079516845
-04:25:13,981 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,20,11179695090
-04:27:05,797 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,14,123000676840
-04:45:43,370 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,12,1240625968886
-04:45:55,135 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11731369893
-04:47:52,484 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,129086122829
-05:07:25,479 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,4,1302135705639
-13:34:15,784 DEBUG [DSGreedyRandomTest] 4-----------------------
-13:34:31,652 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,15617633278
-13:36:58,847 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,162819523935
-14:01:21,425 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1625466224044
-14:01:31,479 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10051615710
-14:03:12,308 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110885159221
-14:20:00,110 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1118734689417
-14:20:21,661 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,9,21314336961
-14:24:00,766 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,240429855563
-15:00:33,815 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2433580240788
-15:01:05,717 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,31542817051
-15:06:21,349 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,347188947784
-15:58:24,218 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3470203625057
-15:58:34,407 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,3,10181995598
-16:00:16,307 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112087476940
-16:17:17,774 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1133602344139
-16:18:29,581 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,11,70926327413
-16:30:29,855 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,791234751945
-18:34:12,545 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,8214276077988
-18:34:23,645 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11077714889
-18:36:14,612 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,2,122049248648
-18:54:41,804 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1229293007427
-18:54:54,659 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,8,12810803538
-18:57:02,623 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,140780958858
-19:18:23,227 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1421444925300
-19:18:33,867 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10627121851
-19:20:20,107 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116872027192
-19:38:02,415 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1179230260349
-19:38:12,956 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10527671020
-19:39:58,060 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115636139876
-19:57:29,459 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1167085030007
-19:59:12,891 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,101930205519
-20:16:28,028 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1137115844198
-23:08:26,704 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,11456283891955
-23:08:36,834 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,6,10126549229
-23:10:18,618 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,6,111915307107
-23:27:12,106 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1125452134991
-23:27:22,271 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10161363934
-23:29:03,748 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111643709711
-23:45:58,596 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,4,1126539950613
-23:46:09,277 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10668128548
-23:47:55,867 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,117263430661
-00:05:41,862 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,4,1183309599757
-00:05:52,535 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10647916639
-00:07:39,160 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,117278011943
-00:25:24,773 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1182942556557
-00:25:37,402 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12591251999
-00:27:43,361 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,138555986544
-00:48:43,713 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1398969373670
-00:48:56,354 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12594372698
-00:51:02,415 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,138661876682
-01:12:02,470 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1398777873998
-01:12:12,637 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,3,10161956878
-01:13:54,284 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111814160020
-01:30:50,781 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1128360693211
-01:31:00,961 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10175929348
-01:32:42,600 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111819784881
-01:49:39,132 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1128401131524
-01:49:49,911 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,3,10764660503
-01:51:37,534 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,118393265656
-02:09:33,996 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1194907516611
-02:09:44,787 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,3,10776820184
-02:11:32,556 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,118551518234
-02:29:29,324 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1195371912259
-02:29:40,138 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,2,10799062420
-02:31:27,839 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118505987160
-02:49:25,207 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1195925930110
-02:49:41,526 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,16228269473
-02:52:20,693 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,175402110309
-03:19:02,135 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1776922034657
-03:19:12,431 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10291479900
-03:20:55,122 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112987121471
-03:38:02,051 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139965798307
-03:38:12,161 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,8,10108016724
-03:39:53,245 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,7,111196733217
-03:56:43,931 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121931819868
-03:56:56,142 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,11,12170351906
-03:58:57,893 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,8,133927334995
-04:19:15,729 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1351822351094
-04:20:40,381 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,20,83330945636
-04:34:11,544 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,4,894533695955
-06:50:22,790 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,4,9066175363578
-06:50:37,147 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,34,13620933305
-06:52:50,988 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,29,147468060100
-07:15:08,744 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,27,1485289460741
-07:15:25,653 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,18,16807486382
-07:18:13,799 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,15,184961658829
-07:46:12,910 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,13,1864154456975
-07:46:33,117 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,4,20057830573
-07:49:51,943 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,4,218894065145
-08:22:59,300 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,4,2206346619424
-08:23:09,436 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,19,10132236168
-08:24:50,865 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,18,111566409241
-08:41:45,046 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,16,1125796872624
-08:41:55,256 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,11,10204111412
-08:43:37,477 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,9,112430041742
-09:00:39,341 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,7,1134343117252
-09:00:49,658 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10309195182
-09:02:32,829 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,4,113485135640
-09:19:44,620 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1145326548244
-09:19:55,290 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,31,10657592383
-09:21:41,759 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,22,117131787899
-09:39:27,095 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,20,1182519073543
-09:39:38,395 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,17,11276685612
-09:41:31,211 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,14,124097639926
-10:00:19,745 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,12,1252686172619
-10:00:31,643 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11863015237
-10:02:30,282 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,130507951352
-10:22:16,536 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,4,1316818545170
-10:22:16,536 DEBUG [DSGreedyRandomTest] 5-----------------------
-10:22:31,636 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,15026754179
-10:25:01,596 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,164994782335
-10:49:59,440 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1662910558149
-10:50:09,536 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10094997786
-10:51:50,522 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,111085360633
-11:08:40,122 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1120734679351
-11:09:02,989 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,10,22687645843
-11:12:49,899 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,249608947734
-11:50:31,412 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2511230461623
-11:51:03,695 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,31920063030
-11:56:23,167 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,351407161114
-12:50:00,718 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3569118113941
-12:50:10,933 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,3,10208459982
-12:51:52,966 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112246095590
-13:08:54,542 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1133872577315
-13:10:05,278 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,10,69902402632
-13:23:22,601 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,867263866612
-15:27:49,846 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,10,8334867114776
-15:28:00,913 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11038524112
-15:29:51,551 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,2,121682526858
-15:48:16,727 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1226911156620
-15:48:29,589 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,9,12821333100
-15:50:37,448 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,140685588666
-16:11:55,859 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1419158034048
-16:12:06,497 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10621550168
-16:13:52,659 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116787929304
-16:31:34,377 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1178555895711
-16:31:44,887 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10496201104
-16:33:30,033 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115647469664
-16:51:00,978 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1166641728275
-16:52:46,950 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,104594072485
-17:10:05,120 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1142812548427
-20:02:10,539 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,11468715154709
-20:02:20,662 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,6,10120288835
-20:04:02,438 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,5,111901498852
-20:20:55,223 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1124733821096
-20:21:05,365 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,5,10137829758
-20:22:46,794 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111571633363
-20:39:41,055 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,4,1125880185643
-20:39:51,749 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10682161477
-20:41:38,351 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,117288325465
-20:59:24,082 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,4,1183069662006
-20:59:34,780 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10685465712
-21:01:21,301 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,3,117211730580
-21:19:06,896 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1182856333777
-21:19:19,547 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,5,12613590463
-21:21:25,805 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,138877004439
-21:42:27,602 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1400733173239
-21:42:40,296 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,5,12656517753
-21:44:46,460 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,138826616697
-22:05:48,468 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1400893321705
-22:05:58,654 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10181571754
-22:07:40,295 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111824829618
-22:24:36,792 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1128372053560
-22:24:46,953 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10156497382
-22:26:28,598 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111805683728
-22:43:25,095 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1128350901519
-22:43:35,890 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,3,10779262225
-22:45:23,615 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,118509531552
-23:03:21,097 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1196042270627
-23:03:31,887 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,2,10775340269
-23:05:19,701 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,118594674659
-23:23:17,628 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1196571533767
-23:23:28,418 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,3,10754656654
-23:25:16,224 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118564881830
-23:43:14,190 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1196581495934
-23:43:30,566 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,14,16301857202
-23:46:10,288 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,176032028244
-00:12:53,838 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1779656850364
-00:13:04,095 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10252211681
-00:14:46,737 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112899028124
-00:31:53,266 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139475895919
-00:32:03,384 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,6,10115520921
-00:33:44,376 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111111292515
-00:50:34,526 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121308566996
-00:50:46,748 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,14,12181165376
-00:52:48,553 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,8,133991893543
-01:13:07,759 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1353254874453
-01:14:30,016 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,18,80977028452
-01:28:03,350 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,14,894349640098
-03:45:11,573 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,11,9122957088782
-03:45:26,022 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,33,13727576300
-03:47:39,958 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,26,147669686994
-04:09:58,725 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,26,1486499082163
-04:10:15,664 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,21,16837293028
-04:13:04,171 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,16,185351304831
-04:41:07,892 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,15,1869151194983
-04:41:27,899 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,5,19857621461
-04:44:47,468 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,219435358252
-05:18:02,352 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,4,2214413304885
-05:18:12,502 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,22,10146449083
-05:19:53,830 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,19,111478662668
-05:36:47,583 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,15,1125279202772
-05:36:57,822 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,11,10232544340
-05:38:39,993 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,9,112408983915
-05:55:41,703 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,8,1134166178661
-05:55:52,018 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,5,10307498913
-05:57:35,316 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,4,113609863804
-06:14:47,040 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1145382278208
-06:14:57,700 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,29,10647501749
-06:16:44,298 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,22,117250691647
-06:34:29,376 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,22,1182378260483
-06:34:40,697 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,14,11296484686
-06:36:33,509 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,12,124114186161
-06:55:21,241 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,11,1251898882295
-06:55:33,129 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11853544611
-06:57:31,659 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,130389597158
-07:17:16,526 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,3,1315311647529
-07:17:16,526 DEBUG [DSGreedyRandomTest] 6-----------------------
-07:17:31,650 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,15032204032
-07:20:01,460 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,164849930981
-07:44:56,862 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1660321695769
-07:45:06,956 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10091025123
-07:46:47,845 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110984714999
-08:03:36,572 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1119758892483
-08:04:00,167 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,10,23412123161
-08:07:46,219 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,249474484712
-08:45:30,959 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2514320047801
-08:46:02,818 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,4,31492079247
-08:51:26,024 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,354712924149
-09:45:05,175 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3574014446311
-09:45:15,423 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10241324194
-09:46:57,739 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112562114445
-10:04:01,184 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1136054947323
-10:05:13,774 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,11,71699780440
-10:17:51,866 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,829826773125
-12:22:18,898 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,8297208347918
-12:22:30,584 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11662628587
-12:24:21,453 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,2,122536862514
-12:42:48,031 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1229166730215
-12:43:00,870 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,8,12788490537
-12:45:08,859 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,140783037253
-13:06:28,410 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1420393857863
-13:06:39,037 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10613570160
-13:08:25,203 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116785408914
-13:26:06,890 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1178521414358
-13:26:17,417 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10513099206
-13:28:02,517 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115618053060
-13:45:33,475 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1166625051818
-13:47:14,374 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,99555541612
-14:04:22,891 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1128120761886
-16:56:15,998 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,11441710298754
-16:56:26,128 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,7,10126586461
-16:58:07,420 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,6,111422850177
-17:15:00,356 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1124406018064
-17:15:10,521 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10161431727
-17:16:51,979 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111624275758
-17:33:46,306 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,4,1125998355530
-17:33:56,967 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10648490356
-17:35:43,546 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,3,117232387274
-17:53:29,022 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1182758165391
-17:53:39,702 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10666713210
-17:55:26,228 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,117197428716
-18:13:11,449 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1182468353319
-18:13:24,129 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12643251396
-18:15:30,171 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,138690501811
-18:36:30,551 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1399129366100
-18:36:43,192 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12604471721
-18:38:49,275 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,138693069808
-18:59:50,408 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1399884502900
-19:00:00,576 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10163427537
-19:01:42,200 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111793093842
-19:18:38,524 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1128163806773
-19:18:48,688 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10160392874
-19:20:30,334 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111811005037
-19:37:26,645 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1128169129877
-19:37:37,411 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,3,10752392654
-19:39:25,014 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,118359823475
-19:57:21,030 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1194426318976
-19:57:31,835 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,2,10790258381
-19:59:19,468 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,118428514461
-20:17:16,070 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1195080593402
-20:17:26,868 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,3,10772977938
-20:19:14,533 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118442846980
-20:37:10,989 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1194948893318
-20:37:27,523 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,16443861507
-20:40:07,226 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,176154771206
-21:06:54,512 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1783516016712
-21:07:04,799 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10281688371
-21:08:47,466 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112953165763
-21:25:54,181 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139716779188
-21:26:04,297 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,5,10113398582
-21:27:45,337 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111157998554
-21:44:35,594 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121461823283
-21:44:47,849 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,14,12215149470
-21:46:49,803 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,10,134174189105
-22:07:09,242 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1353670359460
-22:08:35,145 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,26,84634618779
-22:21:16,097 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,12,845622358795
-00:32:36,583 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,10,8726476687392
-00:32:51,022 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,35,13712866186
-00:35:04,934 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,28,147631859809
-00:57:23,292 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,27,1486051913143
-00:57:40,156 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,21,16762554939
-01:00:28,453 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,17,185067082828
-01:28:30,559 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,14,1867251417234
-01:28:50,605 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,6,19896487981
-01:32:09,646 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,218946315817
-02:05:21,532 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,4,2210925597553
-02:05:31,670 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,22,10134395473
-02:07:12,985 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,16,111454910512
-02:24:06,402 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,15,1124919210115
-02:24:16,623 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,11,10215441134
-02:25:58,744 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,7,112341289968
-02:43:00,162 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,6,1133806831422
-02:43:10,478 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10308077549
-02:44:53,669 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,3,113503770108
-03:02:05,245 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1145128307556
-03:02:15,915 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,29,10658123039
-03:04:02,524 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,22,117272255626
-03:21:47,357 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,20,1182154885599
-03:21:58,643 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,14,11262330889
-03:23:51,443 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,13,124068083025
-03:42:39,387 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,12,1252064870985
-03:42:51,277 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11856022222
-03:44:49,704 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,5,130288328300
-04:04:34,527 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,4,1315167200224
-04:04:34,528 DEBUG [DSGreedyRandomTest] 7-----------------------
-04:04:49,641 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,15022860847
-04:07:19,139 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,164528608799
-04:32:14,020 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1659479036980
-04:32:24,120 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10098134492
-04:34:05,017 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110999733889
-04:50:53,781 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1119811003609
-04:51:16,963 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,9,22980345645
-04:55:02,917 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,248945049463
-05:32:47,416 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2513549382075
-05:33:20,130 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,32398385050
-05:38:42,589 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,354873226889
-06:32:20,713 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3573147620612
-06:32:30,974 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10252643353
-06:34:13,378 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112661469032
-06:51:16,916 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1136247653921
-06:52:28,156 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,11,70358076886
-07:04:59,302 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,9,821539435518
-09:10:39,164 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,8361753423489
-09:10:50,243 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11055926115
-09:12:41,393 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,3,122211860321
-09:31:08,833 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1229702990370
-09:31:21,685 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,9,12806679626
-09:33:29,862 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,140990097572
-09:54:51,480 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1422667828302
-09:55:02,110 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10617423582
-09:56:48,320 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116832549400
-10:14:29,790 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1178351885245
-10:14:40,290 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10486748747
-10:16:25,370 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115571326713
-10:33:56,036 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1166286744658
-10:35:41,924 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,104679047537
-10:52:53,447 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1136249963950
-13:44:42,570 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,11445856385522
-13:44:52,701 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,6,10127528508
-13:46:33,958 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,6,111389457161
-14:03:26,943 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1124422249304
-14:03:37,103 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10156165417
-14:05:18,496 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111553258295
-14:22:12,905 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,3,1126009775545
-14:22:23,543 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10626255176
-14:24:10,124 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,117212116778
-14:41:55,307 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1182444848670
-14:42:05,962 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10643224580
-14:43:52,500 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,117185545845
-15:01:37,699 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1182435160192
-15:01:50,362 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12624983153
-15:03:56,495 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,138764370145
-15:24:56,647 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1398974696748
-15:25:09,298 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12613457526
-15:27:15,282 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,138603961308
-15:48:15,792 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1399172143972
-15:48:25,968 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10172014105
-15:50:07,570 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111778190413
-16:07:03,818 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1128074255308
-16:07:13,992 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10169414846
-16:08:55,623 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111805646318
-16:25:51,946 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1128175700248
-16:26:02,715 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,2,10755293521
-16:27:50,410 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,118454724895
-16:45:47,297 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1195392709541
-16:45:58,089 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,2,10777357054
-16:47:45,835 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,118528979559
-17:05:43,875 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1196619467390
-17:05:54,634 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,2,10744343041
-17:07:42,387 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118503019282
-17:25:40,607 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1196773497987
-17:25:56,893 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,14,16190498508
-17:28:37,493 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,176797536447
-17:55:23,776 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1783155522961
-17:55:34,050 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10268835559
-17:57:16,769 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112993268726
-18:14:23,435 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139706984632
-18:14:33,545 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,8,10107510777
-18:16:14,595 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111162107458
-18:33:04,830 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121444529592
-18:33:17,058 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,12,12159034182
-18:35:18,883 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,10,133989502570
-18:55:39,562 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1354726615249
-18:57:02,590 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,30,81697006370
-19:10:46,124 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,12,905269655162
-21:29:31,900 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,11,9231441475514
-21:29:46,352 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,35,13744256826
-21:32:00,200 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,30,147598897848
-21:54:15,974 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,27,1483434798776
-21:54:32,823 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,22,16747859487
-21:57:20,628 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,18,184561026648
-22:25:14,873 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,14,1858883686364
-22:25:34,745 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,5,19723954702
-22:28:53,050 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,218037732864
-23:01:53,490 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,4,2198571066046
-23:02:03,626 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,22,10131805446
-23:03:44,907 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,18,111417315115
-23:20:37,676 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,14,1124234054238
-23:20:47,910 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,9,10228366874
-23:22:29,958 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,9,112281049423
-23:39:30,963 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,8,1133333593799
-23:39:41,269 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10298564710
-23:41:24,402 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,3,113436325818
-23:58:35,595 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1144678058458
-23:58:46,227 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,26,10619746167
-00:00:32,614 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,23,117011157376
-00:18:16,632 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,22,1181079363451
-00:18:27,912 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,16,11255758490
-00:20:20,551 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,14,123900167838
-00:39:07,185 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,11,1250586245686
-00:39:19,051 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,4,11827392093
-00:41:17,508 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,130289355379
-01:01:01,069 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,4,1313906189893
-01:01:01,070 DEBUG [DSGreedyRandomTest] 8-----------------------
-01:01:16,111 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,14954947440
-01:03:45,276 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,164126655385
-01:28:36,863 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1655783602701
-01:28:46,945 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10079899246
-01:30:27,857 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110996319757
-01:47:16,838 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1120024404310
-01:47:39,715 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,10,22699027765
-01:51:23,569 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,8,246562919762
-02:28:55,460 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2498559300170
-02:29:28,216 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,3,32433397307
-02:34:48,188 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,352421114937
-03:28:08,524 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3552905669828
-03:28:18,755 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10223676969
-03:30:01,068 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112541677145
-03:47:03,917 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1135438404971
-03:48:15,225 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,10,70433819189
-04:00:36,881 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,10,812124407440
-06:04:57,294 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,8272882715255
-06:05:08,424 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11107193999
-06:06:59,572 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,2,122260902666
-06:25:26,017 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1228757086328
-06:25:38,878 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,9,12816309126
-06:27:46,763 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,140706722111
-06:49:06,169 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1420173416376
-06:49:16,794 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,8,10611506410
-06:51:02,937 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116759011008
-07:08:44,178 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1178049342082
-07:08:54,674 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10482832156
-07:10:39,775 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115588077499
-07:28:10,562 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1166424321515
-07:29:56,058 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,104134499035
-07:47:07,264 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1135388849628
-10:38:23,575 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,11412179882925
-10:38:33,711 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,7,10132272426
-10:40:15,479 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,6,111904400177
-10:57:07,950 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1124423085939
-10:57:18,096 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10142327340
-10:58:59,553 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111603283533
-11:15:53,694 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,3,1125792356701
-11:16:04,326 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10620133800
-11:17:50,465 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,116763792643
-11:35:33,809 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1180158304623
-11:35:44,431 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,4,10609211783
-11:37:30,569 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,4,116753159536
-11:55:14,972 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1181205462214
-11:55:27,623 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,6,12613746199
-11:57:33,449 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,138445270421
-12:18:32,320 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1397374597533
-12:18:44,957 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12599959849
-12:20:50,886 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,138534538576
-12:41:49,304 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1397012187704
-12:41:59,472 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10163478385
-12:43:41,056 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111751850234
-13:00:37,363 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1128106354685
-13:00:47,519 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10152109771
-13:02:29,129 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111765953713
-13:19:25,507 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1128192007765
-13:19:36,283 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,2,10747805157
-13:21:23,879 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,118348459086
-13:39:20,102 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1194621765842
-13:39:30,877 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,2,10745533987
-13:41:18,602 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,118475311003
-13:59:15,437 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1195361018066
-13:59:26,209 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,3,10757919466
-14:01:13,838 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118391494301
-14:19:10,424 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1195027606343
-14:19:26,698 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,16182816754
-14:22:06,086 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,175577644587
-14:48:50,929 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1780495557417
-14:49:01,199 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10264376705
-14:50:43,823 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112892872329
-15:07:50,386 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139503584297
-15:08:00,485 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,8,10096311119
-15:09:41,533 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,4,111148862880
-15:26:31,877 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1121540408029
-15:26:44,105 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,14,12187367256
-15:28:46,025 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,9,134113937470
-15:49:05,860 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1354005359875
-15:50:29,031 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,20,81840484542
-16:03:17,762 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,20,850608115122
-18:14:57,855 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,9,8751070647842
-18:15:12,362 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,36,13785876761
-18:17:26,368 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,31,147798754030
-18:39:46,440 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,27,1487932986278
-18:40:03,431 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,14,16890115095
-18:42:51,932 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,14,185399055226
-19:10:56,770 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,14,1870314730304
-19:11:16,888 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,6,19969992462
-19:14:36,459 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,219550357293
-19:47:52,291 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,5,2215474786517
-19:48:02,420 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,22,10125760144
-19:49:43,805 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,18,111515055662
-20:06:37,329 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,15,1125086794540
-20:06:47,530 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,10,10195092667
-20:08:29,685 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,9,112355236238
-20:25:31,008 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,1000,6,1133725803123
-20:25:41,333 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,10,4,10316640762
-20:27:24,480 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,100,4,113468344789
-20:44:36,348 DEBUG [root] src/test/resources/DIMACS/p_hat300-3.clq,1000,3,1145384718669
-20:44:47,004 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,10,24,10643117702
-20:46:33,452 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,100,23,117096457787
-21:04:17,869 DEBUG [root] src/test/resources/DIMACS/p_hat700-1.clq,1000,19,1181563307632
-21:04:29,150 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,10,16,11257946200
-21:06:21,989 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,100,14,124101691149
-21:25:09,711 DEBUG [root] src/test/resources/DIMACS/p_hat700-2.clq,1000,11,1251876214175
-21:25:21,588 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,10,5,11843266273
-21:27:19,974 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,100,4,130235491588
-21:47:04,282 DEBUG [root] src/test/resources/DIMACS/p_hat700-3.clq,1000,4,1314597706064
-21:47:04,282 DEBUG [DSGreedyRandomTest] 9-----------------------
-21:47:19,299 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,10,3,14940716634
-21:49:48,960 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,100,3,164608875787
-22:14:43,191 DEBUG [root] src/test/resources/DIMACS/C1000.9.clq,1000,3,1658908635291
-22:14:53,262 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,10,2,10069744600
-22:16:34,128 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,100,2,110940133290
-22:33:22,970 DEBUG [root] src/test/resources/DIMACS/C125.9.clq,1000,2,1119829008021
-22:33:45,938 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,10,9,22787147427
-22:37:31,439 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,100,9,248298788401
-23:15:10,061 DEBUG [root] src/test/resources/DIMACS/C2000.5.clq,1000,8,2507025887852
-23:15:42,221 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,10,4,31840984252
-23:21:04,811 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,100,3,354445886651
-00:14:31,191 DEBUG [root] src/test/resources/DIMACS/C2000.9.clq,1000,3,3560975189404
-00:14:41,428 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,10,2,10229365174
-00:16:23,777 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,100,2,112582494994
-00:33:27,123 DEBUG [root] src/test/resources/DIMACS/C250.9.clq,1000,2,1135975987332
-00:34:38,482 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,10,10,70488230768
-00:47:07,721 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,100,9,819762767598
-02:48:20,980 DEBUG [root] src/test/resources/DIMACS/C4000.5.clq,1000,9,8093359001854
-02:48:32,544 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,10,3,11541487124
-02:50:22,817 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,100,2,121819921047
-03:08:43,676 DEBUG [root] src/test/resources/DIMACS/C500.9.clq,1000,2,1222730299254
-03:08:56,401 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,10,9,12680509520
-03:11:02,995 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,100,8,139280825886
-03:32:09,072 DEBUG [root] src/test/resources/DIMACS/DSJC1000.5.clq,1000,7,1405416143341
-03:32:19,666 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,10,7,10581017012
-03:34:05,421 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,100,7,116341505001
-03:51:42,835 DEBUG [root] src/test/resources/DIMACS/DSJC500.5.clq,1000,6,1173804377689
-03:51:53,337 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,10,2,10487983437
-03:53:38,194 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,100,2,115349982563
-04:11:06,952 DEBUG [root] src/test/resources/DIMACS/MANN_a27.clq,1000,2,1164156570378
-04:12:44,554 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,10,2,96317549044
-04:28:02,692 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,100,2,1014498699957
-07:01:26,255 DEBUG [root] src/test/resources/DIMACS/MANN_a81.clq,1000,2,10218489216528
-07:01:36,362 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,10,7,10103943793
-07:03:17,953 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,100,5,111700167735
-07:20:09,898 DEBUG [root] src/test/resources/DIMACS/brock200_2.clq,1000,5,1123692226675
-07:20:20,059 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,10,4,10157056030
-07:22:01,471 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,100,4,111574004913
-07:38:54,914 DEBUG [root] src/test/resources/DIMACS/brock200_4.clq,1000,3,1125063997182
-07:39:05,517 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,10,4,10590831699
-07:40:51,384 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,100,4,116463232336
-07:58:30,289 DEBUG [root] src/test/resources/DIMACS/brock400_2.clq,1000,3,1175417481270
-07:58:40,894 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,10,3,10592913685
-08:00:26,753 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,100,3,116457071831
-08:18:05,594 DEBUG [root] src/test/resources/DIMACS/brock400_4.clq,1000,3,1175347147914
-08:18:17,989 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,10,5,12358218126
-08:20:21,803 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,100,5,136177852370
-08:40:59,271 DEBUG [root] src/test/resources/DIMACS/brock800_2.clq,1000,5,1373703188824
-08:41:11,668 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,10,6,12360471618
-08:43:15,361 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,100,5,136059745638
-09:03:53,034 DEBUG [root] src/test/resources/DIMACS/brock800_4.clq,1000,5,1373789847115
-09:04:03,191 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,10,2,10153002913
-09:05:44,706 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,100,2,111672680460
-09:22:39,374 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_44.clq,1000,2,1126388232308
-09:22:49,515 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,10,2,10137001891
-09:24:30,742 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,100,2,111368527717
-09:41:25,422 DEBUG [root] src/test/resources/DIMACS/gen200_p0.9_55.clq,1000,2,1126095634633
-09:41:36,134 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,10,3,10698028164
-09:43:23,032 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,100,2,117600953550
-10:01:10,462 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_55.clq,1000,2,1185082951343
-10:01:21,158 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,10,3,10682630053
-10:03:07,932 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,100,2,117461405498
-10:20:57,110 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_65.clq,1000,2,1186692409479
-10:21:07,893 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,10,2,10768590663
-10:22:55,421 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,100,2,118301830607
-10:40:50,772 DEBUG [root] src/test/resources/DIMACS/gen400_p0.9_75.clq,1000,2,1193705518914
-10:41:07,595 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,10,8,16746099572
-10:43:52,437 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,100,8,181596513978
-11:10:55,481 DEBUG [root] src/test/resources/DIMACS/hamming10-4.clq,1000,8,1804720718648
-11:11:05,717 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,10,8,10230594802
-11:12:48,133 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,100,8,112651734044
-11:29:55,057 DEBUG [root] src/test/resources/DIMACS/hamming8-4.clq,1000,8,1139624498612
-11:30:05,169 DEBUG [root] src/test/resources/DIMACS/keller4.clq,10,7,10109783199
-11:31:46,246 DEBUG [root] src/test/resources/DIMACS/keller4.clq,100,6,111191141299
-11:48:34,136 DEBUG [root] src/test/resources/DIMACS/keller4.clq,1000,4,1119130151021
-11:48:46,384 DEBUG [root] src/test/resources/DIMACS/keller5.clq,10,14,12207434563
-11:50:48,538 DEBUG [root] src/test/resources/DIMACS/keller5.clq,100,7,134367616229
-12:11:12,762 DEBUG [root] src/test/resources/DIMACS/keller5.clq,1000,4,1358651035001
-12:12:44,227 DEBUG [root] src/test/resources/DIMACS/keller6.clq,10,16,90219369633
-12:26:34,472 DEBUG [root] src/test/resources/DIMACS/keller6.clq,100,16,920502761812
-14:51:21,485 DEBUG [root] src/test/resources/DIMACS/keller6.clq,1000,4,9607938250583
-14:51:36,034 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,10,32,13765891960
-14:53:51,671 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,100,30,149409558048
-15:16:33,270 DEBUG [root] src/test/resources/DIMACS/p_hat1500-1.clq,1000,26,1511074440725
-15:16:50,729 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,10,20,17352988236
-15:19:45,426 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,100,18,192058465556
-15:48:37,589 DEBUG [root] src/test/resources/DIMACS/p_hat1500-2.clq,1000,14,1924306405813
-15:48:57,834 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,10,5,20093694345
-15:52:19,552 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,100,5,221821613790
-16:26:07,672 DEBUG [root] src/test/resources/DIMACS/p_hat1500-3.clq,1000,5,2250039733328
-16:26:17,773 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,10,18,10097629861
-16:27:58,894 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,100,16,111223158459
-16:44:49,858 DEBUG [root] src/test/resources/DIMACS/p_hat300-1.clq,1000,16,1122236314811
-16:45:00,060 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,10,13,10194902734
-16:46:42,154 DEBUG [root] src/test/resources/DIMACS/p_hat300-2.clq,100,11,112293782841
+12:49:43,271 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb56-25-mis/frb56-25-1.mis
+12:50:43,260 DEBUG [GreedyDDSTestDIMACSGC] 1:,43,5,1, 59797671815
+12:51:40,552 DEBUG [GreedyDDSTestDIMACSGC] 2:,38,5,2, 57236388045
+12:52:39,546 DEBUG [GreedyDDSTestDIMACSGC] 3:,38,5,3, 58934095708
+12:53:41,410 DEBUG [GreedyDDSTestDIMACSGC] 4:,38,5,4, 61800742950
+12:54:39,377 DEBUG [GreedyDDSTestDIMACSGC] 5:,38,5,5, 57910583675
+12:55:16,546 DEBUG [GreedyDDSTestDIMACSGC] 1:,42,10,1, 37114217651
+12:55:58,780 DEBUG [GreedyDDSTestDIMACSGC] 2:,37,10,2, 42178907130
+12:56:41,257 DEBUG [GreedyDDSTestDIMACSGC] 3:,37,10,3, 42422055810
+12:57:23,400 DEBUG [GreedyDDSTestDIMACSGC] 4:,37,10,4, 42088971189
+12:58:05,333 DEBUG [GreedyDDSTestDIMACSGC] 5:,37,10,5, 41877368964
+12:58:47,328 DEBUG [GreedyDDSTestDIMACSGC] 6:,37,10,6, 41939768549
+12:59:29,247 DEBUG [GreedyDDSTestDIMACSGC] 7:,37,10,7, 41863960358
+13:00:11,069 DEBUG [GreedyDDSTestDIMACSGC] 8:,37,10,8, 41767406843
+13:00:53,022 DEBUG [GreedyDDSTestDIMACSGC] 9:,37,10,9, 41897169003
+13:01:34,914 DEBUG [GreedyDDSTestDIMACSGC] 10:,37,10,10, 41836369498
+13:02:06,665 DEBUG [GreedyDDSTestDIMACSGC] 1:,52,20,1, 31695471191
+13:02:37,687 DEBUG [GreedyDDSTestDIMACSGC] 2:,49,20,2, 30965780833
+13:03:47,098 DEBUG [GreedyDDSTestDIMACSGC] 3:,49,20,3, 69356688848
+13:15:55,927 DEBUG [GreedyDDSTestDIMACSGC] 4:,39,20,4, 728806883094
+13:28:12,081 DEBUG [GreedyDDSTestDIMACSGC] 5:,39,20,5, 736131758181
+13:40:26,438 DEBUG [GreedyDDSTestDIMACSGC] 6:,39,20,6, 734333714267
+13:52:38,423 DEBUG [GreedyDDSTestDIMACSGC] 7:,39,20,7, 731962756821
+14:04:52,680 DEBUG [GreedyDDSTestDIMACSGC] 8:,39,20,8, 734234488484
+14:17:07,756 DEBUG [GreedyDDSTestDIMACSGC] 9:,39,20,9, 735054099472
+14:29:18,754 DEBUG [GreedyDDSTestDIMACSGC] 10:,39,20,10, 730976211849
+14:41:30,794 DEBUG [GreedyDDSTestDIMACSGC] 11:,39,20,11, 732016964592
+14:53:46,050 DEBUG [GreedyDDSTestDIMACSGC] 12:,39,20,12, 735232927177
+15:06:01,418 DEBUG [GreedyDDSTestDIMACSGC] 13:,39,20,13, 735346564605
+15:18:20,250 DEBUG [GreedyDDSTestDIMACSGC] 14:,39,20,14, 738809645659
+15:30:41,653 DEBUG [GreedyDDSTestDIMACSGC] 15:,39,20,15, 741380007884
+15:42:50,829 DEBUG [GreedyDDSTestDIMACSGC] 16:,39,20,16, 729152248728
+15:55:08,958 DEBUG [GreedyDDSTestDIMACSGC] 17:,39,20,17, 738104864857
+16:07:28,409 DEBUG [GreedyDDSTestDIMACSGC] 18:,39,20,18, 739426632101
+16:19:55,427 DEBUG [GreedyDDSTestDIMACSGC] 19:,39,20,19, 746994839710
+16:32:14,243 DEBUG [GreedyDDSTestDIMACSGC] 20:,39,20,20, 738794714985
+16:32:14,244 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb56-25-mis/frb56-25-2.mis
+16:33:08,580 DEBUG [GreedyDDSTestDIMACSGC] 1:,42,5,1, 54246748075
+16:34:06,359 DEBUG [GreedyDDSTestDIMACSGC] 2:,41,5,2, 57723880162
+16:35:04,308 DEBUG [GreedyDDSTestDIMACSGC] 3:,41,5,3, 57894412415
+16:36:03,861 DEBUG [GreedyDDSTestDIMACSGC] 4:,41,5,4, 59495585341
+16:37:05,954 DEBUG [GreedyDDSTestDIMACSGC] 5:,41,5,5, 62036381656
+16:37:49,484 DEBUG [GreedyDDSTestDIMACSGC] 1:,46,10,1, 43471752349
+16:38:40,034 DEBUG [GreedyDDSTestDIMACSGC] 2:,40,10,2, 50494320430
+16:39:30,931 DEBUG [GreedyDDSTestDIMACSGC] 3:,40,10,3, 50842340827
+16:40:19,754 DEBUG [GreedyDDSTestDIMACSGC] 4:,40,10,4, 48769435628
+16:41:08,931 DEBUG [GreedyDDSTestDIMACSGC] 5:,40,10,5, 49120891173
+16:41:58,523 DEBUG [GreedyDDSTestDIMACSGC] 6:,40,10,6, 49527948579
+16:42:47,872 DEBUG [GreedyDDSTestDIMACSGC] 7:,40,10,7, 49294235635
+16:43:36,914 DEBUG [GreedyDDSTestDIMACSGC] 8:,40,10,8, 48985606023
+16:44:26,101 DEBUG [GreedyDDSTestDIMACSGC] 9:,40,10,9, 49131668503
+16:45:15,031 DEBUG [GreedyDDSTestDIMACSGC] 10:,40,10,10, 48874435236
+16:45:47,319 DEBUG [GreedyDDSTestDIMACSGC] 1:,58,20,1, 32229836127
+16:46:21,158 DEBUG [GreedyDDSTestDIMACSGC] 2:,40,20,2, 33782693862
+16:46:55,635 DEBUG [GreedyDDSTestDIMACSGC] 3:,37,20,3, 34419849579
+16:47:29,723 DEBUG [GreedyDDSTestDIMACSGC] 4:,37,20,4, 34030913431
+16:48:03,876 DEBUG [GreedyDDSTestDIMACSGC] 5:,37,20,5, 34096894270
+16:48:39,208 DEBUG [GreedyDDSTestDIMACSGC] 6:,37,20,6, 35275590528
+16:49:13,115 DEBUG [GreedyDDSTestDIMACSGC] 7:,37,20,7, 33850660193
+16:49:47,266 DEBUG [GreedyDDSTestDIMACSGC] 8:,37,20,8, 34095264854
+16:50:21,217 DEBUG [GreedyDDSTestDIMACSGC] 9:,37,20,9, 33894344412
+16:50:55,271 DEBUG [GreedyDDSTestDIMACSGC] 10:,37,20,10, 33997775573
+16:51:29,672 DEBUG [GreedyDDSTestDIMACSGC] 11:,37,20,11, 34344489844
+16:52:03,482 DEBUG [GreedyDDSTestDIMACSGC] 12:,37,20,12, 33753403127
+16:52:37,084 DEBUG [GreedyDDSTestDIMACSGC] 13:,37,20,13, 33545612066
+16:53:09,637 DEBUG [GreedyDDSTestDIMACSGC] 14:,37,20,14, 32496438928
+16:53:44,199 DEBUG [GreedyDDSTestDIMACSGC] 15:,37,20,15, 34505174506
+16:54:18,241 DEBUG [GreedyDDSTestDIMACSGC] 16:,37,20,16, 33986692986
+16:54:51,455 DEBUG [GreedyDDSTestDIMACSGC] 17:,37,20,17, 33157670442
+16:55:25,468 DEBUG [GreedyDDSTestDIMACSGC] 18:,37,20,18, 33957028735
+16:56:00,277 DEBUG [GreedyDDSTestDIMACSGC] 19:,37,20,19, 34737997614
+16:56:34,003 DEBUG [GreedyDDSTestDIMACSGC] 20:,37,20,20, 33669542684
+16:56:34,003 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb56-25-mis/frb56-25-3.mis
+16:57:24,606 DEBUG [GreedyDDSTestDIMACSGC] 1:,42,5,1, 50522651697
+16:58:27,008 DEBUG [GreedyDDSTestDIMACSGC] 2:,42,5,2, 62346287362
+16:59:27,709 DEBUG [GreedyDDSTestDIMACSGC] 3:,42,5,3, 60646063591
+17:00:28,937 DEBUG [GreedyDDSTestDIMACSGC] 4:,42,5,4, 61172118849
+17:01:29,918 DEBUG [GreedyDDSTestDIMACSGC] 5:,42,5,5, 60925120691
+17:02:08,961 DEBUG [GreedyDDSTestDIMACSGC] 1:,40,10,1, 38987526160
+17:02:48,107 DEBUG [GreedyDDSTestDIMACSGC] 2:,40,10,2, 39089331595
+17:03:27,505 DEBUG [GreedyDDSTestDIMACSGC] 3:,37,10,3, 39328544640
+17:04:07,627 DEBUG [GreedyDDSTestDIMACSGC] 4:,37,10,4, 40065798108
+17:04:48,752 DEBUG [GreedyDDSTestDIMACSGC] 5:,37,10,5, 41058208332
+17:05:28,689 DEBUG [GreedyDDSTestDIMACSGC] 6:,37,10,6, 39880245516
+17:06:07,561 DEBUG [GreedyDDSTestDIMACSGC] 7:,37,10,7, 38816895853
+17:06:45,796 DEBUG [GreedyDDSTestDIMACSGC] 8:,37,10,8, 38178170460
+17:07:25,065 DEBUG [GreedyDDSTestDIMACSGC] 9:,37,10,9, 39212335557
+17:08:04,622 DEBUG [GreedyDDSTestDIMACSGC] 10:,37,10,10, 39501177752
+17:08:33,726 DEBUG [GreedyDDSTestDIMACSGC] 1:,47,20,1, 29047067939
+17:09:04,481 DEBUG [GreedyDDSTestDIMACSGC] 2:,47,20,2, 30698538858
+17:10:21,166 DEBUG [GreedyDDSTestDIMACSGC] 3:,47,20,3, 76630148832
+17:48:25,396 DEBUG [GreedyDDSTestDIMACSGC] 4:,37,20,4, 2284276856644
+18:26:10,873 DEBUG [GreedyDDSTestDIMACSGC] 5:,37,20,5, 2265520349835
+19:04:07,871 DEBUG [GreedyDDSTestDIMACSGC] 6:,37,20,6, 2277045139928
+19:42:05,476 DEBUG [GreedyDDSTestDIMACSGC] 7:,37,20,7, 2277651569408
+20:20:24,252 DEBUG [GreedyDDSTestDIMACSGC] 8:,37,20,8, 2298826673075
+20:58:37,446 DEBUG [GreedyDDSTestDIMACSGC] 9:,37,20,9, 2293244701584
+21:37:06,270 DEBUG [GreedyDDSTestDIMACSGC] 10:,37,20,10, 2308866796517
+22:15:25,100 DEBUG [GreedyDDSTestDIMACSGC] 11:,37,20,11, 2298880481085
+22:53:24,040 DEBUG [GreedyDDSTestDIMACSGC] 12:,37,20,12, 2278986935411
+23:31:34,435 DEBUG [GreedyDDSTestDIMACSGC] 13:,37,20,13, 2290443001536
+00:09:14,723 DEBUG [GreedyDDSTestDIMACSGC] 14:,37,20,14, 2260329910437
+00:46:47,727 DEBUG [GreedyDDSTestDIMACSGC] 15:,37,20,15, 2253048798031
+01:24:10,253 DEBUG [GreedyDDSTestDIMACSGC] 16:,37,20,16, 2242570143314
+02:02:16,186 DEBUG [GreedyDDSTestDIMACSGC] 17:,37,20,17, 2285978245665
+02:39:36,098 DEBUG [GreedyDDSTestDIMACSGC] 18:,37,20,18, 2239956820737
+03:17:12,040 DEBUG [GreedyDDSTestDIMACSGC] 19:,37,20,19, 2255989814917
+03:55:10,395 DEBUG [GreedyDDSTestDIMACSGC] 20:,37,20,20, 2278401334178
+03:55:10,395 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb56-25-mis/frb56-25-4.mis
+03:56:04,162 DEBUG [GreedyDDSTestDIMACSGC] 1:,39,5,1, 53686361965
+03:57:00,433 DEBUG [GreedyDDSTestDIMACSGC] 2:,39,5,2, 56216706950
+03:57:56,616 DEBUG [GreedyDDSTestDIMACSGC] 3:,39,5,3, 56127081905
+03:58:55,578 DEBUG [GreedyDDSTestDIMACSGC] 4:,39,5,4, 58906822756
+03:59:51,953 DEBUG [GreedyDDSTestDIMACSGC] 5:,39,5,5, 56319643283
+04:00:31,276 DEBUG [GreedyDDSTestDIMACSGC] 1:,43,10,1, 39267096265
+04:01:11,083 DEBUG [GreedyDDSTestDIMACSGC] 2:,43,10,2, 39750070888
+04:01:50,486 DEBUG [GreedyDDSTestDIMACSGC] 3:,36,10,3, 39347254040
+04:02:30,043 DEBUG [GreedyDDSTestDIMACSGC] 4:,36,10,4, 39501278025
+04:03:10,119 DEBUG [GreedyDDSTestDIMACSGC] 5:,36,10,5, 40010126148
+04:03:49,670 DEBUG [GreedyDDSTestDIMACSGC] 6:,36,10,6, 39478587355
+04:04:28,958 DEBUG [GreedyDDSTestDIMACSGC] 7:,36,10,7, 39218580864
+04:05:09,600 DEBUG [GreedyDDSTestDIMACSGC] 8:,36,10,8, 40575074531
+04:05:49,566 DEBUG [GreedyDDSTestDIMACSGC] 9:,36,10,9, 39910306484
+04:06:30,024 DEBUG [GreedyDDSTestDIMACSGC] 10:,36,10,10, 40401032274
+04:06:56,842 DEBUG [GreedyDDSTestDIMACSGC] 1:,48,20,1, 26761896287
+04:07:25,442 DEBUG [GreedyDDSTestDIMACSGC] 2:,47,20,2, 28541867949
+04:08:20,160 DEBUG [GreedyDDSTestDIMACSGC] 3:,47,20,3, 54661894902
+04:44:57,964 DEBUG [GreedyDDSTestDIMACSGC] 4:,47,20,4, 2197846492793
+05:30:56,603 DEBUG [GreedyDDSTestDIMACSGC] 5:,38,20,5, 2758708067876
+06:16:58,443 DEBUG [GreedyDDSTestDIMACSGC] 6:,38,20,6, 2761908546524
+07:02:57,745 DEBUG [GreedyDDSTestDIMACSGC] 7:,38,20,7, 2759371429068
+07:48:48,616 DEBUG [GreedyDDSTestDIMACSGC] 8:,38,20,8, 2750940474649
+08:35:15,315 DEBUG [GreedyDDSTestDIMACSGC] 9:,38,20,9, 2786768952420
+09:21:11,593 DEBUG [GreedyDDSTestDIMACSGC] 10:,38,20,10, 2756334069773
+10:06:52,039 DEBUG [GreedyDDSTestDIMACSGC] 11:,38,20,11, 2740513550248
+10:54:29,066 DEBUG [GreedyDDSTestDIMACSGC] 12:,38,20,12, 2857107550402
+11:40:45,513 DEBUG [GreedyDDSTestDIMACSGC] 13:,38,20,13, 2776523341959
+12:26:41,240 DEBUG [GreedyDDSTestDIMACSGC] 14:,38,20,14, 2755797050587
+13:12:51,497 DEBUG [GreedyDDSTestDIMACSGC] 15:,38,20,15, 2770323905497
+13:59:08,284 DEBUG [GreedyDDSTestDIMACSGC] 16:,38,20,16, 2776842473204
+14:45:27,118 DEBUG [GreedyDDSTestDIMACSGC] 17:,38,20,17, 2778909480807
+15:32:39,963 DEBUG [GreedyDDSTestDIMACSGC] 18:,38,20,18, 2832912048540
+16:21:03,197 DEBUG [GreedyDDSTestDIMACSGC] 19:,38,20,19, 2903300699642
+17:10:01,890 DEBUG [GreedyDDSTestDIMACSGC] 20:,38,20,20, 2938767776809
+17:10:01,891 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb56-25-mis/frb56-25-5.mis
+17:11:01,970 DEBUG [GreedyDDSTestDIMACSGC] 1:,42,5,1, 59990495563
+17:12:07,545 DEBUG [GreedyDDSTestDIMACSGC] 2:,41,5,2, 65465479343
+17:13:16,464 DEBUG [GreedyDDSTestDIMACSGC] 3:,41,5,3, 68854037441
+17:14:21,640 DEBUG [GreedyDDSTestDIMACSGC] 4:,41,5,4, 65121960200
+17:15:28,157 DEBUG [GreedyDDSTestDIMACSGC] 5:,41,5,5, 66454327685
+17:16:11,996 DEBUG [GreedyDDSTestDIMACSGC] 1:,45,10,1, 43775587987
+17:17:03,901 DEBUG [GreedyDDSTestDIMACSGC] 2:,39,10,2, 51839608064
+17:17:51,155 DEBUG [GreedyDDSTestDIMACSGC] 3:,39,10,3, 47190828288
+17:18:40,656 DEBUG [GreedyDDSTestDIMACSGC] 4:,39,10,4, 49437784315
+17:19:28,428 DEBUG [GreedyDDSTestDIMACSGC] 5:,39,10,5, 47708337518
+17:20:16,499 DEBUG [GreedyDDSTestDIMACSGC] 6:,39,10,6, 48007071508
+17:21:05,078 DEBUG [GreedyDDSTestDIMACSGC] 7:,39,10,7, 48514556030
+17:21:51,452 DEBUG [GreedyDDSTestDIMACSGC] 8:,39,10,8, 46263061412
+17:22:39,477 DEBUG [GreedyDDSTestDIMACSGC] 9:,39,10,9, 47960256134
+17:23:28,724 DEBUG [GreedyDDSTestDIMACSGC] 10:,39,10,10, 49181871068
+17:23:56,184 DEBUG [GreedyDDSTestDIMACSGC] 1:,48,20,1, 27399914488
+17:24:32,060 DEBUG [GreedyDDSTestDIMACSGC] 2:,51,20,2, 35811921078
+17:25:13,376 DEBUG [GreedyDDSTestDIMACSGC] 3:,37,20,3, 41248929903
+17:25:54,076 DEBUG [GreedyDDSTestDIMACSGC] 4:,37,20,4, 40637358265
+17:26:33,348 DEBUG [GreedyDDSTestDIMACSGC] 5:,37,20,5, 39205693570
+17:27:12,511 DEBUG [GreedyDDSTestDIMACSGC] 6:,37,20,6, 39100125901
+17:27:51,442 DEBUG [GreedyDDSTestDIMACSGC] 7:,37,20,7, 38850150519
+17:28:32,190 DEBUG [GreedyDDSTestDIMACSGC] 8:,37,20,8, 40669583117
+17:29:12,650 DEBUG [GreedyDDSTestDIMACSGC] 9:,37,20,9, 40396189715
+17:29:52,074 DEBUG [GreedyDDSTestDIMACSGC] 10:,37,20,10, 39368922489
+17:30:31,188 DEBUG [GreedyDDSTestDIMACSGC] 11:,37,20,11, 39050699921
+17:31:12,220 DEBUG [GreedyDDSTestDIMACSGC] 12:,37,20,12, 40968822795
+17:31:51,204 DEBUG [GreedyDDSTestDIMACSGC] 13:,37,20,13, 38911982856
+17:32:30,602 DEBUG [GreedyDDSTestDIMACSGC] 14:,37,20,14, 39335076526
+17:33:10,572 DEBUG [GreedyDDSTestDIMACSGC] 15:,37,20,15, 39914673751
+17:33:52,019 DEBUG [GreedyDDSTestDIMACSGC] 16:,37,20,16, 41391813670
+17:34:31,875 DEBUG [GreedyDDSTestDIMACSGC] 17:,37,20,17, 39792730290
+17:35:12,484 DEBUG [GreedyDDSTestDIMACSGC] 18:,37,20,18, 40543505386
+17:35:52,754 DEBUG [GreedyDDSTestDIMACSGC] 19:,37,20,19, 40214282120
+17:36:32,971 DEBUG [GreedyDDSTestDIMACSGC] 20:,37,20,20, 40151204419
+17:36:32,972 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb59-26-mis/frb59-26-1.mis
+17:37:40,149 DEBUG [GreedyDDSTestDIMACSGC] 1:,47,5,1, 67078090916
+17:39:07,658 DEBUG [GreedyDDSTestDIMACSGC] 2:,44,5,2, 87438392573
+17:40:36,451 DEBUG [GreedyDDSTestDIMACSGC] 3:,44,5,3, 88731233244
+17:42:03,551 DEBUG [GreedyDDSTestDIMACSGC] 4:,44,5,4, 87028029258
+17:43:24,833 DEBUG [GreedyDDSTestDIMACSGC] 5:,44,5,5, 81208842133
+17:44:16,919 DEBUG [GreedyDDSTestDIMACSGC] 1:,45,10,1, 52023007681
+17:45:11,612 DEBUG [GreedyDDSTestDIMACSGC] 2:,44,10,2, 54620188251
+17:46:14,442 DEBUG [GreedyDDSTestDIMACSGC] 3:,42,10,3, 62758292148
+17:47:15,893 DEBUG [GreedyDDSTestDIMACSGC] 4:,42,10,4, 61377067224
+17:48:17,059 DEBUG [GreedyDDSTestDIMACSGC] 5:,42,10,5, 61102922216
+17:49:19,022 DEBUG [GreedyDDSTestDIMACSGC] 6:,42,10,6, 61870343344
+17:50:20,394 DEBUG [GreedyDDSTestDIMACSGC] 7:,42,10,7, 61299818278
+17:51:22,468 DEBUG [GreedyDDSTestDIMACSGC] 8:,42,10,8, 61998380642
+17:52:21,335 DEBUG [GreedyDDSTestDIMACSGC] 9:,42,10,9, 58804022603
+17:53:23,202 DEBUG [GreedyDDSTestDIMACSGC] 10:,42,10,10, 61792265628
+17:54:09,945 DEBUG [GreedyDDSTestDIMACSGC] 1:,52,20,1, 46667952030
+17:54:57,067 DEBUG [GreedyDDSTestDIMACSGC] 2:,52,20,2, 47057033380
+17:55:46,146 DEBUG [GreedyDDSTestDIMACSGC] 3:,39,20,3, 49005121840
+17:56:35,476 DEBUG [GreedyDDSTestDIMACSGC] 4:,39,20,4, 49256235084
+17:57:25,791 DEBUG [GreedyDDSTestDIMACSGC] 5:,39,20,5, 50250409309
+17:58:17,992 DEBUG [GreedyDDSTestDIMACSGC] 6:,39,20,6, 52128687984
+17:59:07,872 DEBUG [GreedyDDSTestDIMACSGC] 7:,39,20,7, 49805083290
+17:59:59,056 DEBUG [GreedyDDSTestDIMACSGC] 8:,39,20,8, 51053048095
+18:00:49,010 DEBUG [GreedyDDSTestDIMACSGC] 9:,39,20,9, 49879157115
+18:01:40,063 DEBUG [GreedyDDSTestDIMACSGC] 10:,39,20,10, 50979084015
+18:02:29,281 DEBUG [GreedyDDSTestDIMACSGC] 11:,39,20,11, 49153772682
+18:03:19,482 DEBUG [GreedyDDSTestDIMACSGC] 12:,39,20,12, 50136907096
+18:04:10,789 DEBUG [GreedyDDSTestDIMACSGC] 13:,39,20,13, 51233951305
+18:05:00,749 DEBUG [GreedyDDSTestDIMACSGC] 14:,39,20,14, 49885665925
+18:05:50,346 DEBUG [GreedyDDSTestDIMACSGC] 15:,39,20,15, 49523302874
+18:06:40,886 DEBUG [GreedyDDSTestDIMACSGC] 16:,39,20,16, 50465757385
+18:07:30,188 DEBUG [GreedyDDSTestDIMACSGC] 17:,39,20,17, 49229859937
+18:08:20,274 DEBUG [GreedyDDSTestDIMACSGC] 18:,39,20,18, 50012882064
+18:09:10,406 DEBUG [GreedyDDSTestDIMACSGC] 19:,39,20,19, 50067512780
+18:09:59,926 DEBUG [GreedyDDSTestDIMACSGC] 20:,39,20,20, 49446159478
+18:09:59,926 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb59-26-mis/frb59-26-2.mis
+18:11:11,718 DEBUG [GreedyDDSTestDIMACSGC] 1:,43,5,1, 71691387156
+18:12:35,878 DEBUG [GreedyDDSTestDIMACSGC] 2:,41,5,2, 84097489288
+18:14:00,482 DEBUG [GreedyDDSTestDIMACSGC] 3:,41,5,3, 84540988044
+18:15:23,190 DEBUG [GreedyDDSTestDIMACSGC] 4:,41,5,4, 82635253146
+18:16:42,040 DEBUG [GreedyDDSTestDIMACSGC] 5:,41,5,5, 78787296334
+18:17:36,238 DEBUG [GreedyDDSTestDIMACSGC] 1:,48,10,1, 54124697533
+18:18:35,742 DEBUG [GreedyDDSTestDIMACSGC] 2:,44,10,2, 59399434616
+18:19:35,436 DEBUG [GreedyDDSTestDIMACSGC] 3:,40,10,3, 59619008519
+18:20:35,083 DEBUG [GreedyDDSTestDIMACSGC] 4:,40,10,4, 59572484196
+18:21:35,182 DEBUG [GreedyDDSTestDIMACSGC] 5:,40,10,5, 60025792562
+18:22:37,091 DEBUG [GreedyDDSTestDIMACSGC] 6:,40,10,6, 61846386878
+18:23:38,305 DEBUG [GreedyDDSTestDIMACSGC] 7:,40,10,7, 61141131226
+18:24:36,765 DEBUG [GreedyDDSTestDIMACSGC] 8:,40,10,8, 58384691145
+18:25:34,901 DEBUG [GreedyDDSTestDIMACSGC] 9:,40,10,9, 58029449159
+18:26:35,904 DEBUG [GreedyDDSTestDIMACSGC] 10:,40,10,10, 60930011636
+18:27:16,807 DEBUG [GreedyDDSTestDIMACSGC] 1:,48,20,1, 40826647891
+18:28:02,571 DEBUG [GreedyDDSTestDIMACSGC] 2:,50,20,2, 45690303948
+18:29:44,860 DEBUG [GreedyDDSTestDIMACSGC] 3:,50,20,3, 102216946494
+18:32:55,037 DEBUG [GreedyDDSTestDIMACSGC] 4:,40,20,4, 190108442224
+18:36:13,495 DEBUG [GreedyDDSTestDIMACSGC] 5:,40,20,5, 198400705945
+18:39:24,278 DEBUG [GreedyDDSTestDIMACSGC] 6:,40,20,6, 190724783705
+18:42:35,392 DEBUG [GreedyDDSTestDIMACSGC] 7:,40,20,7, 191057019427
+18:45:48,340 DEBUG [GreedyDDSTestDIMACSGC] 8:,40,20,8, 192890138172
+18:48:42,518 DEBUG [GreedyDDSTestDIMACSGC] 9:,40,20,9, 174119297027
+18:51:37,174 DEBUG [GreedyDDSTestDIMACSGC] 10:,40,20,10, 174596143637
+18:54:30,961 DEBUG [GreedyDDSTestDIMACSGC] 11:,40,20,11, 173728453536
+18:57:26,919 DEBUG [GreedyDDSTestDIMACSGC] 12:,40,20,12, 175890907277
+19:00:22,148 DEBUG [GreedyDDSTestDIMACSGC] 13:,40,20,13, 175170325134
+19:03:16,923 DEBUG [GreedyDDSTestDIMACSGC] 14:,40,20,14, 174715663878
+19:06:12,539 DEBUG [GreedyDDSTestDIMACSGC] 15:,40,20,15, 175555855986
+19:09:08,624 DEBUG [GreedyDDSTestDIMACSGC] 16:,40,20,16, 176027091566
+19:12:02,935 DEBUG [GreedyDDSTestDIMACSGC] 17:,40,20,17, 174252291071
+19:14:57,150 DEBUG [GreedyDDSTestDIMACSGC] 18:,40,20,18, 174146133795
+19:17:55,604 DEBUG [GreedyDDSTestDIMACSGC] 19:,40,20,19, 178395015524
+19:20:50,277 DEBUG [GreedyDDSTestDIMACSGC] 20:,40,20,20, 174615156362
+19:20:50,278 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb59-26-mis/frb59-26-3.mis
+19:22:00,447 DEBUG [GreedyDDSTestDIMACSGC] 1:,39,5,1, 70079605926
+19:23:07,357 DEBUG [GreedyDDSTestDIMACSGC] 2:,39,5,2, 66846532654
+19:24:14,693 DEBUG [GreedyDDSTestDIMACSGC] 3:,39,5,3, 67273184292
+19:25:18,695 DEBUG [GreedyDDSTestDIMACSGC] 4:,39,5,4, 63938150634
+19:26:22,792 DEBUG [GreedyDDSTestDIMACSGC] 5:,39,5,5, 64021981379
+19:27:14,141 DEBUG [GreedyDDSTestDIMACSGC] 1:,39,10,1, 51284955357
+19:28:17,320 DEBUG [GreedyDDSTestDIMACSGC] 2:,42,10,2, 63105512712
+19:29:21,818 DEBUG [GreedyDDSTestDIMACSGC] 3:,42,10,3, 64427160177
+19:30:24,695 DEBUG [GreedyDDSTestDIMACSGC] 4:,42,10,4, 62813362458
+19:31:28,488 DEBUG [GreedyDDSTestDIMACSGC] 5:,42,10,5, 63728892582
+19:32:35,708 DEBUG [GreedyDDSTestDIMACSGC] 6:,42,10,6, 67156508177
+19:33:38,109 DEBUG [GreedyDDSTestDIMACSGC] 7:,42,10,7, 62338386500
+19:34:41,489 DEBUG [GreedyDDSTestDIMACSGC] 8:,42,10,8, 63317295596
+19:35:45,624 DEBUG [GreedyDDSTestDIMACSGC] 9:,42,10,9, 64070755666
+19:36:46,775 DEBUG [GreedyDDSTestDIMACSGC] 10:,42,10,10, 61086556325
+19:37:29,350 DEBUG [GreedyDDSTestDIMACSGC] 1:,58,20,1, 42508893745
+19:38:07,134 DEBUG [GreedyDDSTestDIMACSGC] 2:,42,20,2, 37719563179
+19:38:51,476 DEBUG [GreedyDDSTestDIMACSGC] 3:,38,20,3, 44276808253
+19:39:35,145 DEBUG [GreedyDDSTestDIMACSGC] 4:,38,20,4, 43604436837
+19:40:18,816 DEBUG [GreedyDDSTestDIMACSGC] 5:,38,20,5, 43607108151
+19:41:03,045 DEBUG [GreedyDDSTestDIMACSGC] 6:,38,20,6, 44164250840
+19:41:48,599 DEBUG [GreedyDDSTestDIMACSGC] 7:,38,20,7, 45489720312
+19:42:32,259 DEBUG [GreedyDDSTestDIMACSGC] 8:,38,20,8, 43595983485
+19:43:17,465 DEBUG [GreedyDDSTestDIMACSGC] 9:,38,20,9, 45140176942
+19:44:03,957 DEBUG [GreedyDDSTestDIMACSGC] 10:,38,20,10, 46428932885
+19:44:50,090 DEBUG [GreedyDDSTestDIMACSGC] 11:,38,20,11, 46068865182
+19:45:36,736 DEBUG [GreedyDDSTestDIMACSGC] 12:,38,20,12, 46581355588
+19:46:21,265 DEBUG [GreedyDDSTestDIMACSGC] 13:,38,20,13, 44465308566
+19:47:05,142 DEBUG [GreedyDDSTestDIMACSGC] 14:,38,20,14, 43812930107
+19:47:49,847 DEBUG [GreedyDDSTestDIMACSGC] 15:,38,20,15, 44640097099
+19:48:35,142 DEBUG [GreedyDDSTestDIMACSGC] 16:,38,20,16, 45231702515
+19:49:19,121 DEBUG [GreedyDDSTestDIMACSGC] 17:,38,20,17, 43913971485
+19:50:05,378 DEBUG [GreedyDDSTestDIMACSGC] 18:,38,20,18, 46192904075
+19:50:50,388 DEBUG [GreedyDDSTestDIMACSGC] 19:,38,20,19, 44940833550
+19:51:35,708 DEBUG [GreedyDDSTestDIMACSGC] 20:,38,20,20, 45255492621
+19:51:35,708 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb59-26-mis/frb59-26-4.mis
+19:52:41,222 DEBUG [GreedyDDSTestDIMACSGC] 1:,43,5,1, 65421883393
+19:53:59,334 DEBUG [GreedyDDSTestDIMACSGC] 2:,43,5,2, 78044014631
+19:55:21,442 DEBUG [GreedyDDSTestDIMACSGC] 3:,43,5,3, 82045184219
+19:56:41,188 DEBUG [GreedyDDSTestDIMACSGC] 4:,43,5,4, 79677690809
+19:58:01,887 DEBUG [GreedyDDSTestDIMACSGC] 5:,43,5,5, 80632593790
+19:58:53,261 DEBUG [GreedyDDSTestDIMACSGC] 1:,44,10,1, 51309274157
+19:59:48,391 DEBUG [GreedyDDSTestDIMACSGC] 2:,49,10,2, 55064364502
+20:00:42,909 DEBUG [GreedyDDSTestDIMACSGC] 3:,41,10,3, 54453464354
+20:01:37,105 DEBUG [GreedyDDSTestDIMACSGC] 4:,41,10,4, 54131432116
+20:02:33,163 DEBUG [GreedyDDSTestDIMACSGC] 5:,41,10,5, 55991385784
+20:03:31,338 DEBUG [GreedyDDSTestDIMACSGC] 6:,41,10,6, 58105669444
+20:04:30,443 DEBUG [GreedyDDSTestDIMACSGC] 7:,41,10,7, 59037939439
+20:05:27,919 DEBUG [GreedyDDSTestDIMACSGC] 8:,41,10,8, 57411406837
+20:06:24,098 DEBUG [GreedyDDSTestDIMACSGC] 9:,41,10,9, 56115497608
+20:07:22,663 DEBUG [GreedyDDSTestDIMACSGC] 10:,41,10,10, 58493524454
+20:08:04,284 DEBUG [GreedyDDSTestDIMACSGC] 1:,48,20,1, 41541757266
+20:08:50,961 DEBUG [GreedyDDSTestDIMACSGC] 2:,47,20,2, 46602843780
+20:10:16,897 DEBUG [GreedyDDSTestDIMACSGC] 3:,47,20,3, 85861325550
+20:29:56,851 DEBUG [GreedyDDSTestDIMACSGC] 4:,38,20,4, 1179870630855
+20:49:44,805 DEBUG [GreedyDDSTestDIMACSGC] 5:,38,20,5, 1187876438403
+21:09:20,190 DEBUG [GreedyDDSTestDIMACSGC] 6:,38,20,6, 1175358171430
+21:28:50,365 DEBUG [GreedyDDSTestDIMACSGC] 7:,38,20,7, 1170150101216
+21:48:18,830 DEBUG [GreedyDDSTestDIMACSGC] 8:,38,20,8, 1168441598542
+22:08:08,349 DEBUG [GreedyDDSTestDIMACSGC] 9:,38,20,9, 1189506362044
+22:27:44,680 DEBUG [GreedyDDSTestDIMACSGC] 10:,38,20,10, 1176305775505
+22:47:17,381 DEBUG [GreedyDDSTestDIMACSGC] 11:,38,20,11, 1172685047846
+23:04:26,487 DEBUG [GreedyDDSTestDIMACSGC] 12:,38,20,12, 1029085202102
+23:21:26,958 DEBUG [GreedyDDSTestDIMACSGC] 13:,38,20,13, 1020451016325
+23:38:35,413 DEBUG [GreedyDDSTestDIMACSGC] 14:,38,20,14, 1028433724955
+23:55:37,487 DEBUG [GreedyDDSTestDIMACSGC] 15:,38,20,15, 1022052667633
+00:12:42,726 DEBUG [GreedyDDSTestDIMACSGC] 16:,38,20,16, 1025218384001
+00:30:00,769 DEBUG [GreedyDDSTestDIMACSGC] 17:,38,20,17, 1038021483833
+00:47:04,853 DEBUG [GreedyDDSTestDIMACSGC] 18:,38,20,18, 1024039810184
+01:04:05,168 DEBUG [GreedyDDSTestDIMACSGC] 19:,38,20,19, 1020294647068
+01:21:18,092 DEBUG [GreedyDDSTestDIMACSGC] 20:,38,20,20, 1032903455467
+01:21:18,093 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb59-26-mis/frb59-26-5.mis
+01:22:30,118 DEBUG [GreedyDDSTestDIMACSGC] 1:,42,5,1, 71934821988
+01:23:39,782 DEBUG [GreedyDDSTestDIMACSGC] 2:,42,5,2, 69601599517
+01:24:49,197 DEBUG [GreedyDDSTestDIMACSGC] 3:,42,5,3, 69352460613
+01:26:00,815 DEBUG [GreedyDDSTestDIMACSGC] 4:,42,5,4, 71555849682
+01:27:12,558 DEBUG [GreedyDDSTestDIMACSGC] 5:,42,5,5, 71679401193
+01:28:09,564 DEBUG [GreedyDDSTestDIMACSGC] 1:,45,10,1, 56941615495
+01:29:03,825 DEBUG [GreedyDDSTestDIMACSGC] 2:,40,10,2, 54187152625
+01:29:58,795 DEBUG [GreedyDDSTestDIMACSGC] 3:,40,10,3, 54905821948
+01:30:53,345 DEBUG [GreedyDDSTestDIMACSGC] 4:,40,10,4, 54486337007
+01:31:49,122 DEBUG [GreedyDDSTestDIMACSGC] 5:,40,10,5, 55712885236
+01:32:46,720 DEBUG [GreedyDDSTestDIMACSGC] 6:,40,10,6, 57530759032
+01:33:41,047 DEBUG [GreedyDDSTestDIMACSGC] 7:,40,10,7, 54262847012
+01:34:37,054 DEBUG [GreedyDDSTestDIMACSGC] 8:,40,10,8, 55942932430
+01:35:31,204 DEBUG [GreedyDDSTestDIMACSGC] 9:,40,10,9, 54086038298
+01:36:24,601 DEBUG [GreedyDDSTestDIMACSGC] 10:,40,10,10, 53333040343
+01:37:09,037 DEBUG [GreedyDDSTestDIMACSGC] 1:,61,20,1, 44371473195
+01:37:53,077 DEBUG [GreedyDDSTestDIMACSGC] 2:,46,20,2, 43975663780
+01:38:38,379 DEBUG [GreedyDDSTestDIMACSGC] 3:,43,20,3, 45223764574
+01:39:23,677 DEBUG [GreedyDDSTestDIMACSGC] 4:,43,20,4, 45233283392
+01:40:09,362 DEBUG [GreedyDDSTestDIMACSGC] 5:,43,20,5, 45621218910
+01:40:53,540 DEBUG [GreedyDDSTestDIMACSGC] 6:,43,20,6, 44113319850
+01:41:36,283 DEBUG [GreedyDDSTestDIMACSGC] 7:,43,20,7, 42679602643
+01:42:21,809 DEBUG [GreedyDDSTestDIMACSGC] 8:,43,20,8, 45462486999
+01:43:06,543 DEBUG [GreedyDDSTestDIMACSGC] 9:,43,20,9, 44669984735
+01:43:50,892 DEBUG [GreedyDDSTestDIMACSGC] 10:,43,20,10, 44284836705
+01:44:34,256 DEBUG [GreedyDDSTestDIMACSGC] 11:,43,20,11, 43294624327
+01:45:17,394 DEBUG [GreedyDDSTestDIMACSGC] 12:,43,20,12, 43073895135
+01:46:02,384 DEBUG [GreedyDDSTestDIMACSGC] 13:,43,20,13, 44925511008
+01:46:47,450 DEBUG [GreedyDDSTestDIMACSGC] 14:,43,20,14, 45002883132
+01:47:29,948 DEBUG [GreedyDDSTestDIMACSGC] 15:,43,20,15, 42433474054
+01:48:14,056 DEBUG [GreedyDDSTestDIMACSGC] 16:,43,20,16, 44043094440
+01:48:57,416 DEBUG [GreedyDDSTestDIMACSGC] 17:,43,20,17, 43296966427
+01:49:42,499 DEBUG [GreedyDDSTestDIMACSGC] 18:,43,20,18, 45009889616
+01:50:25,574 DEBUG [GreedyDDSTestDIMACSGC] 19:,43,20,19, 43011372765
+01:51:09,008 DEBUG [GreedyDDSTestDIMACSGC] 20:,43,20,20, 43369362905
+09:37:36,556 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb30-15-mis/frb30-15-2.mis
+11:02:08,160 DEBUG [GreedyDDSTestDIMACSGC] 30:,17,30,30, 5071787066667
+12:14:07,227 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb30-15-mis/frb30-15-2.mis
+13:47:45,112 DEBUG [GreedyDDSTestDIMACSGC] 30:,17,30,30, 5618091370825
+14:44:16,607 DEBUG [GreedyDDSTestDIMACSGC] ------------------frb30-15-mis/frb30-15-2.mis
+14:44:17,787 DEBUG [GreedyDDSTestDIMACSGC] 1:,39,30,1, 1123540157
+14:44:19,361 DEBUG [GreedyDDSTestDIMACSGC] 2:,39,30,2, 1563541082
+14:45:15,650 DEBUG [GreedyDDSTestDIMACSGC] 3:,39,30,3, 56284869940
+16:17:03,366 DEBUG [GreedyDDSTestDIMACSGC] 4:,17,30,4, 5507962749029
+17:53:23,463 DEBUG [GreedyDDSTestDIMACSGC] 5:,17,30,5, 5780356348536
+19:20:50,751 DEBUG [GreedyDDSTestDIMACSGC] 6:,17,30,6, 5247523311867
+20:46:29,416 DEBUG [GreedyDDSTestDIMACSGC] 7:,17,30,7, 5138896780584
+22:12:03,756 DEBUG [GreedyDDSTestDIMACSGC] 8:,17,30,8, 5134569515822
+23:39:01,303 DEBUG [GreedyDDSTestDIMACSGC] 9:,17,30,9, 5217778824023
+01:12:27,784 DEBUG [GreedyDDSTestDIMACSGC] 10:,17,30,10, 5606734722984
+02:40:57,892 DEBUG [GreedyDDSTestDIMACSGC] 11:,17,30,11, 5310347317566
+04:06:14,306 DEBUG [GreedyDDSTestDIMACSGC] 12:,17,30,12, 5116644182527
+05:31:37,687 DEBUG [GreedyDDSTestDIMACSGC] 13:,17,30,13, 5123611766822
+06:56:52,117 DEBUG [GreedyDDSTestDIMACSGC] 14:,17,30,14, 5114660538278
+08:22:15,077 DEBUG [GreedyDDSTestDIMACSGC] 15:,17,30,15, 5123189735031
+09:47:53,211 DEBUG [GreedyDDSTestDIMACSGC] 16:,17,30,16, 5138365205872
+11:13:44,919 DEBUG [GreedyDDSTestDIMACSGC] 17:,17,30,17, 5151939934796
+12:38:26,555 DEBUG [GreedyDDSTestDIMACSGC] 18:,17,30,18, 5081867886991
+14:04:03,300 DEBUG [GreedyDDSTestDIMACSGC] 19:,17,30,19, 5136979213587
+15:30:29,956 DEBUG [GreedyDDSTestDIMACSGC] 20:,17,30,20, 5186889805579
+16:59:16,928 DEBUG [GreedyDDSTestDIMACSGC] 21:,17,30,21, 5327215181760
+18:32:32,648 DEBUG [GreedyDDSTestDIMACSGC] 22:,17,30,22, 5595973299745
+19:59:41,581 DEBUG [GreedyDDSTestDIMACSGC] 23:,17,30,23, 5229165441750
+21:37:47,740 DEBUG [GreedyDDSTestDIMACSGC] 24:,17,30,24, 5886425069537
+23:15:22,573 DEBUG [GreedyDDSTestDIMACSGC] 25:,17,30,25, 5855102827184
+00:41:47,739 DEBUG [GreedyDDSTestDIMACSGC] 26:,17,30,26, 5185407881728
+02:08:29,297 DEBUG [GreedyDDSTestDIMACSGC] 27:,17,30,27, 5201802745646
+03:34:59,254 DEBUG [GreedyDDSTestDIMACSGC] 28:,17,30,28, 5190202230594
+05:06:19,846 DEBUG [GreedyDDSTestDIMACSGC] 29:,17,30,29, 5480849555785
+06:42:14,331 DEBUG [GreedyDDSTestDIMACSGC] 30:,17,30,30, 5754755762870
+06:42:15,130 DEBUG [GreedyDDSTestDIMACSGC] 1:,45,40,1, 781978885
+06:42:16,671 DEBUG [GreedyDDSTestDIMACSGC] 2:,45,40,2, 1532232888
+06:44:10,479 DEBUG [GreedyDDSTestDIMACSGC] 3:,45,40,3, 113797936460
+10:02:56,927 DEBUG [GreedyDDSTestDIMACSGC] 4:,45,40,4, 11927015726245
+16:34:04,455 DEBUG [GreedyDDSTestDIMACSGC] 5:,17,40,5, 23468653330610
+23:20:05,103 DEBUG [GreedyDDSTestDIMACSGC] 6:,17,40,6, 24361780798056
+05:58:07,360 DEBUG [GreedyDDSTestDIMACSGC] 7:,17,40,7, 23883364411431
+12:40:10,330 DEBUG [GreedyDDSTestDIMACSGC] 8:,17,40,8, 24124089146551
+19:24:35,392 DEBUG [GreedyDDSTestDIMACSGC] 9:,17,40,9, 24266188798883
+02:00:42,395 DEBUG [GreedyDDSTestDIMACSGC] 10:,17,40,10, 23768106020178
+08:30:21,746 DEBUG [GreedyDDSTestDIMACSGC] 11:,17,40,11, 23380435183198
+15:17:19,958 DEBUG [GreedyDDSTestDIMACSGC] 12:,17,40,12, 24419346880950
+21:55:31,981 DEBUG [GreedyDDSTestDIMACSGC] 13:,17,40,13, 23893137721946
+04:20:06,337 DEBUG [GreedyDDSTestDIMACSGC] 14:,17,40,14, 23075418754223
+11:10:40,101 DEBUG [GreedyDDSTestDIMACSGC] 15:,17,40,15, 24634902261149
+17:44:00,803 DEBUG [GreedyDDSTestDIMACSGC] 16:,17,40,16, 23601792944078
+00:08:27,190 DEBUG [GreedyDDSTestDIMACSGC] 17:,17,40,17, 23067449208253
+06:52:20,658 DEBUG [GreedyDDSTestDIMACSGC] 18:,17,40,18, 24234585855578
+13:18:48,430 DEBUG [GreedyDDSTestDIMACSGC] 19:,17,40,19, 23188868135438
+16:40:44,593 DEBUG [GreedyDDSTestDIMACSGC] ------------------000062_dolphins.konet
+16:40:44,594 DEBUG [GreedyDDSTestDIMACSGC] 1----------------
+16:41:19,331 DEBUG [GreedyDDSTestDIMACSGC] ------------------000062_dolphins.konet
+16:41:19,331 DEBUG [GreedyDDSTestDIMACSGC] 1----------------
