@@ -61,22 +61,18 @@ public class DSGreedyRandomTest {
 
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONET() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String destFile = "out/output-DSRandomGreedy-KONECT.csv";
 
 		String path = "src/test/resources/KONET/";
-		String[] files = {  "000027_zebra.konet",
-		 "000034_zachary.konet",
-		 "000062_dolphins.konet",
-		 "000112_David_Copperfield.konet",
-		 "000198_Jazz_musicians.konet",
-				"000212_pdzbase.konet",
-				 "001133_rovira.konet",
-				"001174_euroroad.konet",
-		 "001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet",
+				"000062_dolphins.konet", "000112_David_Copperfield.konet",
+				"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				"001133_rovira.konet", "001174_euroroad.konet",
+				"001858_hamster.konet"
 		// "002426_hamster_ful.konet",
 		// "002888_facebook.konet",
 		// "003133_Human_protein_Vidal.konet",
@@ -89,14 +85,15 @@ public class DSGreedyRandomTest {
 		// for (String file : files) {
 		// runDSGreedyRandom(path + file, destFile, times);
 		// }
-		//int[] times = { 10, 100, 1000 };
-		int[] times = { 1000};
+		// int[] times = { 10, 100, 1000 };
+		int[] times = { 1000 };
 		for (int j = 0; j < times.length; j++) {
-			
+
 			for (int i = 2; i <= 10; i++) {
-				log.debug(i+"----------------------");
+				log.debug(i + "----------------------");
 				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, i+"----------------------");
+					FileOperation.saveCVSFile(destFile, i
+							+ "----------------------");
 				}
 				for (String file : files) {
 					runDSGreedyRandom(path + file, destFile, times[j]);
@@ -127,13 +124,18 @@ public class DSGreedyRandomTest {
 
 		};
 		int[] times = { 10, 100, 1000 };
-
-		for (String file : files) {
-			runDSGreedyRandom(path + file, destFile, times);
+		for (int i = 2; i <= 10; i++) {
+			log.debug(i + "----------------------");
+			if (destFile != null) {
+				FileOperation.saveCVSFile(destFile, i
+						+ "----------------------");
+			}
+			for (String file : files) {
+				runDSGreedyRandom(path + file, destFile, times);
+			}
 		}
 	}
 
-	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -159,9 +161,15 @@ public class DSGreedyRandomTest {
 				"frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
 		int[] times = { 10, 100, 1000 };
-
-		for (String file : files) {
-			runDSGreedyRandom(path + file, destFile, times);
+		for (int i = 2; i <= 10; i++) {
+			log.debug(i + "----------------------");
+			if (destFile != null) {
+				FileOperation.saveCVSFile(destFile, i
+						+ "----------------------");
+			}
+			for (String file : files) {
+				runDSGreedyRandom(path + file, destFile, times);
+			}
 		}
 	}
 

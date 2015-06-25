@@ -39,141 +39,118 @@ public class DSGreedyTest {
 		LogUtil.printResult("", ds);
 
 	}
+
 	@Ignore
 	@Test
-	public void testKONET() throws InterruptedException, IOException,
+	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String destFile = "out/output-DSGreedy-KONET.csv";
-		
-		String path = "src/test/resources/KONET/";
-		String[] files = {//"000027_zebra_27.konet",
-				//"000034_zachary.konet",
-				//"000062_dolphins.konet",
-				//"000112_David_Copperfield.konet",
-				//"000198_Jazz_musicians.konet",
-				"000212_pdzbase.konet",
-//				"001133_rovira.konet",
-//				"001174_euroroad.konet",
-//				"001858_hamster.konet",
-//				"002426_hamster_ful.konet",
-//				"002888_facebook.konet",
-//				"003133_Human_protein_Vidal.konet",
-//				"004941_powergrid.konet",
-//				"006327_reactome.konet",
-//				"010680_Pretty_Good_Privacy.konet",
-				"06474_Route_views.konet"
-				};
+		String destFile = "out/output-DSGreedy-KONECT.csv";
+
+		String path = "src/test/resources/KONECT/";
+		String[] files = {// "000027_zebra.konet", "000034_zachary.konet",
+		// "000062_dolphins.konet", "000112_David_Copperfield.konet",
+		// "000198_Jazz_musicians.konet",
+		"000212_pdzbase.konet",
+		// "001133_rovira.konet", "001174_euroroad.konet",
+		// "001858_hamster.konet",
+		// "002426_hamster_ful.konet",
+		// "002888_facebook.konet",
+		// "003133_Human_protein_Vidal.konet",
+		// "004941_powergrid.konet",
+		// "006327_reactome.konet",
+		// "010680_Pretty_Good_Privacy.konet",
+		// "06474_Route_views.konet"
+		};
+		// for (int i = 2; i <= 10; i++) {
+		// if (destFile != null) {
+		// FileOperation
+		// .saveCVSFile(destFile, i + "-------------------");
+		// }
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			runDSGreedy(path + file, destFile);
 		}
+		// }
 	}
-	
+
 	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String destFile = "out/output-DSGreedy-DIMACS.csv";
-		
+
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { "C1000.9.clq",
-				"C125.9.clq",
-				"C2000.5.clq",
-				"C2000.9.clq",
-				"C250.9.clq",
-				"C4000.5.clq",
-				"C500.9.clq",
-				"DSJC1000.5.clq",
-				"DSJC500.5.clq",
-				"MANN_a27.clq",
-				"MANN_a81.clq",
-				"brock200_2.clq",
-				"brock200_4.clq",
-				"brock400_2.clq",
-				"brock400_4.clq",
-				"brock800_2.clq",
-				"brock800_4.clq",
-				"gen200_p0.9_44.clq",
-				"gen200_p0.9_55.clq",
-				"gen400_p0.9_55.clq",
-				"gen400_p0.9_65.clq",
-				"gen400_p0.9_75.clq",
-				"hamming10-4.clq",
-				"hamming8-4.clq",
-				"keller4.clq",
-				"keller5.clq",
-				"keller6.clq",
-				"p_hat1500-1.clq",
-				"p_hat1500-2.clq",
-				"p_hat1500-3.clq",
-				"p_hat300-1.clq",
-				"p_hat300-2.clq",
-				"p_hat300-3.clq",
-				"p_hat700-1.clq",
-				"p_hat700-2.clq",
-				"p_hat700-3.clq"
+		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
+				"C2000.9.clq", "C250.9.clq", "C4000.5.clq", "C500.9.clq",
+				"DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
+				"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
+				"brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
+				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+				"keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
+				"p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
+				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
+				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+		for (int i = 6; i <= 10; i++) {
+			log.debug(i + "-------------------");
+			if (destFile != null) {
+				FileOperation.saveCVSFile(destFile, i + "-------------------");
+			}
+			for (String file : files) {
+				runDSGreedy(path + file, destFile);
+			}
 		}
 	}
+
+	 @Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String destFile = "out/output-DSGreedy-BHOSLIB.csv";
-		
+
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis",
-				"frb30-15-mis/frb30-15-2.mis",
-				"frb30-15-mis/frb30-15-3.mis",
-				"frb30-15-mis/frb30-15-4.mis",
-				"frb30-15-mis/frb30-15-5.mis",
-				"frb35-17-mis/frb35-17-1.mis",
-				"frb35-17-mis/frb35-17-2.mis",
-				"frb35-17-mis/frb35-17-3.mis",
-				"frb35-17-mis/frb35-17-4.mis",
-				"frb35-17-mis/frb35-17-5.mis",
-				"frb40-19-mis/frb40-19-1.mis",
-				"frb40-19-mis/frb40-19-2.mis",
-				"frb40-19-mis/frb40-19-3.mis",
-				"frb40-19-mis/frb40-19-4.mis",
-				"frb40-19-mis/frb40-19-5.mis",
-				"frb45-21-mis/frb45-21-1.mis",
-				"frb45-21-mis/frb45-21-2.mis",
-				"frb45-21-mis/frb45-21-3.mis",
-				"frb45-21-mis/frb45-21-4.mis",
-				"frb45-21-mis/frb45-21-5.mis",
-				"frb53-24-mis/frb53-24-1.mis",
-				"frb53-24-mis/frb53-24-2.mis",
-				"frb53-24-mis/frb53-24-3.mis",
-				"frb53-24-mis/frb53-24-4.mis",
-				"frb53-24-mis/frb53-24-5.mis",
-				"frb56-25-mis/frb56-25-1.mis",
-				"frb56-25-mis/frb56-25-2.mis",
-				"frb56-25-mis/frb56-25-3.mis",
-				"frb56-25-mis/frb56-25-4.mis",
-				"frb56-25-mis/frb56-25-5.mis",
-				"frb59-26-mis/frb59-26-1.mis",
-				"frb59-26-mis/frb59-26-2.mis",
-				"frb59-26-mis/frb59-26-3.mis",
-				"frb59-26-mis/frb59-26-4.mis",
-				"frb59-26-mis/frb59-26-5.mis"
-		};
-		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+				"frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
+				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis",
+				"frb35-17-mis/frb35-17-1.mis", "frb35-17-mis/frb35-17-2.mis",
+				"frb35-17-mis/frb35-17-3.mis", "frb35-17-mis/frb35-17-4.mis",
+				"frb35-17-mis/frb35-17-5.mis", "frb40-19-mis/frb40-19-1.mis",
+				"frb40-19-mis/frb40-19-2.mis", "frb40-19-mis/frb40-19-3.mis",
+				"frb40-19-mis/frb40-19-4.mis", "frb40-19-mis/frb40-19-5.mis",
+				"frb45-21-mis/frb45-21-1.mis", "frb45-21-mis/frb45-21-2.mis",
+				"frb45-21-mis/frb45-21-3.mis", "frb45-21-mis/frb45-21-4.mis",
+				"frb45-21-mis/frb45-21-5.mis", "frb53-24-mis/frb53-24-1.mis",
+				"frb53-24-mis/frb53-24-2.mis", "frb53-24-mis/frb53-24-3.mis",
+				"frb53-24-mis/frb53-24-4.mis", "frb53-24-mis/frb53-24-5.mis",
+				"frb56-25-mis/frb56-25-1.mis", "frb56-25-mis/frb56-25-2.mis",
+				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis",
+				"frb56-25-mis/frb56-25-5.mis", "frb59-26-mis/frb59-26-1.mis",
+				"frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
+				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
+
+		for (int i = 6; i <= 10; i++) {
+			log.debug(i + "-------------------");
+			if (destFile != null) {
+				FileOperation.saveCVSFile(destFile, i + "-------------------");
+			}
+			for (String file : files) {
+				runDSGreedy(path + file, destFile);
+			}
 		}
 	}
-	
-    @Ignore
+
+	@Ignore
 	@Test
 	public void testDIMACSGC() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String destFile = "out/output-DSGreedy-DIMACSGC.csv";
-		
+
 		String path = "src/test/resources/DIMACS-GC/";
 		String[] files = {// "DSJC1000.1.col",
-		// "DSJC1000.5.col",
-		// "DSJC1000.9.col",
+				// "DSJC1000.5.col",
+				// "DSJC1000.9.col",
 				"DSJC125.1.col",
 				"DSJC125.5.col",
 				"DSJC125.9.col",
@@ -234,17 +211,17 @@ public class DSGreedyTest {
 				// "myciel7.col",
 				"queen10_10.col", "queen11_11.col", "queen12_12.col",
 				"queen13_13.col", "queen14_14.col", "queen15_15.col",
-				"queen16_16.col", "queen5_5.col", "queen6_6.col", "queen7_7.col",
-				"queen8_12.col", "queen8_8.col", "queen9_9.col", "school1.col",
-				"school1_nsh.col", "zeroin.i.1.col", "zeroin.i.2.col",
-				"zeroin.i.3.col" };
+				"queen16_16.col", "queen5_5.col", "queen6_6.col",
+				"queen7_7.col", "queen8_12.col", "queen8_8.col",
+				"queen9_9.col", "school1.col", "school1_nsh.col",
+				"zeroin.i.1.col", "zeroin.i.2.col", "zeroin.i.3.col" };
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			runDSGreedy(path + file, destFile);
 		}
 	}
 
-	private void runDSGreedy(String inputFile,String destFile) throws InterruptedException,
-			IOException, FileNotFoundException {
+	private void runDSGreedy(String inputFile, String destFile)
+			throws InterruptedException, IOException, FileNotFoundException {
 		// String inputFile = "src/test/resources/edge-pair-maayan-vidal.csv";
 		// String inputFile = "src/test/resources/DIMACS-GC/DSJC1000.9.col";
 		// String inputFile =
@@ -263,7 +240,8 @@ public class DSGreedyTest {
 		Result r = ag.getResult();
 		log.debug(r.getString());
 		if (destFile != null) {
-			FileOperation.saveCVSFile(destFile, inputFile+","+r.getString());
+			FileOperation
+					.saveCVSFile(destFile, inputFile + "," + r.getString());
 		}
 
 	}
