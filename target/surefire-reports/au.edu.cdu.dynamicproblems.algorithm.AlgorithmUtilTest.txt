@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtilTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 16, Time elapsed: 0.041 sec
