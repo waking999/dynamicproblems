@@ -10,11 +10,11 @@ public class VertexDegree implements Comparable<VertexDegree> {
 	/**
 	 * the label of a vertex
 	 */
-	Integer vertex;
+	private Integer vertex;
 	/**
 	 * the degree of the vertex
 	 */
-	int degree;
+	private int degree;
 
 	public VertexDegree(Integer vertex, int degree) {
 		this.vertex = vertex;

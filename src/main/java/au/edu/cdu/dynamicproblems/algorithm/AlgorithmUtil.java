@@ -64,6 +64,90 @@ public class AlgorithmUtil {
 		return g;
 	}
 
+	// /**
+	// * generate an instance of Graph with internal parameters
+	// *
+	// * @param adjacencyMatrix
+	// * , adjacency matrix of a graph
+	// * @return a graph
+	// */
+	// public static Graph<Integer, Integer> prepareGraph(
+	// List<String[]> adjacencyMatrix, List<Integer> vList) {
+	//
+	// int numOfVertices = adjacencyMatrix.size();
+	// Graph<Integer, Integer> g = new SparseMultigraph<Integer, Integer>();
+	// for (Integer i : vList) {
+	// g.addVertex(i);
+	// }
+	//
+	// for (int i = 0; i < numOfVertices; i++) {
+	// if (vList.contains(i)) {
+	//
+	// String[] rowArr = adjacencyMatrix.get(i);
+	// for (int j = 0; j < numOfVertices; j++) {
+	// if (vList.contains(j)) {
+	// if (CONNECTED.equals(rowArr[j].trim())) {
+	// // the label of edge is decided by the label of the
+	// // two
+	// // endpoints
+	// int edge = getEdgeLabelBy2VerticesLabel(
+	// numOfVertices, i, j);
+	// g.addEdge(edge, i, j);
+	//
+	// }
+	// }
+	// }
+	// }
+	// }
+	//
+	// return g;
+	// }
+
+	public static Graph<Integer, Integer> prepareGraph(
+			List<String[]> adjacencyMatrix, Graph<Integer, Integer> g,
+			List<Integer> vList) {
+
+		int numOfVertices = adjacencyMatrix.size();
+
+		for (Integer i : vList) {
+			g.addVertex(i);
+		}
+
+		Collection<Integer> gVertices = g.getVertices();
+		for (int i = 0; i < numOfVertices; i++) {
+			if (gVertices.contains(i)) {
+
+				String[] rowArr = adjacencyMatrix.get(i);
+				for (int j = 0; j < numOfVertices; j++) {
+					if (gVertices.contains(j)) {
+						if (i <j ) {
+							if (CONNECTED.equals(rowArr[j].trim())) {
+								// the label of edge is decided by the label of
+								// the
+								// two
+								// endpoints
+								int edge = getEdgeLabelBy2VerticesLabel(
+										numOfVertices, i, j);
+								g.addEdge(edge, i, j);
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return g;
+	}
+
+	public static List<Integer> getVertexList(List<VertexDegree> vdList) {
+		List<Integer> vList = new ArrayList<Integer>();
+		for (VertexDegree vd : vdList) {
+			vList.add(vd.getVertex());
+		}
+		return vList;
+	}
+
 	/**
 	 * get edge label by the 2 vertices incident to it
 	 * 
@@ -145,6 +229,27 @@ public class AlgorithmUtil {
 			am.add(row);
 		}
 		return am;
+	}
+
+	public static Graph<Integer, Integer> constructCompleteGraph(
+			Graph<Integer, Integer> g, int numOfVertices) {
+		Graph<Integer, Integer> gK = new SparseMultigraph<Integer, Integer>();
+
+		Collection<Integer> vertices = g.getVertices();
+		for (Integer v : vertices) {
+			gK.addVertex(v);
+		}
+
+		for (Integer i : vertices) {
+			for (Integer j : vertices) {
+				if (i < j) {
+					int edge = getEdgeLabelBy2VerticesLabel(numOfVertices, i, j);
+					gK.addEdge(edge, i, j);
+				}
+			}
+		}
+
+		return gK;
 	}
 
 	/**

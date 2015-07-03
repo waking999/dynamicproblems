@@ -16,55 +16,62 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class DSGreedyTest {
+public class DSGreedyRegretTest {
 
-	private Logger log = LogUtil.getLogger(DSGreedyTest.class);
+	private Logger log = LogUtil.getLogger(DSGreedyRegretTest.class);
 
-	@Ignore
-	@Test
-	public void testRun() throws InterruptedException {
-		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
-
-		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-
-		DSGreedy ag = new DSGreedy(g);
-		ag.run();
-
-		List<Integer> ds = ag.getDominatingSet();
-		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
-
-		LogUtil.printResult("", ds);
-
-	}
-	@Ignore
+//	@Ignore
+//	@Test
+//	public void testRun() throws InterruptedException {
+//		List<String[]> am = new ArrayList<String[]>();
+//		am.add(new String[] { "0", "1", "0" });
+//		am.add(new String[] { "1", "0", "1" });
+//		am.add(new String[] { "0", "1", "0" });
+//
+//		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+//		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
+//
+//		DSGreedyRegret ag = new DSGreedyRegret(g);
+//		ag.run();
+//
+//		List<Integer> ds = ag.getDominatingSet();
+//		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
+//
+//		LogUtil.printResult("", ds);
+//
+//	}
+	//@Ignore
 	@Test
 	public void testKONET() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String destFile = "out/output-DSGreedy-KONET.csv";
+		String destFile = "out/output-DSGreedyRegret-KONET.csv";
 		
 		String path = "src/test/resources/KONET/";
-		String[] files = {//"000027_zebra_27.konet",
-				//"000034_zachary.konet",
-				//"000062_dolphins.konet",
-				//"000112_David_Copperfield.konet",
-				//"000198_Jazz_musicians.konet",
+		String[] files = {"000027_zebra.konet",
+				"000034_zachary.konet",
+				"000062_dolphins.konet",
+				"000112_David_Copperfield.konet",
+				"000198_Jazz_musicians.konet",
 				"000212_pdzbase.konet",
-//				"001133_rovira.konet",
-//				"001174_euroroad.konet",
-//				"001858_hamster.konet",
+				"001133_rovira.konet",
+				"001174_euroroad.konet",
+				"001858_hamster.konet"
 //				"002426_hamster_ful.konet",
 //				"002888_facebook.konet",
 //				"003133_Human_protein_Vidal.konet",
 //				"004941_powergrid.konet",
 //				"006327_reactome.konet",
 //				"010680_Pretty_Good_Privacy.konet",
-				"06474_Route_views.konet"
+				//"06474_Route_views.konet"
 				};
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			for(int i=2;i<=5;i++){
+				log.debug(i+"------------");
+				if (destFile != null) {
+					FileOperation.saveCVSFile(destFile, i+"--------" );
+				}
+				runDSGreedyRegret(path + file,destFile);
+			}
 		}
 	}
 	
@@ -114,9 +121,10 @@ public class DSGreedyTest {
 
 		};
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			runDSGreedyRegret(path + file,destFile);
 		}
 	}
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -160,7 +168,7 @@ public class DSGreedyTest {
 				"frb59-26-mis/frb59-26-5.mis"
 		};
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			runDSGreedyRegret(path + file,destFile);
 		}
 	}
 	
@@ -239,22 +247,21 @@ public class DSGreedyTest {
 				"school1_nsh.col", "zeroin.i.1.col", "zeroin.i.2.col",
 				"zeroin.i.3.col" };
 		for (String file : files) {
-			runDSGreedy(path + file,destFile);
+			runDSGreedyRegret(path + file,destFile);
 		}
 	}
 
-	private void runDSGreedy(String inputFile,String destFile) throws InterruptedException,
+	private void runDSGreedyRegret(String inputFile,String destFile) throws InterruptedException,
 			IOException, FileNotFoundException {
-		// String inputFile = "src/test/resources/edge-pair-maayan-vidal.csv";
-		// String inputFile = "src/test/resources/DIMACS-GC/DSJC1000.9.col";
-		// String inputFile =
-		// "src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-5.mis";
+		if (destFile != null) {
+			FileOperation.saveCVSFile(destFile, "--------" + inputFile);
+		}
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-
-		DSGreedy ag = new DSGreedy(g);
+		
+		DSGreedyRegret ag = new DSGreedyRegret(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
