@@ -143,7 +143,8 @@ public class GreedyDDS implements IAlgorithm, ITask {
 		for (int i = 0; i < verSize; i++) {
 			int degree = g0.degree(i);
 			if (degree == 0) {
-				isolatedDS.add(i);
+				//isolatedDS.add(i);
+				AlgorithmUtil.addElementToList(isolatedDS, i);
 				g0.removeVertex(i);
 			}
 		}
@@ -340,7 +341,9 @@ public class GreedyDDS implements IAlgorithm, ITask {
 			Collection<Integer> col = g0.getNeighbors(s);
 
 			ngs = (List<Integer>) CollectionUtils.union(ngs, col);
-			ngs.add(s);
+			//ngs.add(s);
+			AlgorithmUtil.addElementToList(ngs, s);
+			
 
 		}
 

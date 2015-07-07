@@ -8,7 +8,7 @@ import org.apache.commons.collections15.CollectionUtils;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
-
+@Deprecated
 public class SCDP implements IAlgorithm, ITask {
 
 	// private static Logger log = LogUtil.getLogger(SCDP.class);

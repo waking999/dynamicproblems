@@ -21,13 +21,17 @@ import edu.uci.ics.jung.graph.Graph;
 public class DDSFPTTest {
 	private Logger log = LogUtil.getLogger(DDSFPTTest.class);
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testRun_k1() throws InterruptedException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
@@ -55,7 +59,7 @@ public class DDSFPTTest {
 
 	}
 
-	//@Ignore
+	// @Ignore
 	@Test
 	public void testRun_k2() throws InterruptedException,
 			FileNotFoundException, IOException {
@@ -88,7 +92,7 @@ public class DDSFPTTest {
 
 	}
 
-//@Ignore
+	// @Ignore
 	@Test
 	public void testRun_1000() throws InterruptedException,
 			FileNotFoundException, IOException, ArraysNotSameLengthException {
@@ -126,7 +130,7 @@ public class DDSFPTTest {
 
 	}
 
-//@Ignore
+	@Ignore
 	@Test
 	public void testViewGraph() throws InterruptedException {
 		List<List<Integer>> vertexSections = new ArrayList<List<Integer>>();
@@ -135,18 +139,28 @@ public class DDSFPTTest {
 		List<Integer> sec2 = new ArrayList<Integer>();
 		List<Integer> sec3 = new ArrayList<Integer>();
 
-		sec1.add(1);
-		sec2.add(2);
-		sec3.add(3);
+		// sec1.add(1);
+		// sec2.add(2);
+		// sec3.add(3);
+		AlgorithmUtil.addElementToList(sec1, 1);
+		AlgorithmUtil.addElementToList(sec2, 2);
+		AlgorithmUtil.addElementToList(sec3, 3);
 
-		vertexSections.add(sec1);
-		vertexSections.add(sec2);
-		vertexSections.add(sec3);
-
+		// vertexSections.add(sec1);
+		// vertexSections.add(sec2);
+		// vertexSections.add(sec3);
+		AlgorithmUtil.addElementToList(vertexSections, sec1);
+		AlgorithmUtil.addElementToList(vertexSections, sec2);
+		AlgorithmUtil.addElementToList(vertexSections, sec3);
+		
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
@@ -158,13 +172,14 @@ public class DDSFPTTest {
 		int k = 1;
 
 		String key = "DDSFPT";
+		@SuppressWarnings("unused")
 		DDSFPT ag2 = new DDSFPT(key, am, ds1, k);
 
-		//ag2.viewGraph(g, vertexSections);
+		// ag2.viewGraph(g, vertexSections);
 
 	}
 
-	//@Ignore
+	// @Ignore
 	@Test
 	public void testViewGraphDifference() throws MOutofNException,
 			ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -173,7 +188,7 @@ public class DDSFPTTest {
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile1);
 		List<String[]> am1 = fo.getAdjacencyMatrix();
 		Graph<Integer, Integer> g1 = AlgorithmUtil.prepareGraph(am1);
-		//Graph<Integer, Integer> g2 = AlgorithmUtil.copyGrapy(g1);
+		// Graph<Integer, Integer> g2 = AlgorithmUtil.copyGrapy(g1);
 
 		DSGreedy ag = new DSGreedy(g1);
 		ag.computing();

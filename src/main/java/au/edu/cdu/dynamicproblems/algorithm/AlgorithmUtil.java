@@ -120,7 +120,7 @@ public class AlgorithmUtil {
 				String[] rowArr = adjacencyMatrix.get(i);
 				for (int j = 0; j < numOfVertices; j++) {
 					if (gVertices.contains(j)) {
-						if (i <j ) {
+						if (i < j) {
 							if (CONNECTED.equals(rowArr[j].trim())) {
 								// the label of edge is decided by the label of
 								// the
@@ -143,7 +143,8 @@ public class AlgorithmUtil {
 	public static List<Integer> getVertexList(List<VertexDegree> vdList) {
 		List<Integer> vList = new ArrayList<Integer>();
 		for (VertexDegree vd : vdList) {
-			vList.add(vd.getVertex());
+			// vList.add(vd.getVertex());
+			addElementToList(vList, vd.getVertex());
 		}
 		return vList;
 	}
@@ -184,7 +185,24 @@ public class AlgorithmUtil {
 		Collection<Integer> vertices = g.getVertices();
 		for (int i : vertices) {
 			int degree = g.degree(i);
-			vertexDegreeList.add(new VertexDegree(i, degree));
+			// vertexDegreeList.add(new VertexDegree(i, degree));
+			addElementToList(vertexDegreeList, new VertexDegree(i, degree));
+		}
+		Collections.sort(vertexDegreeList);
+		return vertexDegreeList;
+	}
+
+	public static List<VertexDegree> sortVertexAccordingToDegree(
+			Graph<Integer, Integer> g, List<Integer> excludeList) {
+
+		// get the sorted vertex according their degree
+		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
+		Collection<Integer> vertices = g.getVertices();
+		vertices = CollectionUtils.subtract(vertices, excludeList);
+		for (int i : vertices) {
+			int degree = g.degree(i);
+			// vertexDegreeList.add(new VertexDegree(i, degree));
+			addElementToList(vertexDegreeList, new VertexDegree(i, degree));
 		}
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
@@ -204,7 +222,8 @@ public class AlgorithmUtil {
 			int v = vd.getVertex();
 			if (vl.contains(v)) {
 				// log.debug(v + "-" + vd.getDegree());
-				rtn.add(v);
+				// rtn.add(v);
+				addElementToList(rtn, v);
 			}
 		}
 
@@ -226,7 +245,8 @@ public class AlgorithmUtil {
 			for (int j = 0; j < n; j++) {
 				row[j] = CONNECTED;
 			}
-			am.add(row);
+			// am.add(row);
+			addElementToList(am, row);
 		}
 		return am;
 	}
@@ -292,7 +312,8 @@ public class AlgorithmUtil {
 			}
 
 			row[i] = CONNECTED;
-			adjacencyMatrix.add(row);
+			// adjacencyMatrix.add(row);
+			addElementToList(adjacencyMatrix, row);
 		}
 
 		return adjacencyMatrix;
@@ -389,7 +410,8 @@ public class AlgorithmUtil {
 				i--;
 			} else {
 
-				rtn.add(sRan);
+				// rtn.add(sRan);
+				addElementToList(rtn, sRan);
 			}
 		}
 
@@ -550,8 +572,10 @@ public class AlgorithmUtil {
 			// get neighbours of the vertices in dominating set
 			Collection<Integer> neighborsOfV = g.getNeighbors(v);
 			// remove the neighbours from the complementary set
-			complementaryDS = CollectionUtils.subtract(complementaryDS,
-					neighborsOfV);
+			if (neighborsOfV != null) {
+				complementaryDS = CollectionUtils.subtract(complementaryDS,
+						neighborsOfV);
+			}
 		}
 		/*
 		 * if the complementary set is not empty, it means there are some
@@ -694,7 +718,8 @@ public class AlgorithmUtil {
 		for (int i = 0; i < binaryArraySize; i++) {
 			binaryArray[i] -= ASCII_0_SEQ_NO;
 			if (binaryArray[i] == AlgorithmUtil.MARKED) {
-				intList.add(i);
+				// intList.add(i);
+				addElementToList(intList, i);
 			}
 		}
 

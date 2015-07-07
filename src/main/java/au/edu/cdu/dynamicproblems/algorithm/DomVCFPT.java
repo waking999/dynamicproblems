@@ -100,7 +100,7 @@ public class DomVCFPT {
 			getCandidateDomVerMap();
 
 			getAttemptRSizeSolution(r);
-			//getAttemptRSizeSolutionSC(r);
+			// getAttemptRSizeSolutionSC(r);
 
 		}
 
@@ -141,7 +141,7 @@ public class DomVCFPT {
 			// m always <= n;
 			m = n;
 		}
-		//log.debug(n + " choose " + m);
+		// log.debug(n + " choose " + m);
 
 		boolean isSolution = false;
 		boolean isEnd = false;
@@ -264,7 +264,8 @@ public class DomVCFPT {
 				candidateDomVerSet = new ArrayList<Integer>();
 
 			}
-			candidateDomVerSet.add(isv);
+			// candidateDomVerSet.add(isv);
+			AlgorithmUtil.addElementToList(candidateDomVerSet, isv);
 			candidateDomVerMap.put(rulerStr, candidateDomVerSet);
 
 		}
@@ -308,7 +309,8 @@ public class DomVCFPT {
 				candidateDomVerSet = new ArrayList<Integer>();
 
 			}
-			candidateDomVerSet.add(vcv);
+			// candidateDomVerSet.add(vcv);
+			AlgorithmUtil.addElementToList(candidateDomVerSet, vcv);
 			candidateDomVerMap.put(rulerStr, candidateDomVerSet);
 
 		}
@@ -345,7 +347,8 @@ public class DomVCFPT {
 				ruler = AlgorithmUtil.arrayOr(ruler, keyRuler);
 				List<Integer> verList = candidateDomVerMap.get(key);
 				Integer ver = getVertexFromCandiateMap(verList);
-				possibleDomVCSet.add(ver);
+				// possibleDomVCSet.add(ver);
+				AlgorithmUtil.addElementToList(possibleDomVCSet, ver);
 			}
 			index++;
 		}
@@ -381,13 +384,15 @@ public class DomVCFPT {
 		Set<String> typeSet = this.candidateDomVerMap.keySet();
 		for (String typeStr : typeSet) {
 			List<Integer> set = AlgorithmUtil.stringToIntList(typeStr);
-			family.add(set);
+			// family.add(set);
+			AlgorithmUtil.addElementToList(family, set);
 		}
 
 		List<Integer> universe = new ArrayList<Integer>();
 		int u = this.vertexCover.size();
 		for (int i = 0; i < u; i++) {
-			universe.add(i);
+			// universe.add(i);
+			AlgorithmUtil.addElementToList(universe, i);
 		}
 
 		SCDP scdp = new SCDP(family, universe, r);
@@ -400,13 +405,13 @@ public class DomVCFPT {
 				String key = AlgorithmUtil.intListToString(u, set);
 				List<Integer> verList = candidateDomVerMap.get(key);
 				Integer ver = getVertexFromCandiateMap(verList);
-				possibleDomVCSet.add(ver);
-
+				// possibleDomVCSet.add(ver);
+				AlgorithmUtil.addElementToList(possibleDomVCSet, ver);
 			}
 
 			this.dominatingVertexCoverSet = possibleDomVCSet;
 			hasLessR = true;
-			
+
 			log.debug(scdp.getResult().getString());
 		}
 	}

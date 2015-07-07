@@ -8,6 +8,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+
 public class TaskContainer {
 
 	private List<Future> futureList = new ArrayList<Future>();
@@ -25,7 +27,8 @@ public class TaskContainer {
 		lock.getSemaphore().acquireUninterruptibly();
 		Future future = container.submit(task);
 		if (lock.isJoin()) {
-			futureList.add(future);
+			//futureList.add(future);
+			AlgorithmUtil.addElementToList(futureList, future);
 			synchronized (lock) {
 				int taskCount = lock.getTaskCount();
 				lock.setTaskCount(taskCount + 1);

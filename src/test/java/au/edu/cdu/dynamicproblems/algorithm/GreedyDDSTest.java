@@ -26,10 +26,10 @@ public class GreedyDDSTest {
 	public void test1_smallk() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0", "1" });
-		am.add(new String[] { "1", "0", "1", "0" });
-		am.add(new String[] { "0", "1", "0", "0" });
-		am.add(new String[] { "1", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0", "0" });
 
 		int k = 1;
 		int r = 1;
@@ -49,10 +49,10 @@ public class GreedyDDSTest {
 	public void test1_middlek() throws MOutofNException,
 			ExceedLongMaxException, ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0", "1" });
-		am.add(new String[] { "1", "0", "1", "0" });
-		am.add(new String[] { "0", "1", "0", "0" });
-		am.add(new String[] { "1", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0", "0" });
 
 		int k = 2;
 		int r = 1;
@@ -72,10 +72,10 @@ public class GreedyDDSTest {
 	public void test1_bigk() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0", "1" });
-		am.add(new String[] { "1", "0", "1", "0" });
-		am.add(new String[] { "0", "1", "0", "0" });
-		am.add(new String[] { "1", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0", "0" });
 
 		int k = 3;
 		int r = 1;
@@ -683,12 +683,18 @@ public class GreedyDDSTest {
 		int r = 3;
 		log.debug("6 vertices k=" + k + ",r=" + r + "------------");
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0", "0", "0", "0" });
-		am.add(new String[] { "1", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
 
 		GreedyDDS ag = new GreedyDDS("GreedyDDSTest", am, k, r);
 		Result result = null;
@@ -711,12 +717,18 @@ public class GreedyDDSTest {
 		int r = 6;
 		log.debug("6 vertices k=" + k + ",r=" + r + "------------");
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0", "0", "0", "0" });
-		am.add(new String[] { "1", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
-		am.add(new String[] { "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0", "0",
+				"0", "0" });
 
 		GreedyDDS ag = new GreedyDDS("GreedyDDSTest", am, k, r);
 		Result result = null;

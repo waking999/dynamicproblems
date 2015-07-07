@@ -20,6 +20,7 @@ import au.edu.cdu.dynamicproblems.view.Section;
 import edu.uci.ics.jung.graph.Graph;
 
 public class DDSFPT implements IAlgorithm, ITask {
+	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(DDSFPT.class);
 	private static final int R_START = 1;
 	private long runningTime;
@@ -187,9 +188,12 @@ public class DDSFPT implements IAlgorithm, ITask {
 		vertexCover = CollectionUtils.subtract(vertexCover, ds1);
 
 		List<List<Integer>> vertexSections = new ArrayList<List<Integer>>();
-		vertexSections.add(ds1);
-		vertexSections.add((List<Integer>) vertexCover);
-		vertexSections.add(neighboursOfDs1InG2);
+//		vertexSections.add(ds1);
+//		vertexSections.add((List<Integer>) vertexCover);
+//		vertexSections.add(neighboursOfDs1InG2);
+		AlgorithmUtil.addElementToList(vertexSections, ds1);
+		AlgorithmUtil.addElementToList(vertexSections, (List<Integer>)vertexCover);
+		AlgorithmUtil.addElementToList(vertexSections, neighboursOfDs1InG2);
 		// viewGraph( g2,vertexSections);
 
 		// apply reduction rules
@@ -223,10 +227,13 @@ public class DDSFPT implements IAlgorithm, ITask {
 				height, vertexSections.get(2));
 
 		List<Section> sections = new ArrayList<Section>();
-		sections.add(sec1);
-		sections.add(sec2);
-		sections.add(sec3);
-
+//		sections.add(sec1);
+//		sections.add(sec2);
+//		sections.add(sec3);
+		AlgorithmUtil.addElementToList(sections, sec1);
+		AlgorithmUtil.addElementToList(sections, sec2);
+		AlgorithmUtil.addElementToList(sections, sec3);
+		
 		GraphView.presentGraph(g, sections, width, height);
 	}
 

@@ -24,10 +24,12 @@ public class DSGreedyRandomTest {
 	@Test
 	public void testRun() throws InterruptedException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
-
+//		am.add(new String[] { "0", "1", "0" });
+//		am.add(new String[] { "1", "0", "1" });
+//		am.add(new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		DSGreedyRandom ag = new DSGreedyRandom(g);

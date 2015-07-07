@@ -2,6 +2,7 @@ package au.edu.cdu.dynamicproblems.algorithm;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,7 +20,52 @@ public class DSGreedyRegretTest {
 
 	private Logger log = LogUtil.getLogger(DSGreedyRegretTest.class);
 
-	//@Ignore
+	@Test
+	public void test0() throws InterruptedException, IOException, FileNotFoundException {
+		List<String[]> am = new ArrayList<String[]>();
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "1", "0", "0", "0", "0", "0", "0", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "1", "0", "1", "0", "0", "0", "0", "0", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "1", "0", "1", "1", "0", "0", "0", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "1", "0", "0", "0", "0", "0", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "1", "0", "0", "1", "1", "1", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "0", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "1", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "1", "0",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "1", "1", "0", "1",
+				"0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "1", "0",
+				"1", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "1",
+				"0", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "1",
+				"1", "0", "1", "1" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",
+				"0", "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am,new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",
+				"0", "1", "1", "0" });
+
+		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
+
+		DSGreedyRegret ag = new DSGreedyRegret(g);
+		ag.run();
+
+		List<Integer> ds = ag.getDominatingSet();
+		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
+
+		Result r = ag.getResult();
+		log.debug(r.getString());
+	}
+
+	@Ignore
 	@Test
 	public void testKONET() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -202,19 +248,20 @@ public class DSGreedyRegretTest {
 
 	private void runDSGreedyRegret(String inputFile, String destFile)
 			throws InterruptedException, IOException, FileNotFoundException {
-		if (destFile != null) {
-			FileOperation.saveCVSFile(destFile, "--------" + inputFile);
-		}
+		// if (destFile != null) {
+		// FileOperation.saveCVSFile(destFile, "--------" + inputFile);
+		// }
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
 
 		DSGreedyRegret ag = new DSGreedyRegret(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
-		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
 
 		Result r = ag.getResult();
 		log.debug(r.getString());

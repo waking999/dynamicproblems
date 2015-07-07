@@ -10,7 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.util.LogUtil;
-
+@Deprecated
 public class SCDPTest {
 	private static Logger log = LogUtil.getLogger(SCDPTest.class);
 	@Ignore

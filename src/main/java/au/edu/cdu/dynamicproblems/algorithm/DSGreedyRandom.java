@@ -57,6 +57,7 @@ public class DSGreedyRandom implements IAlgorithm, ITask {
 	 */
 	private String indicator;
 
+	@SuppressWarnings("unused")
 	private List<VertexDegree> vertexDegreeList;
 	/**
 	 * the desired dominating set
@@ -121,7 +122,8 @@ public class DSGreedyRandom implements IAlgorithm, ITask {
 		List<Integer> T = new ArrayList<Integer>();
 
 		for (int j = 0; j < numOfVertices; j++) {
-			T.add(j);
+			//T.add(j);
+		AlgorithmUtil.addElementToList(T, j);
 		}
 
 		/*
@@ -132,7 +134,8 @@ public class DSGreedyRandom implements IAlgorithm, ITask {
 			// get the vertex with the highest degree
 			Integer v = AlgorithmUtil.getKRandomVerticesInSet(1, T).get(0);
 
-			dominatingSet.add(v);
+			//dominatingSet.add(v);
+			AlgorithmUtil.addElementToList(dominatingSet, v);
 			T.remove(v);
 
 			Collection<Integer> neighborsOfV = g.getNeighbors(v);

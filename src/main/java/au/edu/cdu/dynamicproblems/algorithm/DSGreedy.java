@@ -37,13 +37,14 @@ public class DSGreedy implements ITask, IAlgorithm {
 		Result r = new Result();
 		r.setHasSolution(true);
 		StringBuffer sb = new StringBuffer();
-//		sb.append(this.getClass().getName()).append(":").append(this.indicator)
-//				.append(":").append(this.runningTime + " ns:")
-//				.append(this.dominatingSet.size()).append(":");
-//		for (Integer i : this.dominatingSet) {
-//			sb.append(i).append(" ");
-//		}
-        sb.append(",").append(this.dominatingSet.size()).append(",").append(this.runningTime);
+		// sb.append(this.getClass().getName()).append(":").append(this.indicator)
+		// .append(":").append(this.runningTime + " ns:")
+		// .append(this.dominatingSet.size()).append(":");
+		// for (Integer i : this.dominatingSet) {
+		// sb.append(i).append(" ");
+		// }
+		sb.append(",").append(this.dominatingSet.size()).append(",")
+				.append(this.runningTime);
 		r.setString(sb.toString());
 		return r;
 	}
@@ -56,6 +57,7 @@ public class DSGreedy implements ITask, IAlgorithm {
 	 * 
 	 * a sorted vertices with their degree (from highest degree to the lowest)
 	 */
+	@SuppressWarnings("unused")
 	private String indicator;
 
 	private List<VertexDegree> vertexDegreeList;
@@ -71,6 +73,7 @@ public class DSGreedy implements ITask, IAlgorithm {
 	/**
 	 * number of vertices
 	 */
+	@SuppressWarnings("unused")
 	private int numOfVertices;
 
 	/**
@@ -119,11 +122,15 @@ public class DSGreedy implements ITask, IAlgorithm {
 
 	private void greedy() {
 
-		List<Integer> T = new ArrayList<Integer>();
+		// List<Integer> T = new ArrayList<Integer>();
+		//
+		// for (int j = 0; j < numOfVertices; j++) {
+		// //T.add(vertexDegreeList.get(j).getVertex());
+		// AlgorithmUtil.addElementToList(T,
+		// vertexDegreeList.get(j).getVertex());
+		// }
 
-		for (int j = 0; j < numOfVertices; j++) {
-			T.add(vertexDegreeList.get(j).getVertex());
-		}
+		List<Integer> T = AlgorithmUtil.getVertexList(vertexDegreeList);
 
 		/*
 		 * idea: Take all vertices of the highest degree as an approximate
@@ -134,7 +141,8 @@ public class DSGreedy implements ITask, IAlgorithm {
 			// get the vertex with the highest degree
 			Integer v = T.get(0);
 
-			dominatingSet.add(v);
+			// dominatingSet.add(v);
+			AlgorithmUtil.addElementToList(dominatingSet, v);
 			T.remove(v);
 
 			Collection<Integer> neighborsOfV = g.getNeighbors(v);
@@ -145,5 +153,4 @@ public class DSGreedy implements ITask, IAlgorithm {
 		}
 
 	}
-
 }

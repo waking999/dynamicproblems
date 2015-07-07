@@ -130,8 +130,8 @@ public class GreedyDDSImp implements IAlgorithm, ITask {
 			ArraysNotSameLengthException {
 		VertexDegree vd0 = this.vertexDegreeList.get(0);
 		Integer v0 = vd0.getVertex();
-		this.ds1.add(v0);
-
+		// this.ds1.add(v0);
+		AlgorithmUtil.addElementToList(this.ds1, v0);
 		boolean isFinish = false;
 		boolean isSolution = false;
 
@@ -197,8 +197,8 @@ public class GreedyDDSImp implements IAlgorithm, ITask {
 			Collection<Integer> col = g0.getNeighbors(s);
 
 			ngs = (List<Integer>) CollectionUtils.union(ngs, col);
-			ngs.add(s);
-
+			// ngs.add(s);
+			AlgorithmUtil.addElementToList(ngs, s);
 		}
 
 		List<Integer> sortedNgs = AlgorithmUtil

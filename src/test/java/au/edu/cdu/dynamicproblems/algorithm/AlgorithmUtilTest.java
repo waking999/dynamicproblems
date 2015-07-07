@@ -19,7 +19,8 @@ import edu.uci.ics.jung.graph.Graph;
 
 public class AlgorithmUtilTest {
 	private Logger log = LogUtil.getLogger(AlgorithmUtilTest.class);
-@Ignore
+
+	@Ignore
 	@Test
 	public void testArrayToString() {
 		byte[] b1 = { 0, 1, 1 };
@@ -30,12 +31,16 @@ public class AlgorithmUtilTest {
 		Assert.assertArrayEquals(b1, b2);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testListToString() {
 		List<Integer> list = new ArrayList<Integer>();
-		list.add(1);
-		list.add(2);
+		// list.add(1);
+		// list.add(2);
+		AlgorithmUtil.addElementToList(list, 1);
+		AlgorithmUtil.addElementToList(list, 2);
+
 		String str = AlgorithmUtil.intListToString(3, list);
 		Assert.assertEquals("011", str);
 
@@ -44,7 +49,8 @@ public class AlgorithmUtilTest {
 		Assert.assertEquals(2, elist.size());
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testArrayToLong() throws ExceedLongMaxException {
 		byte[] b1 = { 0, 1, 1 };
@@ -60,7 +66,8 @@ public class AlgorithmUtilTest {
 		Assert.assertEquals(e2, r2);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test(expected = ExceedLongMaxException.class)
 	public void testArrayToLong_expcetion() throws ExceedLongMaxException {
 		byte[] b1 = new byte[64];
@@ -70,7 +77,8 @@ public class AlgorithmUtilTest {
 		Assert.assertEquals(e1, r1);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testLongToBinaryArray() {
 		byte[] e1 = { 0, 1, 1 };
@@ -81,26 +89,33 @@ public class AlgorithmUtilTest {
 		long l2 = 5;
 		Assert.assertArrayEquals(e2, AlgorithmUtil.longToBinaryArray(3, l2));
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testPrepareGraph() {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
-
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		Assert.assertTrue(g.isNeighbor(1, 2));
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testSortVertexAccordingToDegree() {
 
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
@@ -110,21 +125,25 @@ public class AlgorithmUtilTest {
 		Assert.assertEquals(new Integer(1), vd.getVertex());
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testGenerateRandGraph() {
 		List<String[]> am = AlgorithmUtil.generateRandGraph(3, 0.8f);
 		Assert.assertNotNull(am);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testHEditEdgeDeletion() {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
-
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		DSGreedy ag = new DSGreedy(am);
@@ -143,13 +162,15 @@ public class AlgorithmUtilTest {
 		Assert.assertNotNull(am2);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void tesRandomInRang() {
 		float f = AlgorithmUtil.randomInRang(0, 1);
 		Assert.assertTrue(f >= 0);
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testArrayOr() throws ArraysNotSameLengthException {
 		byte[] r1 = new byte[] { 1, 0 };
@@ -160,7 +181,8 @@ public class AlgorithmUtilTest {
 
 		Assert.assertArrayEquals(e1, r3);
 	}
-@Ignore
+
+	@Ignore
 	@Test(expected = ArraysNotSameLengthException.class)
 	public void testArrayOr_exception() throws ArraysNotSameLengthException {
 		byte[] r1 = new byte[] { 1, 0 };
@@ -169,29 +191,40 @@ public class AlgorithmUtilTest {
 		AlgorithmUtil.arrayOr(r1, r2);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testGetNeighborsOfS() {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		List<Integer> S = new ArrayList<Integer>();
-		S.add(0);
+		//S.add(0);
+AlgorithmUtil.addElementToList(S, 0);
 
 		List<Integer> nList = AlgorithmUtil.getNeighborsOfS(g, S);
 		Assert.assertEquals(new Integer(1), nList.get(0));
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testIsDS() {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
@@ -205,19 +238,26 @@ public class AlgorithmUtilTest {
 		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
 
 		List<Integer> ds2 = new ArrayList<Integer>();
-		ds2.add(0);
+		// ds2.add(0);
+
+		AlgorithmUtil.addElementToList(ds2, 0);
+
 		Assert.assertFalse(AlgorithmUtil.isDS(g, ds2));
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testGetDifferentEdgeNumber()
 			throws ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
-		am.add(new String[] { "0", "1", "0" });
-		am.add(new String[] { "1", "0", "1" });
-		am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
 
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		DSGreedy ag = new DSGreedy(am);
@@ -232,16 +272,21 @@ public class AlgorithmUtilTest {
 		List<String[]> am2 = hEdit.getOutputAdjacencyMatrix();
 
 		List<String[]> am3 = new ArrayList<String[]>();
-		am3.add(new String[] { "0", "1", "0" });
-		am3.add(new String[] { "1", "0", "1" });
-		am3.add(new String[] { "0", "1", "0" });
+		// am3.add(new String[] { "0", "1", "0" });
+		// am3.add(new String[] { "1", "0", "1" });
+		// am3.add(new String[] { "0", "1", "0" });
+
+		AlgorithmUtil.addElementToList(am3, new String[] { "0", "1", "0" });
+		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
 
 		int k1 = AlgorithmUtil.getDifferentEdgeNumber(am3, am2);
 
 		Assert.assertTrue(k1 <= k);
 
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testSort() throws FileNotFoundException, IOException {
 		String inputFile1 = "src/test/resources/50_0.3_testcase_a.csv";
@@ -256,12 +301,17 @@ public class AlgorithmUtilTest {
 		log.debug("-------------------------");
 
 		List<Integer> vl = new ArrayList<Integer>();
-		vl.add(1);
-		vl.add(2);
-		vl.add(3);
-		vl.add(23);
-		vl.add(38);
+		// vl.add(1);
+		// vl.add(2);
+		// vl.add(3);
+		// vl.add(23);
+		// vl.add(38);
 
+		AlgorithmUtil.addElementToList(vl, 1);
+		AlgorithmUtil.addElementToList(vl, 2);
+		AlgorithmUtil.addElementToList(vl, 3);
+		AlgorithmUtil.addElementToList(vl, 23);
+		AlgorithmUtil.addElementToList(vl, 38);
 		List<Integer> vl1 = AlgorithmUtil
 				.sortVertexAccordingToSortedVertexList(vl, vdl);
 		log.debug("-------------------------");
@@ -269,5 +319,17 @@ public class AlgorithmUtilTest {
 			log.debug(v);
 		}
 
+	}
+	@Ignore
+	@Test
+	public void testAddElementToList(){
+		List<Integer> l=new ArrayList<Integer>();
+		Integer i1=new Integer(1);
+		Integer i2=new Integer(1);
+		
+		AlgorithmUtil.addElementToList(l, i1);
+		AlgorithmUtil.addElementToList(l, i2);
+		
+		Assert.assertTrue(l.size()==1);
 	}
 }
