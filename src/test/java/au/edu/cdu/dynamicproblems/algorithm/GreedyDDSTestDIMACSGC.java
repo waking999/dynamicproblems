@@ -71,7 +71,7 @@ public class GreedyDDSTestDIMACSGC {
 			runGreedyDDSKR(path + file, krArray, destFile);
 		}
 	}
- 
+// @Ignore
  @Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
@@ -80,42 +80,42 @@ public class GreedyDDSTestDIMACSGC {
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { //"frb30-15-mis/frb30-15-1.mis",
 				"frb30-15-mis/frb30-15-2.mis",
-//				"frb30-15-mis/frb30-15-3.mis",
-//				"frb30-15-mis/frb30-15-4.mis",
-//				"frb30-15-mis/frb30-15-5.mis",
-//				"frb35-17-mis/frb35-17-1.mis",
+				"frb30-15-mis/frb30-15-3.mis",
+				"frb30-15-mis/frb30-15-4.mis",
+				"frb30-15-mis/frb30-15-5.mis",
+				"frb35-17-mis/frb35-17-1.mis",
 				"frb35-17-mis/frb35-17-2.mis",
 				"frb35-17-mis/frb35-17-3.mis",
 				"frb35-17-mis/frb35-17-4.mis",
-//				"frb35-17-mis/frb35-17-5.mis",
-//				"frb40-19-mis/frb40-19-1.mis",
+				"frb35-17-mis/frb35-17-5.mis",
+				"frb40-19-mis/frb40-19-1.mis",
 				"frb40-19-mis/frb40-19-2.mis",
 				"frb40-19-mis/frb40-19-3.mis",
-//				"frb40-19-mis/frb40-19-4.mis",
-//				"frb40-19-mis/frb40-19-5.mis",
-//				"frb45-21-mis/frb45-21-1.mis",
-//				"frb45-21-mis/frb45-21-2.mis",
+				"frb40-19-mis/frb40-19-4.mis",
+				"frb40-19-mis/frb40-19-5.mis",
+				"frb45-21-mis/frb45-21-1.mis",
+				"frb45-21-mis/frb45-21-2.mis",
 				"frb45-21-mis/frb45-21-3.mis",
-				//"frb45-21-mis/frb45-21-4.mis",
+				"frb45-21-mis/frb45-21-4.mis",
 				"frb45-21-mis/frb45-21-5.mis",
 				"frb53-24-mis/frb53-24-1.mis",
-//				"frb53-24-mis/frb53-24-2.mis",
-//				"frb53-24-mis/frb53-24-3.mis",
+				"frb53-24-mis/frb53-24-2.mis",
+				"frb53-24-mis/frb53-24-3.mis",
 				"frb53-24-mis/frb53-24-4.mis",
-				//"frb53-24-mis/frb53-24-5.mis",
+				"frb53-24-mis/frb53-24-5.mis",
 				"frb56-25-mis/frb56-25-1.mis",
 				"frb56-25-mis/frb56-25-2.mis",
 				"frb56-25-mis/frb56-25-3.mis",
-				//"frb56-25-mis/frb56-25-4.mis",
+				"frb56-25-mis/frb56-25-4.mis",
 				"frb56-25-mis/frb56-25-5.mis",
-				//"frb59-26-mis/frb59-26-1.mis",
+				"frb59-26-mis/frb59-26-1.mis",
 				"frb59-26-mis/frb59-26-2.mis",
-				//"frb59-26-mis/frb59-26-3.mis",
+				"frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis",
-				//"frb59-26-mis/frb59-26-5.mis"
+				"frb59-26-mis/frb59-26-5.mis"
 		};
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-		int[][] krArray = { { 30,30}, { 40,40 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+		//int[][] krArray = { { 30,30}, { 40,40 } };
 		for (String file : files) {
 			log.debug("------------------"+file);
 			runGreedyDDSKR(path + file, krArray, destFile);
@@ -202,9 +202,9 @@ public class GreedyDDSTestDIMACSGC {
 			int k = kr[0];
 			int rUpper = kr[1];
 
-			//for (int r = 1; r <= rUpper; r++) {
+			for (int r = 1; r <= rUpper; r++) {
 
-				GreedyDDS ag = new GreedyDDS("GreedyDDSTest", am, k, rUpper);
+				GreedyDDS ag = new GreedyDDS("GreedyDDSTest", am, k, r);
 
 				Result result = null;
 
@@ -213,13 +213,13 @@ public class GreedyDDSTestDIMACSGC {
 				List<Integer> ds = ag.getDs();
 				Assert.assertTrue(AlgorithmUtil.isDS(
 						AlgorithmUtil.prepareGraph(am), ds));
-				result = ag.getResult(rUpper);
+				result = ag.getResult(r);
 
 				log.debug(result.getString());
 				if (destFile != null) {
 					FileOperation.saveCVSFile(destFile, result.getString());
 				}
-			//}
+			}
 		}
 	}
 
