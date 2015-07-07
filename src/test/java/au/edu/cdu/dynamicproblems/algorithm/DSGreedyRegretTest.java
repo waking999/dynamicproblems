@@ -19,7 +19,7 @@ public class DSGreedyRegretTest {
 
 	private Logger log = LogUtil.getLogger(DSGreedyRegretTest.class);
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONET() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -51,7 +51,7 @@ public class DSGreedyRegretTest {
 		}
 	}
 
-	// @Ignore
+ @Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {

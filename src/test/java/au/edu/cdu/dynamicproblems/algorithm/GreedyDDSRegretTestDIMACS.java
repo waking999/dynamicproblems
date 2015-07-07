@@ -55,7 +55,6 @@ public class GreedyDDSRegretTestDIMACS {
 		}
 	}
 
-	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
@@ -63,86 +62,31 @@ public class GreedyDDSRegretTestDIMACS {
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { // "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
-		// "C2000.9.clq", "C250.9.clq",
-		"C4000.5.clq",
-		// "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
-		// "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
-		// "brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
-		// "brock800_2.clq", "brock800_4.clq", "gen200_p0.9_44.clq",
-		// "gen200_p0.9_55.clq",
-		// "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-		// "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
-		// "keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
-		// "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
-		// "p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
-		// "p_hat700-2.clq", "p_hat700-3.clq"
+				// "C2000.9.clq", "C250.9.clq",
+				//"C4000.5.clq", 
+				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
+				"MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
+				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
+				"brock800_2.clq", "brock800_4.clq", "gen200_p0.9_44.clq",
+				"gen200_p0.9_55.clq",
+//		 "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+//		 "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+//		 "keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
+//		 "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
+//		 "p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
+//		 "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
 		// int[][] krArray = { { 30, 30 }, { 40, 40 } };
 		for (String file : files) {
 			log.debug("------------------" + file);
-			for (int i = 2; i <= 2; i++) {
+			for (int i = 2; i <= 5; i++) {
 				log.debug(i + "--------");
 				if (destFile != null) {
 					FileOperation.saveCVSFile(destFile, i + "--------");
 				}
 				runGreedyDDSKR(path + file, krArray, destFile);
-			}
-		}
-	}
-
-	@Test
-	public void testDIMACSClass() throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-		String destFile = "out/output-Regret-DIMACS.csv";
-
-		String path = "src/test/resources/DIMACS/";
-		TestFileKR[] testFileKRs = { // "C1000.9.clq", "C125.9.clq",
-				// "C2000.5.clq",
-				new TestFileKR(path + "C2000.9.clq", new int[][] { { 30, 30 } }),
-				new TestFileKR(path + "C250.9.clq", new int[][] { { 2, 2 },
-						{ 30, 30 } }),
-				// "C4000.5.clq",
-				new TestFileKR(path + "C500.9.clq", new int[][] { { 2, 2 },
-						{ 30, 30 } }),
-				new TestFileKR(path + "DSJC1000.5.clq",
-						new int[][] { { 30, 30 } }),
-				// new TestFileKR(path + "DSJC500.5.clq", new int[][] { { 2, 2 }
-				// ,{30,30}}),
-				// "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
-				// "brock200_4.clq", "brock400_2.clq",
-				new TestFileKR(path + "brock400_4.clq", new int[][] { { 2, 2 },
-						{ 30, 30 } }),
-				new TestFileKR(path + "brock800_2.clq", new int[][] { { 2, 2 },
-						{ 30, 30 } }),
-				// "brock800_4.clq",
-				new TestFileKR(path + "gen200_p0.9_44.clq", new int[][] {
-						{ 2, 2 }, { 30, 30 } }),
-				new TestFileKR(path + "gen200_p0.9_55.clq", new int[][] {
-						{ 2, 2 }, { 30, 30 } }),
-				new TestFileKR(path + "gen400_p0.9_55.clq", new int[][] { { 30,
-						30 } }),
-				new TestFileKR(path + "gen400_p0.9_65.clq", new int[][] {
-						{ 2, 2 }, { 30, 30 } }),
-				new TestFileKR(path + "gen400_p0.9_75.clq", new int[][] {
-						{ 2, 2 }, { 30, 30 } }),
-		// "hamming10-4.clq", "hamming8-4.clq",
-		// "keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
-		// "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
-		// "p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
-		// "p_hat700-2.clq", "p_hat700-3.clq"
-
-		};
-
-		for (TestFileKR testFileKR : testFileKRs) {
-			log.debug("------------------" + testFileKR.getFilePath());
-			for (int i = 1; i <= 1; i++) {
-				log.debug(i + "--------");
-				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, i + "--------");
-				}
-				runGreedyDDSKRClass(testFileKR, destFile);
 			}
 		}
 	}
