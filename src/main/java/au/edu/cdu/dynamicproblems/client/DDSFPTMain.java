@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.DDSFPT;
-import au.edu.cdu.dynamicproblems.algorithm.DSGreedy;
+import au.edu.cdu.dynamicproblems.algorithm.DSGreedyNative;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskContainer;
@@ -94,7 +94,7 @@ public class DDSFPTMain extends AbstractAlgorithmMain {
 			// greedy to get ds1
 			List<String[]> am1 = IOUtil.getAMFromFile(inputFiles[0]);
 
-			DSGreedy ag1 = new DSGreedy(key, am1);
+			DSGreedyNative ag1 = new DSGreedyNative(key, am1);
 			ag1.computing();
 			List<Integer> ds1 = ag1.getDominatingSet();
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import au.edu.cdu.dynamicproblems.algorithm.DSGreedy;
+import au.edu.cdu.dynamicproblems.algorithm.DSGreedyNative;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskContainer;
@@ -51,7 +51,7 @@ public class DSGreedyMain extends AbstractAlgorithmMain {
 					throws MOutofNException, ExceedLongMaxException,
 					ArraysNotSameLengthException {
 
-				DSGreedy ag = new DSGreedy(tfp.getIndicator(), tfp.getAm());
+				DSGreedyNative ag = new DSGreedyNative(tfp.getIndicator(), tfp.getAm());
 				Result result = null;
 
 				ag.computing();
@@ -69,7 +69,7 @@ public class DSGreedyMain extends AbstractAlgorithmMain {
 			public void threadFunc(ThreadFuncParameter tfp)
 					throws MOutofNException, ExceedLongMaxException,
 					ArraysNotSameLengthException {
-				ITask t = new DSGreedy(tfp.getIndicator(), tfp.getAm());
+				ITask t = new DSGreedyNative(tfp.getIndicator(), tfp.getAm());
 				tfp.getTc().putTasks(t);
 			}
 		});

@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
+import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
@@ -136,7 +137,8 @@ public class AlgorithmUtilTest {
 
 	@Ignore
 	@Test
-	public void testHEditEdgeDeletion() {
+	public void testHEditEdgeDeletion() throws MOutofNException, ExceedLongMaxException,
+	ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
 		// am.add(new String[] { "0", "1", "0" });
 		// am.add(new String[] { "1", "0", "1" });
@@ -146,7 +148,7 @@ public class AlgorithmUtilTest {
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(am);
+		DSGreedyNative ag = new DSGreedyNative(am);
 		ag.computing();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -216,7 +218,8 @@ AlgorithmUtil.addElementToList(S, 0);
 
 	@Ignore
 	@Test
-	public void testIsDS() {
+	public void testIsDS() throws MOutofNException, ExceedLongMaxException,
+	ArraysNotSameLengthException{
 		List<String[]> am = new ArrayList<String[]>();
 		// am.add(new String[] { "0", "1", "0" });
 		// am.add(new String[] { "1", "0", "1" });
@@ -230,7 +233,7 @@ AlgorithmUtil.addElementToList(S, 0);
 
 		String message = "DSGreedy";
 
-		DSGreedy ag = new DSGreedy(message, am);
+		DSGreedyNative ag = new DSGreedyNative(message, am);
 		ag.computing();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -249,7 +252,8 @@ AlgorithmUtil.addElementToList(S, 0);
 	@Ignore
 	@Test
 	public void testGetDifferentEdgeNumber()
-			throws ArraysNotSameLengthException {
+			throws MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException {
 		List<String[]> am = new ArrayList<String[]>();
 		// am.add(new String[] { "0", "1", "0" });
 		// am.add(new String[] { "1", "0", "1" });
@@ -260,7 +264,7 @@ AlgorithmUtil.addElementToList(S, 0);
 		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(am);
+		DSGreedyNative ag = new DSGreedyNative(am);
 		ag.computing();
 
 		List<Integer> ds = ag.getDominatingSet();

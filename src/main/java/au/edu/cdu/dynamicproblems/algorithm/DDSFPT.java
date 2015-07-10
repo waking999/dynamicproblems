@@ -246,10 +246,10 @@ public class DDSFPT implements IAlgorithm, ITask {
 		if (r < tryR) {
 			tryR = r;
 		}
-		DomVCFPT ag = null;
+		DomAVCFPT ag = null;
 		do {
 
-			ag = new DomVCFPT(gStar, (List<Integer>) vertexCover, tryR);
+			ag = new DomAVCFPT(gStar, (List<Integer>) vertexCover, tryR);
 			try {
 				ag.computing();
 

@@ -7,9 +7,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.DSGreedy;
+import au.edu.cdu.dynamicproblems.algorithm.DSGreedyNative;
 import au.edu.cdu.dynamicproblems.algorithm.HEdit;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
+import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
+import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
@@ -19,17 +21,19 @@ public class AlgorithmUtilMain {
 
 	private static Logger log = LogUtil.getLogger(AlgorithmUtilMain.class);
 
-	public static void main(String[] args) throws ArraysNotSameLengthException , FileNotFoundException,IOException{
-		
-		//generateRandGraph_1000_03_3();
-		//generateRandGraph_1000_03_5();
-		//generateRandGraph_2000_03_5();
+	public static void main(String[] args) throws MOutofNException,ExceedLongMaxException,
+			ArraysNotSameLengthException, FileNotFoundException, IOException {
+
+		// generateRandGraph_1000_03_3();
+		// generateRandGraph_1000_03_5();
+		// generateRandGraph_2000_03_5();
 		generateRandGraph_2000_02_8();
 	}
 
 	@SuppressWarnings("unused")
 	private static void generateRandGraph_1000_03_3()
-			throws ArraysNotSameLengthException, FileNotFoundException,IOException {
+			throws MOutofNException,ExceedLongMaxException, ArraysNotSameLengthException,
+			FileNotFoundException, IOException {
 		String message = "Graph:1000 vertices;radio:0.3;k:3";
 		String destFolder = "src/main/resources/1000/";
 		int numOfVertex = 1000;
@@ -39,10 +43,11 @@ public class AlgorithmUtilMain {
 		generateRandomGAndG1(destFolder, message, numOfVertex, ratio, k);
 
 	}
-	
+
 	@SuppressWarnings("unused")
 	private static void generateRandGraph_1000_03_5()
-			throws ArraysNotSameLengthException, FileNotFoundException,IOException {
+			throws MOutofNException,ArraysNotSameLengthException, FileNotFoundException,
+			IOException, ExceedLongMaxException {
 		String message = "Graph:1000 vertices;radio:0.3;k:5";
 		String destFolder = "src/main/resources/1000/";
 		int numOfVertex = 1000;
@@ -52,10 +57,11 @@ public class AlgorithmUtilMain {
 		generateRandomGAndG1(destFolder, message, numOfVertex, ratio, k);
 
 	}
-	
+
 	@SuppressWarnings("unused")
 	private static void generateRandGraph_2000_03_5()
-			throws ArraysNotSameLengthException, FileNotFoundException,IOException {
+			throws MOutofNException,ArraysNotSameLengthException, FileNotFoundException,
+			IOException, ExceedLongMaxException {
 		String message = "Graph:2000 vertices;radio:0.3;k:5";
 		String destFolder = "src/main/resources/2000/";
 		int numOfVertex = 2000;
@@ -65,10 +71,10 @@ public class AlgorithmUtilMain {
 		generateRandomGAndG1(destFolder, message, numOfVertex, ratio, k);
 
 	}
-	
 
 	private static void generateRandGraph_2000_02_8()
-			throws ArraysNotSameLengthException, FileNotFoundException,IOException {
+			throws MOutofNException,ArraysNotSameLengthException, FileNotFoundException,
+			IOException, ExceedLongMaxException {
 		String message = "Graph:2000 vertices;radio:0.2;k:8";
 		String destFolder = "src/main/resources/2000/";
 		int numOfVertex = 2000;
@@ -81,11 +87,12 @@ public class AlgorithmUtilMain {
 
 	private static void generateRandomGAndG1(String destFolder, String message,
 			int numOfVertex, float ratio, int k)
-			throws ArraysNotSameLengthException, FileNotFoundException,IOException {
+			throws MOutofNException,ArraysNotSameLengthException, FileNotFoundException,
+			IOException, ExceedLongMaxException {
 		// generate a random graph G
 		log.debug(message);
 		List<String[]> am = AlgorithmUtil.generateRandGraph(numOfVertex, ratio);
-		DSGreedy ag = new DSGreedy(message, am);
+		DSGreedyNative ag = new DSGreedyNative(message, am);
 
 		ag.computing();
 
@@ -112,6 +119,5 @@ public class AlgorithmUtilMain {
 		log.debug("k:" + k1);
 
 	}
-	 
 
 }

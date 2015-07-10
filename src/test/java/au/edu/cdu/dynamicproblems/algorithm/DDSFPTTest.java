@@ -35,7 +35,7 @@ public class DDSFPTTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(g);
+		DSGreedyNative ag = new DSGreedyNative(g);
 		ag.run();
 
 		List<Integer> ds1 = ag.getDominatingSet();
@@ -68,7 +68,7 @@ public class DDSFPTTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(g);
+		DSGreedyNative ag = new DSGreedyNative(g);
 		ag.run();
 
 		List<Integer> ds1 = ag.getDominatingSet();
@@ -102,7 +102,7 @@ public class DDSFPTTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(g);
+		DSGreedyNative ag = new DSGreedyNative(g);
 		ag.run();
 
 		List<Integer> ds1 = ag.getDominatingSet();
@@ -164,7 +164,7 @@ public class DDSFPTTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		DSGreedy ag = new DSGreedy(g);
+		DSGreedyNative ag = new DSGreedyNative(g);
 		ag.run();
 
 		List<Integer> ds1 = ag.getDominatingSet();
@@ -190,7 +190,7 @@ public class DDSFPTTest {
 		Graph<Integer, Integer> g1 = AlgorithmUtil.prepareGraph(am1);
 		// Graph<Integer, Integer> g2 = AlgorithmUtil.copyGrapy(g1);
 
-		DSGreedy ag = new DSGreedy(g1);
+		DSGreedyNative ag = new DSGreedyNative(g1);
 		ag.computing();
 		List<Integer> ds1 = ag.getDominatingSet();
 
