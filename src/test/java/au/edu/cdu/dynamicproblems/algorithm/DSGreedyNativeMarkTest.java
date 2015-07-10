@@ -100,7 +100,7 @@ public class DSGreedyNativeMarkTest {
 		}
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -121,7 +121,7 @@ public class DSGreedyNativeMarkTest {
 				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 1; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
@@ -133,7 +133,7 @@ public class DSGreedyNativeMarkTest {
 		}
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -158,7 +158,7 @@ public class DSGreedyNativeMarkTest {
 				"frb56-25-mis/frb56-25-5.mis", "frb59-26-mis/frb59-26-1.mis",
 				"frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 10; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
