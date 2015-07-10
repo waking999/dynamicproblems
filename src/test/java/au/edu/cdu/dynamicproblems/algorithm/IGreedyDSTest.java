@@ -12,6 +12,7 @@ import java.util.Set;
 import junit.framework.Assert;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
@@ -25,7 +26,7 @@ public class IGreedyDSTest {
 	Logger log = LogUtil.getLogger(IGreedyDSTest.class);
 	private final static String COMMA = ",";
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONET() throws MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, IOException {
@@ -56,6 +57,59 @@ public class IGreedyDSTest {
 			Map<String, List<RunningResult>> resultMap = new HashMap<String, List<RunningResult>>();
 
 			for (int i = 1; i <= 1; i++) {
+
+				String indicator1 = "GreedyDSComplete:" + file;
+				IGreedyDS ag1 = new GreedyDSComplete(indicator1);
+
+				runGreedyDS(ag1, path + file, krArray, destFile, resultMap);
+
+				String indicator2 = "GreedyDSRegret:" + file;
+				IGreedyDS ag2 = new GreedyDSRegret(indicator2);
+
+				runGreedyDS(ag2, path + file, krArray, destFile, resultMap);
+
+				String indicator3 = "GreedyDSRegretReduction:" + file;
+				IGreedyDS ag3 = new GreedyDSRegretReduction(indicator3);
+
+				runGreedyDS(ag3, path + file, krArray, destFile, resultMap);
+
+				printRunningResult(resultMap, file, i, destFile);
+			}
+		}
+	}
+	
+	@Test
+	public void testDIMACS() throws MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException, IOException {
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
+				.getInstance().getTime());
+		String destFile = "out/output-IGreedyDS-DIMACS-" + timeStamp
+				+ ".csv";
+
+		String path = "src/test/resources/DIMACS/";
+		String[] files = {  "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
+		 "C2000.9.clq", "C250.9.clq",
+		"C4000.5.clq",
+		 "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
+		 "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
+		 "brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
+		 "brock800_2.clq", "brock800_4.clq", "gen200_p0.9_44.clq",
+		 "gen200_p0.9_55.clq",
+		 "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+		 "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+		 "keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
+		 "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
+		 "p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
+		 "p_hat700-2.clq", "p_hat700-3.clq"
+
+		};
+
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+		
+		for (String file : files) {
+			// log.debug("------------------" + file);
+			for (int i = 1; i <= 1; i++) {
+				Map<String, List<RunningResult>> resultMap = new HashMap<String, List<RunningResult>>();
 
 				String indicator1 = "GreedyDSComplete:" + file;
 				IGreedyDS ag1 = new GreedyDSComplete(indicator1);
