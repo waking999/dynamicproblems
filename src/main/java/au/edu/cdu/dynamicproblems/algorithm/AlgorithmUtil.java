@@ -206,45 +206,14 @@ public class AlgorithmUtil {
 	 *            , an instance of Graph,
 	 * @param dominatedMap
 	 *            , a marked map showing vertices and if it's dominated
-	 * @return List<VertexDegree>, a sorted list of vertices with the number of
-	 *         their un-dominated neighbors
+	 * @return List<VertexDegree>, a sorted list of vertices he number of their
+	 *         un-dominated neighbors
 	 */
 	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegree(
 			Graph<Integer, Integer> g, Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
 		Collection<Integer> vertices = g.getVertices();
 		for (Integer v : vertices) {
-			Collection<Integer> vNeigs = g.getNeighbors(v);
-			int unDominatedDegree = 0;
-			for (Integer u : vNeigs) {
-				if (!dominatedMap.get(u)) {
-					unDominatedDegree++;
-				}
-			}
-			addElementToList(vertexDegreeList, new VertexDegree(v,
-					unDominatedDegree));
-		}
-		Collections.sort(vertexDegreeList);
-		return vertexDegreeList;
-	}
-
-	/**
-	 * get a list of sorted vertices with the number of their un-dominated
-	 * neighbors from a graph
-	 * 
-	 * @param g
-	 *            , an instance of Graph,
-	 * @param dominatedMap
-	 *            , a marked map showing vertices and if it's dominated
-	 * @return List<VertexDegree>, a sorted list of vertices with the number of
-	 *         their un-dominated neighbors
-	 */
-	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegree(
-			Graph<Integer, Integer> g, Collection<Integer> vList,
-			Map<Integer, Boolean> dominatedMap) {
-		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
-
-		for (Integer v : vList) {
 			Collection<Integer> vNeigs = g.getNeighbors(v);
 			int unDominatedDegree = 0;
 			for (Integer u : vNeigs) {
@@ -284,7 +253,7 @@ public class AlgorithmUtil {
 	 * @param excludeList
 	 * @return
 	 */
-	public static List<VertexDegree> sortVertexAccordingToDegreeExclude(
+	public static List<VertexDegree> sortVertexAccordingToDegree(
 			Graph<Integer, Integer> g, List<Integer> excludeList) {
 
 		// get the sorted vertex according their degree
@@ -293,28 +262,7 @@ public class AlgorithmUtil {
 		vertices = CollectionUtils.subtract(vertices, excludeList);
 		for (Integer i : vertices) {
 			int degree = g.degree(i);
-			addElementToList(vertexDegreeList, new VertexDegree(i, degree));
-		}
-		Collections.sort(vertexDegreeList);
-		return vertexDegreeList;
-	}
-
-	/**
-	 * get a list of sorted vertices with their degrees from a graph except the
-	 * vertices in excludeList
-	 * 
-	 * @param g
-	 * @param includeList
-	 * @return
-	 */
-	public static List<VertexDegree> sortVertexAccordingToDegree(
-			Graph<Integer, Integer> g, List<Integer> includeList) {
-
-		// get the sorted vertex according their degree
-		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
-
-		for (Integer i : includeList) {
-			int degree = g.degree(i);
+			// vertexDegreeList.add(new VertexDegree(i, degree));
 			addElementToList(vertexDegreeList, new VertexDegree(i, degree));
 		}
 		Collections.sort(vertexDegreeList);
@@ -931,6 +879,4 @@ public class AlgorithmUtil {
 				size, BINARY_LEFT_PAD);
 		return stringToBinaryArray(binaryStr);
 	}
-
-
 }

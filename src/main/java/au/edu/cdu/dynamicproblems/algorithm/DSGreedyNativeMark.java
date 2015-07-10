@@ -148,34 +148,23 @@ public class DSGreedyNativeMark implements ITask, IAlgorithm {
 			VertexDegree vd = vdList.get(0);
 
 			Integer v = vd.getVertex();
-			/*
-			 * this is commented out because we don't need the vertex of highest
-			 * utility in the close neighborhood, we just want the vertex with
-			 * highest utility itself; Integer w = AlgorithmUtil
-			 * .getVertexFromClosedNeighborhoodWithHighestUtility(v, g, vdList,
-			 * dominatedMap);
-			 * 
-			 * // add it into dominating set
-			 * AlgorithmUtil.addElementToList(dominatingSet, w); // set it is
-			 * dominated dominatedMap.put(w, true);
-			 * 
-			 * // set its neigbors is dominated Collection<Integer> wNeigs =
-			 * g.getNeighbors(w);
-			 * 
-			 * for (Integer u : wNeigs) { dominatedMap.put(u, true); }
-			 */
+
+			Integer w = AlgorithmUtil
+					.getVertexFromClosedNeighborhoodWithHighestUtility(v, g,
+							vdList, dominatedMap);
 
 			// add it into dominating set
-			AlgorithmUtil.addElementToList(dominatingSet, v);
+			AlgorithmUtil.addElementToList(dominatingSet, w);
 			// set it is dominated
-			dominatedMap.put(v, true);
+			dominatedMap.put(w, true);
 
 			// set its neigbors is dominated
-			Collection<Integer> wNeigs = g.getNeighbors(v);
+			Collection<Integer> wNeigs = g.getNeighbors(w);
 
 			for (Integer u : wNeigs) {
 				dominatedMap.put(u, true);
 			}
+
 		}
 
 	}

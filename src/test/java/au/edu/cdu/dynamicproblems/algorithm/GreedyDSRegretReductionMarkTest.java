@@ -65,8 +65,8 @@ public class GreedyDSRegretReductionMarkTest {
 
 			for (int r = 1; r <= rUpper; r++) {
 
-				GreedyDSRegretReductionMarkReverse ag = new GreedyDSRegretReductionMarkReverse(
-						"GreedyDDSRegretReductionMarkTest", am, k, r,GreedyDSRegretReductionMarkReverse.STRATEGY_DESC_DEGREE);
+				GreedyDSRegretReductionMark ag = new GreedyDSRegretReductionMark(
+						"GreedyDDSRegretReductionTest", am, k, r);
 
 				Result result = null;
 
@@ -212,12 +212,9 @@ public class GreedyDSRegretReductionMarkTest {
 
 			for (int r = 1; r <= rUpper; r++) {
 
-//				GreedyDSRegretReductionMark ag = new GreedyDSRegretReductionMark(
-//						"GreedyDDSRegretReductionTest", am, k, r);
+				GreedyDSRegretReductionMark ag = new GreedyDSRegretReductionMark(
+						"GreedyDDSRegretReductionTest", am, k, r);
 
-				GreedyDSRegretReductionMarkReverse ag = new GreedyDSRegretReductionMarkReverse(
-						"GreedyDDSRegretReductionTest", am, k, r,GreedyDSRegretReductionMarkReverse.STRATEGY_ASC_DEGREE);
-				
 				Result result = null;
 
 				ag.computing();

@@ -20,7 +20,7 @@ public class DSGreedyNativeMarkTest {
 
 	private Logger log = LogUtil.getLogger(DSGreedyNativeMarkTest.class);
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -100,7 +100,7 @@ public class DSGreedyNativeMarkTest {
 		}
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -121,7 +121,7 @@ public class DSGreedyNativeMarkTest {
 				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 10; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
@@ -158,7 +158,7 @@ public class DSGreedyNativeMarkTest {
 				"frb56-25-mis/frb56-25-5.mis", "frb59-26-mis/frb59-26-1.mis",
 				"frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 1; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
@@ -170,11 +170,91 @@ public class DSGreedyNativeMarkTest {
 		}
 	}
 
-	
+	@Ignore
+	@Test
+	public void testDIMACSGC() throws InterruptedException, IOException,
+			FileNotFoundException {
+		String destFile = "out/output-DSGreedy-DIMACSGC.csv";
+
+		String path = "src/test/resources/DIMACS-GC/";
+		String[] files = {// "DSJC1000.1.col",
+				// "DSJC1000.5.col",
+				// "DSJC1000.9.col",
+				"DSJC125.1.col",
+				"DSJC125.5.col",
+				"DSJC125.9.col",
+				"DSJC250.1.col",
+				"DSJC250.5.col",
+				"DSJC250.9.col",
+				"DSJC500.1.col",
+				"DSJC500.5.col",
+				"DSJC500.9.col",
+				"DSJR500.1.col",
+				"DSJR500.1c.col",
+				"DSJR500.5.col",
+				// "anna.col",
+				// "david.col",
+				"flat1000_50_0.col",
+				"flat1000_60_0.col",
+				"flat1000_76_0.col",
+				"flat300_20_0.col",
+				"flat300_26_0.col",
+				"flat300_28_0.col",
+				"fpsol2.i.1.col",
+				"fpsol2.i.2.col",
+				"fpsol2.i.3.col",
+				// "games120.col",
+				// "homer.col",
+				// "huck.col",
+				"inithx.i.1.col",
+				"inithx.i.2.col",
+				"inithx.i.3.col",
+				// "jean.col",
+				"le450_15a.col",
+				"le450_15b.col",
+				"le450_15c.col",
+				"le450_15d.col",
+				"le450_25a.col",
+				"le450_25b.col",
+				"le450_25c.col",
+				"le450_25d.col",
+				"le450_5a.col",
+				"le450_5b.col",
+				"le450_5c.col",
+				"le450_5d.col",
+				"miles1000.col",
+				"miles1500.col",
+				"miles250.col",
+				"miles500.col",
+				"miles750.col",
+				"mulsol.i.1.col",
+				"mulsol.i.2.col",
+				"mulsol.i.3.col",
+				"mulsol.i.4.col",
+				"mulsol.i.5.col",
+				// "myciel2.col",
+				// "myciel3.col",
+				// "myciel4.col",
+				// "myciel5.col",
+				// "myciel6.col",
+				// "myciel7.col",
+				"queen10_10.col", "queen11_11.col", "queen12_12.col",
+				"queen13_13.col", "queen14_14.col", "queen15_15.col",
+				"queen16_16.col", "queen5_5.col", "queen6_6.col",
+				"queen7_7.col", "queen8_12.col", "queen8_8.col",
+				"queen9_9.col", "school1.col", "school1_nsh.col",
+				"zeroin.i.1.col", "zeroin.i.2.col", "zeroin.i.3.col" };
+		for (String file : files) {
+			runDSGreedy(path + file, destFile);
+		}
+	}
 
 	private void runDSGreedy(String inputFile, String destFile)
 			throws InterruptedException, IOException, FileNotFoundException {
-		
+		// String inputFile = "src/test/resources/edge-pair-maayan-vidal.csv";
+		// String inputFile = "src/test/resources/DIMACS-GC/DSJC1000.9.col";
+		// String inputFile =
+		// "src/test/resources/BHOSLIB/frb59-26-mis/frb59-26-5.mis";
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 

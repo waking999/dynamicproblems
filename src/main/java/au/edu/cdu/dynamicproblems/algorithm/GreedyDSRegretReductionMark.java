@@ -2,7 +2,6 @@ package au.edu.cdu.dynamicproblems.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,15 +20,13 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
 public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
-	public static final int STRATEGY_DESC_DEGREE=1;
-	public static final int STRATEGY_ASC_DEGREE=2;
-	public static final int STRATEGY_DESC_UNDOMINATED=3;
-	public static final int STRATEGY_ASC_UNDOMINATED=4;
-	
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil
-			.getLogger(GreedyDSRegretReductionMarkReverse.class);
+			.getLogger(GreedyDSRegretReductionMark.class);
 	private long runningTime;
+
+	// private List<Integer> isolatedDS;
+	// private Collection<Integer> gOriginalEdgeList;
 
 	@Override
 	public Result run() throws InterruptedException {
@@ -71,9 +68,16 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 
 	private String indicator;
 	private List<String[]> am;
+	// private List<VertexDegree> vertexDegreeList;
+	// /**
+	// * the complete graph
+	// */
+	// private Graph<Integer, Integer> gK;
+	// private List<Integer> ds1;
 
 	private List<Integer> ds;
-	private List<Integer> initalVerteices;
+
+	// private List<Integer> preDS;
 
 	public List<Integer> getDs() {
 		return ds;
@@ -95,22 +99,22 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 
 	private Graph<Integer, Integer> gOperated;
 
-	private int strategy;
 	// private int numOfVertices;
 
-	public GreedyDSRegretReductionMark(String indicator,
-			List<String[]> am, int k, int r,int strategy) {
+	public GreedyDSRegretReductionMark(String indicator, List<String[]> am,
+			int k, int r) {
 		this.indicator = indicator;
 		this.am = am;
 		this.k = k;
 		this.r = r;
+		// this.numOfVertices = am.size();
 		this.ds = null;
-		this.strategy=strategy;
 	}
 
 	public GreedyDSRegretReductionMark(String indicator) {
 		this.indicator = indicator;
 
+		// this.numOfVertices = am.size();
 		this.ds = null;
 	}
 
@@ -135,7 +139,13 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 		result.setIndex(threadId);
 
 		StringBuffer sb = new StringBuffer();
-
+		// sb.append(this.getClass().getName()).append(":").append(this.indicator)
+		// .append(":");
+		// sb.append(this.runningTime + " ns:");
+		// sb.append(this.ds.size() + ":");
+		// for (Integer i : this.ds) {
+		// sb.append(i).append(" ");
+		// }
 		sb.append(",").append(this.ds.size()).append(",").append(k).append(",")
 				.append(r).append(", ").append(this.runningTime);
 		result.setString(sb.toString());
@@ -144,9 +154,16 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 
 	public Result getResult() {
 		Result result = new Result();
+		// result.setIndex(threadId);
 
 		StringBuffer sb = new StringBuffer();
-
+		// sb.append(this.getClass().getName()).append(":").append(this.indicator)
+		// .append(":");
+		// sb.append(this.runningTime + " ns:");
+		// sb.append(this.ds.size() + ":");
+		// for (Integer i : this.ds) {
+		// sb.append(i).append(" ");
+		// }
 		sb.append(",").append(this.ds.size()).append(",").append(k).append(",")
 				.append(r).append(", ").append(this.runningTime);
 		result.setString(sb.toString());
@@ -160,13 +177,15 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 		long start = System.nanoTime();
 		preprocess();
 
-		start(strategy);
+		start();
 		long end = System.nanoTime();
 
 		this.runningTime = end - start;
 	}
 
 	private void initialization() {
+
+		// this.numOfVertices = am.size();
 
 		this.gOriginal = AlgorithmUtil.prepareGraph(am);
 
@@ -180,12 +199,12 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 	}
 
 	private void preprocess() {
-
+		// this.preDS = new ArrayList<Integer>();
 		// start a new graph from scratch
 		this.gOperated = new SparseMultigraph<Integer, Integer>();
 
 		Collection<Integer> vertices = gOriginal.getVertices();
-		initalVerteices = new ArrayList<Integer>();
+		List<Integer> initalVerteices = new ArrayList<Integer>();
 
 		for (Integer v : vertices) {
 
@@ -275,7 +294,7 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 			Collection<Integer> uNegb, Collection<Integer> wNegb,
 			List<Integer> initalVerteices) {
 		if (AlgorithmUtil.isAllDominated(dominatedMap, wNegb)) {
-
+			
 			addNeighborOfVToDS(v, u, uNegb, initalVerteices);
 		} else if (AlgorithmUtil.isAllDominated(dominatedMap, uNegb)) {
 			addNeighborOfVToDS(v, w, wNegb, initalVerteices);
@@ -299,8 +318,8 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 		addDominatedVertex(initalVerteices, v);
 	}
 
-	private void start(int strategy) throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException {
+	private void start() throws MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException {
 
 		if (AlgorithmUtil.isAllDominated(dominatedMap)) {
 
@@ -317,7 +336,8 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 
 		int rounds = (leftVerticesSize - 1) / k + 1;
 
-		List<VertexDegree> vertexDegreeList = getVDByStrategy(this.strategy,leftVertices);
+		List<VertexDegree> vertexDegreeList = AlgorithmUtil
+				.sortVertexAccordingToDegree(gOriginal, gOperatedVertices);
 
 		for (int i = 1; i <= rounds; i++) {
 			int fromIndex = (i - 1) * k;
@@ -336,69 +356,46 @@ public class GreedyDSRegretReductionMark implements IGreedyDS, ITask {
 
 			ag.computing();
 			ds = ag.getDs2();
-
-			for (Integer v : ds) {
-				this.addDominatingVertex(initalVerteices, v);
-			}
 		}
 
 	}
 
-	private List<VertexDegree> getVDByStrategy(int strategy,
-			Collection<Integer> leftVertices) {
-		switch (strategy) {
-		case STRATEGY_DESC_DEGREE: {
-			return getVDDescByDegree(leftVertices);
-		}
-		case STRATEGY_ASC_DEGREE: {
-			return getVDAscByDegree(leftVertices);
-		}
-		case STRATEGY_DESC_UNDOMINATED: {
-			return getVDDescByUndominatedNeighbors(leftVertices);
-		}
-		case STRATEGY_ASC_UNDOMINATED: {
-			return getVDAscByUndominatedNeighbors(leftVertices);
-		}
-		default: {
-			return null;
-		}
-		}
-
-	}
-
-	private List<VertexDegree> getVDDescByUndominatedNeighbors(
-			Collection<Integer> leftVertices) {
-		List<VertexDegree> vertexDegreeList = AlgorithmUtil
-				.sortVertexAccordingToUndomiatedDegree(gOriginal, leftVertices,
-						dominatedMap);
-
-		return vertexDegreeList;
-	}
-
-	private List<VertexDegree> getVDAscByUndominatedNeighbors(
-			Collection<Integer> leftVertices) {
-		List<VertexDegree> vertexDegreeList = AlgorithmUtil
-				.sortVertexAccordingToUndomiatedDegree(gOriginal, leftVertices,
-						dominatedMap);
-		Collections.reverse(vertexDegreeList);
-
-		return vertexDegreeList;
-	}
-
-	private List<VertexDegree> getVDDescByDegree(
-			Collection<Integer> leftVertices) {
-		List<VertexDegree> vertexDegreeList = AlgorithmUtil
-				.sortVertexAccordingToDegree(gOriginal, leftVertices);
-
-		Collections.reverse(vertexDegreeList);
-		return vertexDegreeList;
-	}
-
-	private List<VertexDegree> getVDAscByDegree(Collection<Integer> leftVertices) {
-		List<VertexDegree> vertexDegreeList = AlgorithmUtil
-				.sortVertexAccordingToDegree(gOriginal, leftVertices);
-
-		return vertexDegreeList;
-	}
+	// @SuppressWarnings("unused")
+	// private void start() throws MOutofNException, ExceedLongMaxException,
+	// ArraysNotSameLengthException {
+	// List<VertexDegree> vertexDegreeList = AlgorithmUtil
+	// .sortVertexAccordingToDegree(this.gOriginal);
+	// VertexDegree vd0 = vertexDegreeList.get(0);
+	// Integer v0 = vd0.getVertex();
+	//
+	// // prepare an initial graph with only one vertex which is of the highest
+	// // degree and an initial dominating set of this graph
+	// Graph<Integer, Integer> gI = new SparseMultigraph<Integer, Integer>();
+	// gI.addVertex(v0);
+	//
+	// // ds.add(v0);
+	// AlgorithmUtil.addElementToList(ds, v0);
+	//
+	// int rounds = (this.numOfVertices - 1) / this.k + 1;
+	//
+	// for (int i = 1; i <= rounds; i++) {
+	// int fromIndex = (i - 1) * k + 1;
+	// int toIndex = i * k;
+	// toIndex = Math.min(toIndex, this.numOfVertices - 1);
+	//
+	// List<VertexDegree> vdList = vertexDegreeList.subList(fromIndex,
+	// toIndex + 1);
+	// List<Integer> vList = AlgorithmUtil.getVertexList(vdList);
+	//
+	// gI = AlgorithmUtil.prepareGraph(this.am, gI, vList);
+	// Graph<Integer, Integer> gICopy = AlgorithmUtil.copyGrapy(gI);
+	// DDSFPT ag = new DDSFPT(indicator, gICopy, ds, r);
+	//
+	// ag.computing();
+	// ds = ag.getDs2();
+	//
+	// }
+	//
+	// }
 
 }
