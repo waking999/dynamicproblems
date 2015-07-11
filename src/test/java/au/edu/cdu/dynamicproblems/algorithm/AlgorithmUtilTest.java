@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
-import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
@@ -135,35 +134,35 @@ public class AlgorithmUtilTest {
 
 	}
 
-	@Ignore
-	@Test
-	public void testHEditEdgeDeletion() throws MOutofNException, ExceedLongMaxException,
-	ArraysNotSameLengthException {
-		List<String[]> am = new ArrayList<String[]>();
-		// am.add(new String[] { "0", "1", "0" });
-		// am.add(new String[] { "1", "0", "1" });
-		// am.add(new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
-		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-
-		DSGreedyNative ag = new DSGreedyNative(am);
-		ag.computing();
-
-		List<Integer> ds = ag.getDominatingSet();
-
-		int k = 1;
-
-		HEdit hEdit = AlgorithmUtil.hEditEdgeDeletion(am, g, ds, k);
-
-		List<String[]> opl = hEdit.getOperationList();
-		Assert.assertNotNull(opl);
-
-		List<String[]> am2 = hEdit.getOutputAdjacencyMatrix();
-		Assert.assertNotNull(am2);
-
-	}
+//	@Ignore
+//	@Test
+//	public void testHEditEdgeDeletion() throws MOutofNException, ExceedLongMaxException,
+//	ArraysNotSameLengthException {
+//		List<String[]> am = new ArrayList<String[]>();
+//		// am.add(new String[] { "0", "1", "0" });
+//		// am.add(new String[] { "1", "0", "1" });
+//		// am.add(new String[] { "0", "1", "0" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+//		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+//
+//		GreedyNative ag = new GreedyNative(am);
+//		ag.computing();
+//
+//		List<Integer> ds = ag.getDominatingSet();
+//
+//		int k = 1;
+//
+//		HEdit hEdit = AlgorithmUtil.hEditEdgeDeletion(am, g, ds, k);
+//
+//		List<String[]> opl = hEdit.getOperationList();
+//		Assert.assertNotNull(opl);
+//
+//		List<String[]> am2 = hEdit.getOutputAdjacencyMatrix();
+//		Assert.assertNotNull(am2);
+//
+//	}
 
 	@Ignore
 	@Test
@@ -216,79 +215,79 @@ AlgorithmUtil.addElementToList(S, 0);
 		Assert.assertEquals(new Integer(1), nList.get(0));
 	}
 
-	@Ignore
-	@Test
-	public void testIsDS() throws MOutofNException, ExceedLongMaxException,
-	ArraysNotSameLengthException{
-		List<String[]> am = new ArrayList<String[]>();
-		// am.add(new String[] { "0", "1", "0" });
-		// am.add(new String[] { "1", "0", "1" });
-		// am.add(new String[] { "0", "1", "0" });
+//	@Ignore
+//	@Test
+//	public void testIsDS() throws MOutofNException, ExceedLongMaxException,
+//	ArraysNotSameLengthException{
+//		List<String[]> am = new ArrayList<String[]>();
+//		// am.add(new String[] { "0", "1", "0" });
+//		// am.add(new String[] { "1", "0", "1" });
+//		// am.add(new String[] { "0", "1", "0" });
+//
+//		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+//
+//		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+//
+//		String message = "DSGreedy";
+//
+//		GreedyNative ag = new GreedyNative(message, am);
+//		ag.computing();
+//
+//		List<Integer> ds = ag.getDominatingSet();
+//
+//		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+//
+//		List<Integer> ds2 = new ArrayList<Integer>();
+//		// ds2.add(0);
+//
+//		AlgorithmUtil.addElementToList(ds2, 0);
+//
+//		Assert.assertFalse(AlgorithmUtil.isDS(g, ds2));
+//
+//	}
 
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
-
-		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-
-		String message = "DSGreedy";
-
-		DSGreedyNative ag = new DSGreedyNative(message, am);
-		ag.computing();
-
-		List<Integer> ds = ag.getDominatingSet();
-
-		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
-
-		List<Integer> ds2 = new ArrayList<Integer>();
-		// ds2.add(0);
-
-		AlgorithmUtil.addElementToList(ds2, 0);
-
-		Assert.assertFalse(AlgorithmUtil.isDS(g, ds2));
-
-	}
-
-	@Ignore
-	@Test
-	public void testGetDifferentEdgeNumber()
-			throws MOutofNException, ExceedLongMaxException,
-			ArraysNotSameLengthException {
-		List<String[]> am = new ArrayList<String[]>();
-		// am.add(new String[] { "0", "1", "0" });
-		// am.add(new String[] { "1", "0", "1" });
-		// am.add(new String[] { "0", "1", "0" });
-
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
-		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-
-		DSGreedyNative ag = new DSGreedyNative(am);
-		ag.computing();
-
-		List<Integer> ds = ag.getDominatingSet();
-
-		int k = 1;
-
-		HEdit hEdit = AlgorithmUtil.hEditEdgeDeletion(am, g, ds, k);
-
-		List<String[]> am2 = hEdit.getOutputAdjacencyMatrix();
-
-		List<String[]> am3 = new ArrayList<String[]>();
-		// am3.add(new String[] { "0", "1", "0" });
-		// am3.add(new String[] { "1", "0", "1" });
-		// am3.add(new String[] { "0", "1", "0" });
-
-		AlgorithmUtil.addElementToList(am3, new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
-		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
-
-		int k1 = AlgorithmUtil.getDifferentEdgeNumber(am3, am2);
-
-		Assert.assertTrue(k1 <= k);
-
-	}
+//	@Ignore
+//	@Test
+//	public void testGetDifferentEdgeNumber()
+//			throws MOutofNException, ExceedLongMaxException,
+//			ArraysNotSameLengthException {
+//		List<String[]> am = new ArrayList<String[]>();
+//		// am.add(new String[] { "0", "1", "0" });
+//		// am.add(new String[] { "1", "0", "1" });
+//		// am.add(new String[] { "0", "1", "0" });
+//
+//		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
+//		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
+//		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+//
+//		GreedyNative ag = new GreedyNative(am);
+//		ag.computing();
+//
+//		List<Integer> ds = ag.getDominatingSet();
+//
+//		int k = 1;
+//
+//		HEdit hEdit = AlgorithmUtil.hEditEdgeDeletion(am, g, ds, k);
+//
+//		List<String[]> am2 = hEdit.getOutputAdjacencyMatrix();
+//
+//		List<String[]> am3 = new ArrayList<String[]>();
+//		// am3.add(new String[] { "0", "1", "0" });
+//		// am3.add(new String[] { "1", "0", "1" });
+//		// am3.add(new String[] { "0", "1", "0" });
+//
+//		AlgorithmUtil.addElementToList(am3, new String[] { "0", "1", "0" });
+//		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
+//		AlgorithmUtil.addElementToList(am3, new String[] { "1", "0", "1" });
+//
+//		int k1 = AlgorithmUtil.getDifferentEdgeNumber(am3, am2);
+//
+//		Assert.assertTrue(k1 <= k);
+//
+//	}
 
 	@Ignore
 	@Test

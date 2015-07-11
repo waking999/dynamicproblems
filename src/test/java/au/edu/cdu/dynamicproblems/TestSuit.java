@@ -4,8 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtilTest;
-import au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest;
-import au.edu.cdu.dynamicproblems.algorithm.DSGreedyNativeTest;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNativeTest;
 import au.edu.cdu.dynamicproblems.control.TaskTest;
 import au.edu.cdu.dynamicproblems.io.IOUtilTest;
 
@@ -19,8 +18,8 @@ import au.edu.cdu.dynamicproblems.io.IOUtilTest;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ AlgorithmUtilTest.class, DSGreedyNativeTest.class,
-		DDSFPTTest.class, IOUtilTest.class, TaskTest.class })
+@Suite.SuiteClasses({ AlgorithmUtilTest.class, GreedyNativeTest.class,
+		 IOUtilTest.class, TaskTest.class })
 public class TestSuit {
 
 }

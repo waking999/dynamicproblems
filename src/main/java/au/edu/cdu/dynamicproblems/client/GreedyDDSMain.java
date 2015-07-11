@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import au.edu.cdu.dynamicproblems.algorithm.GreedyDSComplete;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSComplete;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskContainer;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;

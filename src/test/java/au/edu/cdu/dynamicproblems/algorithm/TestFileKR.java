@@ -4,7 +4,7 @@ public class TestFileKR {
 	private String filePath;
 	private int[][] krArray;
 
-	TestFileKR(String filePath, int[][] krArray) {
+	public TestFileKR(String filePath, int[][] krArray) {
 		this.filePath = filePath;
 		this.krArray = krArray;
 	}
