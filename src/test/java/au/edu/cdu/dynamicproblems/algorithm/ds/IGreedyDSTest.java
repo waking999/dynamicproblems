@@ -78,7 +78,7 @@ public class IGreedyDSTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -104,7 +104,7 @@ public class IGreedyDSTest {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
