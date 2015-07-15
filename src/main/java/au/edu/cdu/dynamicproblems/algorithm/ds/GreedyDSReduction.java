@@ -25,8 +25,8 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 public class GreedyDSReduction implements IGreedyDS, ITask {
 	public static final int STRATEGY_DEGREE_DESC = 1;
 	public static final int STRATEGY_DEGREE_ASC = 2;
-//	public static final int STRATEGY_UTILITY_DESC = 3;
-//	public static final int STRATEGY_UTILITY_ASC = 4;
+	public static final int STRATEGY_UTILITY_DESC = 3;
+	public static final int STRATEGY_UTILITY_ASC = 4;
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSReduction.class);
@@ -294,7 +294,8 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 		addDominatedVertex(initalVerteices, v);
 	}
 
-	private void startByDegree(int strategy) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	private void startByDegree(int strategy)
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		if (AlgorithmUtil.isAllDominated(dominatedMap)) {
 
@@ -303,7 +304,7 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 		Collection<Integer> gOriginalVertices = gOriginal.getVertices();
 		Collection<Integer> gOperatedVertices = gOperated.getVertices();
-	
+
 		Collection<Integer> leftVertices = CollectionUtils.subtract(gOriginalVertices, gOperatedVertices);
 
 		int leftVerticesSize = leftVertices.size();
@@ -311,12 +312,12 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 		int rounds = (leftVerticesSize - 1) / k + 1;
 
 		List<VertexDegree> vertexDegreeList = getVDByStrategy(this.strategy, leftVertices);
-		
+
 		for (int i = 1; i <= rounds; i++) {
 			int fromIndex = (i - 1) * k;
 			int toIndex = i * k;
 			toIndex = Math.min(toIndex, leftVerticesSize);
-			
+
 			List<VertexDegree> vdList = vertexDegreeList.subList(fromIndex, toIndex);
 
 			List<Integer> vList = AlgorithmUtil.getVertexList(vdList);
@@ -328,23 +329,84 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 			ag.computing();
 			ds = ag.getDs2();
 
-			
+			for (Integer v : ds) {
+				if (!dominatedMap.get(v)) {
+					dominatedMap.put(v, true);
+				}
+				Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+				for (Integer u : vNeg) {
+					if (!dominatedMap.get(u)) {
+						dominatedMap.put(u, true);
+					}
+				}
+			}
+
+			if (AlgorithmUtil.isAllDominated(dominatedMap)) {
+				break;
+			}
 		}
-		
+
 	}
-	
+
+	private void startByUtility(int strategy)
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+
+		Collection<Integer> gOriginalVertices = gOriginal.getVertices();
+		Collection<Integer> gOperatedVertices = gOperated.getVertices();
+
+		Collection<Integer> leftVertices = CollectionUtils.subtract(gOriginalVertices, gOperatedVertices);
+
+		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
+
+			int leftVerticesSize = leftVertices.size();
+			List<VertexDegree> vertexDegreeList = getVDByStrategy(this.strategy, leftVertices);
+			int fromIndex = 0;
+			int toIndex = Math.min(k, leftVerticesSize);
+
+			List<VertexDegree> vdList = vertexDegreeList.subList(fromIndex, toIndex);
+			List<Integer> vList = AlgorithmUtil.getVertexList(vdList);
+
+			AlgorithmUtil.prepareGraph(this.am, gOperated, vList);
+			Graph<Integer, Integer> gOperatedCopy = AlgorithmUtil.copyGrapy(gOperated);
+			DDSFPT ag = new DDSFPT(indicator, gOperatedCopy, ds, r);
+
+			ag.computing();
+			ds = ag.getDs2();
+
+			for (Integer v : ds) {
+				if (!dominatedMap.get(v)) {
+					dominatedMap.put(v, true);
+				}
+				leftVertices.remove(v);
+
+				Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+
+				for (Integer u : vNeg) {
+					if (!dominatedMap.get(u)) {
+						dominatedMap.put(u, true);
+					}
+					leftVertices.remove(u);
+				}
+
+			}
+
+		}
+
+	}
+
 	private void start(int strategy) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 		switch (strategy) {
 		case STRATEGY_DEGREE_DESC:
 		case STRATEGY_DEGREE_ASC: {
 			startByDegree(strategy);
-			
-		}
-		
-		
-		}
-		
 
+		}
+		case STRATEGY_UTILITY_DESC:
+		case STRATEGY_UTILITY_ASC: {
+			startByUtility(strategy);
+		}
+
+		}
 
 	}
 
@@ -356,12 +418,12 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 		case STRATEGY_DEGREE_ASC: {
 			return getVDAscByDegree(leftVertices);
 		}
-//		case STRATEGY_UTILITY_DESC: {
-//			return getVDDescByUtility(leftVertices);
-//		}
-//		case STRATEGY_UTILITY_ASC: {
-//			return getVDAscByUtility(leftVertices);
-//		}
+		case STRATEGY_UTILITY_DESC: {
+			return getVDDescByUtility(leftVertices);
+		}
+		case STRATEGY_UTILITY_ASC: {
+			return getVDAscByUtility(leftVertices);
+		}
 		default: {
 			return null;
 		}
@@ -369,20 +431,20 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 	}
 
-//	private List<VertexDegree> getVDDescByUtility(Collection<Integer> leftVertices) {
-//		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToUndomiatedDegreeInclude(gOriginal,
-//				leftVertices, dominatedMap);
-//
-//		return vertexDegreeList;
-//	}
-//
-//	private List<VertexDegree> getVDAscByUtility(Collection<Integer> leftVertices) {
-//		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToUndomiatedDegreeInclude(gOriginal,
-//				leftVertices, dominatedMap);
-//		Collections.reverse(vertexDegreeList);
-//
-//		return vertexDegreeList;
-//	}
+	private List<VertexDegree> getVDDescByUtility(Collection<Integer> leftVertices) {
+		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToUndomiatedDegreeInclude(gOriginal,
+				leftVertices, dominatedMap);
+
+		return vertexDegreeList;
+	}
+
+	private List<VertexDegree> getVDAscByUtility(Collection<Integer> leftVertices) {
+		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToUndomiatedDegreeInclude(gOriginal,
+				leftVertices, dominatedMap);
+		Collections.reverse(vertexDegreeList);
+
+		return vertexDegreeList;
+	}
 
 	private List<VertexDegree> getVDDescByDegree(Collection<Integer> leftVertices) {
 		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToDegreeInclude(gOriginal, leftVertices);

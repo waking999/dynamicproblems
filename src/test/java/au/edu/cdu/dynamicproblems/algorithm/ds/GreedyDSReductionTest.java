@@ -23,7 +23,7 @@ import junit.framework.Assert;
 public class GreedyDSReductionTest {
 	private Logger log = LogUtil.getLogger(GreedyDSReductionTest.class);
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void test0() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
 		List<String[]> am = new ArrayList<String[]>();
@@ -63,7 +63,7 @@ public class GreedyDSReductionTest {
 
 			for (int r = 1; r <= rUpper; r++) {
 
-				GreedyDSReduction ag = new GreedyDSReduction("GreedyDDSRegretReductionMarkTest", am, k, r,
+				GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName()+"STRATEGY_UTILITY_DESC", am, k, r,
 						GreedyDSReduction.STRATEGY_DEGREE_DESC);
 
 				Result result = null;
@@ -87,9 +87,10 @@ public class GreedyDSReductionTest {
 		String destFile = "out/output-" + this.getClass().getName() + "-KONECT-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", 
+				//"000034_zachary.konet", "000062_dolphins.konet",
+				//"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				//"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",

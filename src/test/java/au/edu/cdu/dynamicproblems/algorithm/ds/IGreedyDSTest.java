@@ -28,7 +28,7 @@ public class IGreedyDSTest {
 	Logger log = LogUtil.getLogger(IGreedyDSTest.class);
 	private final static String COMMA = ",";
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONECT()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -36,9 +36,9 @@ public class IGreedyDSTest {
 		String destFile = "out/output-" + this.getClass().getName() + "-KONECT-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = {//"000027_zebra.konet", 
-				//"000034_zachary.konet", "000062_dolphins.konet",
-				//"000112_David_Copperfield.konet", 
+		String[] files = {"000027_zebra.konet", 
+				"000034_zachary.konet", "000062_dolphins.konet",
+				"000112_David_Copperfield.konet", 
 				"000198_Jazz_musicians.konet",
 				"000212_pdzbase.konet",
 				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
@@ -72,6 +72,13 @@ public class IGreedyDSTest {
 			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_DEGREE_ASC);
 			run(ag2, path + file, krArray, destFile, resultMap);
 
+//			String indicator1 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_DESC + file;
+//			IGreedyDS ag1 = new GreedyDSReduction(indicator1, GreedyDSReduction.STRATEGY_UTILITY_DESC);
+//			run(ag1, path + file, krArray, destFile, resultMap);
+//
+//			String indicator2 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_ASC + file;
+//			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_UTILITY_ASC);
+//			run(ag2, path + file, krArray, destFile, resultMap);
 			
 
 			printRunningResult(resultMap, file, i, destFile);
@@ -104,7 +111,7 @@ public class IGreedyDSTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -141,7 +148,7 @@ public class IGreedyDSTest {
 		}
 		List<StringBuffer> printArray = new ArrayList<StringBuffer>();
 
-		Map<String, RunningResult> minRunningResult = new HashMap<String, RunningResult>();
+		//Map<String, RunningResult> minRunningResult = new HashMap<String, RunningResult>();
 //		int minSize = Integer.MAX_VALUE;
 //		int minK = Integer.MAX_VALUE;
 //		int minR = Integer.MAX_VALUE;
@@ -149,9 +156,8 @@ public class IGreedyDSTest {
 
 		Set<String> keySet = resultMap.keySet();
 		for (String key : keySet) {
-			RunningResult minRR = new RunningResult(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
-					Long.MAX_VALUE);
-			minRunningResult.put(key, minRR);
+			//RunningResult minRR = new RunningResult(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,				Long.MAX_VALUE);
+			//minRunningResult.put(key, minRR);
 
 			List<RunningResult> rrList = resultMap.get(key);
 			int rrListSize = rrList.size();
@@ -170,6 +176,7 @@ public class IGreedyDSTest {
 				rowSB.append(rr.getSize()).append(COMMA).append(rr.getK()).append(COMMA).append(rr.getR()).append(COMMA)
 						.append(rr.getNanoSec()).append(COMMA);
 
+				rr=null;
 //				if (minRR.getSize() >= rr.getSize()) {
 //					minRR.setSize(rr.getSize());
 //					if (minRR.getNanoSec() >= rr.getNanoSec()) {
@@ -216,7 +223,10 @@ public class IGreedyDSTest {
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, rowSB.toString());
 			}
+			rowSB=null;
 		}
+		
+		printArray=null;
 
 	}
 
