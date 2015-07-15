@@ -28,7 +28,7 @@ public class IGreedyDSTest {
 	Logger log = LogUtil.getLogger(IGreedyDSTest.class);
 	private final static String COMMA = ",";
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testKONECT()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -64,21 +64,21 @@ public class IGreedyDSTest {
 		for (int i = iStart; i <= iEnd; i++) {
 			Map<String, List<RunningResult>> resultMap = new HashMap<String, List<RunningResult>>();
 
-			String indicator1 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_DEGREE_DESC + file;
-			IGreedyDS ag1 = new GreedyDSReduction(indicator1, GreedyDSReduction.STRATEGY_DEGREE_DESC);
-			run(ag1, path + file, krArray, destFile, resultMap);
-
-			String indicator2 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_DEGREE_ASC + file;
-			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_DEGREE_ASC);
-			run(ag2, path + file, krArray, destFile, resultMap);
-
-//			String indicator1 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_DESC + file;
-//			IGreedyDS ag1 = new GreedyDSReduction(indicator1, GreedyDSReduction.STRATEGY_UTILITY_DESC);
+//			String indicator1 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_DEGREE_DESC + file;
+//			IGreedyDS ag1 = new GreedyDSReduction(indicator1, GreedyDSReduction.STRATEGY_DEGREE_DESC);
 //			run(ag1, path + file, krArray, destFile, resultMap);
 //
-//			String indicator2 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_ASC + file;
-//			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_UTILITY_ASC);
+//			String indicator2 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_DEGREE_ASC + file;
+//			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_DEGREE_ASC);
 //			run(ag2, path + file, krArray, destFile, resultMap);
+
+			String indicator1 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_DESC + file;
+			IGreedyDS ag1 = new GreedyDSReduction(indicator1, GreedyDSReduction.STRATEGY_UTILITY_DESC);
+			run(ag1, path + file, krArray, destFile, resultMap);
+
+			String indicator2 = this.getClass().getName() + "-" + GreedyDSReduction.STRATEGY_UTILITY_ASC + file;
+			IGreedyDS ag2 = new GreedyDSReduction(indicator2, GreedyDSReduction.STRATEGY_UTILITY_ASC);
+			run(ag2, path + file, krArray, destFile, resultMap);
 			
 
 			printRunningResult(resultMap, file, i, destFile);
@@ -111,7 +111,7 @@ public class IGreedyDSTest {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
