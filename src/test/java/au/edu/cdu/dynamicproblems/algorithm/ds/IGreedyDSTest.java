@@ -28,7 +28,7 @@ public class IGreedyDSTest {
 	Logger log = LogUtil.getLogger(IGreedyDSTest.class);
 	private final static String COMMA = ",";
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testKONECT()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
@@ -85,7 +85,7 @@ public class IGreedyDSTest {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
