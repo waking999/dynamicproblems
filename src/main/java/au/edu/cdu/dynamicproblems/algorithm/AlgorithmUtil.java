@@ -110,12 +110,14 @@ public class AlgorithmUtil {
 	 * @return
 	 */
 	public static Graph<Integer, Integer> prepareGraph(List<String[]> adjacencyMatrix, Graph<Integer, Integer> g,
-			List<Integer> vList) {
+			Collection<Integer> vList) {
 
 		int numOfVertices = adjacencyMatrix.size();
 
 		for (Integer i : vList) {
-			g.addVertex(i);
+			if (!g.containsVertex(i)) {
+				g.addVertex(i);
+			}
 		}
 
 		Collection<Integer> gVertices = g.getVertices();
@@ -208,7 +210,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
-	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegree(Graph<Integer, Integer> g,
+	public static List<VertexDegree> sortVertexAccordingToUtility(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
 		Collection<Integer> vertices = g.getVertices();
@@ -260,7 +262,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
-	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegreeInclude(Graph<Integer, Integer> g,
+	public static List<VertexDegree> sortVertexAccordingToUtilityInclude(Graph<Integer, Integer> g,
 			Collection<Integer> vList, Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
 
@@ -276,6 +278,17 @@ public class AlgorithmUtil {
 		}
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
+	}
+
+	public static int getVertexUtility(Graph<Integer, Integer> g, Integer v, Map<Integer, Boolean> dominatedMap) {
+		Collection<Integer> vNeigs = g.getNeighbors(v);
+		int unDominatedDegree = 0;
+		for (Integer u : vNeigs) {
+			if (!dominatedMap.get(u)) {
+				unDominatedDegree++;
+			}
+		}
+		return unDominatedDegree;
 	}
 
 	// public static Integer
@@ -357,6 +370,17 @@ public class AlgorithmUtil {
 		}
 
 		return true;
+	}
+	
+	public static int getDominatedNumber(Map<Integer,Boolean> dominatedMap){
+		int count=0;
+		Collection<Boolean> values = dominatedMap.values();
+		for (Boolean b : values) {
+			if (b) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -586,7 +610,7 @@ public class AlgorithmUtil {
 	 *            , an element
 	 * @return the list
 	 */
-	public static <E> List<E> addElementToList(List<E> list, E e) {
+	public static <E> Collection<E> addElementToList(Collection<E> list, E e) {
 		if (!list.contains(e)) {
 			list.add(e);
 		}

@@ -54,9 +54,8 @@ public class FileOperation {
 		this.fileInfo = fileInfo;
 	}
 
-	private static String saveAgjacencyMatrixToFile(String filePath,
-			String fileName, List<String[]> adjacencyMatrix, int k)
-			throws IOException, FileNotFoundException {
+	private static String saveAgjacencyMatrixToFile(String filePath, String fileName, List<String[]> adjacencyMatrix,
+			int k) throws IOException, FileNotFoundException {
 
 		int numOfVertices = adjacencyMatrix.size();
 
@@ -94,24 +93,20 @@ public class FileOperation {
 	 * @param adjacencyMatrix
 	 *            , adjacency matrix
 	 */
-	public static String saveAgjacencyMatrixToFile(String destFolder,
-			List<String[]> adjacencyMatrix, float ratio, int k)
-			throws FileNotFoundException, IOException {
+	public static String saveAgjacencyMatrixToFile(String destFolder, List<String[]> adjacencyMatrix, float ratio,
+			int k) throws FileNotFoundException, IOException {
 		int numOfVertices = adjacencyMatrix.size();
 		// String filePath = "src/main/resources/";
-		String fileName = numOfVertices + "_" + ratio + "_testcase_"
-				+ System.currentTimeMillis() + ".csv";
+		String fileName = numOfVertices + "_" + ratio + "_testcase_" + System.currentTimeMillis() + ".csv";
 
-		return saveAgjacencyMatrixToFile(destFolder, fileName, adjacencyMatrix,
-				k);
+		return saveAgjacencyMatrixToFile(destFolder, fileName, adjacencyMatrix, k);
 
 	}
 
 	/**
 	 * retrive graph info in edge pair format
 	 */
-	public void retriveProblemInfoByEdgePair() throws FileNotFoundException,
-			IOException {
+	public void retriveProblemInfoByEdgePair() throws FileNotFoundException, IOException {
 		Path path = Paths.get(this.fileInfo.getInputFile());
 		List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
 		String line0 = lines.get(0);
@@ -213,11 +208,9 @@ public class FileOperation {
 	 * 
 	 * @param operationList
 	 */
-	public static void saveOperationToFile(String destFolder,
-			List<String[]> operationList) throws FileNotFoundException,
-			IOException {
-		String fileName = destFolder + "operation" + System.currentTimeMillis()
-				+ ".csv";
+	public static void saveOperationToFile(String destFolder, List<String[]> operationList)
+			throws FileNotFoundException, IOException {
+		String fileName = destFolder + "operation" + System.currentTimeMillis() + ".csv";
 
 		FileOutputStream out = null;
 		OutputStreamWriter osw = null;
@@ -245,14 +238,13 @@ public class FileOperation {
 
 	}
 
-	public static void saveCVSFile(String destFile, String outputStr)
-			throws FileNotFoundException, IOException {
+	public static void saveCVSFile(String destFileStr, String outputStr) throws FileNotFoundException, IOException {
 		BufferedWriter bw = null;
 
 		try {
 
 			// APPEND MODE SET HERE
-			bw = new BufferedWriter(new FileWriter(destFile, true));
+			bw = new BufferedWriter(new FileWriter(destFileStr, true));
 			bw.write(outputStr);
 			bw.newLine();
 			bw.flush();

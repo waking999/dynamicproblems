@@ -144,7 +144,7 @@ public class GreedyNative implements ITask, IAlgorithm {
 			// get the vertex with highest utility (the number of undominated
 			// neighbors)
 			List<VertexDegree> vdList = AlgorithmUtil
-					.sortVertexAccordingToUndomiatedDegree(g, dominatedMap);
+					.sortVertexAccordingToUtility(g, dominatedMap);
 			VertexDegree vd = vdList.get(0);
 
 			Integer v = vd.getVertex();

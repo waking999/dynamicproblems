@@ -1,5 +1,6 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,9 +24,10 @@ import junit.framework.Assert;
 public class GreedyDSReductionTest {
 	private Logger log = LogUtil.getLogger(GreedyDSReductionTest.class);
 
-	//@Ignore
+	@Ignore
 	@Test
-	public void test0() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
+	public void test0() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+			InterruptedException, IOException {
 		List<String[]> am = new ArrayList<String[]>();
 		AlgorithmUtil.addElementToList(am,
 				new String[] { "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
@@ -63,8 +65,8 @@ public class GreedyDSReductionTest {
 
 			for (int r = 1; r <= rUpper; r++) {
 
-				GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName()+"STRATEGY_UTILITY_DESC", am, k, r,
-						GreedyDSReduction.STRATEGY_DEGREE_DESC);
+				GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName() + "STRATEGY_UTILITY_DESC", am, k,
+						r, GreedyDSReduction.STRATEGY_UTILITY_DESC, true);
 
 				Result result = null;
 
@@ -80,17 +82,15 @@ public class GreedyDSReductionTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
-	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-" + this.getClass().getName() + "-KONECT-" + timeStamp + ".csv";
+	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
+			InterruptedException {
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", 
-				//"000034_zachary.konet", "000062_dolphins.konet",
-				//"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				//"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
+				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -102,54 +102,106 @@ public class GreedyDSReductionTest {
 
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
 
+		runStrategies(path, krArray, files, 1, 1);
+
+	}
+
+	private void runStrategies(String path, int[][] krArray, String[] files, int iStart, int iEnd)
+			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException, InterruptedException {
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
+		String destDir = "out/KONECT-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
+
+		log.debug(destFile);
+
 		for (String file : files) {
-			log.debug("------------------" + file);
-			for (int i = 1; i <= 1; i++) {
-				log.debug(i + "--------");
-				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, i + "--------");
-				}
-				run(path + file, krArray, destFile);
+			for (int i = iStart; i <= iEnd; i++) {
+
+				boolean withReductionRule;
+				int strategy;
+				String msg;
+
+				// with reduction rules
+				withReductionRule = true;
+
+				
+				strategy = GreedyDSReduction.STRATEGY_UTILITY_DESC;
+				msg = setMessage(file, i, withReductionRule, strategy);
+				run(msg, path + file, krArray, destFile, strategy, withReductionRule);
+
+				strategy = GreedyDSReduction.STRATEGY_UTILITY_ASC;
+				msg = setMessage(file, i, withReductionRule, strategy);
+				run(msg, path + file, krArray, destFile, strategy, withReductionRule);
+
+				// without reduction rule
+				// withReductionRule = false;
+				//
+				// strategy = GreedyDSReduction.STRATEGY_DEGREE_DESC;
+				// msg = setMessage(file, i, withReductionRule, strategy);
+				// run(msg, path + file, krArray, destFile, strategy,
+				// withReductionRule);
+				//
+				// strategy = GreedyDSReduction.STRATEGY_DEGREE_ASC;
+				// msg = setMessage(file, i, withReductionRule, strategy);
+				// run(msg, path + file, krArray, destFile, strategy,
+				// withReductionRule);
+				//
+				// strategy = GreedyDSReduction.STRATEGY_UTILITY_DESC;
+				// msg = setMessage(file, i, withReductionRule, strategy);
+				// run(msg, path + file, krArray, destFile, strategy,
+				// withReductionRule);
+				//
+				// strategy = GreedyDSReduction.STRATEGY_UTILITY_ASC;
+				// msg = setMessage(file, i, withReductionRule, strategy);
+				// run(msg, path + file, krArray, destFile, strategy,
+				// withReductionRule);
+
 			}
 		}
 	}
 
-	@Ignore
+	private String setMessage(String file, int i, boolean withReductionRule, int strategy) {
+		String msg;
+		msg = file + "-i=" + i + "-withReductionRule=" + withReductionRule + "-strategy=" + strategy;
+		return msg;
+	}
+
+	// @Ignore
 	@Test
-	public void testDIMACS()
-			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-" + this.getClass().getName() + "-DIMACS-" + timeStamp + ".csv";
+	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
+			InterruptedException, InterruptedException {
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
-				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
-				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
-				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", "keller6.clq",
-				"p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq", "p_hat300-2.clq",
-				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
+		String[] files = { // "C1000.9.clq", "C125.9.clq",
+				"C2000.5.clq",
+				// "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
+				// "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
+				// "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
+				// "brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
+				// "brock800_2.clq", "brock800_4.clq",
+				// "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+				// "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+				// "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+				// "keller4.clq", "keller5.clq", "keller6.clq",
+				// "p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq",
+				// "p_hat300-1.clq", "p_hat300-2.clq",
+				// "p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq",
+				// "p_hat700-3.clq"
 
 		};
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-		for (String file : files) {
-			log.debug("------------------" + file);
-			for (int i = 1; i <= 1; i++) {
-				log.debug(i + "--------");
-				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, i + "--------");
-				}
-				run(path + file, krArray, destFile);
-			}
-		}
+		
+
+		runStrategies(path, krArray, files, 1, 1);
+
 	}
 
 	@Ignore
 	@Test
-	public void testBHOSLIB()
-			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-" + this.getClass().getName() + "-BHOSLIB.csv-" + timeStamp + ".csv";
+	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+			IOException, InterruptedException {
 
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
@@ -165,49 +217,42 @@ public class GreedyDSReductionTest {
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
-		for (String file : files) {
-			log.debug("------------------" + file);
-			for (int i = 1; i <= 1; i++) {
-				log.debug(i + "--------");
-				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, i + "--------");
-				}
-				run(path + file, krArray, destFile);
-			}
-		}
+
+		runStrategies(path, krArray, files, 1, 1);
+
 	}
 
-	private void run(String inputFile, int[][] krArray, String destFile)
-			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException {
+	private void run(String msg, String inputFile, int[][] krArray, String destFile, int strategy,
+			boolean withReductionRule) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+					InterruptedException, IOException {
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 
-		if (destFile != null) {
-			FileOperation.saveCVSFile(destFile, "--------" + inputFile);
-		}
+		log.debug(msg);
+		FileOperation.saveCVSFile(destFile, msg);
 
 		for (int[] kr : krArray) {
 			int k = kr[0];
 			int rUpper = kr[1];
+			int r = rUpper;
+			// for (int r = 1; r <= rUpper; r++) {
 
-			for (int r = 1; r <= rUpper; r++) {
+			GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName(), am, k, r, strategy,
+					withReductionRule);
 
-				GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName(), am, k, r,
-						GreedyDSReduction.STRATEGY_DEGREE_DESC);
+			Result result = null;
 
-				Result result = null;
+			ag.computing();
 
-				ag.computing();
+			List<Integer> ds = ag.getDs();
+			Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds));
+			result = ag.getResult(r);
 
-				List<Integer> ds = ag.getDs();
-				Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds));
-				result = ag.getResult(r);
-
-				log.debug(result.getString());
-				if (destFile != null) {
-					FileOperation.saveCVSFile(destFile, result.getString());
-				}
+			log.debug(result.getString());
+			if (destFile != null) {
+				FileOperation.saveCVSFile(destFile, result.getString());
 			}
+			// }
 		}
 	}
 
