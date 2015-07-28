@@ -82,16 +82,15 @@ public class GreedyDSReductionTest {
 		}
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { //"000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-				//"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				//"001133_rovira.konet", "001174_euroroad.konet", 
-				"001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
+				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -101,7 +100,7 @@ public class GreedyDSReductionTest {
 				// "06474_Route_views.konet"
 		};
 
-		int[][] krArray = { { 25, 25 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 },{ 20, 20 } };
 
 		runStrategies(path, krArray, files, 1, 1);
 
@@ -127,6 +126,7 @@ public class GreedyDSReductionTest {
 				// with reduction rules
 				withReductionRule = true;
 
+				
 				strategy = GreedyDSReduction.STRATEGY_UTILITY_DESC;
 				msg = setMessage(file, i, withReductionRule, strategy);
 				run(msg, path + file, krArray, destFile, strategy, withReductionRule);
@@ -174,7 +174,9 @@ public class GreedyDSReductionTest {
 			InterruptedException, InterruptedException {
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
+		String[] files = {  "C1000.9.clq", "C125.9.clq",
+				"C2000.5.clq",
+ "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
 				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
 				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
 				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
@@ -184,12 +186,13 @@ public class GreedyDSReductionTest {
 
 		};
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 },{ 20, 20 } };
+		
 
 		runStrategies(path, krArray, files, 1, 1);
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
