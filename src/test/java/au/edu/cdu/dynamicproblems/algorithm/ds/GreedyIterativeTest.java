@@ -3,6 +3,7 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,16 +22,21 @@ public class GreedyIterativeTest {
 
 	private Logger log = LogUtil.getLogger(GreedyIterativeTest.class);
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testKONECT() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-GreedyIterative-KONECT-" + timeStamp + ".csv";
+		String destDir = "out/KONECT-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet",
+				 "000062_dolphins.konet",
+				 "000112_David_Copperfield.konet",
+				 "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				 "001133_rovira.konet", "001174_euroroad.konet",
+				 "001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -39,23 +45,19 @@ public class GreedyIterativeTest {
 				// "010680_Pretty_Good_Privacy.konet",
 				// "006474_Route_views.konet"
 		};
-		int[] times = { 10, 100, 1000 };
-		for (int i = 1; i <= 1; i++) {
-			log.debug(i + "-----------------------");
-			if (destFile != null) {
-				FileOperation.saveCVSFile(destFile, i + "-----------------------");
-			}
-			for (String file : files) {
-				run(path + file, destFile, times);
-			}
-		}
+		int[] times = { 1000};
+
+		run(path, files, destFile, times, 1, 10);
+
 	}
 
 	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-GreedyIterative-DIMACS-" + timeStamp + ".csv";
+		String destDir = "out/DIMACS-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
@@ -68,25 +70,18 @@ public class GreedyIterativeTest {
 
 		};
 
-		int[] times = { 10, 100, 1000 };
+		int[] times = { 10, 100};
 
-		for (int i = 1; i <= 1; i++) {
-			log.debug(i + "-----------------------");
-			if (destFile != null) {
-				FileOperation.saveCVSFile(destFile, i + "-----------------------");
-			}
-			for (String file : files) {
-				run(path + file, destFile, times);
-			}
-		}
+		run(path, files, destFile, times, 1, 10);
 	}
 
 	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destFile = "out/output-GreedyIterative-BHOSLIB-" + timeStamp + ".csv";
+		String destDir = "out/BHOSLIB-" + this.getClass().getSimpleName();
 
+		String destFile = destDir + "-" + timeStamp + ".csv";
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
 				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis", "frb35-17-mis/frb35-17-1.mis",
@@ -100,57 +95,125 @@ public class GreedyIterativeTest {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[] times = { 10, 100, 1000 };
+		int[] times = { 10, 100};
 
-		for (int i = 1; i <= 1; i++) {
-			log.debug(i + "-----------------------");
-			if (destFile != null) {
-				FileOperation.saveCVSFile(destFile, i + "-----------------------");
-			}
-			for (String file : files) {
-				run(path + file, destFile, times);
-			}
-		}
+		run(path, files, destFile, times, 1, 10);
 	}
 
-	private void run(String inputFile, String destFile, int[] times)
+	private void run(String path, String[] files, String destFile, int[] times, int iStart, int iEnd)
 			throws InterruptedException, IOException, FileNotFoundException {
 
-		int finalSize = Integer.MAX_VALUE;
-		List<Integer> finalDs = null;
-
-		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
-		List<String[]> am = fo.getAdjacencyMatrix();
-
-		long start = System.nanoTime();
+		
 		for (int j = 0; j < times.length; j++) {
-			for (int i = 0; i < times[j]; i++) {
-				Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+			List<RoundResult[]> roundResults = new ArrayList<RoundResult[]>();
+			FileOperation.saveCVSFile(destFile, times[j] + " times ");
+			log.debug(times[j] + " times");
 
-				GreedyIterative ag = new GreedyIterative(g);
-				ag.run();
+			for (String file : files) {
 
-				List<Integer> ds = ag.getDominatingSet();
-				Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+				RoundResult[] roundResultArr = new RoundResult[iEnd - iStart + 1];
 
-				int dsSize = ds.size();
+				for (int k = iStart; k <= iEnd; k++) {
 
-				if (dsSize < finalSize) {
-					finalSize = dsSize;
-					finalDs = ds;
+					FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + file);
+					List<String[]> am = fo.getAdjacencyMatrix();
+
+					int finalSize = Integer.MAX_VALUE;
+				
+					long finalRunningtime = -1;
+
+					for (int i = 0; i < times[j]; i++) {
+						Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+
+						GreedyIterative ag = new GreedyIterative(g);
+						ag.run();
+
+						List<Integer> ds = ag.getDominatingSet();
+						Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+
+						int dsSize = ds.size();
+
+						if (dsSize < finalSize) {
+							finalSize = dsSize;
+							
+							finalRunningtime = ag.getRunningTime();
+						}
+
+					}
+					
+
+					roundResultArr[k - iStart] = new RoundResult(finalSize, finalRunningtime,file,k);
+
 				}
 
+				roundResults.add(roundResultArr);
 			}
-			long end = System.nanoTime();
-			String message = inputFile + "," + times[j] + "," + finalSize + "," + (end - start);
-			LogUtil.printResult(message, finalDs);
-			if (destFile != null) {
-				FileOperation.saveCVSFile(destFile, message);
+
+			for (RoundResult[] rrArr : roundResults) {
+				StringBuffer sb = new StringBuffer();
+				for (int k=iStart; k<=iEnd;k++) {
+					RoundResult rr=rrArr[k-iStart];
+					if(k-iStart==0){
+						sb.append(rr.getFile()).append(",");
+					}
+					sb.append(rr.getSize()).append(",").append(rr.getRunningTime()).append(",");
+				}
+				log.debug(sb.toString());
+				FileOperation.saveCVSFile(destFile, sb.toString());
 			}
 		}
 
+	}
+
+}
+
+class RoundResult {
+
+	private int size;
+	private long runningTime;
+	private String file;
+	private int round;
+
+	public RoundResult(int size, long runningTime, String file, int round) {
+		super();
+		this.size = size;
+		this.runningTime = runningTime;
+		this.file = file;
+		this.round = round;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	
+
+	public long getRunningTime() {
+		return runningTime;
+	}
+
+	public void setRunningTime(long runningTime) {
+		this.runningTime = runningTime;
+	}
 
 }

@@ -2,19 +2,26 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
-import edu.uci.ics.jung.graph.Graph;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
 import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
+import edu.uci.ics.jung.graph.Graph;
 
 public class GreedyIterative implements IAlgorithm, ITask {
 
 	private long runningTime;
+
+	public long getRunningTime() {
+		return runningTime;
+	}
 
 	private TaskLock lock;
 
@@ -70,10 +77,10 @@ public class GreedyIterative implements IAlgorithm, ITask {
 		return dominatingSet;
 	}
 
-	/**
-	 * number of vertices
-	 */
-	private int numOfVertices;
+	// /**
+	// * number of vertices
+	// */
+	// private int numOfVertices;
 
 	/**
 	 * the adjacency matrix of the graph
@@ -82,7 +89,7 @@ public class GreedyIterative implements IAlgorithm, ITask {
 
 	public GreedyIterative(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
-		this.numOfVertices = adjacencyMatrix.size();
+		// this.numOfVertices = adjacencyMatrix.size();
 		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
 
 	}
@@ -90,14 +97,14 @@ public class GreedyIterative implements IAlgorithm, ITask {
 	public GreedyIterative(String indicator, List<String[]> adjacencyMatrix) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
-		this.numOfVertices = adjacencyMatrix.size();
+		// this.numOfVertices = adjacencyMatrix.size();
 		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
 
 	}
 
 	public GreedyIterative(Graph<Integer, Integer> g) {
 		this.g = g;
-		this.numOfVertices = g.getVertexCount();
+		// this.numOfVertices = g.getVertexCount();
 
 	}
 
@@ -117,35 +124,72 @@ public class GreedyIterative implements IAlgorithm, ITask {
 	private void initialization() {
 		this.vertexDegreeList = AlgorithmUtil.sortVertexAccordingToDegree(g);
 		this.dominatingSet = new ArrayList<Integer>();
+
+		dominatedMap = new HashMap<Integer, Boolean>();
+		Collection<Integer> vertices = g.getVertices();
+		for (Integer v : vertices) {
+			dominatedMap.put(v, false);
+		}
 	}
+
+	Map<Integer, Boolean> dominatedMap;
 
 	private void greedy() {
+		Collection<Integer> verticesCollection = g.getVertices();
+		List<Integer> vertices=new ArrayList<Integer>(verticesCollection);
+		
+		Random rand = new Random();
 
-		List<Integer> T = new ArrayList<Integer>();
+		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
+			int verticesSize = vertices.size();
+			int i = rand.nextInt(verticesSize);
+			Integer v = vertices.get(i);
 
-		for (int j = 0; j < numOfVertices; j++) {
-
-			AlgorithmUtil.addElementToList(T, j);
-		}
-
-		/*
-		 * idea: Take all vertices of the highest degree as an approximate
-		 * solution
-		 */
-		while (!T.isEmpty()) {
-			// get the vertex with the highest degree
-			Integer v = AlgorithmUtil.getKRandomVerticesInSet(1, T).get(0);
-
+			// add it into dominating set
 			AlgorithmUtil.addElementToList(dominatingSet, v);
-			T.remove(v);
+			// set it is dominated
+			dominatedMap.put(v, true);
 
-			Collection<Integer> neighborsOfV = g.getNeighbors(v);
+			// set its neigbors is dominated
+			Collection<Integer> vNeigs = g.getNeighbors(v);
 
-			// remove v's neighbours from T
-			T.removeAll(neighborsOfV);
+			for (Integer u : vNeigs) {
+				dominatedMap.put(u, true);
+			}
 
+			vertices.remove(v);
+			vertices.removeAll(vNeigs);
 		}
 
 	}
+
+	// private void greedy() {
+	//
+	// List<Integer> T = new ArrayList<Integer>();
+	//
+	// for (int j = 0; j < numOfVertices; j++) {
+	//
+	// AlgorithmUtil.addElementToList(T, j);
+	// }
+	//
+	// /*
+	// * idea: Take all vertices of the highest degree as an approximate
+	// * solution
+	// */
+	// while (!T.isEmpty()) {
+	// // get the vertex with the highest degree
+	// Integer v = AlgorithmUtil.getKRandomVerticesInSet(1, T).get(0);
+	//
+	// AlgorithmUtil.addElementToList(dominatingSet, v);
+	// T.remove(v);
+	//
+	// Collection<Integer> neighborsOfV = g.getNeighbors(v);
+	//
+	// // remove v's neighbours from T
+	// T.removeAll(neighborsOfV);
+	//
+	// }
+	//
+	// }
 
 }
