@@ -1,361 +1,107 @@
-20:42:00,790 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150722.csv
-20:42:01,038 DEBUG [GreedyDSReductionTest] C1000.9.clq-i=1-withReductionRule=true-strategy=3
-20:42:06,337 DEBUG [GreedyDSReductionTest] 5:,3,5,5, 4539159249
-20:42:11,908 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 4863197037
-20:42:16,319 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 3578412686
-20:42:20,536 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 3543599363
-20:42:20,635 DEBUG [GreedyDSReductionTest] C1000.9.clq-i=1-withReductionRule=true-strategy=4
-20:42:25,945 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 4642349479
-20:42:31,611 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 5005801951
-20:42:36,903 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 4636559016
-20:42:40,939 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 3369152575
-20:42:40,942 DEBUG [GreedyDSReductionTest] C125.9.clq-i=1-withReductionRule=true-strategy=3
-20:42:40,965 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 18209740
-20:42:40,985 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 16203634
-20:42:41,005 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 16635352
-20:42:41,025 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 15777772
-20:42:41,026 DEBUG [GreedyDSReductionTest] C125.9.clq-i=1-withReductionRule=true-strategy=4
-20:42:41,055 DEBUG [GreedyDSReductionTest] 5:,3,5,5, 25225176
-20:42:41,084 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 25028146
-20:42:41,117 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 29552109
-20:42:41,138 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 17410804
-20:42:41,325 DEBUG [GreedyDSReductionTest] C2000.5.clq-i=1-withReductionRule=true-strategy=3
-20:43:04,138 DEBUG [GreedyDSReductionTest] 5:,7,5,5, 21088931061
-20:43:28,233 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 22087898448
-20:43:52,854 DEBUG [GreedyDSReductionTest] 15:,7,15,15, 22603459542
-20:44:20,361 DEBUG [GreedyDSReductionTest] 20:,8,20,20, 23466482094
-20:44:20,543 DEBUG [GreedyDSReductionTest] C2000.5.clq-i=1-withReductionRule=true-strategy=4
-20:45:05,973 DEBUG [GreedyDSReductionTest] 5:,12,5,5, 43660634715
-20:45:40,303 DEBUG [GreedyDSReductionTest] 10:,10,10,10, 32507741478
-20:46:16,687 DEBUG [GreedyDSReductionTest] 15:,12,15,15, 34589366003
-20:46:47,507 DEBUG [GreedyDSReductionTest] 20:,11,20,20, 29003918610
-20:46:47,835 DEBUG [GreedyDSReductionTest] C2000.9.clq-i=1-withReductionRule=true-strategy=3
-20:47:09,602 DEBUG [GreedyDSReductionTest] 5:,3,5,5, 18850797937
-20:47:31,963 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 19415829767
-20:47:54,445 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 19358075886
-20:48:16,645 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 19059439982
-20:48:16,986 DEBUG [GreedyDSReductionTest] C2000.9.clq-i=1-withReductionRule=true-strategy=4
-20:48:49,501 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 29632410177
-20:49:16,622 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 23835109818
-20:49:47,382 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 23715187326
-20:50:16,754 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 26225411147
-20:50:16,760 DEBUG [GreedyDSReductionTest] C250.9.clq-i=1-withReductionRule=true-strategy=3
-20:50:16,862 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 83177324
-20:50:16,965 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 82727142
-20:50:17,082 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 96912270
-20:50:17,200 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 97267314
-20:50:17,205 DEBUG [GreedyDSReductionTest] C250.9.clq-i=1-withReductionRule=true-strategy=4
-20:50:17,406 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 181123117
-20:50:17,565 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 140118328
-20:50:17,717 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 134671556
-20:50:17,870 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 133776355
-20:50:18,819 DEBUG [GreedyDSReductionTest] C4000.5.clq-i=1-withReductionRule=true-strategy=3
-20:53:03,445 DEBUG [GreedyDSReductionTest] 5:,9,5,5, 155641507882
-20:55:34,128 DEBUG [GreedyDSReductionTest] 10:,8,10,10, 139412833673
-20:58:06,062 DEBUG [GreedyDSReductionTest] 15:,8,15,15, 142548959836
-21:00:34,311 DEBUG [GreedyDSReductionTest] 20:,8,20,20, 139816945972
-21:00:35,215 DEBUG [GreedyDSReductionTest] C4000.5.clq-i=1-withReductionRule=true-strategy=4
-21:04:15,932 DEBUG [GreedyDSReductionTest] 5:,12,5,5, 211479086639
-21:08:00,180 DEBUG [GreedyDSReductionTest] 10:,12,10,10, 212949185135
-21:11:21,791 DEBUG [GreedyDSReductionTest] 15:,12,15,15, 193397778137
-21:14:27,126 DEBUG [GreedyDSReductionTest] 20:,12,20,20, 171597804215
-21:14:27,148 DEBUG [GreedyDSReductionTest] C500.9.clq-i=1-withReductionRule=true-strategy=3
-21:14:27,680 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 405771349
-21:14:28,217 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 410772132
-21:14:28,980 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 638104938
-21:14:29,528 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 421136719
-21:14:29,546 DEBUG [GreedyDSReductionTest] C500.9.clq-i=1-withReductionRule=true-strategy=4
-21:14:30,783 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1111724508
-21:14:31,573 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 666643260
-21:14:32,377 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 676753647
-21:14:33,195 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 693256753
-21:14:33,240 DEBUG [GreedyDSReductionTest] DSJC1000.5.clq-i=1-withReductionRule=true-strategy=3
-21:14:38,346 DEBUG [GreedyDSReductionTest] 5:,7,5,5, 4738075154
-21:14:42,661 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 3954855487
-21:14:46,943 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 3912592454
-21:14:51,365 DEBUG [GreedyDSReductionTest] 20:,6,20,20, 4038008809
-21:14:51,408 DEBUG [GreedyDSReductionTest] DSJC1000.5.clq-i=1-withReductionRule=true-strategy=4
-21:14:59,991 DEBUG [GreedyDSReductionTest] 5:,12,5,5, 8184490355
-21:15:06,374 DEBUG [GreedyDSReductionTest] 10:,10,10,10, 6016170828
-21:15:12,786 DEBUG [GreedyDSReductionTest] 15:,10,15,15, 6039539481
-21:15:18,441 DEBUG [GreedyDSReductionTest] 20:,10,20,20, 5284506034
-21:15:18,454 DEBUG [GreedyDSReductionTest] DSJC500.5.clq-i=1-withReductionRule=true-strategy=3
-21:15:19,336 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 813424480
-21:15:20,045 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 641309221
-21:15:20,764 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 652406470
-21:15:21,492 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 660410070
-21:15:21,503 DEBUG [GreedyDSReductionTest] DSJC500.5.clq-i=1-withReductionRule=true-strategy=4
-21:15:22,792 DEBUG [GreedyDSReductionTest] 5:,9,5,5, 1220862502
-21:15:24,032 DEBUG [GreedyDSReductionTest] 10:,9,10,10, 1170758279
-21:15:25,165 DEBUG [GreedyDSReductionTest] 15:,9,15,15, 1042025172
-21:15:26,019 DEBUG [GreedyDSReductionTest] 20:,8,20,20, 774496302
-21:15:26,035 DEBUG [GreedyDSReductionTest] MANN_a27.clq-i=1-withReductionRule=true-strategy=3
-21:15:26,320 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 231760418
-21:15:26,580 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 212198289
-21:15:26,846 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 215421212
-21:15:27,119 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 222302149
-21:15:27,131 DEBUG [GreedyDSReductionTest] MANN_a27.clq-i=1-withReductionRule=true-strategy=4
-21:15:27,387 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 208584277
-21:15:27,646 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 210544253
-21:15:27,916 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 208010258
-21:15:28,180 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 215375609
-21:15:29,377 DEBUG [GreedyDSReductionTest] MANN_a81.clq-i=1-withReductionRule=true-strategy=3
-21:16:25,497 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 45558522907
-21:17:20,727 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 44059612315
-21:18:30,877 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 51728404766
-21:19:25,134 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 38213719377
-21:19:28,547 DEBUG [GreedyDSReductionTest] MANN_a81.clq-i=1-withReductionRule=true-strategy=4
-21:20:29,744 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 50375305433
-21:21:24,864 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 44080823327
-21:22:33,569 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 49857717654
-21:23:33,087 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 37756109224
-21:23:33,090 DEBUG [GreedyDSReductionTest] brock200_2.clq-i=1-withReductionRule=true-strategy=3
-21:23:33,191 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 91997426
-21:23:33,274 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 74650820
-21:23:33,351 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 68920153
-21:23:33,432 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 73063240
-21:23:33,434 DEBUG [GreedyDSReductionTest] brock200_2.clq-i=1-withReductionRule=true-strategy=4
-21:23:33,570 DEBUG [GreedyDSReductionTest] 5:,8,5,5, 127412301
-21:23:33,694 DEBUG [GreedyDSReductionTest] 10:,8,10,10, 115876492
-21:23:33,801 DEBUG [GreedyDSReductionTest] 15:,8,15,15, 99476585
-21:23:33,914 DEBUG [GreedyDSReductionTest] 20:,8,20,20, 103856764
-21:23:33,918 DEBUG [GreedyDSReductionTest] brock200_4.clq-i=1-withReductionRule=true-strategy=3
-21:23:34,016 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 88520240
-21:23:34,509 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 483322496
-21:23:34,586 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 66322250
-21:23:34,665 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 68215118
-21:23:34,667 DEBUG [GreedyDSReductionTest] brock200_4.clq-i=1-withReductionRule=true-strategy=4
-21:23:34,809 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 131358761
-21:23:34,924 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 104309509
-21:23:35,041 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 107248802
-21:23:35,139 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 87764163
-21:23:35,151 DEBUG [GreedyDSReductionTest] brock400_2.clq-i=1-withReductionRule=true-strategy=3
-21:23:35,772 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 541986603
-21:23:36,877 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 1025437995
-21:23:37,343 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 387878705
-21:23:37,848 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 417278363
-21:23:37,859 DEBUG [GreedyDSReductionTest] brock400_2.clq-i=1-withReductionRule=true-strategy=4
-21:23:38,781 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 838436118
-21:23:39,516 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 657808802
-21:23:40,264 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 665974351
-21:23:40,905 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 559621871
-21:23:40,917 DEBUG [GreedyDSReductionTest] brock400_4.clq-i=1-withReductionRule=true-strategy=3
-21:23:41,544 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 546023092
-21:23:42,165 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 541409989
-21:23:42,634 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 389663836
-21:23:43,121 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 396073121
-21:23:43,134 DEBUG [GreedyDSReductionTest] brock400_4.clq-i=1-withReductionRule=true-strategy=4
-21:23:43,851 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 638241997
-21:23:44,583 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 653250258
-21:23:45,177 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 501453652
-21:23:45,790 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 531993509
-21:23:45,829 DEBUG [GreedyDSReductionTest] brock800_2.clq-i=1-withReductionRule=true-strategy=3
-21:23:49,123 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 2908816889
-21:23:52,253 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 2719945680
-21:23:54,792 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 2180404653
-21:23:57,339 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 2192784938
-21:23:57,374 DEBUG [GreedyDSReductionTest] brock800_2.clq-i=1-withReductionRule=true-strategy=4
-21:24:02,313 DEBUG [GreedyDSReductionTest] 5:,8,5,5, 4524988409
-21:24:06,600 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 3933470551
-21:24:10,240 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 3278544570
-21:24:13,939 DEBUG [GreedyDSReductionTest] 20:,7,20,20, 3318347617
-21:24:13,984 DEBUG [GreedyDSReductionTest] brock800_4.clq-i=1-withReductionRule=true-strategy=3
-21:24:17,201 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 2830613809
-21:24:20,347 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 2786820273
-21:24:22,883 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 2181505142
-21:24:25,368 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 2128786596
-21:24:25,403 DEBUG [GreedyDSReductionTest] brock800_4.clq-i=1-withReductionRule=true-strategy=4
-21:24:29,658 DEBUG [GreedyDSReductionTest] 5:,7,5,5, 3901669260
-21:24:34,056 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 4044486919
-21:24:37,621 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 3213287330
-21:24:41,262 DEBUG [GreedyDSReductionTest] 20:,6,20,20, 3288927486
-21:24:41,266 DEBUG [GreedyDSReductionTest] gen200_p0.9_44.clq-i=1-withReductionRule=true-strategy=3
-21:24:41,328 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 50536774
-21:24:41,390 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 50798003
-21:24:41,453 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 51873368
-21:24:41,518 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 53151513
-21:24:41,521 DEBUG [GreedyDSReductionTest] gen200_p0.9_44.clq-i=1-withReductionRule=true-strategy=4
-21:24:41,638 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 105951095
-21:24:41,730 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 80420462
-21:24:41,820 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 78676559
-21:24:41,912 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 81220560
-21:24:41,916 DEBUG [GreedyDSReductionTest] gen200_p0.9_55.clq-i=1-withReductionRule=true-strategy=3
-21:24:41,977 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 50217951
-21:24:42,041 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 51868389
-21:24:42,106 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 53977040
-21:24:42,170 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 52954520
-21:24:42,174 DEBUG [GreedyDSReductionTest] gen200_p0.9_55.clq-i=1-withReductionRule=true-strategy=4
-21:24:42,277 DEBUG [GreedyDSReductionTest] 5:,3,5,5, 92075834
-21:24:42,368 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 79384292
-21:24:42,461 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 81027469
-21:24:42,554 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 81975154
-21:24:42,569 DEBUG [GreedyDSReductionTest] gen400_p0.9_55.clq-i=1-withReductionRule=true-strategy=3
-21:24:42,936 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 275105822
-21:24:43,319 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 289437714
-21:24:43,698 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 288902535
-21:24:44,086 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 296651579
-21:24:44,098 DEBUG [GreedyDSReductionTest] gen400_p0.9_55.clq-i=1-withReductionRule=true-strategy=4
-21:24:44,842 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 653736004
-21:24:45,549 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 618266863
-21:24:46,079 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 438860962
-21:24:46,618 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 449128014
-21:24:46,633 DEBUG [GreedyDSReductionTest] gen400_p0.9_65.clq-i=1-withReductionRule=true-strategy=3
-21:24:47,019 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 295129341
-21:24:47,401 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 289687488
-21:24:47,787 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 296489032
-21:24:48,180 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 303122759
-21:24:48,192 DEBUG [GreedyDSReductionTest] gen400_p0.9_65.clq-i=1-withReductionRule=true-strategy=4
-21:24:48,941 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 605881890
-21:24:49,478 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 445329160
-21:24:50,012 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 442945044
-21:24:50,552 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 449462360
-21:24:50,566 DEBUG [GreedyDSReductionTest] gen400_p0.9_75.clq-i=1-withReductionRule=true-strategy=3
-21:24:50,936 DEBUG [GreedyDSReductionTest] 5:,2,5,5, 279300005
-21:24:51,315 DEBUG [GreedyDSReductionTest] 10:,2,10,10, 289235504
-21:24:51,707 DEBUG [GreedyDSReductionTest] 15:,2,15,15, 286111835
-21:24:52,126 DEBUG [GreedyDSReductionTest] 20:,2,20,20, 326298159
-21:24:52,138 DEBUG [GreedyDSReductionTest] gen400_p0.9_75.clq-i=1-withReductionRule=true-strategy=4
-21:24:52,843 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 613451630
-21:24:53,563 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 624781094
-21:24:54,143 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 488602463
-21:24:54,682 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 447688983
-21:24:54,760 DEBUG [GreedyDSReductionTest] hamming10-4.clq-i=1-withReductionRule=true-strategy=3
-21:25:03,523 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 7989364929
-21:25:10,865 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 6538618355
-21:25:18,043 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 6387872311
-21:25:23,836 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 5012790480
-21:25:23,909 DEBUG [GreedyDSReductionTest] hamming10-4.clq-i=1-withReductionRule=true-strategy=4
-21:25:30,793 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 6100883519
-21:25:36,391 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 4807864730
-21:25:42,100 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 4922214777
-21:25:47,646 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 4763825452
-21:25:47,652 DEBUG [GreedyDSReductionTest] hamming8-4.clq-i=1-withReductionRule=true-strategy=3
-21:25:47,920 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 244343678
-21:25:48,150 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 206918241
-21:25:48,334 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 161501345
-21:25:48,468 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 110666749
-21:25:48,471 DEBUG [GreedyDSReductionTest] hamming8-4.clq-i=1-withReductionRule=true-strategy=4
-21:25:48,674 DEBUG [GreedyDSReductionTest] 5:,5,5,5, 179718416
-21:25:48,842 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 145090841
-21:25:49,012 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 146490195
-21:25:49,141 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 105398482
-21:25:49,144 DEBUG [GreedyDSReductionTest] keller4.clq-i=1-withReductionRule=true-strategy=3
-21:25:49,197 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 48169140
-21:25:49,238 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 35982975
-21:25:49,279 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 36591329
-21:25:49,322 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 37621166
-21:25:49,323 DEBUG [GreedyDSReductionTest] keller4.clq-i=1-withReductionRule=true-strategy=4
-21:25:49,416 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 70023010
-21:25:49,479 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 58042376
-21:25:49,533 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 48923018
-21:25:49,589 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 50588699
-21:25:49,630 DEBUG [GreedyDSReductionTest] keller5.clq-i=1-withReductionRule=true-strategy=3
-21:25:51,809 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1911511059
-21:25:54,106 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 2036179157
-21:25:55,836 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 1466648295
-21:25:57,463 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 1366836340
-21:25:57,502 DEBUG [GreedyDSReductionTest] keller5.clq-i=1-withReductionRule=true-strategy=4
-21:26:00,729 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 2967249160
-21:26:03,958 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 2967689980
-21:26:07,236 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 3011486608
-21:26:10,510 DEBUG [GreedyDSReductionTest] 20:,6,20,20, 3011779032
-21:26:11,528 DEBUG [GreedyDSReductionTest] keller6.clq-i=1-withReductionRule=true-strategy=3
-21:27:27,569 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 67825911374
-21:28:52,945 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 72055941121
-21:30:21,730 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 79983270849
-21:31:22,886 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 52286504137
-21:31:24,009 DEBUG [GreedyDSReductionTest] keller6.clq-i=1-withReductionRule=true-strategy=4
-21:33:21,008 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 108038433888
-21:35:18,549 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 107101099601
-21:37:16,243 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 109481612216
-21:39:15,112 DEBUG [GreedyDSReductionTest] 20:,6,20,20, 110136397628
-21:39:15,167 DEBUG [GreedyDSReductionTest] p_hat1500-1.clq-i=1-withReductionRule=true-strategy=3
-21:39:27,906 DEBUG [GreedyDSReductionTest] 5:,16,5,5, 12247116433
-21:39:39,002 DEBUG [GreedyDSReductionTest] 10:,14,10,10, 10648057015
-21:39:56,200 DEBUG [GreedyDSReductionTest] 15:,13,15,15, 16763345644
-21:40:41,531 DEBUG [GreedyDSReductionTest] 20:,13,20,20, 44873881122
-21:40:41,588 DEBUG [GreedyDSReductionTest] p_hat1500-1.clq-i=1-withReductionRule=true-strategy=4
-21:41:18,480 DEBUG [GreedyDSReductionTest] 5:,57,5,5, 36425216170
-21:41:46,171 DEBUG [GreedyDSReductionTest] 10:,44,10,10, 27253152966
-21:42:40,244 DEBUG [GreedyDSReductionTest] 15:,40,15,15, 53626177487
-21:46:30,714 DEBUG [GreedyDSReductionTest] 20:,42,20,20, 230030395704
-21:46:30,821 DEBUG [GreedyDSReductionTest] p_hat1500-2.clq-i=1-withReductionRule=true-strategy=3
-21:46:46,191 DEBUG [GreedyDSReductionTest] 5:,8,5,5, 14411873480
-21:46:57,424 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 10313100469
-21:47:09,208 DEBUG [GreedyDSReductionTest] 15:,8,15,15, 10868852394
-21:47:21,371 DEBUG [GreedyDSReductionTest] 20:,7,20,20, 11190890467
-21:47:21,474 DEBUG [GreedyDSReductionTest] p_hat1500-2.clq-i=1-withReductionRule=true-strategy=4
-21:48:13,921 DEBUG [GreedyDSReductionTest] 5:,31,5,5, 51536789995
-21:48:48,501 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 33685500877
-21:49:19,775 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 30355138431
-21:49:47,572 DEBUG [GreedyDSReductionTest] 20:,23,20,20, 26856470682
-21:49:47,730 DEBUG [GreedyDSReductionTest] p_hat1500-3.clq-i=1-withReductionRule=true-strategy=3
-21:49:58,785 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 9754026934
-21:50:09,995 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 9895412162
-21:50:21,112 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 9725481494
-21:50:32,533 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 10045688916
-21:50:32,697 DEBUG [GreedyDSReductionTest] p_hat1500-3.clq-i=1-withReductionRule=true-strategy=4
-21:50:53,867 DEBUG [GreedyDSReductionTest] 5:,8,5,5, 19828298566
-21:51:13,143 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 17639992029
-21:51:31,627 DEBUG [GreedyDSReductionTest] 15:,7,15,15, 17148350858
-21:51:50,640 DEBUG [GreedyDSReductionTest] 20:,7,20,20, 17633861524
-21:51:50,644 DEBUG [GreedyDSReductionTest] p_hat300-1.clq-i=1-withReductionRule=true-strategy=3
-21:51:50,848 DEBUG [GreedyDSReductionTest] 5:,11,5,5, 195734669
-21:51:51,056 DEBUG [GreedyDSReductionTest] 10:,9,10,10, 199288580
-21:51:56,764 DEBUG [GreedyDSReductionTest] 15:,9,15,15, 5699073148
-21:51:57,548 DEBUG [GreedyDSReductionTest] 20:,10,20,20, 775005270
-21:51:57,550 DEBUG [GreedyDSReductionTest] p_hat300-1.clq-i=1-withReductionRule=true-strategy=4
-21:51:57,905 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 345571024
-21:51:58,325 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 410592156
-21:52:02,375 DEBUG [GreedyDSReductionTest] 15:,24,15,15, 4042231662
-21:52:09,006 DEBUG [GreedyDSReductionTest] 20:,23,20,20, 6621976489
-21:52:09,011 DEBUG [GreedyDSReductionTest] p_hat300-2.clq-i=1-withReductionRule=true-strategy=3
-21:52:09,298 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 265927911
-21:52:09,554 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 238754325
-21:52:09,757 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 185199838
-21:52:09,956 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 182409944
-21:52:09,960 DEBUG [GreedyDSReductionTest] p_hat300-2.clq-i=1-withReductionRule=true-strategy=4
-21:52:10,601 DEBUG [GreedyDSReductionTest] 5:,16,5,5, 620061088
-21:52:11,051 DEBUG [GreedyDSReductionTest] 10:,16,10,10, 431484006
-21:52:11,468 DEBUG [GreedyDSReductionTest] 15:,14,15,15, 399237462
-21:52:11,786 DEBUG [GreedyDSReductionTest] 20:,12,20,20, 300855771
-21:52:11,794 DEBUG [GreedyDSReductionTest] p_hat300-3.clq-i=1-withReductionRule=true-strategy=3
-21:52:12,068 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 245357000
-21:52:12,281 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 183935262
-21:52:12,495 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 185414836
-21:52:12,716 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 193183114
-21:52:12,721 DEBUG [GreedyDSReductionTest] p_hat300-3.clq-i=1-withReductionRule=true-strategy=4
-21:52:13,181 DEBUG [GreedyDSReductionTest] 5:,7,5,5, 430302634
-21:52:13,579 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 365815906
-21:52:13,966 DEBUG [GreedyDSReductionTest] 15:,5,15,15, 354569568
-21:52:14,295 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 299685012
-21:52:14,308 DEBUG [GreedyDSReductionTest] p_hat700-1.clq-i=1-withReductionRule=true-strategy=3
-21:52:16,153 DEBUG [GreedyDSReductionTest] 5:,14,5,5, 1768690241
-21:52:17,852 DEBUG [GreedyDSReductionTest] 10:,12,10,10, 1622248182
-21:52:22,190 DEBUG [GreedyDSReductionTest] 15:,12,15,15, 4254039416
-21:52:26,330 DEBUG [GreedyDSReductionTest] 20:,10,20,20, 4061388998
-21:52:26,341 DEBUG [GreedyDSReductionTest] p_hat700-1.clq-i=1-withReductionRule=true-strategy=4
-21:52:30,670 DEBUG [GreedyDSReductionTest] 5:,37,5,5, 4258203128
-21:52:34,657 DEBUG [GreedyDSReductionTest] 10:,34,10,10, 3914212559
-21:52:50,578 DEBUG [GreedyDSReductionTest] 15:,34,15,15, 15847423395
-21:53:56,546 DEBUG [GreedyDSReductionTest] 20:,30,20,20, 65898590828
-21:53:56,571 DEBUG [GreedyDSReductionTest] p_hat700-2.clq-i=1-withReductionRule=true-strategy=3
-21:53:58,663 DEBUG [GreedyDSReductionTest] 5:,6,5,5, 1935640202
-21:54:00,600 DEBUG [GreedyDSReductionTest] 10:,7,10,10, 1781940520
-21:54:02,368 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 1537093889
-21:54:03,740 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 1214243384
-21:54:03,760 DEBUG [GreedyDSReductionTest] p_hat700-2.clq-i=1-withReductionRule=true-strategy=4
-21:54:10,467 DEBUG [GreedyDSReductionTest] 5:,24,5,5, 6540591293
-21:54:14,175 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 3547369378
-21:54:17,841 DEBUG [GreedyDSReductionTest] 15:,18,15,15, 3509544551
-21:54:21,392 DEBUG [GreedyDSReductionTest] 20:,16,20,20, 3391961311
-21:54:21,427 DEBUG [GreedyDSReductionTest] p_hat700-3.clq-i=1-withReductionRule=true-strategy=3
-21:54:23,390 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1732140861
-21:54:25,000 DEBUG [GreedyDSReductionTest] 10:,3,10,10, 1381937033
-21:54:26,490 DEBUG [GreedyDSReductionTest] 15:,3,15,15, 1260098441
-21:54:27,977 DEBUG [GreedyDSReductionTest] 20:,3,20,20, 1258831145
-21:54:28,007 DEBUG [GreedyDSReductionTest] p_hat700-3.clq-i=1-withReductionRule=true-strategy=4
-21:54:31,320 DEBUG [GreedyDSReductionTest] 5:,7,5,5, 3080889290
-21:54:33,954 DEBUG [GreedyDSReductionTest] 10:,6,10,10, 2404105880
-21:54:36,716 DEBUG [GreedyDSReductionTest] 15:,6,15,15, 2535016042
-21:54:38,917 DEBUG [GreedyDSReductionTest] 20:,5,20,20, 1971017371
+20:42:05,229 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150722.csv
+20:42:05,243 DEBUG [GreedyDSReductionTest] 000027_zebra.konet-i=1-withReductionRule=true-strategy=3
+20:42:05,270 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 16175359
+20:42:05,277 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 5628034
+20:42:05,282 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 4265113
+20:42:05,296 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 12994998
+20:42:05,297 DEBUG [GreedyDSReductionTest] 000027_zebra.konet-i=1-withReductionRule=true-strategy=4
+20:42:05,300 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1796693
+20:42:05,305 DEBUG [GreedyDSReductionTest] 10:,5,10,10, 4581496
+20:42:05,310 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 3404320
+20:42:05,318 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 7874017
+20:42:05,319 DEBUG [GreedyDSReductionTest] 000034_zachary.konet-i=1-withReductionRule=true-strategy=3
+20:42:05,322 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1655856
+20:42:05,324 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 1276136
+20:42:05,326 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 1604314
+20:42:05,329 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 1823433
+20:42:05,330 DEBUG [GreedyDSReductionTest] 000034_zachary.konet-i=1-withReductionRule=true-strategy=4
+20:42:05,332 DEBUG [GreedyDSReductionTest] 5:,4,5,5, 1789948
+20:42:05,334 DEBUG [GreedyDSReductionTest] 10:,4,10,10, 1629823
+20:42:05,337 DEBUG [GreedyDSReductionTest] 15:,4,15,15, 1846441
+20:42:05,339 DEBUG [GreedyDSReductionTest] 20:,4,20,20, 1609783
+20:42:05,341 DEBUG [GreedyDSReductionTest] 000062_dolphins.konet-i=1-withReductionRule=true-strategy=3
+20:42:05,351 DEBUG [GreedyDSReductionTest] 5:,15,5,5, 9431420
+20:42:05,366 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 13274065
+20:42:06,156 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 789051870
+20:42:06,665 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 508214786
+20:42:06,666 DEBUG [GreedyDSReductionTest] 000062_dolphins.konet-i=1-withReductionRule=true-strategy=4
+20:42:06,669 DEBUG [GreedyDSReductionTest] 5:,16,5,5, 3188627
+20:42:06,682 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 11537880
+20:42:07,138 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 455571405
+20:42:07,583 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 444410695
+20:42:07,584 DEBUG [GreedyDSReductionTest] 000112_David_Copperfield.konet-i=1-withReductionRule=true-strategy=3
+20:42:07,599 DEBUG [GreedyDSReductionTest] 5:,19,5,5, 11346099
+20:42:07,659 DEBUG [GreedyDSReductionTest] 10:,18,10,10, 58787069
+20:42:07,717 DEBUG [GreedyDSReductionTest] 15:,18,15,15, 56682552
+20:42:07,772 DEBUG [GreedyDSReductionTest] 20:,18,20,20, 53902996
+20:42:07,773 DEBUG [GreedyDSReductionTest] 000112_David_Copperfield.konet-i=1-withReductionRule=true-strategy=4
+20:42:07,781 DEBUG [GreedyDSReductionTest] 5:,20,5,5, 6915641
+20:42:07,838 DEBUG [GreedyDSReductionTest] 10:,18,10,10, 55769337
+20:42:07,895 DEBUG [GreedyDSReductionTest] 15:,18,15,15, 55750982
+20:42:07,956 DEBUG [GreedyDSReductionTest] 20:,18,20,20, 59711651
+20:42:07,961 DEBUG [GreedyDSReductionTest] 000198_Jazz_musicians.konet-i=1-withReductionRule=true-strategy=3
+20:42:08,009 DEBUG [GreedyDSReductionTest] 5:,19,5,5, 44436260
+20:42:08,054 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 42083111
+20:42:08,501 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 434322928
+20:42:08,650 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 145504230
+20:42:08,657 DEBUG [GreedyDSReductionTest] 000198_Jazz_musicians.konet-i=1-withReductionRule=true-strategy=4
+20:42:08,708 DEBUG [GreedyDSReductionTest] 5:,15,5,5, 47001630
+20:42:08,771 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 59608672
+20:42:08,965 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 190170894
+20:42:11,384 DEBUG [GreedyDSReductionTest] 20:,14,20,20, 2415709935
+20:42:11,386 DEBUG [GreedyDSReductionTest] 000212_pdzbase.konet-i=1-withReductionRule=true-strategy=3
+20:42:11,389 DEBUG [GreedyDSReductionTest] 5:,52,5,5, 2347335
+20:42:11,392 DEBUG [GreedyDSReductionTest] 10:,52,10,10, 2399946
+20:42:11,396 DEBUG [GreedyDSReductionTest] 15:,52,15,15, 2484424
+20:42:11,399 DEBUG [GreedyDSReductionTest] 20:,52,20,20, 2302469
+20:42:11,400 DEBUG [GreedyDSReductionTest] 000212_pdzbase.konet-i=1-withReductionRule=true-strategy=4
+20:42:11,403 DEBUG [GreedyDSReductionTest] 5:,52,5,5, 2396086
+20:42:11,406 DEBUG [GreedyDSReductionTest] 10:,52,10,10, 2350800
+20:42:11,409 DEBUG [GreedyDSReductionTest] 15:,52,15,15, 2361223
+20:42:11,413 DEBUG [GreedyDSReductionTest] 20:,52,20,20, 2616543
+20:42:11,418 DEBUG [GreedyDSReductionTest] 001133_rovira.konet-i=1-withReductionRule=true-strategy=3
+20:42:12,024 DEBUG [GreedyDSReductionTest] 5:,230,5,5, 592832832
+20:42:12,594 DEBUG [GreedyDSReductionTest] 10:,227,10,10, 556408103
+20:42:48,229 DEBUG [GreedyDSReductionTest] 15:,222,15,15, 35624857733
+00:07:36,546 DEBUG [GreedyDSReductionTest] 20:,219,20,20, 12288883023647
+00:07:36,552 DEBUG [GreedyDSReductionTest] 001133_rovira.konet-i=1-withReductionRule=true-strategy=4
+00:07:37,051 DEBUG [GreedyDSReductionTest] 5:,223,5,5, 487386644
+00:07:37,581 DEBUG [GreedyDSReductionTest] 10:,218,10,10, 517170092
+00:07:58,645 DEBUG [GreedyDSReductionTest] 15:,219,15,15, 21052991743
+02:16:12,632 DEBUG [GreedyDSReductionTest] 20:,217,20,20, 7694326345023
+02:16:12,636 DEBUG [GreedyDSReductionTest] 001174_euroroad.konet-i=1-withReductionRule=true-strategy=3
+02:16:12,778 DEBUG [GreedyDSReductionTest] 5:,400,5,5, 133172756
+02:16:12,896 DEBUG [GreedyDSReductionTest] 10:,400,10,10, 108855962
+02:16:13,185 DEBUG [GreedyDSReductionTest] 15:,400,15,15, 279568328
+02:16:13,471 DEBUG [GreedyDSReductionTest] 20:,400,20,20, 275927764
+02:16:13,474 DEBUG [GreedyDSReductionTest] 001174_euroroad.konet-i=1-withReductionRule=true-strategy=4
+02:16:13,621 DEBUG [GreedyDSReductionTest] 5:,400,5,5, 138182436
+02:16:13,743 DEBUG [GreedyDSReductionTest] 10:,400,10,10, 112580450
+02:16:14,029 DEBUG [GreedyDSReductionTest] 15:,400,15,15, 277407223
+02:16:14,317 DEBUG [GreedyDSReductionTest] 20:,400,20,20, 278934285
+02:16:14,328 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3
+02:16:16,236 DEBUG [GreedyDSReductionTest] 5:,261,5,5, 1875185887
+02:16:17,603 DEBUG [GreedyDSReductionTest] 10:,260,10,10, 1332625329
+02:16:42,645 DEBUG [GreedyDSReductionTest] 15:,257,15,15, 25009090413
+03:01:56,332 DEBUG [GreedyDSReductionTest] 20:,256,20,20, 2713779342445
+03:01:56,344 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=4
+03:01:58,325 DEBUG [GreedyDSReductionTest] 5:,263,5,5, 1948057679
+03:01:59,766 DEBUG [GreedyDSReductionTest] 10:,258,10,10, 1406580105
+03:02:28,742 DEBUG [GreedyDSReductionTest] 15:,258,15,15, 28945234461
+04:28:58,824 DEBUG [GreedyDSReductionTest] 20:,254,20,20, 5190289655392
+12:47:42,417 DEBUG [GreedyNativeTest] 1------------
+12:47:45,963 DEBUG [GreedyNativeTest] 0:,253,2378123500
+12:49:47,347 DEBUG [GreedyNativeTest] 1------------
+12:49:51,204 DEBUG [GreedyNativeTest] 0:,253,2687303088
+12:50:54,920 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150723.csv
+12:50:56,753 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3
+12:50:59,905 DEBUG [GreedyDSReductionTest] 5:,261,5,5, 3052600229
+12:51:01,910 DEBUG [GreedyDSReductionTest] 10:,260,10,10, 1957522001
+12:59:19,455 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150723.csv
+12:59:20,801 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3
+13:01:26,774 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150723.csv
+13:01:28,091 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3
+13:03:45,996 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150723.csv
+13:03:54,941 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3
+13:29:21,755 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150723.csv
+13:29:21,812 DEBUG [GreedyDSReductionTest] 001858_hamster.konet-i=1-withReductionRule=true-strategy=3

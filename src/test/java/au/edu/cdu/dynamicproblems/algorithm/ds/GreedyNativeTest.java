@@ -81,10 +81,10 @@ public class GreedyNativeTest {
 				+ ".csv";
 		
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", "000034_zachary.konet",
-				"000062_dolphins.konet", "000112_David_Copperfield.konet",
-				"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet",
+		String[] files = {// "000027_zebra.konet", "000034_zachary.konet",
+				//"000062_dolphins.konet", "000112_David_Copperfield.konet",
+				//"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				//"001133_rovira.konet", "001174_euroroad.konet",
 				"001858_hamster.konet",
 		// "002426_hamster_ful.konet",
 		// "002888_facebook.konet",
@@ -95,7 +95,7 @@ public class GreedyNativeTest {
 		// "06474_Route_views.konet"
 		};
 
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 1; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
