@@ -29,7 +29,7 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 	public static final int STRATEGY_UTILITY_DESC = 3;
 	public static final int STRATEGY_UTILITY_ASC = 4;
 
-	private static final int PARTITION_SIZE = 20;
+	// private static final int PARTITION_SIZE = 20;
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSReduction.class);
@@ -207,27 +207,32 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 		// if (withReductionRule) {
 		for (Integer v : vertices) {
 
-			int degree = gOriginal.degree(v);
+			if (!this.dominatedMap.get(v)) {
+				int degree = gOriginal.degree(v);
 
-			if (degree == 0) {
-				addDominatingVertex(this.dsInitial, initialVertices, v);
-			} else if (degree == 1) {
-				Collection<Integer> vNegb = gOriginal.getNeighbors(v);
-				/*
-				 * add v's neighbor u to gOperated and dominating set add u's
-				 * neighbors to gOperated and mark them dominated(including v)
-				 */
-				for (Integer u : vNegb) {
+				if (degree == 0) {
+					addDominatingVertex(this.dsInitial, initialVertices, v);
+				} else if (degree == 1) {
+					Collection<Integer> vNegb = gOriginal.getNeighbors(v);
+					/*
+					 * add v's neighbor u to gOperated and dominating set add
+					 * u's neighbors to gOperated and mark them
+					 * dominated(including v)
+					 */
+					for (Integer u : vNegb) {
 
-					addDominatingVertexAndItsNeigbors(this.dsInitial, u);
+						addDominatingVertexAndItsNeigbors(this.dsInitial, u);
+					}
+
 				}
-
 			}
 
 		}
 
-		// check degree 2 vertices after all degree 1 vertices finished
-		// marking
+		/*
+		 *  check degree 2 vertices after all degree 1 vertices finished marking
+		 */
+		 
 		for (Integer v : vertices) {
 			if (!dominatedMap.get(v)) {
 				int degree = gOriginal.degree(v);
@@ -316,10 +321,10 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 	private void addHigherNeighborOfVToDS(List<Integer> ds, Integer v, Integer u, Integer w, Collection<Integer> uNegb,
 			Collection<Integer> wNegb, List<Integer> initalVerteices, int uUtility, int wUtility) {
-		if (AlgorithmUtil.isAllDominated(dominatedMap, wNegb) && wUtility == 0) {
+		if (AlgorithmUtil.isAllDominated(dominatedMap, wNegb) && (wUtility-1) == 0) {
 
 			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices);
-		} else if (AlgorithmUtil.isAllDominated(dominatedMap, uNegb) && uUtility == 0) {
+		} else if (AlgorithmUtil.isAllDominated(dominatedMap, uNegb) && (uUtility-1) == 0) {
 			addNeighborOfVToDS(ds, v, w, wNegb, initalVerteices);
 		} else {
 			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices);
@@ -343,161 +348,265 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 	private void start()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+		Collection<Integer> gOrigialVertices = gOriginal.getVertices();
+		int gOriginalVerticeSize = gOrigialVertices.size();
+		Collection<Integer> gInitialVertices = gInitial.getVertices();
 
-		/*
-		 * prepare: i) construct the iterative graph from initial graph; ii)
-		 * initial a ds (iterativeDS) of the iterative graph
-		 */
-		Collection<Integer> gOriginalVertices = gOriginal.getVertices();
+		Collection<Integer> undominatedVertices = CollectionUtils.subtract(gOrigialVertices, gInitialVertices);
+		int undomiantedVerticesSize = undominatedVertices.size();
 
-		// this.ds.addAll(this.dsInitial);
-		List<Integer> dsIterative = new ArrayList<Integer>();
-		List<Integer> dsIterativeCompare = new ArrayList<Integer>();
-		dsIterative.addAll(this.dsInitial);
-		dsIterativeCompare.addAll(this.dsInitial);
-		/*
-		 * used for initial + iterative graph (for greedyDS);
-		 */
-		Graph<Integer, Integer> gIterative = AlgorithmUtil.copyGrapy(gInitial);
+		List<Integer> dominatedUndominatedDifference = new ArrayList<Integer>();
 
-		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			/*
-			 * calculate the vertices between original graph and iterative
-			 * graph; order them according to their utility; get top k vertices
-			 * and their neighbors; so the worst iterative ds should be inital
-			 * ds + k vertices; If other solutions are worse than it, take it as
-			 * the solution;
-			 */
-			Collection<Integer> gIterativeVertices = gIterative.getVertices();
-			Collection<Integer> nextIterativeVertices = CollectionUtils.subtract(gOriginalVertices, gIterativeVertices);
+		while (undomiantedVerticesSize > 0) {
+			Tuple<List<Integer>, List<Integer>> t = getKVertices(undominatedVertices, k, this.strategy, gOriginal);
+			Collection<Integer> considerableCandidateVertices4DS = t.getV2();
+			int paramR = Math.min(considerableCandidateVertices4DS.size(), r);
 
-			int nextIterativeVerticesSize = nextIterativeVertices.size();
+			AlgorithmUtil.prepareGraph(am, gInitial, dominatedUndominatedDifference);
 
-			List<VertexDegree> vertexDegreeList = getVDByStrategy(this.strategy, nextIterativeVertices);
-			int fromIndex = 0;
-			int toIndex = Math.min(k, nextIterativeVerticesSize);
+			AlgorithmUtil.prepareGraph(am, gInitial, t.getV1());
+			List<Integer> dsInitialCopy = new ArrayList<Integer>();
+			dsInitialCopy.addAll(dsInitial);
 
-			List<VertexDegree> topKVDList = vertexDegreeList.subList(fromIndex, toIndex);
-			List<Integer> topKVertices = AlgorithmUtil.getVertexList(topKVDList);
+			Graph<Integer, Integer> gInitialCopy = AlgorithmUtil.copyGrapy(gInitial);
 
-			Collection<Integer> iterativeVertices = new ArrayList<Integer>();
-			iterativeVertices.addAll(topKVertices);
-			dsIterativeCompare.addAll(topKVertices);
+			DDSFPT ag = new DDSFPT(indicator, gInitialCopy, dsInitial, paramR);
+			// Collection<Integer> considerableCandidateVertices4DS=
+			// CollectionUtils.union(t.getV2(), this.dsInitial);
 
-			// add k vertices and their neighbors
-			for (Integer v : topKVertices) {
+			ag.setConsiderableCandidateVertices4DS(considerableCandidateVertices4DS);
+			ag.setOriginalVertexNum(gOriginalVerticeSize);
+			ag.computing();
+
+			dominatedUndominatedDifference = new ArrayList<Integer>();
+
+			dsInitial = ag.getDs2();
+			Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
+			for (Integer v : addedDSVertices) {
+				dominatedMap.put(v, true);
+				undominatedVertices.remove(v);
 				Collection<Integer> vNeg = gOriginal.getNeighbors(v);
 				for (Integer u : vNeg) {
-					AlgorithmUtil.addElementToList(iterativeVertices, u);
-				}
-			}
-			/*
-			 * the neighbours of top k vertices should exclude what has been in
-			 * the initial graph;
-			 */
-			iterativeVertices = CollectionUtils.subtract(iterativeVertices, gIterative.getVertices());
-			List<Integer> iterativeVerticesCopy=new ArrayList<Integer>();
-			iterativeVerticesCopy.addAll(iterativeVertices);
-
-			/*
-			 * inital graph + iterative vertices = iteratvie graph apply native
-			 * greedy algorithm on it to see if a smaller solution can be
-			 * obtained
-			 */
-			Graph<Integer, Integer> gIterativeGreedy = AlgorithmUtil.copyGrapy(gIterative);
-			AlgorithmUtil.prepareGraph(this.am, gIterativeGreedy, iterativeVertices);
-
-			GreedyNative agn = new GreedyNative(gIterativeGreedy);
-			agn.run();
-			List<Integer> dsGreedy = agn.getDominatingSet();
-
-			/*
-			 * if greedy ds is worse than iterative ds, take iterative ds as the
-			 * solution and parameter r should be the minimal among: the input
-			 * one, greedy ds size and iterative ds size
-			 */
-			int paramR = r;
-			int dsGreedySize = dsGreedy.size();
-			int dsIterativeCompareSize = dsIterativeCompare.size();
-
-			if (dsGreedySize < dsIterativeCompareSize) {
-				dsIterativeCompareSize = dsGreedySize;
-				dsIterativeCompare = dsGreedy;
-
-			}
-			paramR = Math.min(paramR, dsIterativeCompareSize-dsIterative.size());
-
-			/*
-			 * calculate the vertices between iterative graph and initial graph;
-			 * order them according to their utility; take p vertices from the
-			 * list; using dds to get solution
-			 */
-			//Collection<Integer> gIterativeGreedyVertices = gIterativeGreedy.getVertices();
-
-			//Collection<Integer> nextPartitionVertices = CollectionUtils.subtract(gIterativeGreedyVertices,
-			//		gIterativeVertices);
-
-			List<Integer> dsPartition = new ArrayList<Integer>();
-			dsPartition.addAll(dsIterative);
-
-			Graph<Integer, Integer> gPartition = AlgorithmUtil.copyGrapy(gIterative);
-			while (!AlgorithmUtil.isAllDominated(dominatedMap, iterativeVerticesCopy)) {
-
-				//nextPartitionVertices = CollectionUtils.subtract(gIterativeGreedyVertices, gPartition.getVertices());
-
-				vertexDegreeList = getVDByStrategy(this.strategy, iterativeVertices);
-				int nextPartitionVerticesSize = iterativeVertices.size();
-				int subFromIndex = 0;
-				int subToIndex = Math.min(PARTITION_SIZE, nextPartitionVerticesSize);
-
-				List<VertexDegree> partitionVDList = vertexDegreeList.subList(subFromIndex, subToIndex);
-				List<Integer> partitionVertices = AlgorithmUtil.getVertexList(partitionVDList);
-
-				iterativeVertices.removeAll(partitionVertices);
-				
-				AlgorithmUtil.prepareGraph(am, gPartition, partitionVertices);
-				Graph<Integer, Integer> gPartitionCopy = AlgorithmUtil.copyGrapy(gPartition);
-				List<Integer> dsPartitionCopy = new ArrayList<Integer>();
-				dsPartitionCopy.addAll(dsPartition);
-				DDSFPT ag = new DDSFPT(indicator, gPartitionCopy, dsPartition, paramR);
-
-				ag.computing();
-
-				dsPartition = ag.getDs2();
-				Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsPartition, dsPartitionCopy);
-
-				for (Integer v : addedDSVertices) {
-					dominatedMap.put(v, true);
-					Collection<Integer> vNeg = gIterativeGreedy.getNeighbors(v);
-					for (Integer u : vNeg) {
-						dominatedMap.put(u, true);
+					dominatedMap.put(u, true);
+					if (!gInitial.containsVertex(u)) {
+						dominatedUndominatedDifference.add(u);
 					}
-
 				}
+				undominatedVertices.removeAll(vNeg);
 
 			}
 
-			int dsPartitionSize = dsPartition.size();
-			if (dsPartitionSize > dsIterativeCompareSize) {
-				dsPartition = dsIterativeCompare;
-			}
-
-			dsIterative = dsPartition;
-			gIterative = gIterativeGreedy;
+			undomiantedVerticesSize = undominatedVertices.size();
 
 		}
-		this.ds = dsIterative;
+
+		this.ds = this.dsInitial;
 
 	}
 
-	private List<VertexDegree> getVDByStrategy(int strategy, Collection<Integer> leftVertices) {
+	private Tuple<List<Integer>, List<Integer>> getKVertices(Collection<Integer> candidateVertices, int k, int strategy,
+			Graph<Integer, Integer> g) {
+		int candidateVerticesSize = candidateVertices.size();
+		List<VertexDegree> vdList = this.getVDByStrategy(strategy, candidateVertices);
+		List<Integer> kVerticesList = new ArrayList<Integer>();
+		List<Integer> dsKList = new ArrayList<Integer>();
+		int index = 0;
+		while (kVerticesList.size() < k && index < candidateVerticesSize) {
+			VertexDegree vd = vdList.get(index);
+			Integer v = vd.getVertex();
+			AlgorithmUtil.addElementToList(dsKList, v);
+			Collection<Integer> vNeg = g.getNeighbors(v);
+			Collection<Integer> candidateNeg = CollectionUtils.intersection(candidateVertices, vNeg);
+			for (Integer u : candidateNeg) {
+				if (!this.gInitial.containsVertex(u)) {
+					AlgorithmUtil.addElementToList(kVerticesList, u);
+				}
+			}
+			index++;
+		}
+		int toIndex = Math.min(kVerticesList.size(), Math.max(k - dsKList.size(), 0));
+		kVerticesList = kVerticesList.subList(0, toIndex);
+		toIndex = Math.min(dsKList.size(), k);
+		dsKList=dsKList.subList(0,toIndex);
+		kVerticesList.addAll(dsKList);
+
+		Tuple<List<Integer>, List<Integer>> t = new Tuple<List<Integer>, List<Integer>>(kVerticesList, dsKList);
+		return t;
+
+	}
+
+	// private void start()
+	// throws MOutofNException, ExceedLongMaxException,
+	// ArraysNotSameLengthException, InterruptedException {
+	//
+	// /*
+	// * prepare: i) construct the iterative graph from initial graph; ii)
+	// * initial a ds (iterativeDS) of the iterative graph
+	// */
+	// Collection<Integer> gOriginalVertices = gOriginal.getVertices();
+	//
+	// // this.ds.addAll(this.dsInitial);
+	// List<Integer> dsIterative = new ArrayList<Integer>();
+	// List<Integer> dsIterativeCompare = new ArrayList<Integer>();
+	// dsIterative.addAll(this.dsInitial);
+	// dsIterativeCompare.addAll(this.dsInitial);
+	// /*
+	// * used for initial + iterative graph (for greedyDS);
+	// */
+	// Graph<Integer, Integer> gIterative = AlgorithmUtil.copyGrapy(gInitial);
+	//
+	// while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
+	// /*
+	// * calculate the vertices between original graph and iterative
+	// * graph; order them according to their utility; get top k vertices
+	// * and their neighbors; so the worst iterative ds should be inital
+	// * ds + k vertices; If other solutions are worse than it, take it as
+	// * the solution;
+	// */
+	// Collection<Integer> gIterativeVertices = gIterative.getVertices();
+	// Collection<Integer> nextIterativeVertices =
+	// CollectionUtils.subtract(gOriginalVertices, gIterativeVertices);
+	//
+	// int nextIterativeVerticesSize = nextIterativeVertices.size();
+	//
+	// List<VertexDegree> vertexDegreeList = getVDByStrategy(this.strategy,
+	// nextIterativeVertices);
+	// int fromIndex = 0;
+	// int toIndex = Math.min(k, nextIterativeVerticesSize);
+	//
+	// List<VertexDegree> topKVDList = vertexDegreeList.subList(fromIndex,
+	// toIndex);
+	// List<Integer> topKVertices = AlgorithmUtil.getVertexList(topKVDList);
+	//
+	// Collection<Integer> iterativeVertices = new ArrayList<Integer>();
+	// iterativeVertices.addAll(topKVertices);
+	// dsIterativeCompare.addAll(topKVertices);
+	//
+	// // add k vertices and their neighbors
+	// for (Integer v : topKVertices) {
+	// Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+	// for (Integer u : vNeg) {
+	// AlgorithmUtil.addElementToList(iterativeVertices, u);
+	// }
+	// }
+	// /*
+	// * the neighbours of top k vertices should exclude what has been in
+	// * the initial graph;
+	// */
+	// iterativeVertices = CollectionUtils.subtract(iterativeVertices,
+	// gIterative.getVertices());
+	// List<Integer> iterativeVerticesCopy=new ArrayList<Integer>();
+	// iterativeVerticesCopy.addAll(iterativeVertices);
+	//
+	// /*
+	// * inital graph + iterative vertices = iteratvie graph apply native
+	// * greedy algorithm on it to see if a smaller solution can be
+	// * obtained
+	// */
+	// Graph<Integer, Integer> gIterativeGreedy =
+	// AlgorithmUtil.copyGrapy(gIterative);
+	// AlgorithmUtil.prepareGraph(this.am, gIterativeGreedy, iterativeVertices);
+	//
+	// GreedyNative agn = new GreedyNative(gIterativeGreedy);
+	// agn.run();
+	// List<Integer> dsGreedy = agn.getDominatingSet();
+	//
+	// /*
+	// * if greedy ds is worse than iterative ds, take iterative ds as the
+	// * solution and parameter r should be the minimal among: the input
+	// * one, greedy ds size and iterative ds size
+	// */
+	// int paramR = r;
+	// int dsGreedySize = dsGreedy.size();
+	// int dsIterativeCompareSize = dsIterativeCompare.size();
+	//
+	// if (dsGreedySize < dsIterativeCompareSize) {
+	// dsIterativeCompareSize = dsGreedySize;
+	// dsIterativeCompare = dsGreedy;
+	//
+	// }
+	// paramR = Math.min(paramR, dsIterativeCompareSize-dsIterative.size());
+	//
+	// /*
+	// * calculate the vertices between iterative graph and initial graph;
+	// * order them according to their utility; take p vertices from the
+	// * list; using dds to get solution
+	// */
+	// //Collection<Integer> gIterativeGreedyVertices =
+	// gIterativeGreedy.getVertices();
+	//
+	// //Collection<Integer> nextPartitionVertices =
+	// CollectionUtils.subtract(gIterativeGreedyVertices,
+	// // gIterativeVertices);
+	//
+	// List<Integer> dsPartition = new ArrayList<Integer>();
+	// dsPartition.addAll(dsIterative);
+	//
+	// Graph<Integer, Integer> gPartition = AlgorithmUtil.copyGrapy(gIterative);
+	// while (!AlgorithmUtil.isAllDominated(dominatedMap,
+	// iterativeVerticesCopy)) {
+	//
+	// //nextPartitionVertices =
+	// CollectionUtils.subtract(gIterativeGreedyVertices,
+	// gPartition.getVertices());
+	//
+	// vertexDegreeList = getVDByStrategy(this.strategy, iterativeVertices);
+	// int nextPartitionVerticesSize = iterativeVertices.size();
+	// int subFromIndex = 0;
+	// int subToIndex = Math.min(PARTITION_SIZE, nextPartitionVerticesSize);
+	//
+	// List<VertexDegree> partitionVDList =
+	// vertexDegreeList.subList(subFromIndex, subToIndex);
+	// List<Integer> partitionVertices =
+	// AlgorithmUtil.getVertexList(partitionVDList);
+	//
+	// iterativeVertices.removeAll(partitionVertices);
+	//
+	// AlgorithmUtil.prepareGraph(am, gPartition, partitionVertices);
+	// Graph<Integer, Integer> gPartitionCopy =
+	// AlgorithmUtil.copyGrapy(gPartition);
+	// List<Integer> dsPartitionCopy = new ArrayList<Integer>();
+	// dsPartitionCopy.addAll(dsPartition);
+	// DDSFPT ag = new DDSFPT(indicator, gPartitionCopy, dsPartition, paramR);
+	//
+	// ag.computing();
+	//
+	// dsPartition = ag.getDs2();
+	// Collection<Integer> addedDSVertices =
+	// CollectionUtils.subtract(dsPartition, dsPartitionCopy);
+	//
+	// for (Integer v : addedDSVertices) {
+	// dominatedMap.put(v, true);
+	// Collection<Integer> vNeg = gIterativeGreedy.getNeighbors(v);
+	// for (Integer u : vNeg) {
+	// dominatedMap.put(u, true);
+	// }
+	//
+	// }
+	//
+	// }
+	//
+	// int dsPartitionSize = dsPartition.size();
+	// if (dsPartitionSize > dsIterativeCompareSize) {
+	// dsPartition = dsIterativeCompare;
+	// }
+	//
+	// dsIterative = dsPartition;
+	// gIterative = gIterativeGreedy;
+	//
+	// }
+	// this.ds = dsIterative;
+	//
+	// }
+
+	private List<VertexDegree> getVDByStrategy(int strategy, Collection<Integer> candidateVertices) {
 		switch (strategy) {
 
 		case STRATEGY_UTILITY_DESC: {
-			return getVDDescByUtility(leftVertices);
+			return getVDDescByUtility(candidateVertices);
 		}
 		case STRATEGY_UTILITY_ASC: {
-			return getVDAscByUtility(leftVertices);
+			return getVDAscByUtility(candidateVertices);
 		}
 
 		default: {
@@ -570,4 +679,26 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 	// return vertexDegreeList;
 	// }
 
+}
+
+class Tuple<V1, V2> {
+
+	protected V1 v1;
+	protected V2 v2;
+
+	protected Tuple() {
+	}
+
+	public Tuple(V1 v1, V2 v2) {
+		this.v1 = v1;
+		this.v2 = v2;
+	}
+
+	public V1 getV1() {
+		return v1;
+	}
+
+	public V2 getV2() {
+		return v2;
+	}
 }

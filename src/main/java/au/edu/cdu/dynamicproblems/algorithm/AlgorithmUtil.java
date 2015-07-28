@@ -111,6 +111,9 @@ public class AlgorithmUtil {
 	 */
 	public static Graph<Integer, Integer> prepareGraph(List<String[]> adjacencyMatrix, Graph<Integer, Integer> g,
 			Collection<Integer> vList) {
+		if (vList.isEmpty()) {
+			return g;
+		}
 
 		int numOfVertices = adjacencyMatrix.size();
 
@@ -371,9 +374,9 @@ public class AlgorithmUtil {
 
 		return true;
 	}
-	
-	public static int getDominatedNumber(Map<Integer,Boolean> dominatedMap){
-		int count=0;
+
+	public static int getDominatedNumber(Map<Integer, Boolean> dominatedMap) {
+		int count = 0;
 		Collection<Boolean> values = dominatedMap.values();
 		for (Boolean b : values) {
 			if (b) {
