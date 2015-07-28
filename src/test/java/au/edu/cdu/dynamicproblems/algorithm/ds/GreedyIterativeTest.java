@@ -22,7 +22,7 @@ public class GreedyIterativeTest {
 
 	private Logger log = LogUtil.getLogger(GreedyIterativeTest.class);
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
@@ -45,13 +45,13 @@ public class GreedyIterativeTest {
 				// "010680_Pretty_Good_Privacy.konet",
 				// "006474_Route_views.konet"
 		};
-		int[] times = { 1000};
+		int[] times = { 10, 100};
 
 		run(path, files, destFile, times, 1, 10);
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
@@ -70,7 +70,7 @@ public class GreedyIterativeTest {
 
 		};
 
-		int[] times = { 10, 100};
+		int[] times = { 1000};
 
 		run(path, files, destFile, times, 1, 10);
 	}

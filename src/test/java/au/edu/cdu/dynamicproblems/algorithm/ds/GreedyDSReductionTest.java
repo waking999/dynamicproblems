@@ -102,7 +102,7 @@ public class GreedyDSReductionTest {
 				// "06474_Route_views.konet"
 		}; 
 
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 20, 20 } };
+		int[][] krArray = { { 15, 15 } };
 
 		runStrategies(path, krArray, files, 1, 1);
 
