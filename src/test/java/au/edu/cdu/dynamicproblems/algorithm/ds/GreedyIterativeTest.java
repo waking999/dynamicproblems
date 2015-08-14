@@ -72,7 +72,7 @@ public class GreedyIterativeTest {
 
 		int[] times = { 1000};
 
-		run(path, files, destFile, times, 1, 10);
+		run(path, files, destFile, times, 2,3);
 	}
 
 	@Ignore
@@ -97,7 +97,7 @@ public class GreedyIterativeTest {
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
 		int[] times = { 10, 100};
 
-		run(path, files, destFile, times, 1, 10);
+		run(path, files, destFile, times, 1, 3);
 	}
 
 	private void run(String path, String[] files, String destFile, int[] times, int iStart, int iEnd)
