@@ -13,7 +13,7 @@ public interface IGreedyDS extends IAlgorithm {
 	public List<Integer> getDs();
 
 	public void computing() throws MOutofNException, ExceedLongMaxException,
-	ArraysNotSameLengthException ;
+	ArraysNotSameLengthException ,InterruptedException;
 	
 	public Result getResult(long threadId);
 	

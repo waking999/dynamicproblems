@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -110,12 +113,17 @@ public class AlgorithmUtil {
 	 * @return
 	 */
 	public static Graph<Integer, Integer> prepareGraph(List<String[]> adjacencyMatrix, Graph<Integer, Integer> g,
-			List<Integer> vList) {
+			Collection<Integer> vList) {
+		if (vList.isEmpty()) {
+			return g;
+		}
 
 		int numOfVertices = adjacencyMatrix.size();
 
 		for (Integer i : vList) {
-			g.addVertex(i);
+			if (!g.containsVertex(i)) {
+				g.addVertex(i);
+			}
 		}
 
 		Collection<Integer> gVertices = g.getVertices();
@@ -157,6 +165,14 @@ public class AlgorithmUtil {
 			addElementToList(vList, vd.getVertex());
 		}
 		return vList;
+	}
+
+	public static List<Integer> getVertexListFromMap(TreeMap<Integer, Integer> vdMap, int fromIndex, int toIndex) {
+		Set<Integer> keySet = vdMap.keySet();
+
+		List<Integer> keyList = new ArrayList<Integer>(keySet);
+
+		return keyList.subList(fromIndex, toIndex);
 	}
 
 	/**
@@ -208,7 +224,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
-	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegree(Graph<Integer, Integer> g,
+	public static List<VertexDegree> sortVertexAccordingToUtility(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
 		Collection<Integer> vertices = g.getVertices();
@@ -224,6 +240,30 @@ public class AlgorithmUtil {
 		}
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
+	}
+
+	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
+			Map<Integer, Boolean> dominatedMap) {
+		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null);
+	}
+
+	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
+			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
+
+		if (includeList == null) {
+			includeList = g.getVertices();
+		}
+
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		for (Integer v : includeList) {
+			int utility = AlgorithmUtil.getVertexUtility(g, v, dominatedMap);
+			map.put(v, utility);
+		}
+
+		TreeMap<Integer, Integer> sorted = new TreeMap<Integer, Integer>( new ValueComparator(map));
+		sorted.putAll(map);
+		return sorted;
 	}
 
 	/**
@@ -260,7 +300,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
-	public static List<VertexDegree> sortVertexAccordingToUndomiatedDegreeInclude(Graph<Integer, Integer> g,
+	public static List<VertexDegree> sortVertexAccordingToUtilityInclude(Graph<Integer, Integer> g,
 			Collection<Integer> vList, Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
 
@@ -276,6 +316,17 @@ public class AlgorithmUtil {
 		}
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
+	}
+
+	public static int getVertexUtility(Graph<Integer, Integer> g, Integer v, Map<Integer, Boolean> dominatedMap) {
+		Collection<Integer> vNeigs = g.getNeighbors(v);
+		int unDominatedDegree = 0;
+		for (Integer u : vNeigs) {
+			if (!dominatedMap.get(u)) {
+				unDominatedDegree++;
+			}
+		}
+		return unDominatedDegree;
 	}
 
 	// public static Integer
@@ -357,6 +408,17 @@ public class AlgorithmUtil {
 		}
 
 		return true;
+	}
+
+	public static int getDominatedNumber(Map<Integer, Boolean> dominatedMap) {
+		int count = 0;
+		Collection<Boolean> values = dominatedMap.values();
+		for (Boolean b : values) {
+			if (b) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -586,7 +648,7 @@ public class AlgorithmUtil {
 	 *            , an element
 	 * @return the list
 	 */
-	public static <E> List<E> addElementToList(List<E> list, E e) {
+	public static <E> Collection<E> addElementToList(Collection<E> list, E e) {
 		if (!list.contains(e)) {
 			list.add(e);
 		}

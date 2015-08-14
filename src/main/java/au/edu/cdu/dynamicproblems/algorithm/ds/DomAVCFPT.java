@@ -12,6 +12,7 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
@@ -91,9 +92,8 @@ public class DomAVCFPT {
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a set dominating the vertex cover
 	 */
-	public void computing() throws MOutofNException,
-			NChooseMNoSolutionException, ExceedLongMaxException,
-			ArraysNotSameLengthException {
+	public void computing()
+			throws MOutofNException, NChooseMNoSolutionException, ExceedLongMaxException, ArraysNotSameLengthException {
 		// the vertex cover could be empty,we will not consider it
 		int vertexCoverSize = vertexCover.size();
 		if (vertexCoverSize > 0) {
@@ -137,8 +137,7 @@ public class DomAVCFPT {
 	// return Math.round(up);
 	// }
 
-	void nChooseM(int n, int m) throws NChooseMNoSolutionException,
-			ArraysNotSameLengthException {
+	void nChooseM(int n, int m) throws NChooseMNoSolutionException, ArraysNotSameLengthException {
 		if (m > n) {
 			// m always <= n;
 			m = n;
@@ -214,8 +213,7 @@ public class DomAVCFPT {
 
 		} while (!isEnd);
 		if (!isSolution) {
-			throw new NChooseMNoSolutionException("No solution for " + n
-					+ " choose " + m);
+			throw new NChooseMNoSolutionException("No solution for " + n + " choose " + m);
 		}
 
 	}
@@ -227,8 +225,7 @@ public class DomAVCFPT {
 
 		// the vertex cover's complement set will be an independent set
 		Collection<Integer> vertices = g.getVertices();
-		Collection<Integer> independentSet = CollectionUtils.subtract(vertices,
-				vertexCover);
+		Collection<Integer> independentSet = CollectionUtils.subtract(vertices, vertexCover);
 
 		/*
 		 * the vertex cover size will be the parameter k used in the fpt
@@ -319,8 +316,8 @@ public class DomAVCFPT {
 
 	}
 
-	private void getAttemptRSizeSolution(int attemptR) throws MOutofNException,
-			NChooseMNoSolutionException, ArraysNotSameLengthException {
+	private void getAttemptRSizeSolution(int attemptR)
+			throws MOutofNException, NChooseMNoSolutionException, ArraysNotSameLengthException {
 
 		int candidateDomVerMapSize = candidateDomVerMap.size();
 
@@ -329,14 +326,11 @@ public class DomAVCFPT {
 
 	}
 
-	private boolean verifyChosen(boolean[] chosen, int m, int n)
-			throws ArraysNotSameLengthException {
+	private boolean verifyChosen(boolean[] chosen, int m, int n) throws ArraysNotSameLengthException {
 		List<Integer> possibleDomVCSet = new ArrayList<Integer>(m);
 
 		int vertexCoverSize = vertexCover.size();
-		if (candidateDomVerMap == null) {
 
-		}
 		Set<String> keySet = candidateDomVerMap.keySet();
 		byte[] ruler = new byte[vertexCoverSize];
 		Arrays.fill(ruler, AlgorithmUtil.UNMARKED);
@@ -367,54 +361,83 @@ public class DomAVCFPT {
 
 	}
 
-	private Integer getVertexFromCandiateMap(List<Integer> verList) {
-		Integer rtn = null;
-		List<Integer> vcVerList = (List<Integer>) CollectionUtils.intersection(
-				verList, this.vertexCover);
-		if (vcVerList != null && !vcVerList.isEmpty()) {
-			rtn = vcVerList.get(0);
-		} else {
-			rtn = verList.get(0);
-		}
+	private Collection<Integer> considerableCandidateVertices4DS;
 
-		return rtn;
+	public void setConsiderableCandidateVertices4DS(Collection<Integer> considerableCandidateVertices4DS) {
+		this.considerableCandidateVertices4DS = considerableCandidateVertices4DS;
 	}
 
-//	@SuppressWarnings("unused")
-//	private void getAttemptRSizeSolutionSC(int r) {
-//		List<List<Integer>> family = new ArrayList<List<Integer>>();
-//		Set<String> typeSet = this.candidateDomVerMap.keySet();
-//		for (String typeStr : typeSet) {
-//			List<Integer> set = AlgorithmUtil.stringToIntList(typeStr);
-//			// family.add(set);
-//			AlgorithmUtil.addElementToList(family, set);
-//		}
-//
-//		List<Integer> universe = new ArrayList<Integer>();
-//		int u = this.vertexCover.size();
-//		for (int i = 0; i < u; i++) {
-//			// universe.add(i);
-//			AlgorithmUtil.addElementToList(universe, i);
-//		}
-//
-//		SCDP scdp = new SCDP(family, universe, r);
-//		scdp.computing();
-//
-//		if (scdp.isHasSolution()) {
-//			List<Integer> possibleDomVCSet = new ArrayList<Integer>(r);
-//			List<List<Integer>> setCover = scdp.getSC();
-//			for (List<Integer> set : setCover) {
-//				String key = AlgorithmUtil.intListToString(u, set);
-//				List<Integer> verList = candidateDomVerMap.get(key);
-//				Integer ver = getVertexFromCandiateMap(verList);
-//				// possibleDomVCSet.add(ver);
-//				AlgorithmUtil.addElementToList(possibleDomVCSet, ver);
-//			}
-//
-//			this.dominatingVertexCoverSet = possibleDomVCSet;
-//			hasLessR = true;
-//
-//			log.debug(scdp.getResult().getString());
-//		}
-//	}
+	private Integer getVertexFromCandiateMap(List<Integer> verList) {
+		/*
+		 * priority: 1. vertices in considerableCandidateVertices4DS; 2.
+		 * vertices in vertex cover 3. the highest utility one  ;
+		 */
+		List<Integer> interConsider = (List<Integer>) CollectionUtils.intersection(verList,
+				considerableCandidateVertices4DS);
+		if (interConsider != null && !interConsider.isEmpty()) {
+			return interConsider.get(0);
+		}
+		interConsider = (List<Integer>) CollectionUtils.intersection(verList, vertexCover);
+		if (interConsider != null && !interConsider.isEmpty()) {
+			return interConsider.get(0);
+		}
+		List<VertexDegree> vdList = AlgorithmUtil.sortVertexAccordingToDegreeInclude(this.g, verList);
+		return vdList.get(0).getVertex();
+
+		// Integer rtn = null;
+		// List<Integer> vcVerList = (List<Integer>)
+		// CollectionUtils.intersection(verList, this.vertexCover);
+		// if (vcVerList != null && !vcVerList.isEmpty()) {
+		// List<Integer> considerVcVerList = (List<Integer>)
+		// CollectionUtils.intersection(vcVerList,
+		// this.considerableCandidateVertices4DS);
+		// if (considerVcVerList != null && !considerVcVerList.isEmpty()) {
+		// rtn = considerVcVerList.get(0);
+		// } else {
+		// rtn = vcVerList.get(0);
+		// }
+		// } else {
+		// rtn = verList.get(0);
+		// }
+		//
+		// return rtn;
+	}
+
+	// @SuppressWarnings("unused")
+	// private void getAttemptRSizeSolutionSC(int r) {
+	// List<List<Integer>> family = new ArrayList<List<Integer>>();
+	// Set<String> typeSet = this.candidateDomVerMap.keySet();
+	// for (String typeStr : typeSet) {
+	// List<Integer> set = AlgorithmUtil.stringToIntList(typeStr);
+	// // family.add(set);
+	// AlgorithmUtil.addElementToList(family, set);
+	// }
+	//
+	// List<Integer> universe = new ArrayList<Integer>();
+	// int u = this.vertexCover.size();
+	// for (int i = 0; i < u; i++) {
+	// // universe.add(i);
+	// AlgorithmUtil.addElementToList(universe, i);
+	// }
+	//
+	// SCDP scdp = new SCDP(family, universe, r);
+	// scdp.computing();
+	//
+	// if (scdp.isHasSolution()) {
+	// List<Integer> possibleDomVCSet = new ArrayList<Integer>(r);
+	// List<List<Integer>> setCover = scdp.getSC();
+	// for (List<Integer> set : setCover) {
+	// String key = AlgorithmUtil.intListToString(u, set);
+	// List<Integer> verList = candidateDomVerMap.get(key);
+	// Integer ver = getVertexFromCandiateMap(verList);
+	// // possibleDomVCSet.add(ver);
+	// AlgorithmUtil.addElementToList(possibleDomVCSet, ver);
+	// }
+	//
+	// this.dominatingVertexCoverSet = possibleDomVCSet;
+	// hasLessR = true;
+	//
+	// log.debug(scdp.getResult().getString());
+	// }
+	// }
 }
