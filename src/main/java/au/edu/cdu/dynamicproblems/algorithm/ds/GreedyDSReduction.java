@@ -11,6 +11,7 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.Tuple;
 import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
@@ -304,7 +305,6 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 	private void addDominatingVertex(List<Integer> ds, List<Integer> initalVerteices, Integer u) {
 		AlgorithmUtil.addElementToList(ds, u);
-		dominatedMap.put(u, true);
 		addDominatedVertex(initalVerteices, u);
 	}
 
@@ -682,24 +682,24 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 }
 
-class Tuple<V1, V2> {
-
-	protected V1 v1;
-	protected V2 v2;
-
-	protected Tuple() {
-	}
-
-	public Tuple(V1 v1, V2 v2) {
-		this.v1 = v1;
-		this.v2 = v2;
-	}
-
-	public V1 getV1() {
-		return v1;
-	}
-
-	public V2 getV2() {
-		return v2;
-	}
-}
+//class Tuple<V1, V2> {
+//
+//	protected V1 v1;
+//	protected V2 v2;
+//
+//	protected Tuple() {
+//	}
+//
+//	public Tuple(V1 v1, V2 v2) {
+//		this.v1 = v1;
+//		this.v2 = v2;
+//	}
+//
+//	public V1 getV1() {
+//		return v1;
+//	}
+//
+//	public V2 getV2() {
+//		return v2;
+//	}
+//}

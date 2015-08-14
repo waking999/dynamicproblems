@@ -19,10 +19,11 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
+import edu.uci.ics.jung.graph.Graph;
 import junit.framework.Assert;
 
-public class GreedyDSV2Test {
-	private Logger log = LogUtil.getLogger(GreedyDSV2Test.class);
+public class GreedyDSV4Test {
+	private Logger log = LogUtil.getLogger(GreedyDSV4Test.class);
 
 	@Ignore
 	@Test
@@ -81,7 +82,7 @@ public class GreedyDSV2Test {
 		}
 	}
 
-	 @Ignore
+	//@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -93,10 +94,10 @@ public class GreedyDSV2Test {
 		String path = "src/test/resources/KONECT/";
 		String[] files = { // "000027_zebra.konet", "000034_zachary.konet",
 							// "000062_dolphins.konet",
-				 "000112_David_Copperfield.konet",
+				// "000112_David_Copperfield.konet",
 				// "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-			// "001133_rovira.konet", "001174_euroroad.konet",
-				//"001858_hamster.konet"
+				// "001133_rovira.konet", "001174_euroroad.konet",
+				"001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -106,7 +107,7 @@ public class GreedyDSV2Test {
 				// "06474_Route_views.konet"
 		};
 
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
+		int[][] krArray = { {20,20} };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
@@ -119,6 +120,9 @@ public class GreedyDSV2Test {
 		log.debug(destFile);
 
 		for (String file : files) {
+
+			List<Integer> ds1 = getADsSolution(path, file);
+
 			for (int i = iStart; i <= iEnd; i++) {
 
 				String msg;
@@ -126,10 +130,25 @@ public class GreedyDSV2Test {
 				msg = setMessage(file, i);
 				// runV1(msg, path + file, krArray, destFile);
 
-				run(msg, path + file, krArray, destFile);
+				run(msg, path + file, krArray, destFile, ds1);
 
 			}
 		}
+	}
+
+	private List<Integer> getADsSolution(String path, String file)
+			throws FileNotFoundException, IOException, InterruptedException {
+		FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + file);
+		List<String[]> am = fo.getAdjacencyMatrix();
+
+		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+
+		GreedyNative ag = new GreedyNative(g);
+		ag.run();
+
+		List<Integer> ds = ag.getDominatingSet();
+
+		return ds;
 	}
 
 	private String setMessage(String file, int i) {
@@ -138,7 +157,7 @@ public class GreedyDSV2Test {
 		return msg;
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -157,13 +176,13 @@ public class GreedyDSV2Test {
 				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -185,16 +204,15 @@ public class GreedyDSV2Test {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	
-
-	private void run(String msg, String inputFile, int[][] krArray, String destFile) throws MOutofNException,
-			ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException, IOException {
+	private void run(String msg, String inputFile, int[][] krArray, String destFile, List<Integer> ds1)
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException,
+			IOException {
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 
@@ -207,7 +225,7 @@ public class GreedyDSV2Test {
 			int r = rUpper;
 			// for (int r = 1; r <= rUpper; r++) {
 
-			GreedyDSV2 ag = new GreedyDSV2(this.getClass().getName(), am, k, r);
+			GreedyDSV4 ag = new GreedyDSV4(this.getClass().getName(), am, k, r, ds1);
 
 			Result result = null;
 
