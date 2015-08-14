@@ -304,7 +304,6 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 
 	private void addDominatingVertex(List<Integer> ds, List<Integer> initalVerteices, Integer u) {
 		AlgorithmUtil.addElementToList(ds, u);
-		dominatedMap.put(u, true);
 		addDominatedVertex(initalVerteices, u);
 	}
 
