@@ -81,7 +81,7 @@ public class GreedyDSV2Test {
 		}
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -163,7 +163,7 @@ public class GreedyDSV2Test {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -185,7 +185,7 @@ public class GreedyDSV2Test {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
