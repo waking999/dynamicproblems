@@ -117,19 +117,19 @@
   <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DSGreedyTest" name="testRun" time="0.007">
     <skipped/>
   </testcase>
-  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest" name="testRun_k1" time="0.008">
+  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest" name="testRun_k1" time="0.008">
     <skipped/>
   </testcase>
-  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest" name="testViewGraph" time="0.008">
+  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest" name="testViewGraph" time="0.008">
     <skipped/>
   </testcase>
-  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest" name="testViewGraphDifference" time="0.008">
+  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest" name="testViewGraphDifference" time="0.008">
     <skipped/>
   </testcase>
-  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest" name="testRun_k2" time="0.009">
+  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest" name="testRun_k2" time="0.009">
     <skipped/>
   </testcase>
-  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest" name="testRun_1000" time="0.009">
+  <testcase classname="au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest" name="testRun_1000" time="0.009">
     <skipped/>
   </testcase>
   <testcase classname="au.edu.cdu.dynamicproblems.io.IOUtilTest" name="testGetProblemInfo" time="0.009">

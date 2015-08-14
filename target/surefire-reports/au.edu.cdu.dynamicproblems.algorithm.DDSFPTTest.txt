@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: au.edu.cdu.dynamicproblems.algorithm.ds.DDSFPTTest
+Test set: au.edu.cdu.dynamicproblems.algorithm.DDSFPTTest
 -------------------------------------------------------------------------------
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 5, Time elapsed: 0 sec
