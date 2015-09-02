@@ -51,7 +51,7 @@ public class GreedyIterativeTest {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
@@ -70,12 +70,12 @@ public class GreedyIterativeTest {
 
 		};
 
-		int[] times = { 10, 100};
+		int[] times = { 1000};
 
 		run(path, files, destFile, times, 1, 10);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException, FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
@@ -95,9 +95,9 @@ public class GreedyIterativeTest {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[] times = { 1000};
+		int[] times = { 10, 100};
 
-		run(path, files, destFile, times, 2, 3);
+		run(path, files, destFile, times, 1, 10);
 	}
 
 	private void run(String path, String[] files, String destFile, int[] times, int iStart, int iEnd)
