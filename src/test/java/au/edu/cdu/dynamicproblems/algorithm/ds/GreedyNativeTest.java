@@ -24,7 +24,7 @@ public class GreedyNativeTest {
 
 	private Logger log = LogUtil.getLogger(GreedyNativeTest.class);
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -107,7 +107,7 @@ public class GreedyNativeTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -117,19 +117,18 @@ public class GreedyNativeTest {
 				+ ".csv";
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { //"C1000.9.clq", "C125.9.clq", 
-				"C2000.5.clq",
-//				"C2000.9.clq", "C250.9.clq", "C4000.5.clq", "C500.9.clq",
-//				"DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
-//				"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
-//				"brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
-//				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
-//				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-//				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
-//				"keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
-//				"p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
-//				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
-//				"p_hat700-2.clq", "p_hat700-3.clq"
+		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
+				"C2000.9.clq", "C250.9.clq", "C4000.5.clq", "C500.9.clq",
+				"DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
+				"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
+				"brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
+				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+				"keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
+				"p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
+				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
+				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
 		for (int i = 1; i <= 1; i++) {

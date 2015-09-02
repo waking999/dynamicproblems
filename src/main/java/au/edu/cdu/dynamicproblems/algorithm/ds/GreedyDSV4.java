@@ -25,7 +25,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-@Deprecated
+
 public class GreedyDSV4 implements IGreedyDS, ITask {
 
 	private List<Integer> ds1;
@@ -181,7 +181,7 @@ public class GreedyDSV4 implements IGreedyDS, ITask {
 			dominatedMap.put(v, false);
 		}
 		// order vertex according to their degree from lowest to highest
-		vdOriginalMap = AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
+		vdOriginalMap = AlgorithmUtil.sortVertexMapAccordingToUtility(gOriginal, dominatedMap);
 
 	}
 
