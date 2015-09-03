@@ -21,8 +21,8 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import junit.framework.Assert;
 
-public class GreedyDSReductionTest {
-	private Logger log = LogUtil.getLogger(GreedyDSReductionTest.class);
+public class GreedyDSV2Test {
+	private Logger log = LogUtil.getLogger(GreedyDSV2Test.class);
 
 	@Ignore
 	@Test
@@ -58,43 +58,45 @@ public class GreedyDSReductionTest {
 		AlgorithmUtil.addElementToList(am,
 				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0" });
 
-		int[][] krArray = { { 2, 2 } };
+		int[][] krArray = { { 5, 5 } };
 		for (int[] kr : krArray) {
 			int k = kr[0];
 			int rUpper = kr[1];
+			int r = rUpper;
+			// for (int r = 1; r <= rUpper; r++) {
 
-			for (int r = 1; r <= rUpper; r++) {
+			GreedyDSV2 ag = new GreedyDSV2(this.getClass().getName(), am, k, r);
 
-				GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName() + "STRATEGY_UTILITY_DESC", am, k,
-						r, GreedyDSReduction.STRATEGY_UTILITY_DESC, true);
+			Result result = null;
 
-				Result result = null;
+			ag.computing();
 
-				ag.computing();
+			List<Integer> ds = ag.getDs();
+			Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds));
+			result = ag.getResult(r);
 
-				List<Integer> ds = ag.getDs();
-				Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds));
-				result = ag.getResult(r);
+			log.debug(result.getString());
 
-				log.debug(result.getString());
-
-			}
+			// }
 		}
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/-KONECT" + this.getClass().getSimpleName();
+		String destDir = "out/KONECT-" + this.getClass().getSimpleName();
 
 		String destFile = destDir + "-" + timeStamp + ".csv";
-		
+
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+		String[] files = { // "000027_zebra.konet", "000034_zachary.konet",
+							// "000062_dolphins.konet",
+				 "000112_David_Copperfield.konet",
+				// "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+			// "001133_rovira.konet", "001174_euroroad.konet",
+				//"001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -104,79 +106,47 @@ public class GreedyDSReductionTest {
 				// "06474_Route_views.konet"
 		};
 
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 },{ 20, 20 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 
-		runStrategies(path, krArray, files, destFile,1, 1);
+		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	private void runStrategies(String path, int[][] krArray, String[] files,String destFile, int iStart, int iEnd)
+	private void runStrategies(String path, int[][] krArray, String[] files, String destFile, int iStart, int iEnd)
 			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, InterruptedException {
-		
 
 		log.debug(destFile);
 
 		for (String file : files) {
 			for (int i = iStart; i <= iEnd; i++) {
 
-				boolean withReductionRule;
-				int strategy;
 				String msg;
 
-				// with reduction rules
-				withReductionRule = true;
+				msg = setMessage(file, i);
+				// runV1(msg, path + file, krArray, destFile);
 
-				strategy = GreedyDSReduction.STRATEGY_UTILITY_DESC;
-				msg = setMessage(file, i, withReductionRule, strategy);
-				run(msg, path + file, krArray, destFile, strategy, withReductionRule);
-
-				strategy = GreedyDSReduction.STRATEGY_UTILITY_ASC;
-				msg = setMessage(file, i, withReductionRule, strategy);
-				run(msg, path + file, krArray, destFile, strategy, withReductionRule);
-
-				// without reduction rule
-				// withReductionRule = false;
-				//
-				// strategy = GreedyDSReduction.STRATEGY_DEGREE_DESC;
-				// msg = setMessage(file, i, withReductionRule, strategy);
-				// run(msg, path + file, krArray, destFile, strategy,
-				// withReductionRule);
-				//
-				// strategy = GreedyDSReduction.STRATEGY_DEGREE_ASC;
-				// msg = setMessage(file, i, withReductionRule, strategy);
-				// run(msg, path + file, krArray, destFile, strategy,
-				// withReductionRule);
-				//
-				// strategy = GreedyDSReduction.STRATEGY_UTILITY_DESC;
-				// msg = setMessage(file, i, withReductionRule, strategy);
-				// run(msg, path + file, krArray, destFile, strategy,
-				// withReductionRule);
-				//
-				// strategy = GreedyDSReduction.STRATEGY_UTILITY_ASC;
-				// msg = setMessage(file, i, withReductionRule, strategy);
-				// run(msg, path + file, krArray, destFile, strategy,
-				// withReductionRule);
+				run(msg, path + file, krArray, destFile);
 
 			}
 		}
 	}
 
-	private String setMessage(String file, int i, boolean withReductionRule, int strategy) {
+	private String setMessage(String file, int i) {
 		String msg;
-		msg = file + "-i=" + i + "-withReductionRule=" + withReductionRule + "-strategy=" + strategy;
+		msg = file + "-i=" + i;
 		return msg;
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/-DIMACS" + this.getClass().getSimpleName();
+		String destDir = "out/DIMACS-" + this.getClass().getSimpleName();
 
 		String destFile = destDir + "-" + timeStamp + ".csv";
-		
+
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", "C4000.5.clq",
 				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
@@ -189,7 +159,7 @@ public class GreedyDSReductionTest {
 		};
 		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
 
-		runStrategies(path, krArray, files,destFile, 1, 1);
+		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
@@ -198,10 +168,10 @@ public class GreedyDSReductionTest {
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/-BHOSLIB" + this.getClass().getSimpleName();
+		String destDir = "out/BHOSLIB-" + this.getClass().getSimpleName();
 
 		String destFile = destDir + "-" + timeStamp + ".csv";
-		
+
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
 				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis", "frb35-17-mis/frb35-17-1.mis",
@@ -215,15 +185,16 @@ public class GreedyDSReductionTest {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 },{ 20, 20 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
 
-		runStrategies(path, krArray, files,destFile, 1, 1);
+		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	private void run(String msg, String inputFile, int[][] krArray, String destFile, int strategy,
-			boolean withReductionRule) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
-					InterruptedException, IOException {
+	
+
+	private void run(String msg, String inputFile, int[][] krArray, String destFile) throws MOutofNException,
+			ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException, IOException {
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 		List<String[]> am = fo.getAdjacencyMatrix();
 
@@ -236,8 +207,7 @@ public class GreedyDSReductionTest {
 			int r = rUpper;
 			// for (int r = 1; r <= rUpper; r++) {
 
-			GreedyDSReduction ag = new GreedyDSReduction(this.getClass().getName(), am, k, r, strategy,
-					withReductionRule);
+			GreedyDSV2 ag = new GreedyDSV2(this.getClass().getName(), am, k, r);
 
 			Result result = null;
 
