@@ -70,7 +70,7 @@ public class GreedyNativeV1Test {
 		log.debug(r.getString());
 	}
 
-	//@Ignore 
+	@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -107,7 +107,7 @@ public class GreedyNativeV1Test {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -143,7 +143,7 @@ public class GreedyNativeV1Test {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
