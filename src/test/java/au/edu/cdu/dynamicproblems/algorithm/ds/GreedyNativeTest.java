@@ -24,7 +24,7 @@ public class GreedyNativeTest {
 
 	private Logger log = LogUtil.getLogger(GreedyNativeTest.class);
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -71,7 +71,7 @@ public class GreedyNativeTest {
 		log.debug(r.getString());
 	}
 
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {

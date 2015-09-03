@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -167,14 +164,6 @@ public class AlgorithmUtil {
 		return vList;
 	}
 
-	public static List<Integer> getVertexListFromMap(TreeMap<Integer, Integer> vdMap, int fromIndex, int toIndex) {
-		Set<Integer> keySet = vdMap.keySet();
-
-		List<Integer> keyList = new ArrayList<Integer>(keySet);
-
-		return keyList.subList(fromIndex, toIndex);
-	}
-
 	/**
 	 * get edge label by the 2 vertices incident to it
 	 * 
@@ -240,30 +229,6 @@ public class AlgorithmUtil {
 		}
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
-	}
-
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap) {
-		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null);
-	}
-
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
-
-		if (includeList == null) {
-			includeList = g.getVertices();
-		}
-
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-
-		for (Integer v : includeList) {
-			int utility = AlgorithmUtil.getVertexUtility(g, v, dominatedMap);
-			map.put(v, utility);
-		}
-
-		TreeMap<Integer, Integer> sorted = new TreeMap<Integer, Integer>( new ValueComparator(map));
-		sorted.putAll(map);
-		return sorted;
 	}
 
 	/**
