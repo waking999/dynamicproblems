@@ -1,5 +1,5 @@
 /**
- * implement Michael's original idea but with utility rather than degree
+ * implement Michael's original idea
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
@@ -180,7 +180,7 @@ public class GreedyDSV2 implements IGreedyDS, ITask {
 			dominatedMap.put(v, false);
 		}
 		// order vertex according to their degree from lowest to highest
-		vdOriginalMap=AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal,dominatedMap);
+		vdOriginalMap=AlgorithmUtil.sortVertexMapAccordingToUtility(gOriginal,dominatedMap);
 	
 	}
 
@@ -257,8 +257,8 @@ public class GreedyDSV2 implements IGreedyDS, ITask {
 			
 			int fromIndex=0;
 			int toIndex=Math.min(k, undomiantedVerticesSize);
-			TreeMap<Integer, Integer> vdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityIncludeASC(gOriginal, dominatedMap, undominatedVertices);
-			TreeMap<Integer, Integer> allVdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
+			TreeMap<Integer, Integer> vdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityInclude(gOriginal, dominatedMap, undominatedVertices);
+			TreeMap<Integer, Integer> allVdMap=AlgorithmUtil.sortVertexMapAccordingToUtility(gOriginal, dominatedMap);
 			
 			List<Integer> vList=AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
 									

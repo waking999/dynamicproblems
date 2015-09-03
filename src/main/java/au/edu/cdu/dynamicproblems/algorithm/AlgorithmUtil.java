@@ -34,10 +34,6 @@ public class AlgorithmUtil {
 
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
-	
-	
-	public final static boolean DESC_ORDER = false;
-	public final static boolean ASC_ORDER = true;
 
 	/**
 	 * generate an instance of Graph with internal parameters
@@ -246,23 +242,13 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap) {
-		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, ASC_ORDER);
-	}
-	
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap,boolean order) {
-		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, order);
+			Map<Integer, Boolean> dominatedMap) {
+		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null);
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityIncludeASC(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
-		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, includeList, ASC_ORDER);
-	}
-	
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList,boolean order) {
+			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
 
 		if (includeList == null) {
 			includeList = g.getVertices();
@@ -275,52 +261,7 @@ public class AlgorithmUtil {
 			map.put(v, utility);
 		}
 
-		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
-		}
-		
-		sorted.putAll(map);
-		return sorted;
-	}
-
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,ASC_ORDER);
-	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g,boolean order) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,order);
-	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
-			Collection<Integer> includeList) {
-
-		return sortVertexMapAccordingToDegreeInclude(g,includeList,ASC_ORDER);
-	}
-
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
-			Collection<Integer> includeList,boolean order) {
-
-		if (includeList == null) {
-			includeList = g.getVertices();
-		}
-
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-
-		for (Integer v : includeList) {
-			int utility = AlgorithmUtil.getVertexDegree(g, v);
-			map.put(v, utility);
-		}
-		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
-		}
+		TreeMap<Integer, Integer> sorted = new TreeMap<Integer, Integer>( new ValueComparator(map));
 		sorted.putAll(map);
 		return sorted;
 	}
@@ -385,12 +326,6 @@ public class AlgorithmUtil {
 				unDominatedDegree++;
 			}
 		}
-		return unDominatedDegree;
-	}
-
-	public static int getVertexDegree(Graph<Integer, Integer> g, Integer v) {
-
-		int unDominatedDegree = g.degree(v);
 		return unDominatedDegree;
 	}
 
