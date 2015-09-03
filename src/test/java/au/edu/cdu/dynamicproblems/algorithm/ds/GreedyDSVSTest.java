@@ -145,29 +145,29 @@ public class GreedyDSVSTest {
 //					List<Integer> ds2 = ag2.getDs();
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds2));
 //					int ds2Size = ds2.size();
-//
+
 //					GreedyDSVS1 ag3 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
 //					ag3.computing();
 //					List<Integer> ds3 = ag3.getDs();
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds3));
 //					int ds3Size = ds3.size();
 //
-					GreedyDSVS1 ag4 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
-					ag4.computing();
-					List<Integer> ds4 = ag4.getDs();
-					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds4));
-					int ds4Size = ds4.size();
+//					GreedyDSVS1 ag4 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
+//					ag4.computing();
+//					List<Integer> ds4 = ag4.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds4));
+//					int ds4Size = ds4.size();
 //
-//					GreedyDSV3 ag5 = new GreedyDSV3(this.getClass().getName(), am, k, r);
-//					ag5.computing();
-//					List<Integer> ds5 = ag5.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds5));
-//					int ds5Size = ds5.size();
+					GreedyDSV3 ag5 = new GreedyDSV3(this.getClass().getName(), am, k, r);
+					ag5.computing();
+					List<Integer> ds5 = ag5.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds5));
+					int ds5Size = ds5.size();
 					
 //					// List<Integer> minDS=ds1;
-					Result result = ag4.getResult();
+					Result result = ag5.getResult();
 					//int minDSSize = ds1Size;
-					int chooseDS = 4;
+					int chooseDS = 5;
 //
 //					if (minDSSize >= ds2Size) {
 //						// minDS=ds2;
@@ -225,8 +225,10 @@ public class GreedyDSVSTest {
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { //"C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", 
-				"C4000.5.clq",
-//				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
+				//"C4000.5.clq",
+//				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", 
+				"MANN_a81.clq", 
+				//"brock200_2.clq",
 //				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
 //				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
 //				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", "keller6.clq",
