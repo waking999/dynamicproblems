@@ -1,7 +1,8 @@
 /**
  * 
- * 1) from highest utility to lowest
+ * 1) from lowest utility to highest
  * 2) and reduction rules
+ * 3) no guarantee 
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
@@ -28,10 +29,10 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
-public class GreedyDSV3 implements IGreedyDS, ITask {
+public class GreedyDSVS04 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSV3.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSVS04.class);
 	private long runningTime;
 
 	@Override
@@ -104,7 +105,7 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 	 */
 	private Graph<Integer, Integer> gInitial;
 
-	public GreedyDSV3(String indicator, List<String[]> am, int k, int r) {
+	public GreedyDSVS04(String indicator, List<String[]> am, int k, int r) {
 		this.indicator = indicator;
 		this.am = am;
 		this.k = k;
@@ -290,14 +291,12 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 		}
 
 		if (initialVertices.isEmpty()) {
-			
 
-		
 			Integer v = this.vdOriginalMap.lastKey();
 
-			addDominatingVertexAndItsNeigbors(this.dsInitial,this.initialVertices, v);
+			addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, v);
 		}
-		
+
 		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
 
 	}
@@ -320,7 +319,7 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices);
 		}
 	}
-	
+
 	private void addNeighborOfVToDS(List<Integer> ds, Integer v, Integer w, Collection<Integer> wNegb,
 			List<Integer> initalVerteices) {
 		/*
@@ -351,54 +350,19 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 			List<Integer> kVertices = new ArrayList<Integer>();
 			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
 
-			int fromIndex = 0;
-			int toIndex = Math.min(k, undomiantedVerticesSize);
-			TreeMap<Integer, Integer> vdMap = AlgorithmUtil.sortVertexMapAccordingToUtilityIncludeASC(gOriginal,
-					dominatedMap, undominatedVertices);
-			TreeMap<Integer, Integer> allVdMap = AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
-
-			List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
-
-			for (Integer u : vList) {
-				Integer w = getHighestUtilityNeighborOfAVertex(u, allVdMap);
-				AlgorithmUtil.addElementToList(kVerticesDS, w);
-				AlgorithmUtil.addElementToList(kVertices, w);
-				AlgorithmUtil.addElementToList(kVertices, u);
-
-			}
+			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
 			AlgorithmUtil.prepareGraph(am, gI, kVertices);
-
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
-			int paramR = Math.min(kVerticesDS.size(), r);
+			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
 
-			DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+			List<Integer> ag2DS = ag2.getDs2();
 
-			ag.setConsiderableCandidateVertices4DS(kVerticesDS);
-			ag.setOriginalVertexNum(gOriginalVerticeSize);
-			ag.computing();
+			this.dsInitial = ag2DS;
 
-			dsInitial = ag.getDs2();
-			Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
-			List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
-			for (Integer v : addedDSVertices) {
-				dominatedMap.put(v, true);
-				AlgorithmUtil.addElementToList(verticesToAddInGraph, v);
-				undominatedVertices.remove(v);
-
-				Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-				for (Integer u : vNeg) {
-					dominatedMap.put(u, true);
-
-					if (!gInitial.containsVertex(u)) {
-						AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
-					}
-				}
-				undominatedVertices.removeAll(vNeg);
-
-			}
+			List<Integer> verticesToAddInGraph = markDominatedVertices(undominatedVertices, dsInitialCopy);
 
 			undomiantedVerticesSize = undominatedVertices.size();
 
@@ -411,6 +375,64 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 		}
 
 		this.ds = this.dsInitial;
+	}
+
+	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
+		Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
+		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
+		for (Integer v : addedDSVertices) {
+			dominatedMap.put(v, true);
+			AlgorithmUtil.addElementToList(verticesToAddInGraph, v);
+			undominatedVertices.remove(v);
+
+			Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+			for (Integer u : vNeg) {
+				dominatedMap.put(u, true);
+
+				if (!gInitial.containsVertex(u)) {
+					AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
+				}
+			}
+			undominatedVertices.removeAll(vNeg);
+
+		}
+		return verticesToAddInGraph;
+	}
+
+	
+
+	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
+			Graph<Integer, Integer> gI) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+
+		int paramR = Math.min(kVerticesDS.size(), r);
+
+		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+
+		ag.setConsiderableCandidateVertices4DS(kVerticesDS);
+		ag.setOriginalVertexNum(gOriginalVerticeSize);
+		ag.computing();
+
+		return ag;
+
+	}
+
+	private void getKVerticesAndTheirDS(Collection<Integer> undominatedVertices, int undomiantedVerticesSize,
+			List<Integer> kVerticesDS, List<Integer> kVertices) {
+		int fromIndex = 0;
+		int toIndex = Math.min(k, undomiantedVerticesSize);
+		TreeMap<Integer, Integer> vdMap = AlgorithmUtil.sortVertexMapAccordingToUtilityIncludeASC(gOriginal,
+				dominatedMap, undominatedVertices);
+		TreeMap<Integer, Integer> allVdMap = AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
+
+		List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
+
+		for (Integer u : vList) {
+			Integer w = getHighestUtilityNeighborOfAVertex(u, allVdMap);
+			AlgorithmUtil.addElementToList(kVerticesDS, w);
+			AlgorithmUtil.addElementToList(kVertices, w);
+			AlgorithmUtil.addElementToList(kVertices, u);
+
+		}
 	}
 
 }

@@ -81,7 +81,7 @@ public class GreedyDSVSTest {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -134,68 +134,104 @@ public class GreedyDSVSTest {
 					int rUpper = kr[1];
 					int r = rUpper;
 
-//					GreedyDSVS1 ag1 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
-//					ag1.computing();
-//					List<Integer> ds1 = ag1.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds1));
-//					int ds1Size = ds1.size();
+//					GreedyDSVS01 ag01 = new GreedyDSVS01(this.getClass().getName(), am, k, r);
+//					ag01.computing();
+//					List<Integer> ds01 = ag01.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds01));
+//					int ds01Size = ds01.size();
+//
+//					GreedyDSVS02 ag02 = new GreedyDSVS02(this.getClass().getName(), am, k, r);
+//					ag02.computing();
+//					List<Integer> ds02 = ag02.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds02));
+//					int ds02Size = ds02.size();
+//
+//					GreedyDSVS03 ag03 = new GreedyDSVS03(this.getClass().getName(), am, k, r);
+//					ag03.computing();
+//					List<Integer> ds03 = ag03.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds03));
+//					int ds03Size = ds03.size();
+//
+//					GreedyDSVS04 ag04 = new GreedyDSVS04(this.getClass().getName(), am, k, r);
+//					ag04.computing();
+//					List<Integer> ds04 = ag04.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds04));
+//					int ds04Size = ds04.size();
 
-//					GreedyDSVS1 ag2 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
-//					ag2.computing();
-//					List<Integer> ds2 = ag2.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds2));
-//					int ds2Size = ds2.size();
-//
-//					GreedyDSVS1 ag3 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
-//					ag3.computing();
-//					List<Integer> ds3 = ag3.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds3));
-//					int ds3Size = ds3.size();
-//
-					GreedyDSVS1 ag4 = new GreedyDSVS1(this.getClass().getName(), am, k, r);
-					ag4.computing();
-					List<Integer> ds4 = ag4.getDs();
-					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds4));
-					int ds4Size = ds4.size();
-//
-//					GreedyDSV3 ag5 = new GreedyDSV3(this.getClass().getName(), am, k, r);
-//					ag5.computing();
-//					List<Integer> ds5 = ag5.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds5));
-//					int ds5Size = ds5.size();
+					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
+					ag11.computing();
+					List<Integer> ds11 = ag11.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
+					int ds11Size = ds11.size();
+
+					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+					ag12.computing();
+					List<Integer> ds12 = ag12.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
+					int ds12Size = ds12.size();
+
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
+					int ds13Size = ds13.size();
+
+					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
+					ag14.computing();
+					List<Integer> ds14 = ag14.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
+					int ds14Size = ds14.size();
+
 					
-//					// List<Integer> minDS=ds1;
-					Result result = ag4.getResult();
-					//int minDSSize = ds1Size;
-					int chooseDS = 4;
+					int minDSSize = ds11Size;
+					int chooseDS = 5;
+
+//					if (minDSSize >= ds02Size) {
 //
-//					if (minDSSize >= ds2Size) {
-//						// minDS=ds2;
-//						minDSSize = ds2Size;
+//						minDSSize = ds02Size;
 //						chooseDS = 2;
-//						result = ag2.getResult();
+//						result = ag02.getResult();
 //					}
 //
-//					if (minDSSize >= ds3Size) {
+//					if (minDSSize >= ds03Size) {
 //						// minDS=ds3;
-//						minDSSize = ds3Size;
+//						minDSSize = ds03Size;
 //						chooseDS = 3;
-//						result = ag3.getResult();
+//						result = ag03.getResult();
 //					}
 //
-//					if (minDSSize >= ds4Size) {
+//					if (minDSSize >= ds04Size) {
 //						// minDS=ds4;
-//						minDSSize = ds4Size;
+//						minDSSize = ds04Size;
 //						chooseDS = 4;
-//						result = ag4.getResult();
+//						result = ag04.getResult();
 //					}
-//					
-//					if (minDSSize >= ds5Size) {
-//						// minDS=ds5;
-//						minDSSize = ds5Size;
-//						chooseDS = 5;
-//						result = ag5.getResult();
-//					}
+
+					if (minDSSize >= ds11Size) {
+
+						minDSSize = ds11Size;
+						chooseDS = 5;
+					}
+					
+					if (minDSSize >= ds12Size) {
+
+						minDSSize = ds12Size;
+						chooseDS = 6;
+					}
+
+					if (minDSSize >= ds13Size) {
+						// minDS=ds3;
+						minDSSize = ds13Size;
+						chooseDS = 7;
+					}
+
+					if (minDSSize >= ds14Size) {
+						// minDS=ds4;
+						minDSSize = ds14Size;
+						chooseDS = 8;
+					}
+					
+					Result result = getResult(chooseDS,minDSSize,k,r,ag11,ag12,ag13,ag14);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
@@ -208,13 +244,30 @@ public class GreedyDSVSTest {
 		}
 	}
 
+	private Result getResult(int choice,int minDSSize,int k,int r,IGreedyDS... ags) {
+		Result result = new Result();
+
+		StringBuffer sb = new StringBuffer();
+		
+		long runningTime=0;
+		
+		for(IGreedyDS ag:ags){
+			runningTime+=ag.getRunningTime();
+		}
+
+		sb.append(",").append(minDSSize).append(",").append(k).append(",").append(r).append(", ")
+				.append(runningTime);
+		result.setString(sb.toString());
+		return result;
+	}
+	
 	private String setMessage(String file, int i) {
 		String msg;
 		msg = file + "-i=" + i;
 		return msg;
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -224,15 +277,25 @@ public class GreedyDSVSTest {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { //"C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq", "C250.9.clq", 
+		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
+							// "C2000.9.clq", 
+				"C250.9.clq",
 				//"C4000.5.clq",
-//				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
-//				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
-//				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-//				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", 
-				"keller6.clq",
-//				"p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq", "p_hat300-2.clq",
-//				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
+				 "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
+				 "MANN_a27.clq", 
+				 //"MANN_a81.clq", 
+				 "brock200_2.clq",
+				 "brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
+				 "brock800_2.clq", "brock800_4.clq",
+				 "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+				 "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+				 "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+				 "keller4.clq", "keller5.clq",
+				 //"keller6.clq",
+				 "p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq",
+				 "p_hat300-1.clq", "p_hat300-2.clq",
+				 "p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq",
+				 "p_hat700-3.clq"
 		};
 		// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 		int[][] krArray = { { 10, 10 } };

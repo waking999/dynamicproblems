@@ -29,7 +29,7 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
-public class GreedyDSVS1 implements IGreedyDS, ITask {
+public class GreedyDSVS11 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSVS2Test.class);
@@ -105,7 +105,7 @@ public class GreedyDSVS1 implements IGreedyDS, ITask {
 	 */
 	private Graph<Integer, Integer> gInitial;
 
-	public GreedyDSVS1(String indicator, List<String[]> am, int k, int r) {
+	public GreedyDSVS11(String indicator, List<String[]> am, int k, int r) {
 		this.indicator = indicator;
 		this.am = am;
 		this.k = k;

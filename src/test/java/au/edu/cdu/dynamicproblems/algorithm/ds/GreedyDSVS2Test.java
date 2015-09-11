@@ -22,7 +22,7 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 import junit.framework.Assert;
 
 public class GreedyDSVS2Test {
-	private Logger log = LogUtil.getLogger(GreedyDSVS2.class);
+	private Logger log = LogUtil.getLogger(GreedyDSVS12.class);
 
 	@Ignore
 	@Test
@@ -218,7 +218,7 @@ public class GreedyDSVS2Test {
 			int r = rUpper;
 			// for (int r = 1; r <= rUpper; r++) {
 
-			GreedyDSVS2 ag = new GreedyDSVS2(this.getClass().getName(), am, k, r);
+			GreedyDSVS12 ag = new GreedyDSVS12(this.getClass().getName(), am, k, r);
 
 			Result result = null;
 

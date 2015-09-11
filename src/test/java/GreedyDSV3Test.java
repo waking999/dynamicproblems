@@ -1,4 +1,4 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,8 +21,8 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import junit.framework.Assert;
 
-public class GreedyDSVS4Test {
-	private Logger log = LogUtil.getLogger(GreedyDSVS4Test.class);
+public class GreedyDSV3Test {
+	private Logger log = LogUtil.getLogger(GreedyDSV3Test.class);
 
 	@Ignore
 	@Test
@@ -91,10 +91,9 @@ public class GreedyDSVS4Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet",
-				//"000034_zachary.konet", "000062_dolphins.konet",
-				//"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				//"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
+				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
 				// "002426_hamster_ful.konet",
 				// "002888_facebook.konet",
 				// "003133_Human_protein_Vidal.konet",
@@ -104,8 +103,7 @@ public class GreedyDSVS4Test {
 				// "06474_Route_views.konet"
 		};
 
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
-		int[][] krArray = { { 5, 5 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
@@ -137,7 +135,7 @@ public class GreedyDSVS4Test {
 		return msg;
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -147,33 +145,24 @@ public class GreedyDSVS4Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { //"C1000.9.clq", "C125.9.clq", 
-				//"C2000.5.clq", 
-//				"C2000.9.clq", "C250.9.clq", 
-				"C4000.5.clq",
-//				"C500.9.clq", 
-				"DSJC1000.5.clq", 
-				"DSJC500.5.clq", 
-				//"MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
-//				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
-//				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-//				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", "keller6.clq",
-				"p_hat1500-1.clq", 
-				//"p_hat1500-2.clq", "p_hat1500-3.clq", 
-				"p_hat300-1.clq", 
-				//"p_hat300-2.clq",
-//				"p_hat300-3.clq", 
-				"p_hat700-1.clq", 
-				//"p_hat700-2.clq", "p_hat700-3.clq"
+		String[] files = { "C1000.9.clq", "C125.9.clq", 
+				"C2000.5.clq", 
+				"C2000.9.clq", "C250.9.clq", "C4000.5.clq",
+				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq", "MANN_a81.clq", "brock200_2.clq",
+				"brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq", "brock800_4.clq",
+				"gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", "keller6.clq",
+				"p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq", "p_hat300-2.clq",
+				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
-		int[][] krArray = { { 10, 10 } };
+		int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
+
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -217,7 +206,7 @@ public class GreedyDSVS4Test {
 			int r = rUpper;
 			// for (int r = 1; r <= rUpper; r++) {
 
-			GreedyDSVS14 ag = new GreedyDSVS14(this.getClass().getName(), am, k, r);
+			GreedyDSV3 ag = new GreedyDSV3(this.getClass().getName(), am, k, r);
 
 			Result result = null;
 
