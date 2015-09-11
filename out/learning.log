@@ -1,903 +1,459 @@
-20:42:09,559 DEBUG [GreedyDSReductionTest] out/KONECT-GreedyDSReductionTest-20150722.csv
-20:42:09,610 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-1.mis-i=1-withReductionRule=true-strategy=3
-20:42:10,400 DEBUG [GreedyDSReductionTest] 5:,13,5,5, 726451290
-20:42:10,883 DEBUG [GreedyDSReductionTest] 10:,12,10,10, 457851701
-20:42:11,605 DEBUG [GreedyDSReductionTest] 15:,13,15,15, 704299391
-20:42:16,034 DEBUG [GreedyDSReductionTest] 20:,13,20,20, 4408777676
-20:42:16,070 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-1.mis-i=1-withReductionRule=true-strategy=4
-20:42:16,753 DEBUG [GreedyDSReductionTest] 5:,22,5,5, 660732985
-20:42:17,428 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 661639600
-20:42:19,279 DEBUG [GreedyDSReductionTest] 15:,21,15,15, 1832869460
-20:42:28,999 DEBUG [GreedyDSReductionTest] 20:,21,20,20, 9704267602
-20:42:29,014 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-2.mis-i=1-withReductionRule=true-strategy=3
-20:42:29,446 DEBUG [GreedyDSReductionTest] 5:,14,5,5, 417862363
-20:42:29,890 DEBUG [GreedyDSReductionTest] 10:,12,10,10, 430515148
-20:42:30,556 DEBUG [GreedyDSReductionTest] 15:,13,15,15, 646490386
-20:42:41,462 DEBUG [GreedyDSReductionTest] 20:,13,20,20, 10893590414
-20:42:41,469 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-2.mis-i=1-withReductionRule=true-strategy=4
-20:42:42,209 DEBUG [GreedyDSReductionTest] 5:,24,5,5, 724447494
-20:42:42,853 DEBUG [GreedyDSReductionTest] 10:,24,10,10, 630115924
-20:42:44,569 DEBUG [GreedyDSReductionTest] 15:,23,15,15, 1701464161
-20:43:09,865 DEBUG [GreedyDSReductionTest] 20:,22,20,20, 25282660679
-20:43:09,872 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-3.mis-i=1-withReductionRule=true-strategy=3
-20:43:10,357 DEBUG [GreedyDSReductionTest] 5:,16,5,5, 470132842
-20:43:10,800 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 429573396
-20:43:11,336 DEBUG [GreedyDSReductionTest] 15:,14,15,15, 522874939
-20:43:13,275 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 1918338568
-20:43:13,285 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-3.mis-i=1-withReductionRule=true-strategy=4
-20:43:14,038 DEBUG [GreedyDSReductionTest] 5:,24,5,5, 731369588
-20:43:14,638 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 586144059
-20:43:15,433 DEBUG [GreedyDSReductionTest] 15:,21,15,15, 781330669
-20:43:17,805 DEBUG [GreedyDSReductionTest] 20:,22,20,20, 2358307799
-20:43:17,813 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-4.mis-i=1-withReductionRule=true-strategy=3
-20:43:18,268 DEBUG [GreedyDSReductionTest] 5:,14,5,5, 437308148
-20:43:18,679 DEBUG [GreedyDSReductionTest] 10:,13,10,10, 397801429
-20:43:19,253 DEBUG [GreedyDSReductionTest] 15:,14,15,15, 559362189
-20:43:21,467 DEBUG [GreedyDSReductionTest] 20:,13,20,20, 2199696021
-20:43:21,471 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-4.mis-i=1-withReductionRule=true-strategy=4
-20:43:22,148 DEBUG [GreedyDSReductionTest] 5:,23,5,5, 662973425
-20:43:22,732 DEBUG [GreedyDSReductionTest] 10:,22,10,10, 569391202
-20:43:23,517 DEBUG [GreedyDSReductionTest] 15:,19,15,15, 770975715
-20:43:33,057 DEBUG [GreedyDSReductionTest] 20:,21,20,20, 9527278831
-20:43:33,062 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-5.mis-i=1-withReductionRule=true-strategy=3
-20:43:33,491 DEBUG [GreedyDSReductionTest] 5:,15,5,5, 415388811
-20:43:34,141 DEBUG [GreedyDSReductionTest] 10:,13,10,10, 635976363
-20:43:34,718 DEBUG [GreedyDSReductionTest] 15:,14,15,15, 562821626
-20:43:41,257 DEBUG [GreedyDSReductionTest] 20:,14,20,20, 6526140241
-20:43:41,261 DEBUG [GreedyDSReductionTest] frb30-15-mis/frb30-15-5.mis-i=1-withReductionRule=true-strategy=4
-20:43:42,098 DEBUG [GreedyDSReductionTest] 5:,23,5,5, 823658222
-20:43:42,711 DEBUG [GreedyDSReductionTest] 10:,21,10,10, 598094502
-20:43:45,514 DEBUG [GreedyDSReductionTest] 15:,23,15,15, 2789481990
-20:43:54,670 DEBUG [GreedyDSReductionTest] 20:,22,20,20, 9141606768
-20:43:54,678 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-1.mis-i=1-withReductionRule=true-strategy=3
-20:43:55,775 DEBUG [GreedyDSReductionTest] 5:,18,5,5, 1068550284
-20:43:56,745 DEBUG [GreedyDSReductionTest] 10:,17,10,10, 943005982
-20:43:59,505 DEBUG [GreedyDSReductionTest] 15:,17,15,15, 2726635591
-20:44:19,660 DEBUG [GreedyDSReductionTest] 20:,16,20,20, 20130498501
-20:44:19,667 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-1.mis-i=1-withReductionRule=true-strategy=4
-20:44:20,964 DEBUG [GreedyDSReductionTest] 5:,26,5,5, 1268588662
-20:44:22,297 DEBUG [GreedyDSReductionTest] 10:,26,10,10, 1301895372
-20:44:24,363 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 2040941317
-20:44:49,544 DEBUG [GreedyDSReductionTest] 20:,27,20,20, 25156365788
-20:44:49,552 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-2.mis-i=1-withReductionRule=true-strategy=3
-20:44:50,469 DEBUG [GreedyDSReductionTest] 5:,17,5,5, 891549347
-20:44:52,304 DEBUG [GreedyDSReductionTest] 10:,16,10,10, 1807199176
-20:44:53,356 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 1026646528
-20:45:10,436 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 17054605783
-20:45:10,441 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-2.mis-i=1-withReductionRule=true-strategy=4
-20:45:11,978 DEBUG [GreedyDSReductionTest] 5:,29,5,5, 1506668490
-20:45:13,291 DEBUG [GreedyDSReductionTest] 10:,30,10,10, 1286823639
-20:45:15,173 DEBUG [GreedyDSReductionTest] 15:,26,15,15, 1853932532
-20:45:22,057 DEBUG [GreedyDSReductionTest] 20:,27,20,20, 6857004990
-20:45:22,065 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-3.mis-i=1-withReductionRule=true-strategy=3
-20:45:22,911 DEBUG [GreedyDSReductionTest] 5:,17,5,5, 816305774
-20:45:23,750 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 812897895
-20:45:33,828 DEBUG [GreedyDSReductionTest] 15:,16,15,15, 10049051328
-20:46:10,165 DEBUG [GreedyDSReductionTest] 20:,14,20,20, 36311073808
-20:46:10,171 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-3.mis-i=1-withReductionRule=true-strategy=4
-20:46:12,333 DEBUG [GreedyDSReductionTest] 5:,27,5,5, 2133450511
-20:46:13,728 DEBUG [GreedyDSReductionTest] 10:,27,10,10, 1366168448
-20:46:16,038 DEBUG [GreedyDSReductionTest] 15:,28,15,15, 2283825766
-20:46:32,501 DEBUG [GreedyDSReductionTest] 20:,24,20,20, 16436228873
-20:46:32,509 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-4.mis-i=1-withReductionRule=true-strategy=3
-20:46:33,355 DEBUG [GreedyDSReductionTest] 5:,15,5,5, 820097484
-20:46:34,184 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 804293532
-20:46:36,864 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 2652395889
-20:46:43,625 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 6733510432
-20:46:43,631 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-4.mis-i=1-withReductionRule=true-strategy=4
-20:46:44,979 DEBUG [GreedyDSReductionTest] 5:,27,5,5, 1320674530
-20:46:46,078 DEBUG [GreedyDSReductionTest] 10:,26,10,10, 1072581838
-20:46:47,862 DEBUG [GreedyDSReductionTest] 15:,26,15,15, 1756819881
-20:47:21,325 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 33438145075
-20:47:21,333 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-5.mis-i=1-withReductionRule=true-strategy=3
-20:47:22,256 DEBUG [GreedyDSReductionTest] 5:,17,5,5, 880020395
-20:47:23,680 DEBUG [GreedyDSReductionTest] 10:,15,10,10, 1369696216
-20:47:28,390 DEBUG [GreedyDSReductionTest] 15:,15,15,15, 4665945922
-21:14:17,373 DEBUG [GreedyDSReductionTest] 20:,15,20,20, 1609033459341
-21:14:17,380 DEBUG [GreedyDSReductionTest] frb35-17-mis/frb35-17-5.mis-i=1-withReductionRule=true-strategy=4
-21:14:18,830 DEBUG [GreedyDSReductionTest] 5:,27,5,5, 1421908114
-21:14:20,035 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 1179642631
-21:14:22,539 DEBUG [GreedyDSReductionTest] 15:,24,15,15, 2466404210
-21:14:35,191 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 12611496425
-21:14:35,201 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-1.mis-i=1-withReductionRule=true-strategy=3
-21:14:36,773 DEBUG [GreedyDSReductionTest] 5:,18,5,5, 1528503338
-21:14:38,291 DEBUG [GreedyDSReductionTest] 10:,17,10,10, 1474769071
-21:14:40,070 DEBUG [GreedyDSReductionTest] 15:,18,15,15, 1735668064
-21:16:08,293 DEBUG [GreedyDSReductionTest] 20:,18,20,20, 88184323197
-21:16:08,301 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-1.mis-i=1-withReductionRule=true-strategy=4
-21:16:11,027 DEBUG [GreedyDSReductionTest] 5:,32,5,5, 2682266131
-21:16:13,424 DEBUG [GreedyDSReductionTest] 10:,32,10,10, 2348634804
-21:16:16,221 DEBUG [GreedyDSReductionTest] 15:,29,15,15, 2753123970
-21:16:55,697 DEBUG [GreedyDSReductionTest] 20:,30,20,20, 39433626084
-21:16:55,710 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-2.mis-i=1-withReductionRule=true-strategy=3
-21:16:57,128 DEBUG [GreedyDSReductionTest] 5:,17,5,5, 1374931537
-21:16:58,759 DEBUG [GreedyDSReductionTest] 10:,17,10,10, 1584858189
-21:17:01,061 DEBUG [GreedyDSReductionTest] 15:,17,15,15, 2256249010
-21:17:20,506 DEBUG [GreedyDSReductionTest] 20:,17,20,20, 19403535064
-21:17:20,515 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-2.mis-i=1-withReductionRule=true-strategy=4
-21:17:23,794 DEBUG [GreedyDSReductionTest] 5:,32,5,5, 3236038312
-21:17:26,360 DEBUG [GreedyDSReductionTest] 10:,31,10,10, 2521002439
-21:17:30,586 DEBUG [GreedyDSReductionTest] 15:,29,15,15, 4177491911
-21:18:33,820 DEBUG [GreedyDSReductionTest] 20:,28,20,20, 63192182438
-21:18:33,831 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-3.mis-i=1-withReductionRule=true-strategy=3
-21:18:35,496 DEBUG [GreedyDSReductionTest] 5:,20,5,5, 1591785393
-21:18:38,727 DEBUG [GreedyDSReductionTest] 10:,19,10,10, 3145857491
-21:18:42,096 DEBUG [GreedyDSReductionTest] 15:,20,15,15, 3308155948
-21:18:49,010 DEBUG [GreedyDSReductionTest] 20:,19,20,20, 6870260878
-21:18:49,018 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-3.mis-i=1-withReductionRule=true-strategy=4
-21:18:51,676 DEBUG [GreedyDSReductionTest] 5:,32,5,5, 2611994735
-21:18:54,327 DEBUG [GreedyDSReductionTest] 10:,31,10,10, 2581636353
-21:18:59,626 DEBUG [GreedyDSReductionTest] 15:,32,15,15, 5234052768
-21:19:16,556 DEBUG [GreedyDSReductionTest] 20:,29,20,20, 16884748925
-21:19:16,567 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-4.mis-i=1-withReductionRule=true-strategy=3
-21:19:18,141 DEBUG [GreedyDSReductionTest] 5:,18,5,5, 1529686039
-21:19:19,708 DEBUG [GreedyDSReductionTest] 10:,19,10,10, 1522347907
-21:19:21,790 DEBUG [GreedyDSReductionTest] 15:,18,15,15, 2036012574
-21:20:16,188 DEBUG [GreedyDSReductionTest] 20:,17,20,20, 54349818090
-21:20:16,197 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-4.mis-i=1-withReductionRule=true-strategy=4
-21:20:18,846 DEBUG [GreedyDSReductionTest] 5:,32,5,5, 2598767041
-21:20:21,055 DEBUG [GreedyDSReductionTest] 10:,31,10,10, 2164778833
-21:20:24,827 DEBUG [GreedyDSReductionTest] 15:,29,15,15, 3719457982
-21:21:50,141 DEBUG [GreedyDSReductionTest] 20:,29,20,20, 85265298266
-21:21:50,151 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-5.mis-i=1-withReductionRule=true-strategy=3
-21:21:51,655 DEBUG [GreedyDSReductionTest] 5:,18,5,5, 1457515408
-21:21:53,305 DEBUG [GreedyDSReductionTest] 10:,17,10,10, 1604493063
-21:21:55,031 DEBUG [GreedyDSReductionTest] 15:,17,15,15, 1679721042
-21:21:58,980 DEBUG [GreedyDSReductionTest] 20:,18,20,20, 3883000963
-21:21:58,998 DEBUG [GreedyDSReductionTest] frb40-19-mis/frb40-19-5.mis-i=1-withReductionRule=true-strategy=4
-21:22:03,238 DEBUG [GreedyDSReductionTest] 5:,32,5,5, 4150720670
-21:22:07,080 DEBUG [GreedyDSReductionTest] 10:,31,10,10, 3780025119
-21:22:10,363 DEBUG [GreedyDSReductionTest] 15:,28,15,15, 3239172273
-21:22:28,575 DEBUG [GreedyDSReductionTest] 20:,30,20,20, 18148173474
-21:22:28,599 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-1.mis-i=1-withReductionRule=true-strategy=3
-21:22:32,573 DEBUG [GreedyDSReductionTest] 5:,19,5,5, 3886223268
-21:22:35,041 DEBUG [GreedyDSReductionTest] 10:,20,10,10, 2402183488
-21:22:44,679 DEBUG [GreedyDSReductionTest] 15:,19,15,15, 9569355523
-21:24:51,616 DEBUG [GreedyDSReductionTest] 20:,18,20,20, 126876751362
-21:24:51,627 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-1.mis-i=1-withReductionRule=true-strategy=4
-21:24:56,246 DEBUG [GreedyDSReductionTest] 5:,37,5,5, 4524858658
-21:25:00,173 DEBUG [GreedyDSReductionTest] 10:,34,10,10, 3832138063
-21:25:09,697 DEBUG [GreedyDSReductionTest] 15:,34,15,15, 9446025832
-21:28:53,057 DEBUG [GreedyDSReductionTest] 20:,33,20,20, 223295798021
-21:28:53,071 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-2.mis-i=1-withReductionRule=true-strategy=3
-21:28:55,803 DEBUG [GreedyDSReductionTest] 5:,21,5,5, 2661854919
-21:28:58,420 DEBUG [GreedyDSReductionTest] 10:,19,10,10, 2547432986
-21:29:04,049 DEBUG [GreedyDSReductionTest] 15:,21,15,15, 5554948864
-21:29:32,602 DEBUG [GreedyDSReductionTest] 20:,20,20,20, 28479845734
-21:29:32,617 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-2.mis-i=1-withReductionRule=true-strategy=4
-21:29:37,337 DEBUG [GreedyDSReductionTest] 5:,36,5,5, 4635452680
-21:29:41,778 DEBUG [GreedyDSReductionTest] 10:,36,10,10, 4369428813
-21:29:47,228 DEBUG [GreedyDSReductionTest] 15:,33,15,15, 5382159139
-21:30:04,581 DEBUG [GreedyDSReductionTest] 20:,32,20,20, 17256233708
-21:30:04,602 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-3.mis-i=1-withReductionRule=true-strategy=3
-21:30:08,509 DEBUG [GreedyDSReductionTest] 5:,20,5,5, 3800466140
-21:30:11,052 DEBUG [GreedyDSReductionTest] 10:,20,10,10, 2465795823
-21:30:15,435 DEBUG [GreedyDSReductionTest] 15:,21,15,15, 4318687332
-21:40:07,573 DEBUG [GreedyDSReductionTest] 20:,20,20,20, 592096761261
-21:40:07,584 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-3.mis-i=1-withReductionRule=true-strategy=4
-21:40:12,300 DEBUG [GreedyDSReductionTest] 5:,36,5,5, 4633685799
-21:40:16,341 DEBUG [GreedyDSReductionTest] 10:,34,10,10, 3973017280
-21:40:21,166 DEBUG [GreedyDSReductionTest] 15:,31,15,15, 4751345037
-21:41:05,266 DEBUG [GreedyDSReductionTest] 20:,32,20,20, 44028679294
-21:41:05,279 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-4.mis-i=1-withReductionRule=true-strategy=3
-21:41:07,909 DEBUG [GreedyDSReductionTest] 5:,21,5,5, 2560906224
-21:41:10,519 DEBUG [GreedyDSReductionTest] 10:,21,10,10, 2544498673
-21:41:32,477 DEBUG [GreedyDSReductionTest] 15:,22,15,15, 21889018033
-01:50:27,013 DEBUG [GreedyDSReductionTest] 20:,20,20,20, 14935160337177
-01:50:27,030 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-4.mis-i=1-withReductionRule=true-strategy=4
-01:50:31,155 DEBUG [GreedyDSReductionTest] 5:,35,5,5, 4060921285
-01:50:34,914 DEBUG [GreedyDSReductionTest] 10:,36,10,10, 3696398169
-01:50:44,393 DEBUG [GreedyDSReductionTest] 15:,35,15,15, 9415796990
-01:51:35,849 DEBUG [GreedyDSReductionTest] 20:,32,20,20, 51398233114
-01:51:35,895 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-5.mis-i=1-withReductionRule=true-strategy=3
-01:51:38,458 DEBUG [GreedyDSReductionTest] 5:,22,5,5, 2499898359
-01:51:40,769 DEBUG [GreedyDSReductionTest] 10:,20,10,10, 2249978370
-01:51:50,045 DEBUG [GreedyDSReductionTest] 15:,21,15,15, 9215369001
-01:52:16,540 DEBUG [GreedyDSReductionTest] 20:,21,20,20, 26431341046
-01:52:16,550 DEBUG [GreedyDSReductionTest] frb45-21-mis/frb45-21-5.mis-i=1-withReductionRule=true-strategy=4
-01:52:20,342 DEBUG [GreedyDSReductionTest] 5:,33,5,5, 3730791190
-01:52:23,841 DEBUG [GreedyDSReductionTest] 10:,33,10,10, 3436244507
-01:52:28,847 DEBUG [GreedyDSReductionTest] 15:,32,15,15, 4943513950
-01:54:47,103 DEBUG [GreedyDSReductionTest] 20:,33,20,20, 138200800917
-01:54:47,126 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-1.mis-i=1-withReductionRule=true-strategy=3
-01:54:52,565 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 5328273648
-01:54:58,011 DEBUG [GreedyDSReductionTest] 10:,24,10,10, 5335635842
-01:59:23,191 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 265079939186
-02:52:53,708 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 3210548644243
-02:52:53,730 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-1.mis-i=1-withReductionRule=true-strategy=4
-02:53:02,282 DEBUG [GreedyDSReductionTest] 5:,41,5,5, 8432221231
-02:53:10,317 DEBUG [GreedyDSReductionTest] 10:,42,10,10, 7920695735
-02:53:24,177 DEBUG [GreedyDSReductionTest] 15:,41,15,15, 13744447577
-02:54:30,202 DEBUG [GreedyDSReductionTest] 20:,40,20,20, 65914697759
-02:54:30,223 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-2.mis-i=1-withReductionRule=true-strategy=3
-02:54:35,768 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 5437792582
-02:54:41,141 DEBUG [GreedyDSReductionTest] 10:,24,10,10, 5263422247
-02:54:48,273 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 7021809956
-03:04:10,570 DEBUG [GreedyDSReductionTest] 20:,24,20,20, 562205981515
-03:04:10,589 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-2.mis-i=1-withReductionRule=true-strategy=4
-03:04:19,424 DEBUG [GreedyDSReductionTest] 5:,43,5,5, 8721971281
-03:04:27,057 DEBUG [GreedyDSReductionTest] 10:,41,10,10, 7520240334
-03:04:36,631 DEBUG [GreedyDSReductionTest] 15:,38,15,15, 9460297227
-03:06:51,752 DEBUG [GreedyDSReductionTest] 20:,35,20,20, 135015747925
-03:06:51,773 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-3.mis-i=1-withReductionRule=true-strategy=3
-03:06:56,838 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 4953994127
-03:07:02,651 DEBUG [GreedyDSReductionTest] 10:,24,10,10, 5699933830
-03:07:15,462 DEBUG [GreedyDSReductionTest] 15:,23,15,15, 12699961527
-03:07:51,193 DEBUG [GreedyDSReductionTest] 20:,23,20,20, 35616899312
-03:07:51,212 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-3.mis-i=1-withReductionRule=true-strategy=4
-03:07:59,855 DEBUG [GreedyDSReductionTest] 5:,42,5,5, 8533462525
-03:08:07,484 DEBUG [GreedyDSReductionTest] 10:,41,10,10, 7518563769
-03:08:17,324 DEBUG [GreedyDSReductionTest] 15:,39,15,15, 9726141193
-03:08:40,981 DEBUG [GreedyDSReductionTest] 20:,40,20,20, 23546209034
-03:08:41,002 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-4.mis-i=1-withReductionRule=true-strategy=3
-03:08:46,124 DEBUG [GreedyDSReductionTest] 5:,24,5,5, 5010743600
-03:08:50,951 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 4713992575
-03:08:57,487 DEBUG [GreedyDSReductionTest] 15:,23,15,15, 6427773663
-03:14:26,919 DEBUG [GreedyDSReductionTest] 20:,23,20,20, 329337500740
-03:14:26,944 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-4.mis-i=1-withReductionRule=true-strategy=4
-03:14:35,315 DEBUG [GreedyDSReductionTest] 5:,41,5,5, 8261408049
-03:14:42,601 DEBUG [GreedyDSReductionTest] 10:,40,10,10, 7178356502
-03:14:52,245 DEBUG [GreedyDSReductionTest] 15:,39,15,15, 9534091245
-03:16:42,464 DEBUG [GreedyDSReductionTest] 20:,41,20,20, 110112318430
-03:16:42,486 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-5.mis-i=1-withReductionRule=true-strategy=3
-03:16:47,476 DEBUG [GreedyDSReductionTest] 5:,24,5,5, 4856248549
-03:16:52,448 DEBUG [GreedyDSReductionTest] 10:,23,10,10, 4846592038
-03:16:58,269 DEBUG [GreedyDSReductionTest] 15:,23,15,15, 5712023981
-03:17:40,012 DEBUG [GreedyDSReductionTest] 20:,23,20,20, 41636207030
-03:17:40,030 DEBUG [GreedyDSReductionTest] frb53-24-mis/frb53-24-5.mis-i=1-withReductionRule=true-strategy=4
-03:17:48,250 DEBUG [GreedyDSReductionTest] 5:,40,5,5, 8111176328
-03:17:55,776 DEBUG [GreedyDSReductionTest] 10:,40,10,10, 7409620300
-03:18:04,396 DEBUG [GreedyDSReductionTest] 15:,37,15,15, 8494834860
-03:19:27,645 DEBUG [GreedyDSReductionTest] 20:,39,20,20, 83145601810
-03:19:27,669 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-1.mis-i=1-withReductionRule=true-strategy=3
-03:19:33,934 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 6131297120
-03:19:39,801 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 5729847692
-03:19:48,446 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 8510380095
-03:23:00,177 DEBUG [GreedyDSReductionTest] 20:,24,20,20, 191586474090
-03:23:00,199 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-1.mis-i=1-withReductionRule=true-strategy=4
-03:23:10,388 DEBUG [GreedyDSReductionTest] 5:,44,5,5, 10038329750
-03:23:19,435 DEBUG [GreedyDSReductionTest] 10:,43,10,10, 8905838572
-03:23:31,279 DEBUG [GreedyDSReductionTest] 15:,41,15,15, 11709052154
-03:28:22,132 DEBUG [GreedyDSReductionTest] 20:,44,20,20, 290729188214
-03:28:22,163 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-2.mis-i=1-withReductionRule=true-strategy=3
-03:28:28,644 DEBUG [GreedyDSReductionTest] 5:,26,5,5, 6344861017
-03:28:36,303 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 7523809520
-03:31:16,324 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 159890787993
-03:32:51,447 DEBUG [GreedyDSReductionTest] 20:,24,20,20, 94990199034
-03:32:51,468 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-2.mis-i=1-withReductionRule=true-strategy=4
-03:33:02,191 DEBUG [GreedyDSReductionTest] 5:,43,5,5, 10564891166
-03:33:11,493 DEBUG [GreedyDSReductionTest] 10:,42,10,10, 9163934224
-03:33:25,335 DEBUG [GreedyDSReductionTest] 15:,42,15,15, 13704646252
-03:35:48,110 DEBUG [GreedyDSReductionTest] 20:,41,20,20, 142645039032
-03:35:48,136 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-3.mis-i=1-withReductionRule=true-strategy=3
-03:35:54,437 DEBUG [GreedyDSReductionTest] 5:,26,5,5, 6164734604
-03:36:00,958 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 6386570368
-03:38:34,372 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 153276306208
-09:36:44,984 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 21491479374015
-09:36:45,009 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-3.mis-i=1-withReductionRule=true-strategy=4
-09:36:55,096 DEBUG [GreedyDSReductionTest] 5:,43,5,5, 9944140895
-09:37:04,561 DEBUG [GreedyDSReductionTest] 10:,45,10,10, 9323287377
-09:37:23,994 DEBUG [GreedyDSReductionTest] 15:,44,15,15, 19303217370
-09:38:20,194 DEBUG [GreedyDSReductionTest] 20:,41,20,20, 56076958063
-09:38:20,219 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-4.mis-i=1-withReductionRule=true-strategy=3
-09:38:26,942 DEBUG [GreedyDSReductionTest] 5:,27,5,5, 6590227330
-09:38:33,550 DEBUG [GreedyDSReductionTest] 10:,26,10,10, 6477387915
-09:39:13,808 DEBUG [GreedyDSReductionTest] 15:,26,15,15, 40113268960
-09:43:26,536 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 252605933069
-09:43:26,561 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-4.mis-i=1-withReductionRule=true-strategy=4
-09:43:37,641 DEBUG [GreedyDSReductionTest] 5:,46,5,5, 10947504141
-09:43:47,080 DEBUG [GreedyDSReductionTest] 10:,44,10,10, 9290599378
-09:43:59,698 DEBUG [GreedyDSReductionTest] 15:,42,15,15, 12469848490
-09:45:32,191 DEBUG [GreedyDSReductionTest] 20:,42,20,20, 92367755342
-09:45:32,215 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-5.mis-i=1-withReductionRule=true-strategy=3
-09:45:38,207 DEBUG [GreedyDSReductionTest] 5:,26,5,5, 5866589274
-09:45:43,593 DEBUG [GreedyDSReductionTest] 10:,24,10,10, 5258355911
-09:45:52,538 DEBUG [GreedyDSReductionTest] 15:,24,15,15, 8822297169
-11:08:22,898 DEBUG [GreedyDSReductionTest] 20:,24,20,20, 4950468935140
-11:08:22,922 DEBUG [GreedyDSReductionTest] frb56-25-mis/frb56-25-5.mis-i=1-withReductionRule=true-strategy=4
-11:08:33,182 DEBUG [GreedyDSReductionTest] 5:,45,5,5, 10121852471
-11:08:42,422 DEBUG [GreedyDSReductionTest] 10:,44,10,10, 9115913492
-11:09:01,478 DEBUG [GreedyDSReductionTest] 15:,43,15,15, 18932642142
-11:16:33,940 DEBUG [GreedyDSReductionTest] 20:,41,20,20, 452358724201
-11:16:33,967 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-1.mis-i=1-withReductionRule=true-strategy=3
-11:16:40,819 DEBUG [GreedyDSReductionTest] 5:,26,5,5, 6703190865
-11:16:47,485 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 6523510161
-11:16:59,063 DEBUG [GreedyDSReductionTest] 15:,26,15,15, 11437969874
-11:26:44,210 DEBUG [GreedyDSReductionTest] 20:,26,20,20, 585012998174
-11:26:44,235 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-1.mis-i=1-withReductionRule=true-strategy=4
-11:26:57,478 DEBUG [GreedyDSReductionTest] 5:,48,5,5, 13100452105
-11:27:09,291 DEBUG [GreedyDSReductionTest] 10:,46,10,10, 11669513356
-11:27:22,379 DEBUG [GreedyDSReductionTest] 15:,45,15,15, 12936360126
-11:29:52,008 DEBUG [GreedyDSReductionTest] 20:,45,20,20, 149490728438
-11:29:52,041 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-2.mis-i=1-withReductionRule=true-strategy=3
-11:29:58,854 DEBUG [GreedyDSReductionTest] 5:,25,5,5, 6673149303
-11:30:06,909 DEBUG [GreedyDSReductionTest] 10:,25,10,10, 7915494030
-11:31:40,053 DEBUG [GreedyDSReductionTest] 15:,25,15,15, 93005300781
-00:05:05,093 DEBUG [GreedyDSReductionTest] 20:,25,20,20, 45206963841619
-00:05:05,171 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-2.mis-i=1-withReductionRule=true-strategy=4
-00:05:26,263 DEBUG [GreedyDSReductionTest] 5:,47,5,5, 20819771347
-00:05:43,825 DEBUG [GreedyDSReductionTest] 10:,47,10,10, 17314204948
-00:06:03,509 DEBUG [GreedyDSReductionTest] 15:,43,15,15, 19325325168
-00:09:57,758 DEBUG [GreedyDSReductionTest] 20:,45,20,20, 233990031718
-00:09:57,790 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-3.mis-i=1-withReductionRule=true-strategy=3
-00:10:10,170 DEBUG [GreedyDSReductionTest] 5:,29,5,5, 12209889128
-00:10:23,790 DEBUG [GreedyDSReductionTest] 10:,29,10,10, 13426651503
-00:10:50,182 DEBUG [GreedyDSReductionTest] 15:,28,15,15, 26220151888
-10:27:33,601 DEBUG [GreedyDSReductionTest] 20:,27,20,20, 37004937696465
-10:27:33,630 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-3.mis-i=1-withReductionRule=true-strategy=4
-10:27:47,080 DEBUG [GreedyDSReductionTest] 5:,46,5,5, 13293940016
-10:28:00,106 DEBUG [GreedyDSReductionTest] 10:,46,10,10, 12860848339
-10:28:15,979 DEBUG [GreedyDSReductionTest] 15:,43,15,15, 15699681009
-10:30:55,120 DEBUG [GreedyDSReductionTest] 20:,43,20,20, 158962978695
-10:30:55,151 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-4.mis-i=1-withReductionRule=true-strategy=3
-10:31:03,943 DEBUG [GreedyDSReductionTest] 5:,27,5,5, 8624895098
-10:31:11,873 DEBUG [GreedyDSReductionTest] 10:,26,10,10, 7759318518
-10:32:49,354 DEBUG [GreedyDSReductionTest] 15:,27,15,15, 97303915168
-11:01:28,283 DEBUG [GreedyDSReductionTest] 20:,26,20,20, 1718849899524
-11:01:28,309 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-4.mis-i=1-withReductionRule=true-strategy=4
-11:01:41,658 DEBUG [GreedyDSReductionTest] 5:,46,5,5, 13168668058
-11:01:54,257 DEBUG [GreedyDSReductionTest] 10:,47,10,10, 12442741727
-11:02:15,624 DEBUG [GreedyDSReductionTest] 15:,44,15,15, 21211167792
-11:03:01,308 DEBUG [GreedyDSReductionTest] 20:,42,20,20, 45529894479
-11:03:01,336 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-5.mis-i=1-withReductionRule=true-strategy=3
-11:03:09,558 DEBUG [GreedyDSReductionTest] 5:,28,5,5, 8072110614
-11:03:17,014 DEBUG [GreedyDSReductionTest] 10:,29,10,10, 7300609067
-11:04:48,894 DEBUG [GreedyDSReductionTest] 15:,27,15,15, 91730267323
-11:17:33,787 DEBUG [GreedyDSReductionTest] 20:,27,20,20, 764648662688
-11:17:33,816 DEBUG [GreedyDSReductionTest] frb59-26-mis/frb59-26-5.mis-i=1-withReductionRule=true-strategy=4
-11:17:47,052 DEBUG [GreedyDSReductionTest] 5:,48,5,5, 13082777984
-11:17:59,277 DEBUG [GreedyDSReductionTest] 10:,46,10,10, 12041016495
-11:18:14,111 DEBUG [GreedyDSReductionTest] 15:,43,15,15, 14681246636
-11:26:41,063 DEBUG [GreedyDSReductionTest] 20:,44,20,20, 506823473375
-00:43:52,101 DEBUG [GreedyDSV1Test] out/DIMACS-GreedyDSV1Test-20150730.csv
-00:43:52,353 DEBUG [GreedyDSV1Test] C1000.9.clq-i=1
-00:43:57,310 DEBUG [GreedyDSV1Test] 5:,3,5,5, 3944071572
-00:44:01,750 DEBUG [GreedyDSV1Test] 10:,3,10,10, 3342177492
-00:44:08,137 DEBUG [GreedyDSV1Test] 15:,3,15,15, 5154751568
-00:44:14,535 DEBUG [GreedyDSV1Test] 20:,3,20,20, 5384674374
-00:44:14,538 DEBUG [GreedyDSV1Test] C125.9.clq-i=1
-00:44:14,554 DEBUG [GreedyDSV1Test] 5:,2,5,5, 10872321
-00:44:14,572 DEBUG [GreedyDSV1Test] 10:,2,10,10, 13802222
-00:44:14,595 DEBUG [GreedyDSV1Test] 15:,2,15,15, 15917282
-00:44:14,620 DEBUG [GreedyDSV1Test] 20:,2,20,20, 17517640
-00:44:14,911 DEBUG [GreedyDSV1Test] C2000.5.clq-i=1
-00:44:46,129 DEBUG [GreedyDSV1Test] 5:,9,5,5, 29207616509
-00:45:13,113 DEBUG [GreedyDSV1Test] 10:,8,10,10, 24898286827
-00:45:37,245 DEBUG [GreedyDSV1Test] 15:,8,15,15, 21988733275
-00:45:54,835 DEBUG [GreedyDSV1Test] 20:,9,20,20, 15466002134
-00:45:55,156 DEBUG [GreedyDSV1Test] C2000.9.clq-i=1
-00:46:22,039 DEBUG [GreedyDSV1Test] 5:,4,5,5, 23399873398
-00:46:43,838 DEBUG [GreedyDSV1Test] 10:,3,10,10, 18278618306
-00:47:04,790 DEBUG [GreedyDSV1Test] 15:,3,15,15, 17377340564
-00:47:23,538 DEBUG [GreedyDSV1Test] 20:,3,20,20, 15212480785
-00:47:23,545 DEBUG [GreedyDSV1Test] C250.9.clq-i=1
-00:47:23,618 DEBUG [GreedyDSV1Test] 5:,2,5,5, 49244878
-00:47:23,693 DEBUG [GreedyDSV1Test] 10:,2,10,10, 51639959
-00:47:23,769 DEBUG [GreedyDSV1Test] 15:,2,15,15, 52422300
-00:47:23,925 DEBUG [GreedyDSV1Test] 20:,2,20,20, 131765324
-00:47:24,831 DEBUG [GreedyDSV1Test] C4000.5.clq-i=1
-00:50:31,127 DEBUG [GreedyDSV1Test] 5:,10,5,5, 173113018242
-00:53:02,353 DEBUG [GreedyDSV1Test] 10:,9,10,10, 141376079116
-00:54:44,574 DEBUG [GreedyDSV1Test] 15:,10,15,15, 88545445480
-00:56:02,674 DEBUG [GreedyDSV1Test] 20:,9,20,20, 68008439646
-00:56:02,696 DEBUG [GreedyDSV1Test] C500.9.clq-i=1
-00:56:03,358 DEBUG [GreedyDSV1Test] 5:,3,5,5, 512903690
-00:56:04,102 DEBUG [GreedyDSV1Test] 10:,3,10,10, 593884355
-00:56:04,769 DEBUG [GreedyDSV1Test] 15:,3,15,15, 517862582
-00:56:05,479 DEBUG [GreedyDSV1Test] 20:,3,20,20, 520157774
-00:56:05,523 DEBUG [GreedyDSV1Test] DSJC1000.5.clq-i=1
-00:56:09,864 DEBUG [GreedyDSV1Test] 5:,7,5,5, 3912400747
-00:56:13,860 DEBUG [GreedyDSV1Test] 10:,7,10,10, 3562731726
-00:56:17,104 DEBUG [GreedyDSV1Test] 15:,8,15,15, 2812177024
-00:56:19,954 DEBUG [GreedyDSV1Test] 20:,7,20,20, 2417531787
-00:56:19,967 DEBUG [GreedyDSV1Test] DSJC500.5.clq-i=1
-00:56:20,871 DEBUG [GreedyDSV1Test] 5:,7,5,5, 791311767
-00:56:21,344 DEBUG [GreedyDSV1Test] 10:,6,10,10, 393309120
-00:56:21,847 DEBUG [GreedyDSV1Test] 15:,6,15,15, 422001898
-00:56:22,367 DEBUG [GreedyDSV1Test] 20:,6,20,20, 436443220
-00:56:22,381 DEBUG [GreedyDSV1Test] MANN_a27.clq-i=1
-00:56:22,681 DEBUG [GreedyDSV1Test] 5:,2,5,5, 212858200
-00:56:23,041 DEBUG [GreedyDSV1Test] 10:,2,10,10, 243518546
-00:56:23,407 DEBUG [GreedyDSV1Test] 15:,2,15,15, 265163279
-00:56:23,689 DEBUG [GreedyDSV1Test] 20:,2,20,20, 191276934
-00:56:25,701 DEBUG [GreedyDSV1Test] MANN_a81.clq-i=1
-00:57:09,091 DEBUG [GreedyDSV1Test] 5:,2,5,5, 28817785004
-00:57:55,347 DEBUG [GreedyDSV1Test] 10:,2,10,10, 27890452561
-00:58:46,029 DEBUG [GreedyDSV1Test] 15:,2,15,15, 27809061647
-00:59:40,386 DEBUG [GreedyDSV1Test] 20:,2,20,20, 29047740644
-00:59:40,390 DEBUG [GreedyDSV1Test] brock200_2.clq-i=1
-00:59:40,459 DEBUG [GreedyDSV1Test] 5:,5,5,5, 58748977
-00:59:40,508 DEBUG [GreedyDSV1Test] 10:,5,10,10, 36826785
-00:59:40,555 DEBUG [GreedyDSV1Test] 15:,5,15,15, 37060066
-00:59:40,671 DEBUG [GreedyDSV1Test] 20:,5,20,20, 106158201
-00:59:40,675 DEBUG [GreedyDSV1Test] brock200_4.clq-i=1
-00:59:40,759 DEBUG [GreedyDSV1Test] 5:,4,5,5, 71478806
-00:59:40,821 DEBUG [GreedyDSV1Test] 10:,4,10,10, 49215826
-00:59:40,884 DEBUG [GreedyDSV1Test] 15:,4,15,15, 49365903
-00:59:40,948 DEBUG [GreedyDSV1Test] 20:,4,20,20, 51317670
-00:59:40,960 DEBUG [GreedyDSV1Test] brock400_2.clq-i=1
-00:59:41,489 DEBUG [GreedyDSV1Test] 5:,4,5,5, 433006226
-00:59:42,054 DEBUG [GreedyDSV1Test] 10:,4,10,10, 476940739
-00:59:42,440 DEBUG [GreedyDSV1Test] 15:,3,15,15, 296800166
-00:59:42,860 DEBUG [GreedyDSV1Test] 20:,3,20,20, 333103556
-00:59:42,873 DEBUG [GreedyDSV1Test] brock400_4.clq-i=1
-00:59:43,403 DEBUG [GreedyDSV1Test] 5:,4,5,5, 441810971
-00:59:43,972 DEBUG [GreedyDSV1Test] 10:,4,10,10, 483836508
-00:59:44,503 DEBUG [GreedyDSV1Test] 15:,4,15,15, 444747451
-00:59:44,896 DEBUG [GreedyDSV1Test] 20:,4,20,20, 307143514
-00:59:44,934 DEBUG [GreedyDSV1Test] brock800_2.clq-i=1
-00:59:47,736 DEBUG [GreedyDSV1Test] 5:,5,5,5, 2413594863
-00:59:50,782 DEBUG [GreedyDSV1Test] 10:,5,10,10, 2531072529
-00:59:52,513 DEBUG [GreedyDSV1Test] 15:,5,15,15, 1152050151
-00:59:54,336 DEBUG [GreedyDSV1Test] 20:,5,20,20, 1336498634
-00:59:54,373 DEBUG [GreedyDSV1Test] brock800_4.clq-i=1
-00:59:57,102 DEBUG [GreedyDSV1Test] 5:,5,5,5, 2332302470
-01:00:00,150 DEBUG [GreedyDSV1Test] 10:,5,10,10, 2564395380
-01:00:01,704 DEBUG [GreedyDSV1Test] 15:,4,15,15, 1157854587
-01:00:03,258 DEBUG [GreedyDSV1Test] 20:,4,20,20, 1162337268
-01:00:03,263 DEBUG [GreedyDSV1Test] gen200_p0.9_44.clq-i=1
-01:00:03,308 DEBUG [GreedyDSV1Test] 5:,2,5,5, 31148422
-01:00:03,373 DEBUG [GreedyDSV1Test] 10:,2,10,10, 49674313
-01:00:03,420 DEBUG [GreedyDSV1Test] 15:,2,15,15, 32657528
-01:00:03,469 DEBUG [GreedyDSV1Test] 20:,2,20,20, 33177524
-01:00:03,473 DEBUG [GreedyDSV1Test] gen200_p0.9_55.clq-i=1
-01:00:03,528 DEBUG [GreedyDSV1Test] 5:,2,5,5, 31768580
-01:00:03,576 DEBUG [GreedyDSV1Test] 10:,2,10,10, 33479544
-01:00:03,625 DEBUG [GreedyDSV1Test] 15:,2,15,15, 34540185
-01:00:03,673 DEBUG [GreedyDSV1Test] 20:,2,20,20, 32987940
-01:00:03,688 DEBUG [GreedyDSV1Test] gen400_p0.9_55.clq-i=1
-01:00:03,980 DEBUG [GreedyDSV1Test] 5:,2,5,5, 188176355
-01:00:04,271 DEBUG [GreedyDSV1Test] 10:,2,10,10, 188381240
-01:00:04,570 DEBUG [GreedyDSV1Test] 15:,2,15,15, 192985171
-01:00:04,878 DEBUG [GreedyDSV1Test] 20:,2,20,20, 203678996
-01:00:04,892 DEBUG [GreedyDSV1Test] gen400_p0.9_65.clq-i=1
-01:00:05,398 DEBUG [GreedyDSV1Test] 5:,3,5,5, 377106663
-01:00:05,704 DEBUG [GreedyDSV1Test] 10:,2,10,10, 201167009
-01:00:06,018 DEBUG [GreedyDSV1Test] 15:,2,15,15, 202276382
-01:00:06,329 DEBUG [GreedyDSV1Test] 20:,2,20,20, 208227143
-01:00:06,343 DEBUG [GreedyDSV1Test] gen400_p0.9_75.clq-i=1
-01:00:06,855 DEBUG [GreedyDSV1Test] 5:,3,5,5, 409067443
-01:00:07,152 DEBUG [GreedyDSV1Test] 10:,2,10,10, 193396898
-01:00:07,622 DEBUG [GreedyDSV1Test] 15:,3,15,15, 368339028
-01:00:07,936 DEBUG [GreedyDSV1Test] 20:,2,20,20, 212121764
-01:00:08,009 DEBUG [GreedyDSV1Test] hamming10-4.clq-i=1
-01:00:14,117 DEBUG [GreedyDSV1Test] 5:,5,5,5, 5227821004
-01:00:19,164 DEBUG [GreedyDSV1Test] 10:,4,10,10, 4103804456
-01:00:24,956 DEBUG [GreedyDSV1Test] 15:,4,15,15, 4683952107
-01:00:30,276 DEBUG [GreedyDSV1Test] 20:,4,20,20, 4137545020
-01:00:30,287 DEBUG [GreedyDSV1Test] hamming8-4.clq-i=1
-01:00:30,561 DEBUG [GreedyDSV1Test] 5:,5,5,5, 233070205
-01:00:30,732 DEBUG [GreedyDSV1Test] 10:,4,10,10, 131311618
-01:00:30,845 DEBUG [GreedyDSV1Test] 15:,3,15,15, 84165376
-01:00:30,961 DEBUG [GreedyDSV1Test] 20:,3,20,20, 85158363
-01:00:30,964 DEBUG [GreedyDSV1Test] keller4.clq-i=1
-01:00:30,994 DEBUG [GreedyDSV1Test] 5:,3,5,5, 23928624
-01:00:31,010 DEBUG [GreedyDSV1Test] 10:,2,10,10, 10295600
-01:00:31,028 DEBUG [GreedyDSV1Test] 15:,2,15,15, 11555652
-01:00:31,046 DEBUG [GreedyDSV1Test] 20:,2,20,20, 11998958
-01:00:31,086 DEBUG [GreedyDSV1Test] keller5.clq-i=1
-01:00:33,087 DEBUG [GreedyDSV1Test] 5:,4,5,5, 1576408273
-01:00:34,945 DEBUG [GreedyDSV1Test] 10:,4,10,10, 1502226637
-01:00:35,827 DEBUG [GreedyDSV1Test] 15:,2,15,15, 526776036
-01:00:36,635 DEBUG [GreedyDSV1Test] 20:,2,20,20, 489356027
-01:00:37,606 DEBUG [GreedyDSV1Test] keller6.clq-i=1
-01:02:18,363 DEBUG [GreedyDSV1Test] 5:,5,5,5, 87958180097
-01:03:37,319 DEBUG [GreedyDSV1Test] 10:,4,10,10, 70118857600
-01:04:56,560 DEBUG [GreedyDSV1Test] 15:,4,15,15, 68821693095
-01:06:14,502 DEBUG [GreedyDSV1Test] 20:,4,20,20, 68775984306
-01:06:14,560 DEBUG [GreedyDSV1Test] p_hat1500-1.clq-i=1
-01:06:23,337 DEBUG [GreedyDSV1Test] 5:,17,5,5, 8271391255
-01:06:34,920 DEBUG [GreedyDSV1Test] 10:,15,10,10, 11073617929
-01:08:34,883 DEBUG [GreedyDSV1Test] 15:,14,15,15, 119445424052
-01:20:40,856 DEBUG [GreedyDSV1Test] 20:,13,20,20, 725487237871
-01:20:40,959 DEBUG [GreedyDSV1Test] p_hat1500-2.clq-i=1
-01:20:50,814 DEBUG [GreedyDSV1Test] 5:,6,5,5, 8774105063
-01:20:56,976 DEBUG [GreedyDSV1Test] 10:,6,10,10, 5048262913
-01:21:03,506 DEBUG [GreedyDSV1Test] 15:,6,15,15, 5448397745
-01:21:10,546 DEBUG [GreedyDSV1Test] 20:,6,20,20, 5975572671
-01:21:10,851 DEBUG [GreedyDSV1Test] p_hat1500-3.clq-i=1
-01:21:22,035 DEBUG [GreedyDSV1Test] 5:,4,5,5, 9607542862
-01:21:31,965 DEBUG [GreedyDSV1Test] 10:,4,10,10, 8349161783
-01:21:38,834 DEBUG [GreedyDSV1Test] 15:,3,15,15, 5231454268
-01:21:45,815 DEBUG [GreedyDSV1Test] 20:,4,20,20, 5417405844
-01:21:45,819 DEBUG [GreedyDSV1Test] p_hat300-1.clq-i=1
-01:21:45,925 DEBUG [GreedyDSV1Test] 5:,10,5,5, 96312489
-01:21:46,247 DEBUG [GreedyDSV1Test] 10:,9,10,10, 310874170
-01:21:50,412 DEBUG [GreedyDSV1Test] 15:,9,15,15, 4154751568
-01:24:00,303 DEBUG [GreedyDSV1Test] 20:,9,20,20, 129885906453
-01:24:00,308 DEBUG [GreedyDSV1Test] p_hat300-2.clq-i=1
-01:24:00,459 DEBUG [GreedyDSV1Test] 5:,5,5,5, 129032250
-01:24:00,585 DEBUG [GreedyDSV1Test] 10:,5,10,10, 104816147
-01:24:00,704 DEBUG [GreedyDSV1Test] 15:,4,15,15, 94433464
-01:24:00,822 DEBUG [GreedyDSV1Test] 20:,4,20,20, 96429465
-01:24:00,829 DEBUG [GreedyDSV1Test] p_hat300-3.clq-i=1
-01:24:01,006 DEBUG [GreedyDSV1Test] 5:,3,5,5, 142012473
-01:24:01,179 DEBUG [GreedyDSV1Test] 10:,3,10,10, 137404665
-01:24:01,355 DEBUG [GreedyDSV1Test] 15:,4,15,15, 141603111
-01:24:01,538 DEBUG [GreedyDSV1Test] 20:,4,20,20, 148145614
-01:24:01,551 DEBUG [GreedyDSV1Test] p_hat700-1.clq-i=1
-01:24:02,776 DEBUG [GreedyDSV1Test] 5:,13,5,5, 1135774381
-01:24:05,332 DEBUG [GreedyDSV1Test] 10:,12,10,10, 2470453962
-01:24:09,735 DEBUG [GreedyDSV1Test] 15:,11,15,15, 4315063002
-01:26:58,227 DEBUG [GreedyDSV1Test] 20:,11,20,20, 168414283199
-01:26:58,250 DEBUG [GreedyDSV1Test] p_hat700-2.clq-i=1
-01:26:59,926 DEBUG [GreedyDSV1Test] 5:,6,5,5, 1489472913
-01:27:01,065 DEBUG [GreedyDSV1Test] 10:,7,10,10, 955986219
-01:27:01,901 DEBUG [GreedyDSV1Test] 15:,5,15,15, 654714542
-01:27:03,345 DEBUG [GreedyDSV1Test] 20:,5,20,20, 1256978171
-01:27:03,378 DEBUG [GreedyDSV1Test] p_hat700-3.clq-i=1
-01:27:04,630 DEBUG [GreedyDSV1Test] 5:,3,5,5, 975993307
-01:27:05,899 DEBUG [GreedyDSV1Test] 10:,3,10,10, 974879345
-01:27:07,162 DEBUG [GreedyDSV1Test] 15:,3,15,15, 989455014
-01:27:08,445 DEBUG [GreedyDSV1Test] 20:,3,20,20, 1001859167
-01:27:08,446 DEBUG [GreedyDSV1Test] out/BHOSLIB-GreedyDSV1Test-20150730.csv
-01:27:08,457 DEBUG [GreedyDSV1Test] frb30-15-mis/frb30-15-1.mis-i=1
-01:27:08,796 DEBUG [GreedyDSV1Test] 5:,19,5,5, 319845963
-01:27:10,189 DEBUG [GreedyDSV1Test] 10:,15,10,10, 1376423807
-01:31:36,829 DEBUG [GreedyDSV1Test] 15:,15,15,15, 266636246418
-03:05:43,347 DEBUG [GreedyDSV1Test] 20:,14,20,20, 5646765114865
-03:05:43,359 DEBUG [GreedyDSV1Test] frb30-15-mis/frb30-15-2.mis-i=1
-03:05:43,882 DEBUG [GreedyDSV1Test] 5:,17,5,5, 494599024
-03:05:54,802 DEBUG [GreedyDSV1Test] 10:,18,10,10, 10889129298
-03:08:03,009 DEBUG [GreedyDSV1Test] 15:,15,15,15, 128176654657
-03:15:48,261 DEBUG [GreedyDSV1Test] 20:,15,20,20, 465244327550
-03:15:48,268 DEBUG [GreedyDSV1Test] frb30-15-mis/frb30-15-3.mis-i=1
-03:15:48,583 DEBUG [GreedyDSV1Test] 5:,17,5,5, 297823114
-03:16:03,172 DEBUG [GreedyDSV1Test] 10:,16,10,10, 14570850921
-03:17:41,050 DEBUG [GreedyDSV1Test] 15:,16,15,15, 97864723145
-11:34:29,267 DEBUG [GreedyDSV1Test] 20:,16,20,20, 29809615110148
-11:34:29,273 DEBUG [GreedyDSV1Test] frb30-15-mis/frb30-15-4.mis-i=1
-11:34:29,543 DEBUG [GreedyDSV1Test] 5:,18,5,5, 252293439
-11:34:30,803 DEBUG [GreedyDSV1Test] 10:,15,10,10, 1243288332
-11:35:02,449 DEBUG [GreedyDSV1Test] 15:,14,15,15, 31628969169
-11:40:12,295 DEBUG [GreedyDSV1Test] 20:,15,20,20, 309844287683
-11:40:12,301 DEBUG [GreedyDSV1Test] frb30-15-mis/frb30-15-5.mis-i=1
-11:40:12,672 DEBUG [GreedyDSV1Test] 5:,18,5,5, 352879476
-11:40:32,952 DEBUG [GreedyDSV1Test] 10:,17,10,10, 20263328661
-11:41:31,281 DEBUG [GreedyDSV1Test] 15:,14,15,15, 58314568600
-12:33:28,165 DEBUG [GreedyDSV1Test] 20:,16,20,20, 3117017137907
-12:33:28,173 DEBUG [GreedyDSV1Test] frb35-17-mis/frb35-17-1.mis-i=1
-12:33:29,113 DEBUG [GreedyDSV1Test] 5:,21,5,5, 906132584
-12:33:50,117 DEBUG [GreedyDSV1Test] 10:,18,10,10, 20973159948
-13:15:26,059 DEBUG [GreedyDSV2Test] out/BHOSLIB-GreedyDSV2Test-20150731.csv
-13:15:26,111 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-1.mis-i=1
-13:15:27,000 DEBUG [GreedyDSV2Test] 5:,17,5,5, 792285365
-13:15:31,281 DEBUG [GreedyDSV2Test] 10:,16,10,10, 4255824961
-13:21:39,141 DEBUG [GreedyDSV2Test] 15:,16,15,15, 367853600497
-13:21:39,163 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-2.mis-i=1
-13:21:39,588 DEBUG [GreedyDSV2Test] 5:,17,5,5, 400059641
-13:21:41,427 DEBUG [GreedyDSV2Test] 10:,16,10,10, 1814008698
-13:26:26,536 DEBUG [GreedyDSV2Test] 15:,16,15,15, 285099326600
-13:26:26,552 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-3.mis-i=1
-13:26:26,985 DEBUG [GreedyDSV2Test] 5:,18,5,5, 410144634
-13:26:32,514 DEBUG [GreedyDSV2Test] 10:,16,10,10, 5506661408
-13:28:05,607 DEBUG [GreedyDSV2Test] 15:,15,15,15, 93073308033
-13:28:05,616 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-4.mis-i=1
-13:28:06,023 DEBUG [GreedyDSV2Test] 5:,16,5,5, 375048865
-13:28:09,784 DEBUG [GreedyDSV2Test] 10:,19,10,10, 3736826765
-13:29:44,310 DEBUG [GreedyDSV2Test] 15:,15,15,15, 94505923609
-13:29:44,318 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-5.mis-i=1
-13:29:44,792 DEBUG [GreedyDSV2Test] 5:,20,5,5, 449177334
-13:29:54,890 DEBUG [GreedyDSV2Test] 10:,17,10,10, 10075409218
-13:31:02,311 DEBUG [GreedyDSV2Test] 15:,16,15,15, 67399694148
-13:31:02,321 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-1.mis-i=1
-13:31:03,158 DEBUG [GreedyDSV2Test] 5:,22,5,5, 796645593
-13:31:13,685 DEBUG [GreedyDSV2Test] 10:,19,10,10, 10486881132
-13:32:16,255 DEBUG [GreedyDSV2Test] 15:,18,15,15, 62525238472
-13:32:16,263 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-2.mis-i=1
-13:32:16,951 DEBUG [GreedyDSV2Test] 5:,17,5,5, 645478674
-13:32:18,793 DEBUG [GreedyDSV2Test] 10:,19,10,10, 1802313152
-13:33:00,622 DEBUG [GreedyDSV2Test] 15:,18,15,15, 41789039330
-13:33:00,630 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-3.mis-i=1
-13:33:01,530 DEBUG [GreedyDSV2Test] 5:,22,5,5, 858466127
-13:33:05,670 DEBUG [GreedyDSV2Test] 10:,19,10,10, 4099838198
-13:34:31,575 DEBUG [GreedyDSV2Test] 15:,19,15,15, 85869927878
-13:34:31,582 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-4.mis-i=1
-13:34:32,283 DEBUG [GreedyDSV2Test] 5:,18,5,5, 655264986
-13:35:12,697 DEBUG [GreedyDSV2Test] 10:,20,10,10, 40375137762
-13:36:23,214 DEBUG [GreedyDSV2Test] 15:,20,15,15, 70478238045
-13:36:23,221 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-5.mis-i=1
-13:36:24,243 DEBUG [GreedyDSV2Test] 5:,21,5,5, 977380779
-13:36:26,604 DEBUG [GreedyDSV2Test] 10:,20,10,10, 2320886375
-13:37:24,543 DEBUG [GreedyDSV2Test] 15:,19,15,15, 57899520678
-13:37:24,553 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-1.mis-i=1
-13:37:26,248 DEBUG [GreedyDSV2Test] 5:,26,5,5, 1630012806
-13:37:52,619 DEBUG [GreedyDSV2Test] 10:,22,10,10, 26306331581
-13:56:18,516 DEBUG [GreedyDSV2Test] 15:,22,15,15, 1105885960403
-13:56:18,527 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-2.mis-i=1
-13:56:19,928 DEBUG [GreedyDSV2Test] 5:,23,5,5, 1328212802
-13:56:32,046 DEBUG [GreedyDSV2Test] 10:,23,10,10, 12051156110
-14:16:22,606 DEBUG [GreedyDSV2Test] 15:,21,15,15, 1190550023714
-14:16:22,618 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-3.mis-i=1
-14:16:24,112 DEBUG [GreedyDSV2Test] 5:,22,5,5, 1424623458
-14:16:41,387 DEBUG [GreedyDSV2Test] 10:,22,10,10, 17209311555
-14:40:06,247 DEBUG [GreedyDSV2Test] 15:,21,15,15, 1404857804882
-14:40:06,258 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-4.mis-i=1
-14:40:07,744 DEBUG [GreedyDSV2Test] 5:,22,5,5, 1407527235
-14:40:13,612 DEBUG [GreedyDSV2Test] 10:,23,10,10, 5790142409
-14:43:47,975 DEBUG [GreedyDSV2Test] 15:,22,15,15, 214300623059
-14:43:47,986 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-5.mis-i=1
-14:43:49,472 DEBUG [GreedyDSV2Test] 5:,22,5,5, 1408073942
-14:44:00,352 DEBUG [GreedyDSV2Test] 10:,24,10,10, 10802885379
-14:58:56,647 DEBUG [GreedyDSV2Test] 15:,23,15,15, 896267757730
-14:58:56,665 DEBUG [GreedyDSV2Test] frb45-21-mis/frb45-21-1.mis-i=1
-14:58:58,949 DEBUG [GreedyDSV2Test] 5:,26,5,5, 2181625727
-14:59:10,138 DEBUG [GreedyDSV2Test] 10:,26,10,10, 11083969345
-15:03:22,745 DEBUG [GreedyDSV2Test] 15:,24,15,15, 252521463568
-15:03:22,761 DEBUG [GreedyDSV2Test] frb45-21-mis/frb45-21-2.mis-i=1
-15:03:25,123 DEBUG [GreedyDSV2Test] 5:,24,5,5, 2265436145
-15:03:47,118 DEBUG [GreedyDSV2Test] 10:,25,10,10, 21897582538
-15:37:24,059 DEBUG [GreedyDSV2Test] 15:,25,15,15, 2016932487070
-15:37:24,073 DEBUG [GreedyDSV2Test] frb45-21-mis/frb45-21-3.mis-i=1
-15:37:26,585 DEBUG [GreedyDSV2Test] 5:,27,5,5, 2360880767
-15:38:08,441 DEBUG [GreedyDSV2Test] 10:,24,10,10, 41746377006
-17:19:12,633 DEBUG [GreedyDSV2Test] 15:,24,15,15, 6064375193986
-17:19:12,647 DEBUG [GreedyDSV2Test] frb45-21-mis/frb45-21-4.mis-i=1
-17:19:15,194 DEBUG [GreedyDSV2Test] 5:,29,5,5, 2452361330
-17:19:34,940 DEBUG [GreedyDSV2Test] 10:,26,10,10, 19649329917
-17:25:04,535 DEBUG [GreedyDSV2Test] 15:,23,15,15, 329512281465
-17:25:04,548 DEBUG [GreedyDSV2Test] frb45-21-mis/frb45-21-5.mis-i=1
-17:25:06,984 DEBUG [GreedyDSV2Test] 5:,26,5,5, 2339000718
-17:25:14,702 DEBUG [GreedyDSV2Test] 10:,26,10,10, 7624056270
-17:54:50,161 DEBUG [GreedyDSV2Test] 15:,25,15,15, 1775435076604
-17:54:50,188 DEBUG [GreedyDSV2Test] frb53-24-mis/frb53-24-1.mis-i=1
-17:54:55,016 DEBUG [GreedyDSV2Test] 5:,30,5,5, 4642284595
-17:55:22,940 DEBUG [GreedyDSV2Test] 10:,29,10,10, 27674088784
-18:03:06,008 DEBUG [GreedyDSV2Test] 15:,27,15,15, 462874959617
-18:03:06,029 DEBUG [GreedyDSV2Test] frb53-24-mis/frb53-24-2.mis-i=1
-18:03:11,537 DEBUG [GreedyDSV2Test] 5:,30,5,5, 5328121534
-18:04:50,556 DEBUG [GreedyDSV2Test] 10:,33,10,10, 98835330223
-19:54:43,067 DEBUG [GreedyDSV2Test] 15:,30,15,15, 6592564058817
-19:54:43,106 DEBUG [GreedyDSV2Test] frb53-24-mis/frb53-24-3.mis-i=1
-19:54:47,909 DEBUG [GreedyDSV2Test] 5:,30,5,5, 4614011952
-19:55:09,803 DEBUG [GreedyDSV2Test] 10:,29,10,10, 21710892022
-20:03:44,266 DEBUG [GreedyDSV2Test] 15:,34,15,15, 514303621664
-20:03:44,288 DEBUG [GreedyDSV2Test] frb53-24-mis/frb53-24-4.mis-i=1
-20:03:49,774 DEBUG [GreedyDSV2Test] 5:,31,5,5, 5311407494
-20:04:38,366 DEBUG [GreedyDSV2Test] 10:,30,10,10, 48391449696
-11:28:37,287 DEBUG [GreedyDSV2Test] 15:,29,15,15, 55441264866044
-11:28:37,310 DEBUG [GreedyDSV2Test] frb53-24-mis/frb53-24-5.mis-i=1
-11:28:42,902 DEBUG [GreedyDSV2Test] 5:,31,5,5, 5429092108
-11:29:07,309 DEBUG [GreedyDSV2Test] 10:,32,10,10, 24239396615
-12:19:06,521 DEBUG [GreedyDSV2Test] 15:,29,15,15, 2999164888612
-12:19:06,545 DEBUG [GreedyDSV2Test] frb56-25-mis/frb56-25-1.mis-i=1
-12:19:12,505 DEBUG [GreedyDSV2Test] 5:,31,5,5, 5754520430
-12:21:05,818 DEBUG [GreedyDSV2Test] 10:,34,10,10, 113111621899
-13:46:26,718 DEBUG [GreedyDSV2Test] 15:,30,15,15, 5120936465118
-13:46:26,742 DEBUG [GreedyDSV2Test] frb56-25-mis/frb56-25-2.mis-i=1
-13:46:33,217 DEBUG [GreedyDSV2Test] 5:,36,5,5, 6269629200
-13:46:59,058 DEBUG [GreedyDSV2Test] 10:,34,10,10, 25640802022
-21:52:10,733 DEBUG [GreedyDSV2Test] 15:,29,15,15, 29112800601394
-21:52:10,758 DEBUG [GreedyDSV2Test] frb56-25-mis/frb56-25-3.mis-i=1
-21:52:17,040 DEBUG [GreedyDSV2Test] 5:,35,5,5, 6085593579
-21:53:29,414 DEBUG [GreedyDSV2Test] 10:,34,10,10, 72181528477
-22:38:43,619 DEBUG [GreedyDSV2Test] 15:,35,15,15, 2714100708953
-22:38:43,643 DEBUG [GreedyDSV2Test] frb56-25-mis/frb56-25-4.mis-i=1
-22:38:49,401 DEBUG [GreedyDSV2Test] 5:,30,5,5, 5550889945
-22:39:26,681 DEBUG [GreedyDSV2Test] 10:,32,10,10, 37083837881
-00:23:21,500 DEBUG [GreedyDSV2Test] 15:,33,15,15, 6234905231779
-00:23:21,524 DEBUG [GreedyDSV2Test] frb56-25-mis/frb56-25-5.mis-i=1
-00:23:27,288 DEBUG [GreedyDSV2Test] 5:,32,5,5, 5564931808
-00:23:54,748 DEBUG [GreedyDSV2Test] 10:,30,10,10, 27253940584
-01:10:28,523 DEBUG [GreedyDSV2Test] 15:,28,15,15, 2793706302385
-01:10:28,551 DEBUG [GreedyDSV2Test] frb59-26-mis/frb59-26-1.mis-i=1
-01:10:36,920 DEBUG [GreedyDSV2Test] 5:,38,5,5, 8136889368
-01:11:03,759 DEBUG [GreedyDSV2Test] 10:,34,10,10, 26612975650
-03:04:14,514 DEBUG [GreedyDSV2Test] 15:,32,15,15, 6790841631675
-03:04:14,547 DEBUG [GreedyDSV2Test] frb59-26-mis/frb59-26-2.mis-i=1
-03:04:21,909 DEBUG [GreedyDSV2Test] 5:,36,5,5, 7124575511
-03:05:12,707 DEBUG [GreedyDSV2Test] 10:,35,10,10, 50513148146
-05:53:20,279 DEBUG [GreedyDSV2Test] 15:,31,15,15, 10087780792710
-05:53:20,308 DEBUG [GreedyDSV2Test] frb59-26-mis/frb59-26-3.mis-i=1
-05:53:27,918 DEBUG [GreedyDSV2Test] 5:,38,5,5, 7365318058
-05:54:47,830 DEBUG [GreedyDSV2Test] 10:,34,10,10, 79682967520
-07:24:57,869 DEBUG [GreedyDSV2Test] 15:,33,15,15, 5410010563005
-07:24:57,897 DEBUG [GreedyDSV2Test] frb59-26-mis/frb59-26-4.mis-i=1
-07:25:05,487 DEBUG [GreedyDSV2Test] 5:,35,5,5, 7224838106
-07:25:48,975 DEBUG [GreedyDSV2Test] 10:,34,10,10, 43258827302
-08:08:38,711 DEBUG [GreedyDSV2Test] 15:,33,15,15, 2569498456342
-08:08:38,740 DEBUG [GreedyDSV2Test] frb59-26-mis/frb59-26-5.mis-i=1
-08:08:45,677 DEBUG [GreedyDSV2Test] 5:,36,5,5, 6697475206
-08:12:57,625 DEBUG [GreedyDSV2Test] 10:,33,10,10, 251732463073
-08:51:10,469 DEBUG [GreedyDSV2Test] 15:,32,15,15, 2292723568899
-16:16:04,280 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150903.csv
-16:16:04,536 DEBUG [GreedyDSVSTest] C1000.9.clq-i=1
-16:16:59,625 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 7440774778
-16:16:59,628 DEBUG [GreedyDSVSTest] C125.9.clq-i=1
-16:17:03,804 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1024460667
-16:17:04,009 DEBUG [GreedyDSVSTest] C2000.5.clq-i=1
-16:22:38,481 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 61678129424
-16:22:39,060 DEBUG [GreedyDSVSTest] C2000.9.clq-i=1
-13:35:11,890 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
-13:35:11,950 DEBUG [GreedyDSVSTest] C250.9.clq-i=1
-13:35:17,835 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1172321094
-13:35:17,902 DEBUG [GreedyDSVSTest] C500.9.clq-i=1
-13:35:34,615 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1597743873
-13:35:34,675 DEBUG [GreedyDSVSTest] DSJC1000.5.clq-i=1
-13:36:55,908 DEBUG [GreedyDSVSTest] 8,0:,6,10,10, 17392679539
-13:36:55,928 DEBUG [GreedyDSVSTest] DSJC500.5.clq-i=1
-13:37:16,319 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 4176030579
-13:37:16,344 DEBUG [GreedyDSVSTest] MANN_a27.clq-i=1
-13:37:23,402 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1297992107
-13:37:23,409 DEBUG [GreedyDSVSTest] brock200_2.clq-i=1
-13:37:36,536 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 3195021546
-13:37:36,541 DEBUG [GreedyDSVSTest] brock200_4.clq-i=1
-13:37:49,378 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 3242760679
-13:37:49,392 DEBUG [GreedyDSVSTest] brock400_2.clq-i=1
-13:38:03,951 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2643639621
-13:38:03,963 DEBUG [GreedyDSVSTest] brock400_4.clq-i=1
-13:38:21,752 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2602933024
-13:38:21,791 DEBUG [GreedyDSVSTest] brock800_2.clq-i=1
-13:39:23,890 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 13404211661
-13:39:23,928 DEBUG [GreedyDSVSTest] brock800_4.clq-i=1
-13:40:23,450 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 8888013139
-13:40:23,456 DEBUG [GreedyDSVSTest] gen200_p0.9_44.clq-i=1
-13:40:28,230 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1069943273
-13:40:28,235 DEBUG [GreedyDSVSTest] gen200_p0.9_55.clq-i=1
-13:40:32,880 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1071194297
-13:40:32,894 DEBUG [GreedyDSVSTest] gen400_p0.9_55.clq-i=1
-13:40:44,687 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1492559012
-13:40:44,701 DEBUG [GreedyDSVSTest] gen400_p0.9_65.clq-i=1
-13:40:52,954 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1425217630
-13:40:52,988 DEBUG [GreedyDSVSTest] gen400_p0.9_75.clq-i=1
-13:41:05,665 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1472065387
-13:41:05,742 DEBUG [GreedyDSVSTest] hamming10-4.clq-i=1
-13:41:59,153 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 3716880936
-13:41:59,163 DEBUG [GreedyDSVSTest] hamming8-4.clq-i=1
-13:42:07,835 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1061714065
-13:42:07,838 DEBUG [GreedyDSVSTest] keller4.clq-i=1
-13:42:14,140 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1024082246
-13:42:14,179 DEBUG [GreedyDSVSTest] keller5.clq-i=1
-13:42:38,483 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1930732637
-13:42:38,543 DEBUG [GreedyDSVSTest] p_hat1500-1.clq-i=1
-13:44:34,400 DEBUG [GreedyDSVSTest] 8,0:,10,10,10, 18295972713
-13:44:34,498 DEBUG [GreedyDSVSTest] p_hat1500-2.clq-i=1
-13:46:38,226 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 15372250589
-13:46:38,398 DEBUG [GreedyDSVSTest] p_hat1500-3.clq-i=1
-13:48:49,740 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 25256213336
-13:48:49,744 DEBUG [GreedyDSVSTest] p_hat300-1.clq-i=1
-13:49:05,350 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 3349728573
-13:49:05,355 DEBUG [GreedyDSVSTest] p_hat300-2.clq-i=1
-13:49:18,079 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 3313091873
-13:49:18,087 DEBUG [GreedyDSVSTest] p_hat300-3.clq-i=1
-13:49:27,935 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2252405538
-13:49:27,948 DEBUG [GreedyDSVSTest] p_hat700-1.clq-i=1
-13:50:07,639 DEBUG [GreedyDSVSTest] 8,0:,9,10,10, 8221807260
-13:50:07,662 DEBUG [GreedyDSVSTest] p_hat700-2.clq-i=1
-13:50:35,862 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 5296328163
-13:50:35,895 DEBUG [GreedyDSVSTest] p_hat700-3.clq-i=1
-13:51:00,782 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 4057850649
-14:51:32,846 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
-14:51:33,493 DEBUG [GreedyDSVSTest] C2000.9.clq-i=1
-15:47:01,748 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
-15:47:01,992 DEBUG [GreedyDSVSTest] C1000.9.clq-i=1
-15:47:36,843 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 7159419994
-15:47:36,846 DEBUG [GreedyDSVSTest] C125.9.clq-i=1
-15:47:40,957 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1023077608
-15:47:41,219 DEBUG [GreedyDSVSTest] C2000.5.clq-i=1
-15:51:20,685 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 55917504731
-15:51:20,692 DEBUG [GreedyDSVSTest] C250.9.clq-i=1
-15:51:25,333 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1131245853
-15:51:25,363 DEBUG [GreedyDSVSTest] C500.9.clq-i=1
-15:51:37,349 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1644544667
-15:51:37,394 DEBUG [GreedyDSVSTest] DSJC1000.5.clq-i=1
-15:52:28,266 DEBUG [GreedyDSVSTest] 8,0:,6,10,10, 12412484651
-15:52:28,279 DEBUG [GreedyDSVSTest] DSJC500.5.clq-i=1
-15:52:44,891 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 4050282041
-15:52:44,905 DEBUG [GreedyDSVSTest] MANN_a27.clq-i=1
-15:52:50,259 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1274502381
-15:52:50,262 DEBUG [GreedyDSVSTest] brock200_2.clq-i=1
-15:53:02,803 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 3129199361
-15:53:02,807 DEBUG [GreedyDSVSTest] brock200_4.clq-i=1
-15:53:14,346 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 3135069442
-15:53:14,359 DEBUG [GreedyDSVSTest] brock400_2.clq-i=1
-15:53:25,956 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2526037229
-15:53:25,968 DEBUG [GreedyDSVSTest] brock400_4.clq-i=1
-15:53:40,096 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2527375879
-15:53:40,133 DEBUG [GreedyDSVSTest] brock800_2.clq-i=1
-15:54:16,060 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 8869404082
-15:54:16,097 DEBUG [GreedyDSVSTest] brock800_4.clq-i=1
-15:54:51,719 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 8798743055
-15:54:51,724 DEBUG [GreedyDSVSTest] gen200_p0.9_44.clq-i=1
-15:54:56,023 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1059087629
-15:54:56,027 DEBUG [GreedyDSVSTest] gen200_p0.9_55.clq-i=1
-15:55:00,329 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1060073229
-15:55:00,344 DEBUG [GreedyDSVSTest] gen400_p0.9_55.clq-i=1
-15:55:08,535 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1327564224
-15:55:08,550 DEBUG [GreedyDSVSTest] gen400_p0.9_65.clq-i=1
-15:55:14,218 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1335058449
-15:55:14,232 DEBUG [GreedyDSVSTest] gen400_p0.9_75.clq-i=1
-15:55:22,361 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1308649732
-15:55:22,434 DEBUG [GreedyDSVSTest] hamming10-4.clq-i=1
-15:55:49,647 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 3362942214
-15:55:49,652 DEBUG [GreedyDSVSTest] hamming8-4.clq-i=1
-15:55:57,316 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1064154445
-15:55:57,319 DEBUG [GreedyDSVSTest] keller4.clq-i=1
-15:56:03,545 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1032880370
-15:56:03,584 DEBUG [GreedyDSVSTest] keller5.clq-i=1
-15:56:18,911 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 1946678583
-15:56:18,964 DEBUG [GreedyDSVSTest] p_hat1500-1.clq-i=1
-15:57:47,021 DEBUG [GreedyDSVSTest] 8,0:,10,10,10, 19820974210
-15:57:47,121 DEBUG [GreedyDSVSTest] p_hat1500-2.clq-i=1
-15:59:15,368 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 16721341915
-15:59:15,521 DEBUG [GreedyDSVSTest] p_hat1500-3.clq-i=1
-16:00:36,181 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 18347741526
-16:00:36,184 DEBUG [GreedyDSVSTest] p_hat300-1.clq-i=1
-16:00:50,808 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 3386361392
-16:00:50,814 DEBUG [GreedyDSVSTest] p_hat300-2.clq-i=1
-16:01:02,998 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 3308417611
-16:01:03,006 DEBUG [GreedyDSVSTest] p_hat300-3.clq-i=1
-16:01:12,319 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 2288690459
-16:01:12,331 DEBUG [GreedyDSVSTest] p_hat700-1.clq-i=1
-16:01:47,292 DEBUG [GreedyDSVSTest] 8,0:,9,10,10, 8640144934
-16:01:47,315 DEBUG [GreedyDSVSTest] p_hat700-2.clq-i=1
-16:02:11,272 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 5481831393
-16:02:11,305 DEBUG [GreedyDSVSTest] p_hat700-3.clq-i=1
-16:02:30,387 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 4143271042
-16:09:25,213 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
-16:09:25,476 DEBUG [GreedyDSVSTest] C1000.9.clq-i=1
-16:10:30,512 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
-16:10:30,759 DEBUG [GreedyDSVSTest] C1000.9.clq-i=1
-16:11:05,129 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 30934510681
-16:11:05,132 DEBUG [GreedyDSVSTest] C125.9.clq-i=1
-16:11:09,234 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 4082333378
-16:11:09,477 DEBUG [GreedyDSVSTest] C2000.5.clq-i=1
-16:14:50,672 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 212721951124
-16:14:50,679 DEBUG [GreedyDSVSTest] C250.9.clq-i=1
-16:14:55,220 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 4435063767
-16:14:55,239 DEBUG [GreedyDSVSTest] C500.9.clq-i=1
-16:15:06,427 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 10534526442
-16:15:06,469 DEBUG [GreedyDSVSTest] DSJC1000.5.clq-i=1
-16:15:52,831 DEBUG [GreedyDSVSTest] 8,0:,6,10,10, 44467833183
-16:15:52,842 DEBUG [GreedyDSVSTest] DSJC500.5.clq-i=1
-16:16:09,515 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 16327141527
-16:16:09,529 DEBUG [GreedyDSVSTest] MANN_a27.clq-i=1
-16:16:14,901 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 5101549930
-16:16:14,904 DEBUG [GreedyDSVSTest] brock200_2.clq-i=1
-16:16:27,518 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 12569904156
-16:16:27,522 DEBUG [GreedyDSVSTest] brock200_4.clq-i=1
-16:16:39,095 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 11518841142
-16:16:39,105 DEBUG [GreedyDSVSTest] brock400_2.clq-i=1
-16:16:50,892 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 11387560440
-16:16:50,902 DEBUG [GreedyDSVSTest] brock400_4.clq-i=1
-16:17:05,277 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 14044328336
-16:17:05,315 DEBUG [GreedyDSVSTest] brock800_2.clq-i=1
-16:17:41,549 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 34592260627
-16:17:41,582 DEBUG [GreedyDSVSTest] brock800_4.clq-i=1
-16:18:17,417 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 34360866630
-16:18:17,421 DEBUG [GreedyDSVSTest] gen200_p0.9_44.clq-i=1
-16:18:21,716 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 4234983691
-16:18:21,720 DEBUG [GreedyDSVSTest] gen200_p0.9_55.clq-i=1
-16:18:26,007 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 4229308212
-16:18:26,020 DEBUG [GreedyDSVSTest] gen400_p0.9_55.clq-i=1
-16:18:34,124 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 7746272652
-16:18:34,139 DEBUG [GreedyDSVSTest] gen400_p0.9_65.clq-i=1
-16:18:39,720 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 5222587182
-16:18:39,734 DEBUG [GreedyDSVSTest] gen400_p0.9_75.clq-i=1
-16:18:47,936 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 7825983617
-16:18:48,011 DEBUG [GreedyDSVSTest] hamming10-4.clq-i=1
-16:19:14,357 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 22110779991
-16:19:14,361 DEBUG [GreedyDSVSTest] hamming8-4.clq-i=1
-16:19:21,943 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 7471998200
-16:19:21,945 DEBUG [GreedyDSVSTest] keller4.clq-i=1
-16:19:28,115 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 6142872926
-16:19:28,152 DEBUG [GreedyDSVSTest] keller5.clq-i=1
-16:19:43,139 DEBUG [GreedyDSVSTest] 8,0:,2,10,10, 13547941362
-16:19:43,188 DEBUG [GreedyDSVSTest] p_hat1500-1.clq-i=1
-16:21:11,302 DEBUG [GreedyDSVSTest] 8,0:,10,10,10, 85950324913
-16:21:11,404 DEBUG [GreedyDSVSTest] p_hat1500-2.clq-i=1
-16:22:37,886 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 81817523181
-16:22:38,110 DEBUG [GreedyDSVSTest] p_hat1500-3.clq-i=1
-16:23:58,867 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 74046614158
-16:23:58,870 DEBUG [GreedyDSVSTest] p_hat300-1.clq-i=1
-16:24:13,394 DEBUG [GreedyDSVSTest] 8,0:,7,10,10, 14477529545
-16:24:13,398 DEBUG [GreedyDSVSTest] p_hat300-2.clq-i=1
-16:24:25,574 DEBUG [GreedyDSVSTest] 8,0:,4,10,10, 12087545129
-16:24:25,580 DEBUG [GreedyDSVSTest] p_hat300-3.clq-i=1
-16:24:34,770 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 9052590821
-16:24:34,781 DEBUG [GreedyDSVSTest] p_hat700-1.clq-i=1
-16:25:09,162 DEBUG [GreedyDSVSTest] 8,0:,9,10,10, 34055984713
-16:25:09,183 DEBUG [GreedyDSVSTest] p_hat700-2.clq-i=1
-16:25:32,790 DEBUG [GreedyDSVSTest] 8,0:,5,10,10, 22894370265
-16:25:32,819 DEBUG [GreedyDSVSTest] p_hat700-3.clq-i=1
-16:25:52,038 DEBUG [GreedyDSVSTest] 8,0:,3,10,10, 18085082075
+14:32:10,192 DEBUG [GreedyIterativeTest] 10 times
+14:47:19,995 DEBUG [GreedyIterativeTest] 000027_zebra.konet,5,335338,4,164756,5,253474,5,163534,5,179931,5,118106,4,107020,5,104986,4,163064,5,137335,
+14:47:19,996 DEBUG [GreedyIterativeTest] 000034_zachary.konet,14,130837,13,126673,13,126039,9,109520,7,172194,12,111569,13,161238,9,108196,13,118048,8,97869,
+14:47:19,997 DEBUG [GreedyIterativeTest] 000062_dolphins.konet,19,155529,21,237260,22,161241,21,160388,21,199459,22,160673,18,157362,20,171192,20,160319,19,154469,
+14:47:19,997 DEBUG [GreedyIterativeTest] 000112_David_Copperfield.konet,42,350868,38,307117,34,348221,43,353374,41,307935,40,301978,38,297310,42,302268,40,298876,40,362634,
+14:47:19,997 DEBUG [GreedyIterativeTest] 000198_Jazz_musicians.konet,28,890797,26,890654,28,802787,29,837886,26,866110,28,627563,29,632381,27,644874,28,654791,28,612888,
+14:47:19,997 DEBUG [GreedyIterativeTest] 000212_pdzbase.konet,105,387120,119,375091,124,380897,122,380246,121,421303,106,339871,108,350520,107,347832,125,571209,127,369097,
+14:47:19,998 DEBUG [GreedyIterativeTest] 001133_rovira.konet,425,5723038,435,5405585,441,6243558,420,5589835,426,6060715,430,5075619,442,9701351,441,8977974,444,6409036,448,5503964,
+14:47:19,998 DEBUG [GreedyIterativeTest] 001174_euroroad.konet,523,5539197,517,8185242,518,5932316,521,5478712,525,6666060,523,5483354,514,5444100,513,5382208,519,5430656,516,5440350,
+14:47:19,998 DEBUG [GreedyIterativeTest] 001858_hamster.konet,935,21578790,929,17851074,942,17466994,939,18599282,938,16937542,932,16817014,961,17590851,942,16659199,918,17389806,919,16582397,
+14:47:19,998 DEBUG [GreedyIterativeTest] 100 times
+17:18:53,288 DEBUG [GreedyIterativeTest] 000027_zebra.konet,4,37837,4,53905,4,48396,4,52984,4,37120,4,36228,4,50271,4,57008,4,51959,4,54255,
+17:18:53,292 DEBUG [GreedyIterativeTest] 000034_zachary.konet,7,43472,7,44756,8,46284,4,59730,7,44741,7,45150,7,72928,7,111909,7,81131,7,82149,
+17:18:53,292 DEBUG [GreedyIterativeTest] 000062_dolphins.konet,18,125273,18,82715,18,108101,18,117988,19,83361,18,112574,17,118628,19,82038,18,116978,20,128763,
+17:18:53,292 DEBUG [GreedyIterativeTest] 000112_David_Copperfield.konet,36,193306,35,181340,37,190921,34,274915,36,183879,35,178862,35,250614,36,178438,37,183986,36,182120,
+17:18:53,293 DEBUG [GreedyIterativeTest] 000198_Jazz_musicians.konet,26,582723,26,574819,26,869910,27,574730,26,851288,25,566795,25,606139,27,869594,26,631320,25,951060,
+17:18:53,293 DEBUG [GreedyIterativeTest] 000212_pdzbase.konet,106,436750,110,342989,103,312849,110,588504,110,354129,114,332300,104,366220,111,343922,115,338671,118,674997,
+17:18:53,293 DEBUG [GreedyIterativeTest] 001133_rovira.konet,431,5841321,418,5195729,420,5361736,430,5212680,426,4959956,421,6148168,418,4866835,432,5164952,431,8653026,430,5567782,
+17:18:53,293 DEBUG [GreedyIterativeTest] 001174_euroroad.konet,509,5585420,503,8994031,507,9778666,514,9499612,509,9648774,515,9074555,512,5773538,512,6379402,509,6647376,514,9707942,
+17:18:53,293 DEBUG [GreedyIterativeTest] 001858_hamster.konet,914,15931371,894,16336978,916,18836382,889,16761079,899,15794754,906,18395586,902,15987503,898,16523990,908,17757120,871,15543480,
+15:30:56,952 DEBUG [GreedyIterativeTest] 1000 times
+16:51:32,321 DEBUG [GreedyIterativeTest] 000027_zebra.konet,4,218245,4,122816,4,40582,4,37961,4,37801,4,43916,4,39315,4,41002,4,46966,4,36870,
+16:51:32,324 DEBUG [GreedyIterativeTest] 000034_zachary.konet,4,44149,4,43154,4,45573,4,46436,4,45847,4,45559,4,40165,4,39752,4,39343,4,37686,
+16:51:32,324 DEBUG [GreedyIterativeTest] 000062_dolphins.konet,18,84838,17,83647,17,81836,17,77768,16,77871,16,79555,16,76924,18,116352,18,77442,16,76351,
+16:51:32,324 DEBUG [GreedyIterativeTest] 000112_David_Copperfield.konet,34,191006,34,183799,33,186316,34,179452,35,177225,32,243828,33,178286,34,183672,34,181400,33,182465,
+16:51:32,324 DEBUG [GreedyIterativeTest] 000198_Jazz_musicians.konet,23,548928,24,574384,23,536603,24,559010,21,545827,21,536533,22,552713,24,556694,23,569847,23,560432,
+16:51:32,324 DEBUG [GreedyIterativeTest] 000212_pdzbase.konet,102,320596,100,317644,103,325165,99,312760,102,317285,100,313567,94,304334,99,314878,99,316129,108,329600,
+16:51:32,325 DEBUG [GreedyIterativeTest] 001133_rovira.konet,424,4970538,427,4988147,420,4880611,422,5007223,428,5100151,418,5139546,419,4996674,425,5309393,424,5096475,422,4748009,
+16:51:32,325 DEBUG [GreedyIterativeTest] 001174_euroroad.konet,506,5348083,507,5640490,500,5092801,500,5166747,495,5527153,503,5179479,504,5422199,495,5239314,504,5100581,505,5485834,
+16:51:32,325 DEBUG [GreedyIterativeTest] 001858_hamster.konet,885,16517909,888,16697772,887,15685395,875,15158009,884,18034849,896,16029104,880,16370166,876,16346363,889,15958743,882,15356230,
+00:44:48,185 DEBUG [GreedyDSV2Test] out/DIMACS-GreedyDSV2Test-20150730.csv
+00:44:48,516 DEBUG [GreedyDSV2Test] C1000.9.clq-i=1
+00:44:55,010 DEBUG [GreedyDSV2Test] 5:,3,5,5, 5380760860
+00:45:01,227 DEBUG [GreedyDSV2Test] 10:,3,10,10, 5252853052
+00:45:08,086 DEBUG [GreedyDSV2Test] 15:,3,15,15, 5761295303
+00:45:14,329 DEBUG [GreedyDSV2Test] 20:,3,20,20, 5041109270
+00:45:14,333 DEBUG [GreedyDSV2Test] C125.9.clq-i=1
+00:45:14,354 DEBUG [GreedyDSV2Test] 5:,2,5,5, 14853006
+00:45:14,375 DEBUG [GreedyDSV2Test] 10:,2,10,10, 14583680
+00:45:14,396 DEBUG [GreedyDSV2Test] 15:,2,15,15, 14955890
+00:45:14,416 DEBUG [GreedyDSV2Test] 20:,2,20,20, 14593591
+00:45:14,641 DEBUG [GreedyDSV2Test] C2000.5.clq-i=1
+00:45:49,893 DEBUG [GreedyDSV2Test] 5:,8,5,5, 32419704185
+00:46:20,201 DEBUG [GreedyDSV2Test] 10:,8,10,10, 27673715818
+00:46:43,698 DEBUG [GreedyDSV2Test] 15:,8,15,15, 21021329171
+00:47:05,274 DEBUG [GreedyDSV2Test] 20:,8,20,20, 18908148049
+00:47:05,647 DEBUG [GreedyDSV2Test] C2000.9.clq-i=1
+00:47:29,364 DEBUG [GreedyDSV2Test] 5:,3,5,5, 19440001166
+00:47:54,542 DEBUG [GreedyDSV2Test] 10:,3,10,10, 19610347979
+00:48:19,221 DEBUG [GreedyDSV2Test] 15:,3,15,15, 19710201172
+00:48:44,650 DEBUG [GreedyDSV2Test] 20:,3,20,20, 20772675924
+00:48:44,662 DEBUG [GreedyDSV2Test] C250.9.clq-i=1
+00:48:44,782 DEBUG [GreedyDSV2Test] 5:,2,5,5, 69742923
+00:48:44,877 DEBUG [GreedyDSV2Test] 10:,2,10,10, 65524929
+00:48:44,976 DEBUG [GreedyDSV2Test] 15:,2,15,15, 67536239
+00:48:45,076 DEBUG [GreedyDSV2Test] 20:,2,20,20, 68195755
+00:48:45,952 DEBUG [GreedyDSV2Test] C4000.5.clq-i=1
+00:51:36,215 DEBUG [GreedyDSV2Test] 5:,8,5,5, 156184466723
+00:54:29,440 DEBUG [GreedyDSV2Test] 10:,9,10,10, 155943823899
+00:56:12,715 DEBUG [GreedyDSV2Test] 15:,9,15,15, 87609664120
+00:57:58,290 DEBUG [GreedyDSV2Test] 20:,8,20,20, 92222275310
+00:57:58,311 DEBUG [GreedyDSV2Test] C500.9.clq-i=1
+00:57:58,823 DEBUG [GreedyDSV2Test] 5:,2,5,5, 330186962
+00:57:59,412 DEBUG [GreedyDSV2Test] 10:,2,10,10, 360217305
+00:58:00,377 DEBUG [GreedyDSV2Test] 15:,2,15,15, 573201435
+00:58:01,114 DEBUG [GreedyDSV2Test] 20:,2,20,20, 488803411
+00:58:01,191 DEBUG [GreedyDSV2Test] DSJC1000.5.clq-i=1
+00:58:07,669 DEBUG [GreedyDSV2Test] 5:,7,5,5, 5837033066
+00:58:12,142 DEBUG [GreedyDSV2Test] 10:,8,10,10, 3946487409
+00:58:16,381 DEBUG [GreedyDSV2Test] 15:,8,15,15, 3718932515
+00:58:19,805 DEBUG [GreedyDSV2Test] 20:,7,20,20, 2763084822
+00:58:19,818 DEBUG [GreedyDSV2Test] DSJC500.5.clq-i=1
+00:58:20,781 DEBUG [GreedyDSV2Test] 5:,6,5,5, 859003762
+00:58:21,493 DEBUG [GreedyDSV2Test] 10:,6,10,10, 607713199
+00:58:22,190 DEBUG [GreedyDSV2Test] 15:,7,15,15, 590646550
+00:58:22,868 DEBUG [GreedyDSV2Test] 20:,6,20,20, 575283881
+00:58:22,882 DEBUG [GreedyDSV2Test] MANN_a27.clq-i=1
+00:58:23,128 DEBUG [GreedyDSV2Test] 5:,2,5,5, 168888153
+00:58:23,379 DEBUG [GreedyDSV2Test] 10:,2,10,10, 173937762
+00:58:23,624 DEBUG [GreedyDSV2Test] 15:,2,15,15, 168605318
+00:58:23,942 DEBUG [GreedyDSV2Test] 20:,2,20,20, 232765723
+00:58:25,096 DEBUG [GreedyDSV2Test] MANN_a81.clq-i=1
+00:59:29,254 DEBUG [GreedyDSV2Test] 5:,2,5,5, 36473251341
+01:00:23,666 DEBUG [GreedyDSV2Test] 10:,2,10,10, 33148595066
+01:01:25,405 DEBUG [GreedyDSV2Test] 15:,2,15,15, 45660986144
+01:02:29,203 DEBUG [GreedyDSV2Test] 20:,2,20,20, 46304597209
+01:02:29,207 DEBUG [GreedyDSV2Test] brock200_2.clq-i=1
+01:02:29,328 DEBUG [GreedyDSV2Test] 5:,5,5,5, 107170510
+01:02:29,396 DEBUG [GreedyDSV2Test] 10:,5,10,10, 51682187
+01:02:29,462 DEBUG [GreedyDSV2Test] 15:,5,15,15, 51567372
+01:02:29,532 DEBUG [GreedyDSV2Test] 20:,5,20,20, 56857225
+01:02:29,536 DEBUG [GreedyDSV2Test] brock200_4.clq-i=1
+01:02:29,617 DEBUG [GreedyDSV2Test] 5:,3,5,5, 63757086
+01:02:29,728 DEBUG [GreedyDSV2Test] 10:,4,10,10, 94717118
+01:02:29,812 DEBUG [GreedyDSV2Test] 15:,4,15,15, 66647500
+01:02:29,906 DEBUG [GreedyDSV2Test] 20:,4,20,20, 76070060
+01:02:29,918 DEBUG [GreedyDSV2Test] brock400_2.clq-i=1
+01:02:31,583 DEBUG [GreedyDSV2Test] 5:,3,5,5, 637001604
+01:02:32,343 DEBUG [GreedyDSV2Test] 10:,3,10,10, 584276188
+01:02:32,948 DEBUG [GreedyDSV2Test] 15:,3,15,15, 474179501
+01:02:33,312 DEBUG [GreedyDSV2Test] 20:,3,20,20, 234009246
+01:02:33,331 DEBUG [GreedyDSV2Test] brock400_4.clq-i=1
+01:02:33,994 DEBUG [GreedyDSV2Test] 5:,3,5,5, 523037147
+01:02:34,727 DEBUG [GreedyDSV2Test] 10:,3,10,10, 564506311
+01:02:35,442 DEBUG [GreedyDSV2Test] 15:,3,15,15, 538339035
+01:02:36,179 DEBUG [GreedyDSV2Test] 20:,3,20,20, 569371953
+01:02:36,261 DEBUG [GreedyDSV2Test] brock800_2.clq-i=1
+01:02:39,667 DEBUG [GreedyDSV2Test] 5:,5,5,5, 2783132070
+01:02:43,204 DEBUG [GreedyDSV2Test] 10:,5,10,10, 3083067612
+01:02:45,078 DEBUG [GreedyDSV2Test] 15:,4,15,15, 1391122489
+01:02:46,966 DEBUG [GreedyDSV2Test] 20:,5,20,20, 1437622511
+01:02:47,002 DEBUG [GreedyDSV2Test] brock800_4.clq-i=1
+01:02:49,591 DEBUG [GreedyDSV2Test] 5:,4,5,5, 2135051054
+01:02:53,090 DEBUG [GreedyDSV2Test] 10:,5,10,10, 3041125501
+01:02:55,900 DEBUG [GreedyDSV2Test] 15:,5,15,15, 2339076547
+01:02:57,974 DEBUG [GreedyDSV2Test] 20:,4,20,20, 1600104116
+01:02:57,979 DEBUG [GreedyDSV2Test] gen200_p0.9_44.clq-i=1
+01:02:58,037 DEBUG [GreedyDSV2Test] 5:,2,5,5, 39183373
+01:02:58,097 DEBUG [GreedyDSV2Test] 10:,2,10,10, 41461783
+01:02:58,157 DEBUG [GreedyDSV2Test] 15:,2,15,15, 40889243
+01:02:58,217 DEBUG [GreedyDSV2Test] 20:,2,20,20, 40674672
+01:02:58,221 DEBUG [GreedyDSV2Test] gen200_p0.9_55.clq-i=1
+01:02:58,287 DEBUG [GreedyDSV2Test] 5:,2,5,5, 42166968
+01:02:58,349 DEBUG [GreedyDSV2Test] 10:,2,10,10, 41513202
+01:02:58,412 DEBUG [GreedyDSV2Test] 15:,2,15,15, 43969978
+01:02:58,473 DEBUG [GreedyDSV2Test] 20:,2,20,20, 41430224
+01:02:58,487 DEBUG [GreedyDSV2Test] gen400_p0.9_55.clq-i=1
+01:02:58,827 DEBUG [GreedyDSV2Test] 5:,2,5,5, 220468260
+01:02:59,171 DEBUG [GreedyDSV2Test] 10:,2,10,10, 224753723
+01:02:59,543 DEBUG [GreedyDSV2Test] 15:,2,15,15, 250893476
+01:02:59,962 DEBUG [GreedyDSV2Test] 20:,2,20,20, 301035672
+01:02:59,976 DEBUG [GreedyDSV2Test] gen400_p0.9_65.clq-i=1
+01:03:00,325 DEBUG [GreedyDSV2Test] 5:,2,5,5, 230236473
+01:03:00,686 DEBUG [GreedyDSV2Test] 10:,2,10,10, 238949438
+01:03:01,045 DEBUG [GreedyDSV2Test] 15:,2,15,15, 237767571
+01:03:01,423 DEBUG [GreedyDSV2Test] 20:,2,20,20, 259170753
+01:03:01,437 DEBUG [GreedyDSV2Test] gen400_p0.9_75.clq-i=1
+01:03:01,796 DEBUG [GreedyDSV2Test] 5:,2,5,5, 231799137
+01:03:02,139 DEBUG [GreedyDSV2Test] 10:,2,10,10, 226793900
+01:03:02,483 DEBUG [GreedyDSV2Test] 15:,2,15,15, 228409028
+01:03:02,842 DEBUG [GreedyDSV2Test] 20:,2,20,20, 241420352
+01:03:02,927 DEBUG [GreedyDSV2Test] hamming10-4.clq-i=1
+01:03:05,369 DEBUG [GreedyDSV2Test] 5:,2,5,5, 1328548409
+01:03:07,815 DEBUG [GreedyDSV2Test] 10:,2,10,10, 1327247603
+01:03:10,330 DEBUG [GreedyDSV2Test] 15:,2,15,15, 1363173171
+01:03:12,936 DEBUG [GreedyDSV2Test] 20:,2,20,20, 1370526802
+01:03:12,941 DEBUG [GreedyDSV2Test] hamming8-4.clq-i=1
+01:03:13,010 DEBUG [GreedyDSV2Test] 5:,2,5,5, 36528331
+01:03:13,081 DEBUG [GreedyDSV2Test] 10:,2,10,10, 38977579
+01:03:13,157 DEBUG [GreedyDSV2Test] 15:,2,15,15, 43564278
+01:03:13,233 DEBUG [GreedyDSV2Test] 20:,2,20,20, 42496253
+01:03:13,235 DEBUG [GreedyDSV2Test] keller4.clq-i=1
+01:03:13,260 DEBUG [GreedyDSV2Test] 5:,2,5,5, 15228652
+01:03:13,285 DEBUG [GreedyDSV2Test] 10:,2,10,10, 15635775
+01:03:13,310 DEBUG [GreedyDSV2Test] 15:,2,15,15, 16284992
+01:03:13,336 DEBUG [GreedyDSV2Test] 20:,2,20,20, 16870077
+01:03:13,375 DEBUG [GreedyDSV2Test] keller5.clq-i=1
+01:03:14,526 DEBUG [GreedyDSV2Test] 5:,2,5,5, 761994205
+01:03:15,586 DEBUG [GreedyDSV2Test] 10:,2,10,10, 681172971
+01:03:16,755 DEBUG [GreedyDSV2Test] 15:,2,15,15, 708703960
+01:03:18,392 DEBUG [GreedyDSV2Test] 20:,2,20,20, 1001033017
+01:03:20,024 DEBUG [GreedyDSV2Test] keller6.clq-i=1
+01:03:56,969 DEBUG [GreedyDSV2Test] 5:,2,5,5, 25105027909
+01:04:36,204 DEBUG [GreedyDSV2Test] 10:,2,10,10, 27075354595
+01:05:19,869 DEBUG [GreedyDSV2Test] 15:,2,15,15, 30121799034
+01:05:59,963 DEBUG [GreedyDSV2Test] 20:,2,20,20, 22330863707
+01:06:00,018 DEBUG [GreedyDSV2Test] p_hat1500-1.clq-i=1
+01:06:10,197 DEBUG [GreedyDSV2Test] 5:,13,5,5, 9523651224
+01:06:19,381 DEBUG [GreedyDSV2Test] 10:,13,10,10, 8534460775
+01:06:50,717 DEBUG [GreedyDSV2Test] 15:,15,15,15, 30694003714
+01:12:40,012 DEBUG [GreedyDSV2Test] 20:,13,20,20, 348666071207
+01:12:40,112 DEBUG [GreedyDSV2Test] p_hat1500-2.clq-i=1
+01:12:52,180 DEBUG [GreedyDSV2Test] 5:,6,5,5, 10675365403
+01:13:03,589 DEBUG [GreedyDSV2Test] 10:,7,10,10, 10120840360
+01:13:11,771 DEBUG [GreedyDSV2Test] 15:,6,15,15, 6885648370
+01:13:17,909 DEBUG [GreedyDSV2Test] 20:,5,20,20, 4834718273
+01:13:18,056 DEBUG [GreedyDSV2Test] p_hat1500-3.clq-i=1
+01:13:26,280 DEBUG [GreedyDSV2Test] 5:,3,5,5, 6358817584
+01:13:38,604 DEBUG [GreedyDSV2Test] 10:,4,10,10, 10456888020
+01:13:50,780 DEBUG [GreedyDSV2Test] 15:,4,15,15, 10331023743
+01:13:59,933 DEBUG [GreedyDSV2Test] 20:,4,20,20, 7106791253
+01:13:59,937 DEBUG [GreedyDSV2Test] p_hat300-1.clq-i=1
+01:14:00,091 DEBUG [GreedyDSV2Test] 5:,11,5,5, 138682552
+01:14:00,342 DEBUG [GreedyDSV2Test] 10:,9,10,10, 236305217
+01:14:01,818 DEBUG [GreedyDSV2Test] 15:,9,15,15, 1461783764
+01:14:12,333 DEBUG [GreedyDSV2Test] 20:,10,20,20, 10500571577
+01:14:12,339 DEBUG [GreedyDSV2Test] p_hat300-2.clq-i=1
+01:14:12,543 DEBUG [GreedyDSV2Test] 5:,4,5,5, 174157706
+01:14:12,746 DEBUG [GreedyDSV2Test] 10:,5,10,10, 174088674
+01:14:12,907 DEBUG [GreedyDSV2Test] 15:,4,15,15, 131837535
+01:14:13,057 DEBUG [GreedyDSV2Test] 20:,4,20,20, 121036912
+01:14:13,065 DEBUG [GreedyDSV2Test] p_hat300-3.clq-i=1
+01:14:13,275 DEBUG [GreedyDSV2Test] 5:,3,5,5, 166531859
+01:14:13,500 DEBUG [GreedyDSV2Test] 10:,3,10,10, 181516573
+01:14:13,719 DEBUG [GreedyDSV2Test] 15:,3,15,15, 177277255
+01:14:13,855 DEBUG [GreedyDSV2Test] 20:,3,20,20, 93648022
+01:14:13,868 DEBUG [GreedyDSV2Test] p_hat700-1.clq-i=1
+01:14:15,105 DEBUG [GreedyDSV2Test] 5:,12,5,5, 1102587415
+01:14:17,062 DEBUG [GreedyDSV2Test] 10:,12,10,10, 1844721423
+01:15:00,605 DEBUG [GreedyDSV2Test] 15:,13,15,15, 43435005063
+01:16:49,286 DEBUG [GreedyDSV2Test] 20:,11,20,20, 108576786755
+01:16:49,309 DEBUG [GreedyDSV2Test] p_hat700-2.clq-i=1
+01:16:51,494 DEBUG [GreedyDSV2Test] 5:,6,5,5, 1948672887
+01:16:52,931 DEBUG [GreedyDSV2Test] 10:,6,10,10, 1215069532
+01:16:54,033 DEBUG [GreedyDSV2Test] 15:,5,15,15, 880566950
+01:16:55,122 DEBUG [GreedyDSV2Test] 20:,5,20,20, 864388329
+01:16:55,154 DEBUG [GreedyDSV2Test] p_hat700-3.clq-i=1
+01:16:56,703 DEBUG [GreedyDSV2Test] 5:,3,5,5, 1211350815
+01:16:58,413 DEBUG [GreedyDSV2Test] 10:,3,10,10, 1378274465
+01:16:59,961 DEBUG [GreedyDSV2Test] 15:,3,15,15, 1216391144
+01:17:00,923 DEBUG [GreedyDSV2Test] 20:,3,20,20, 633576603
+01:17:00,924 DEBUG [GreedyDSV2Test] out/BHOSLIB-GreedyDSV2Test-20150730.csv
+01:17:00,935 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-1.mis-i=1
+01:17:01,374 DEBUG [GreedyDSV2Test] 5:,17,5,5, 411447086
+01:17:05,317 DEBUG [GreedyDSV2Test] 10:,16,10,10, 3920191188
+01:23:31,814 DEBUG [GreedyDSV2Test] 15:,16,15,15, 386491486816
+01:30:25,528 DEBUG [GreedyDSV2Test] 20:,16,20,20, 413708941022
+01:30:25,534 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-2.mis-i=1
+01:30:25,949 DEBUG [GreedyDSV2Test] 5:,17,5,5, 390427192
+01:30:27,953 DEBUG [GreedyDSV2Test] 10:,16,10,10, 1980533446
+01:35:21,561 DEBUG [GreedyDSV2Test] 15:,16,15,15, 293597419236
+01:44:52,865 DEBUG [GreedyDSV2Test] 20:,15,20,20, 571305714067
+01:44:52,870 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-3.mis-i=1
+01:44:53,336 DEBUG [GreedyDSV2Test] 5:,18,5,5, 441356942
+01:44:59,252 DEBUG [GreedyDSV2Test] 10:,16,10,10, 5893057984
+01:46:36,126 DEBUG [GreedyDSV2Test] 15:,15,15,15, 96855015034
+02:02:02,259 DEBUG [GreedyDSV2Test] 20:,15,20,20, 926145167917
+02:02:02,279 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-4.mis-i=1
+02:02:02,877 DEBUG [GreedyDSV2Test] 5:,16,5,5, 557169277
+02:02:07,192 DEBUG [GreedyDSV2Test] 10:,19,10,10, 4289681629
+02:03:59,455 DEBUG [GreedyDSV2Test] 15:,15,15,15, 112241971740
+02:36:49,930 DEBUG [GreedyDSV2Test] 20:,17,20,20, 1970542331344
+02:36:49,937 DEBUG [GreedyDSV2Test] frb30-15-mis/frb30-15-5.mis-i=1
+02:36:50,444 DEBUG [GreedyDSV2Test] 5:,20,5,5, 482374188
+02:37:01,829 DEBUG [GreedyDSV2Test] 10:,17,10,10, 11359884591
+02:38:21,221 DEBUG [GreedyDSV2Test] 15:,16,15,15, 79369821450
+02:50:52,930 DEBUG [GreedyDSV2Test] 20:,15,20,20, 751717697040
+02:50:52,939 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-1.mis-i=1
+02:50:53,856 DEBUG [GreedyDSV2Test] 5:,22,5,5, 870636357
+02:51:05,700 DEBUG [GreedyDSV2Test] 10:,19,10,10, 11799398146
+02:52:19,565 DEBUG [GreedyDSV2Test] 15:,18,15,15, 73824008653
+03:06:58,782 DEBUG [GreedyDSV2Test] 20:,19,20,20, 879213472041
+03:06:58,790 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-2.mis-i=1
+03:06:59,464 DEBUG [GreedyDSV2Test] 5:,17,5,5, 627159966
+03:07:01,769 DEBUG [GreedyDSV2Test] 10:,19,10,10, 2261853429
+03:07:51,505 DEBUG [GreedyDSV2Test] 15:,18,15,15, 49695914264
+04:42:05,057 DEBUG [GreedyDSV2Test] 20:,21,20,20, 5653773465977
+04:42:05,066 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-3.mis-i=1
+04:42:06,005 DEBUG [GreedyDSV2Test] 5:,22,5,5, 894515029
+04:42:10,833 DEBUG [GreedyDSV2Test] 10:,19,10,10, 4782499416
+04:43:49,209 DEBUG [GreedyDSV2Test] 15:,19,15,15, 98335834060
+05:44:09,164 DEBUG [GreedyDSV2Test] 20:,18,20,20, 3620079084469
+05:44:09,172 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-4.mis-i=1
+05:44:09,887 DEBUG [GreedyDSV2Test] 5:,18,5,5, 669941796
+05:44:57,315 DEBUG [GreedyDSV2Test] 10:,20,10,10, 47384504071
+05:46:17,967 DEBUG [GreedyDSV2Test] 15:,20,15,15, 80612601365
+08:21:43,790 DEBUG [GreedyDSV2Test] 20:,20,20,20, 9326220826090
+08:21:43,799 DEBUG [GreedyDSV2Test] frb35-17-mis/frb35-17-5.mis-i=1
+08:21:45,114 DEBUG [GreedyDSV2Test] 5:,21,5,5, 1271000732
+08:21:47,857 DEBUG [GreedyDSV2Test] 10:,20,10,10, 2698433601
+08:22:56,879 DEBUG [GreedyDSV2Test] 15:,19,15,15, 68979234915
+08:36:45,612 DEBUG [GreedyDSV2Test] 20:,17,20,20, 828726498083
+08:36:45,622 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-1.mis-i=1
+08:36:47,446 DEBUG [GreedyDSV2Test] 5:,26,5,5, 1750400471
+08:37:19,235 DEBUG [GreedyDSV2Test] 10:,22,10,10, 31717084032
+08:59:03,669 DEBUG [GreedyDSV2Test] 15:,22,15,15, 1304421455459
+09:43:04,422 DEBUG [GreedyDSV2Test] 20:,24,20,20, 2640802799729
+09:43:04,432 DEBUG [GreedyDSV2Test] frb40-19-mis/frb40-19-2.mis-i=1
+09:43:06,183 DEBUG [GreedyDSV2Test] 5:,23,5,5, 1679896498
+09:43:20,535 DEBUG [GreedyDSV2Test] 10:,23,10,10, 14277983623
+10:03:52,436 DEBUG [GreedyDSV2Test] 15:,21,15,15, 1231835998242
+17:03:24,761 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+17:03:57,257 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+17:11:32,848 DEBUG [GreedyDSV4Test] 5:,15,5,5, 452331626639
+17:12:23,031 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+17:12:25,504 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+17:56:23,555 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+17:56:25,885 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+17:59:14,701 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+17:59:17,188 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:04:46,752 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+18:04:48,360 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:05:03,526 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+18:05:06,185 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:13:00,550 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+18:13:07,887 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:15:31,756 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+18:15:35,652 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:16:00,576 DEBUG [GreedyDSV4Test] 5:,15,5,5, 21446357163
+18:16:46,722 DEBUG [GreedyDSV4Test] out/BHOSLIB-GreedyDSV4Test-20150731.csv
+18:16:48,079 DEBUG [GreedyDSV4Test] frb30-15-mis/frb30-15-1.mis-i=1
+18:16:48,609 DEBUG [GreedyDSV4Test] 5:,12,5,5, 487161461
+18:16:48,989 DEBUG [GreedyDSV4Test] 10:,12,10,10, 353763553
+18:16:49,446 DEBUG [GreedyDSV4Test] 15:,12,15,15, 427665250
+18:16:50,667 DEBUG [GreedyDSV4Test] frb30-15-mis/frb30-15-2.mis-i=1
+18:16:50,966 DEBUG [GreedyDSV4Test] 5:,12,5,5, 275512398
+18:16:51,357 DEBUG [GreedyDSV4Test] 10:,12,10,10, 365824040
+18:16:51,805 DEBUG [GreedyDSV4Test] 15:,12,15,15, 411973888
+18:16:53,146 DEBUG [GreedyDSV4Test] frb30-15-mis/frb30-15-3.mis-i=1
+18:16:53,581 DEBUG [GreedyDSV4Test] 5:,12,5,5, 402734523
+18:16:53,935 DEBUG [GreedyDSV4Test] 10:,12,10,10, 328978206
+18:16:54,286 DEBUG [GreedyDSV4Test] 15:,12,15,15, 327181561
+18:16:55,471 DEBUG [GreedyDSV4Test] frb30-15-mis/frb30-15-4.mis-i=1
+18:16:55,834 DEBUG [GreedyDSV4Test] 5:,13,5,5, 334724832
+18:16:56,408 DEBUG [GreedyDSV4Test] 10:,13,10,10, 548300736
+18:16:56,980 DEBUG [GreedyDSV4Test] 15:,13,15,15, 543436878
+18:16:58,192 DEBUG [GreedyDSV4Test] frb30-15-mis/frb30-15-5.mis-i=1
+18:16:58,641 DEBUG [GreedyDSV4Test] 5:,13,5,5, 416585120
+18:16:59,010 DEBUG [GreedyDSV4Test] 10:,13,10,10, 339787367
+18:16:59,527 DEBUG [GreedyDSV4Test] 15:,13,15,15, 493217709
+18:17:00,811 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-1.mis-i=1
+18:17:01,436 DEBUG [GreedyDSV4Test] 5:,14,5,5, 582599317
+18:17:02,062 DEBUG [GreedyDSV4Test] 10:,14,10,10, 581922302
+18:17:03,001 DEBUG [GreedyDSV4Test] 15:,14,15,15, 895495189
+18:17:04,284 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-2.mis-i=1
+18:17:04,978 DEBUG [GreedyDSV4Test] 5:,14,5,5, 651618227
+18:17:05,600 DEBUG [GreedyDSV4Test] 10:,14,10,10, 579253707
+18:17:06,314 DEBUG [GreedyDSV4Test] 15:,14,15,15, 672822260
+18:17:07,642 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-3.mis-i=1
+18:17:08,652 DEBUG [GreedyDSV4Test] 5:,15,5,5, 953148980
+18:17:09,373 DEBUG [GreedyDSV4Test] 10:,15,10,10, 676255816
+18:17:10,029 DEBUG [GreedyDSV4Test] 15:,15,15,15, 611913806
+18:17:11,366 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-4.mis-i=1
+18:17:12,254 DEBUG [GreedyDSV4Test] 5:,17,5,5, 827637531
+18:17:12,968 DEBUG [GreedyDSV4Test] 10:,17,10,10, 674238957
+18:17:14,482 DEBUG [GreedyDSV4Test] 15:,17,15,15, 1471973698
+18:17:15,776 DEBUG [GreedyDSV4Test] frb35-17-mis/frb35-17-5.mis-i=1
+18:17:16,525 DEBUG [GreedyDSV4Test] 5:,14,5,5, 689905807
+18:17:17,171 DEBUG [GreedyDSV4Test] 10:,14,10,10, 602391959
+18:17:23,978 DEBUG [GreedyDSV4Test] 15:,14,15,15, 6764018787
+18:17:25,495 DEBUG [GreedyDSV4Test] frb40-19-mis/frb40-19-1.mis-i=1
+18:17:26,756 DEBUG [GreedyDSV4Test] 5:,16,5,5, 1192049329
+18:17:27,979 DEBUG [GreedyDSV4Test] 10:,16,10,10, 1154486070
+18:17:29,472 DEBUG [GreedyDSV4Test] 15:,16,15,15, 1422059313
+18:17:31,000 DEBUG [GreedyDSV4Test] frb40-19-mis/frb40-19-2.mis-i=1
+18:17:32,311 DEBUG [GreedyDSV4Test] 5:,17,5,5, 1240936650
+18:17:33,433 DEBUG [GreedyDSV4Test] 10:,17,10,10, 1052574828
+18:17:34,861 DEBUG [GreedyDSV4Test] 15:,17,15,15, 1341649678
+18:17:36,675 DEBUG [GreedyDSV4Test] frb40-19-mis/frb40-19-3.mis-i=1
+18:17:38,014 DEBUG [GreedyDSV4Test] 5:,17,5,5, 1249307078
+18:17:39,412 DEBUG [GreedyDSV4Test] 10:,17,10,10, 1319804608
+18:17:40,571 DEBUG [GreedyDSV4Test] 15:,17,15,15, 1083447958
+18:17:42,118 DEBUG [GreedyDSV4Test] frb40-19-mis/frb40-19-4.mis-i=1
+18:17:43,757 DEBUG [GreedyDSV4Test] 5:,17,5,5, 1562920318
+18:17:45,099 DEBUG [GreedyDSV4Test] 10:,17,10,10, 1245965925
+18:17:46,371 DEBUG [GreedyDSV4Test] 15:,17,15,15, 1198854115
+18:17:47,994 DEBUG [GreedyDSV4Test] frb40-19-mis/frb40-19-5.mis-i=1
+18:17:49,270 DEBUG [GreedyDSV4Test] 5:,16,5,5, 1205050806
+18:17:50,513 DEBUG [GreedyDSV4Test] 10:,16,10,10, 1165023659
+18:17:52,066 DEBUG [GreedyDSV4Test] 15:,16,15,15, 1479080487
+18:17:53,887 DEBUG [GreedyDSV4Test] frb45-21-mis/frb45-21-1.mis-i=1
+18:17:56,332 DEBUG [GreedyDSV4Test] 5:,18,5,5, 2338450509
+18:17:58,318 DEBUG [GreedyDSV4Test] 10:,18,10,10, 1872709751
+18:18:02,941 DEBUG [GreedyDSV4Test] 15:,18,15,15, 4487311251
+18:18:05,215 DEBUG [GreedyDSV4Test] frb45-21-mis/frb45-21-2.mis-i=1
+18:18:07,804 DEBUG [GreedyDSV4Test] 5:,19,5,5, 2476267495
+18:18:09,996 DEBUG [GreedyDSV4Test] 10:,19,10,10, 2074762126
+18:18:12,582 DEBUG [GreedyDSV4Test] 15:,19,15,15, 2472040393
+18:18:14,455 DEBUG [GreedyDSV4Test] frb45-21-mis/frb45-21-3.mis-i=1
+18:18:16,685 DEBUG [GreedyDSV4Test] 5:,18,5,5, 2068414622
+18:18:18,826 DEBUG [GreedyDSV4Test] 10:,18,10,10, 2007285757
+18:18:21,305 DEBUG [GreedyDSV4Test] 15:,18,15,15, 2313086611
+18:18:23,111 DEBUG [GreedyDSV4Test] frb45-21-mis/frb45-21-4.mis-i=1
+18:18:25,176 DEBUG [GreedyDSV4Test] 5:,18,5,5, 1950534142
+18:18:27,955 DEBUG [GreedyDSV4Test] 10:,18,10,10, 2653743779
+18:18:30,530 DEBUG [GreedyDSV4Test] 15:,18,15,15, 2378269449
+18:18:32,610 DEBUG [GreedyDSV4Test] frb45-21-mis/frb45-21-5.mis-i=1
+18:18:34,741 DEBUG [GreedyDSV4Test] 5:,19,5,5, 2027914158
+18:18:37,087 DEBUG [GreedyDSV4Test] 10:,19,10,10, 2241461602
+18:18:41,847 DEBUG [GreedyDSV4Test] 15:,19,15,15, 4655694209
+18:18:44,815 DEBUG [GreedyDSV4Test] frb53-24-mis/frb53-24-1.mis-i=1
+18:18:49,925 DEBUG [GreedyDSV4Test] 5:,22,5,5, 4895762373
+18:18:54,499 DEBUG [GreedyDSV4Test] 10:,22,10,10, 4383700025
+18:18:59,083 DEBUG [GreedyDSV4Test] 15:,22,15,15, 4349143465
+18:19:01,835 DEBUG [GreedyDSV4Test] frb53-24-mis/frb53-24-2.mis-i=1
+18:19:07,430 DEBUG [GreedyDSV4Test] 5:,22,5,5, 5360045228
+18:19:12,357 DEBUG [GreedyDSV4Test] 10:,22,10,10, 4698628595
+18:19:22,957 DEBUG [GreedyDSV4Test] 15:,22,15,15, 10405427488
+18:19:25,739 DEBUG [GreedyDSV4Test] frb53-24-mis/frb53-24-3.mis-i=1
+18:19:30,404 DEBUG [GreedyDSV4Test] 5:,21,5,5, 4476938884
+18:19:35,287 DEBUG [GreedyDSV4Test] 10:,21,10,10, 4695035221
+18:19:39,806 DEBUG [GreedyDSV4Test] 15:,21,15,15, 4331621093
+18:19:42,471 DEBUG [GreedyDSV4Test] frb53-24-mis/frb53-24-4.mis-i=1
+18:19:46,818 DEBUG [GreedyDSV4Test] 5:,21,5,5, 4162084626
+18:19:51,508 DEBUG [GreedyDSV4Test] 10:,21,10,10, 4503679781
+18:19:55,665 DEBUG [GreedyDSV4Test] 15:,21,15,15, 3944910464
+18:19:58,587 DEBUG [GreedyDSV4Test] frb53-24-mis/frb53-24-5.mis-i=1
+18:20:03,001 DEBUG [GreedyDSV4Test] 5:,21,5,5, 4229680832
+18:20:07,819 DEBUG [GreedyDSV4Test] 10:,21,10,10, 4600876560
+18:20:14,621 DEBUG [GreedyDSV4Test] 15:,21,15,15, 6605874398
+18:20:17,764 DEBUG [GreedyDSV4Test] frb56-25-mis/frb56-25-1.mis-i=1
+18:20:23,230 DEBUG [GreedyDSV4Test] 5:,22,5,5, 5252150371
+18:20:28,773 DEBUG [GreedyDSV4Test] 10:,22,10,10, 5324888982
+18:20:45,457 DEBUG [GreedyDSV4Test] 15:,22,15,15, 16464975484
+18:20:48,505 DEBUG [GreedyDSV4Test] frb56-25-mis/frb56-25-2.mis-i=1
+18:20:54,587 DEBUG [GreedyDSV4Test] 5:,23,5,5, 5864981701
+18:21:00,496 DEBUG [GreedyDSV4Test] 10:,23,10,10, 5685437732
+18:21:05,937 DEBUG [GreedyDSV4Test] 15:,23,15,15, 5217229403
+18:21:08,878 DEBUG [GreedyDSV4Test] frb56-25-mis/frb56-25-3.mis-i=1
+18:21:14,876 DEBUG [GreedyDSV4Test] 5:,23,5,5, 5733263754
+18:21:20,566 DEBUG [GreedyDSV4Test] 10:,23,10,10, 5382903606
+18:21:25,726 DEBUG [GreedyDSV4Test] 15:,23,15,15, 4946607747
+18:21:28,932 DEBUG [GreedyDSV4Test] frb56-25-mis/frb56-25-4.mis-i=1
+18:21:35,038 DEBUG [GreedyDSV4Test] 5:,23,5,5, 5888420150
+18:21:40,653 DEBUG [GreedyDSV4Test] 10:,23,10,10, 5397421902
+18:21:46,763 DEBUG [GreedyDSV4Test] 15:,23,15,15, 5882620454
+18:21:49,627 DEBUG [GreedyDSV4Test] frb56-25-mis/frb56-25-5.mis-i=1
+18:21:55,291 DEBUG [GreedyDSV4Test] 5:,22,5,5, 5198471237
+18:22:00,929 DEBUG [GreedyDSV4Test] 10:,22,10,10, 5423005228
+18:22:09,706 DEBUG [GreedyDSV4Test] 15:,22,15,15, 8528011829
+18:22:12,964 DEBUG [GreedyDSV4Test] frb59-26-mis/frb59-26-1.mis-i=1
+18:22:19,929 DEBUG [GreedyDSV4Test] 5:,23,5,5, 6716824644
+18:22:26,549 DEBUG [GreedyDSV4Test] 10:,23,10,10, 6369064665
+18:22:39,137 DEBUG [GreedyDSV4Test] 15:,23,15,15, 12339056278
+18:22:42,832 DEBUG [GreedyDSV4Test] frb59-26-mis/frb59-26-2.mis-i=1
+18:22:49,696 DEBUG [GreedyDSV4Test] 5:,23,5,5, 6614885997
+18:22:55,962 DEBUG [GreedyDSV4Test] 10:,23,10,10, 6011174742
+18:23:03,926 DEBUG [GreedyDSV4Test] 15:,23,15,15, 7718445796
+18:23:07,586 DEBUG [GreedyDSV4Test] frb59-26-mis/frb59-26-3.mis-i=1
+18:23:14,934 DEBUG [GreedyDSV4Test] 5:,24,5,5, 7060158316
+18:23:21,527 DEBUG [GreedyDSV4Test] 10:,24,10,10, 6340222823
+18:23:27,950 DEBUG [GreedyDSV4Test] 15:,24,15,15, 6171963074
+18:23:31,402 DEBUG [GreedyDSV4Test] frb59-26-mis/frb59-26-4.mis-i=1
+18:23:38,415 DEBUG [GreedyDSV4Test] 5:,23,5,5, 6760995533
+18:23:45,726 DEBUG [GreedyDSV4Test] 10:,23,10,10, 7057140994
+18:23:56,776 DEBUG [GreedyDSV4Test] 15:,23,15,15, 10796095662
+18:24:00,083 DEBUG [GreedyDSV4Test] frb59-26-mis/frb59-26-5.mis-i=1
+18:24:06,973 DEBUG [GreedyDSV4Test] 5:,24,5,5, 6642300796
+18:24:14,245 DEBUG [GreedyDSV4Test] 10:,24,10,10, 6989679313
+18:24:22,675 DEBUG [GreedyDSV4Test] 15:,24,15,15, 8164435953
+18:28:37,360 DEBUG [GreedyDSV4Test] out/KONECT-GreedyDSV4Test-20150731.csv
+18:28:41,413 DEBUG [GreedyDSV4Test] 001858_hamster.konet-i=1
+18:28:55,670 DEBUG [GreedyDSV4Test] 5:,253,5,5, 14162011606
+18:29:05,058 DEBUG [GreedyDSV4Test] 10:,253,10,10, 9342626986
+18:29:11,896 DEBUG [GreedyDSV4Test] 15:,253,15,15, 6793254136
+18:32:49,319 DEBUG [GreedyDSV4Test] out/KONECT-GreedyDSV4Test-20150731.csv
+18:32:53,339 DEBUG [GreedyDSV4Test] 001858_hamster.konet-i=1
+18:39:34,169 DEBUG [GreedyDSV4Test] out/KONECT-GreedyDSV4Test-20150731.csv
+18:39:37,918 DEBUG [GreedyDSV4Test] 001858_hamster.konet-i=1
+18:57:02,303 DEBUG [GreedyDSV4Test] out/KONECT-GreedyDSV4Test-20150731.csv
+18:57:06,594 DEBUG [GreedyDSV4Test] 001858_hamster.konet-i=1
+18:57:22,642 DEBUG [GreedyDSV4Test] 20:,253,20,20, 15986315054
+16:22:02,362 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150903.csv
+16:22:05,609 DEBUG [GreedyDSVSTest] C4000.5.clq-i=1
+16:24:59,280 DEBUG [GreedyDSVSTest] 1,0:,8,10,10, 161729027281
+16:25:00,613 DEBUG [GreedyDSVSTest] MANN_a81.clq-i=1
+16:27:05,134 DEBUG [GreedyDSVSTest] 1,0:,2,10,10, 67527062574
+16:27:08,578 DEBUG [GreedyDSVSTest] keller6.clq-i=1
+16:29:19,119 DEBUG [GreedyDSVSTest] 1,0:,3,10,10, 101001431180
+13:34:25,570 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
+13:34:29,479 DEBUG [GreedyDSVSTest] C4000.5.clq-i=1
+13:40:25,367 DEBUG [GreedyDSVSTest] 5,0:,7,10,10, 344371609614
+13:40:26,860 DEBUG [GreedyDSVSTest] MANN_a81.clq-i=1
+13:41:39,363 DEBUG [GreedyDSVSTest] 5,0:,2,10,10, 60644616597
+13:41:42,987 DEBUG [GreedyDSVSTest] keller6.clq-i=1
+13:42:51,451 DEBUG [GreedyDSVSTest] 5,0:,2,10,10, 59806207381
+15:51:17,428 DEBUG [GreedyDSVSTest] out/DIMACS-GreedyDSVSTest-20150904.csv
+15:51:18,128 DEBUG [GreedyDSVSTest] C2000.9.clq-i=1
+15:51:49,422 DEBUG [GreedyDSVSTest] 5,0:,3,10,10, 25006785250
