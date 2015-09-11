@@ -167,17 +167,17 @@ public class GreedyDSVSTest {
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
 //					int ds11Size = ds11.size();
 //
-					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
-					ag12.computing();
-					List<Integer> ds12 = ag12.getDs();
-					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
-					int ds12Size = ds12.size();
+//					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+//					ag12.computing();
+//					List<Integer> ds12 = ag12.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
+//					int ds12Size = ds12.size();
 //
-//					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
-//					ag13.computing();
-//					List<Integer> ds13 = ag13.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
-//					int ds13Size = ds13.size();
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
+					int ds13Size = ds13.size();
 //
 //					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
 //					ag14.computing();
@@ -185,9 +185,9 @@ public class GreedyDSVSTest {
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
 //					int ds14Size = ds14.size();
 
-					Result result = ag12.getResult();
-					int minDSSize = ds12Size;
-					int chooseDS = 6;
+					Result result = ag13.getResult();
+					int minDSSize = ds13Size;
+					int chooseDS = 7;
 
 //					if (minDSSize >= ds02Size) {
 //
