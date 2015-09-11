@@ -136,7 +136,7 @@ public class GreedyDSVSTest {
 					int k = kr[0];
 					int rUpper = kr[1];
 					int r = rUpper;
-
+//
 //					GreedyDSVS01 ag01 = new GreedyDSVS01(this.getClass().getName(), am, k, r);
 //					ag01.computing();
 //					List<Integer> ds01 = ag01.getDs();
@@ -161,17 +161,17 @@ public class GreedyDSVSTest {
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds04));
 //					int ds04Size = ds04.size();
 //
-					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
-					ag11.computing();
-					List<Integer> ds11 = ag11.getDs();
-					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
-					int ds11Size = ds11.size();
+//					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
+//					ag11.computing();
+//					List<Integer> ds11 = ag11.getDs();
+//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
+//					int ds11Size = ds11.size();
 //
-//					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
-//					ag12.computing();
-//					List<Integer> ds12 = ag12.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
-//					int ds12Size = ds12.size();
+					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+					ag12.computing();
+					List<Integer> ds12 = ag12.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
+					int ds12Size = ds12.size();
 //
 //					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
 //					ag13.computing();
@@ -185,9 +185,9 @@ public class GreedyDSVSTest {
 //					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
 //					int ds14Size = ds14.size();
 
-					Result result = ag11.getResult();
-					int minDSSize = ds11Size;
-					int chooseDS = 5;
+					Result result = ag12.getResult();
+					int minDSSize = ds12Size;
+					int chooseDS = 6;
 
 //					if (minDSSize >= ds02Size) {
 //
@@ -266,8 +266,8 @@ public class GreedyDSVSTest {
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { // "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
-							"C2000.9.clq", 
-							//"C250.9.clq",
+							 "C2000.9.clq", 
+							 //"C250.9.clq",
 				//"C4000.5.clq",
 				// "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
 				// "MANN_a27.clq",
