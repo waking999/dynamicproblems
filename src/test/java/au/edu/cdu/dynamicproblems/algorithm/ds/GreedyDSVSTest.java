@@ -134,24 +134,23 @@ public class GreedyDSVSTest {
 					int rUpper = kr[1];
 					int r = rUpper;
 
-//
-//					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
-//					ag11.computing();
-//					List<Integer> ds11 = ag11.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
-//					int ds11Size = ds11.size();
-//
-//					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
-//					ag12.computing();
-//					List<Integer> ds12 = ag12.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
-//					int ds12Size = ds12.size();
-//
-//					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
-//					ag13.computing();
-//					List<Integer> ds13 = ag13.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
-//					int ds13Size = ds13.size();
+					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
+					ag11.computing();
+					List<Integer> ds11 = ag11.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
+					int ds11Size = ds11.size();
+
+					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+					ag12.computing();
+					List<Integer> ds12 = ag12.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
+					int ds12Size = ds12.size();
+
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
+					int ds13Size = ds13.size();
 
 					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
 					ag14.computing();
@@ -159,36 +158,32 @@ public class GreedyDSVSTest {
 					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
 					int ds14Size = ds14.size();
 
-					
-					int minDSSize = ds14Size;
-					int chooseDS = 8;
+					int minDSSize = ds11Size;
+					int chooseDS = 5;
 
+					if (minDSSize >= ds11Size) {
 
-//					if (minDSSize >= ds11Size) {
-//
-//						minDSSize = ds11Size;
-//						chooseDS = 5;
-//					}
-					
-//					if (minDSSize >= ds12Size) {
-//
-//						minDSSize = ds12Size;
-//						chooseDS = 6;
-//					}
-//
-//					if (minDSSize >= ds13Size) {
-//						// minDS=ds3;
-//						minDSSize = ds13Size;
-//						chooseDS = 7;
-//					}
-//
-//					if (minDSSize >= ds14Size) {
-//						// minDS=ds4;
-//						minDSSize = ds14Size;
-//						chooseDS = 8;
-//					}
-					
-					Result result = getResult(chooseDS,minDSSize,k,r,ag14);
+						minDSSize = ds11Size;
+						chooseDS = 5;
+					}
+
+					if (minDSSize >= ds12Size) {
+
+						minDSSize = ds12Size;
+						chooseDS = 6;
+					}
+
+					if (minDSSize >= ds13Size) {
+						minDSSize = ds13Size;
+						chooseDS = 7;
+					}
+
+					if (minDSSize >= ds14Size) {
+						minDSSize = ds14Size;
+						chooseDS = 8;
+					}
+
+					Result result = getResult(chooseDS, minDSSize, k, r, ag12);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
@@ -201,30 +196,29 @@ public class GreedyDSVSTest {
 		}
 	}
 
-	private Result getResult(int choice,int minDSSize,int k,int r,IGreedyDS... ags) {
+	private Result getResult(int choice, int minDSSize, int k, int r, IGreedyDS... ags) {
 		Result result = new Result();
 
 		StringBuffer sb = new StringBuffer();
-		
-		long runningTime=0;
-		
-		for(IGreedyDS ag:ags){
-			runningTime+=ag.getRunningTime();
+
+		long runningTime = 0;
+
+		for (IGreedyDS ag : ags) {
+			runningTime += ag.getRunningTime();
 		}
 
-		sb.append(",").append(minDSSize).append(",").append(k).append(",").append(r).append(", ")
-				.append(runningTime);
+		sb.append(",").append(minDSSize).append(",").append(k).append(",").append(r).append(", ").append(runningTime);
 		result.setString(sb.toString());
 		return result;
 	}
-	
+
 	private String setMessage(String file, int i) {
 		String msg;
 		msg = file + "-i=" + i;
 		return msg;
 	}
 
-	//@Ignore
+	// @Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -234,26 +228,19 @@ public class GreedyDSVSTest {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { //"C1000.9.clq", "C125.9.clq", "C2000.5.clq",
-							 "C2000.9.clq", 
-				//"C250.9.clq",
-				"C4000.5.clq",
-//				 "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq",
-//				 "MANN_a27.clq", 
-				 "MANN_a81.clq", 
-//				 "brock200_2.clq",
-//				 "brock200_4.clq", "brock400_2.clq", "brock400_4.clq",
-//				 "brock800_2.clq", "brock800_4.clq",
-//				 "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
-//				 "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-//				 "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
-//				 "keller4.clq", "keller5.clq",
-				 "keller6.clq",
-//				 "p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq",
-//				 "p_hat300-1.clq", "p_hat300-2.clq",
-//				 "p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq",
-//				 "p_hat700-3.clq"
-		};
+		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
+				// "C2000.9.clq",
+				"C250.9.clq",
+				// "C4000.5.clq",
+				"C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
+				// "MANN_a81.clq",
+				"brock200_2.clq", "brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
+				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq",
+				"gen400_p0.9_65.clq", "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq",
+				"keller5.clq",
+				// "keller6.clq",
+				"p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq", "p_hat300-2.clq",
+				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq" };
 		// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
 		int[][] krArray = { { 10, 10 } };
 		runStrategies(path, krArray, files, destFile, 1, 1);
