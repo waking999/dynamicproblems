@@ -140,24 +140,24 @@ public class GreedyDSVSTest {
 					List<Integer> ds11 = ag11.getDs();
 					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds11));
 					int ds11Size = ds11.size();
-//
-//					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
-//					ag12.computing();
-//					List<Integer> ds12 = ag12.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
-//					int ds12Size = ds12.size();
-//
-//					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
-//					ag13.computing();
-//					List<Integer> ds13 = ag13.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
-//					int ds13Size = ds13.size();
-//
-//					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
-//					ag14.computing();
-//					List<Integer> ds14 = ag14.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
-//					int ds14Size = ds14.size();
+
+					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+					ag12.computing();
+					List<Integer> ds12 = ag12.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds12));
+					int ds12Size = ds12.size();
+
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds13));
+					int ds13Size = ds13.size();
+
+					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
+					ag14.computing();
+					List<Integer> ds14 = ag14.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds14));
+					int ds14Size = ds14.size();
 
 					
 					int minDSSize = ds11Size;
@@ -170,25 +170,23 @@ public class GreedyDSVSTest {
 						chooseDS = 5;
 					}
 					
-//					if (minDSSize >= ds12Size) {
-//
-//						minDSSize = ds12Size;
-//						chooseDS = 6;
-//					}
-//
-//					if (minDSSize >= ds13Size) {
-//						// minDS=ds3;
-//						minDSSize = ds13Size;
-//						chooseDS = 7;
-//					}
-//
-//					if (minDSSize >= ds14Size) {
-//						// minDS=ds4;
-//						minDSSize = ds14Size;
-//						chooseDS = 8;
-//					}
+					if (minDSSize >= ds12Size) {
+
+						minDSSize = ds12Size;
+						chooseDS = 6;
+					}
+
+					if (minDSSize >= ds13Size) {
+						minDSSize = ds13Size;
+						chooseDS = 7;
+					}
+
+					if (minDSSize >= ds14Size) {
+						minDSSize = ds14Size;
+						chooseDS = 8;
+					}
 					
-					Result result = getResult(chooseDS,minDSSize,k,r,ag11);
+					Result result = getResult(chooseDS,minDSSize,k,r,ag12);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
@@ -224,7 +222,7 @@ public class GreedyDSVSTest {
 		return msg;
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -260,7 +258,7 @@ public class GreedyDSVSTest {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
