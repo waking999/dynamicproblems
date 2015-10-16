@@ -81,7 +81,7 @@ public class GreedyDSV1Test {
 		}
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -91,13 +91,11 @@ public class GreedyDSV1Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", 
-				"000034_zachary.konet", "000062_dolphins.konet",
+		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
 				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet" 
-				};
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet" };
 
-		int[][] krArray = { { 15, 15 } };
+		int[][] krArray = { { 10, 10 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
@@ -128,7 +126,7 @@ public class GreedyDSV1Test {
 		return msg;
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -147,7 +145,7 @@ public class GreedyDSV1Test {
 				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		int[][] krArray = { { 10, 10 } };
+		int[][] krArray = { { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
