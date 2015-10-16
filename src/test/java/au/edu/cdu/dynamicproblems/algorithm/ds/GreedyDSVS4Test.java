@@ -217,7 +217,7 @@ public class GreedyDSVS4Test {
 			int r = rUpper;
 			// for (int r = 1; r <= rUpper; r++) {
 
-			GreedyDSVS14 ag = new GreedyDSVS14(this.getClass().getName(), am, k, r);
+			GreedyDSVS13 ag = new GreedyDSVS13(this.getClass().getName(), am, k, r);
 
 			Result result = null;
 

@@ -2,7 +2,7 @@
  * 
  * 1) from highest degree to lowest
  * 2) and reduction rules
- * 3) no guarantee 
+ * 3) without guarantee
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -166,8 +166,7 @@ public class GreedyDSVS01 implements IGreedyDS, ITask {
 		this.runningTime = end - start;
 	}
 
-	private TreeMap<Integer, Integer> vdOriginalMap;
-
+	private NavigableMap<Integer, Integer> vdOriginalMap;
 	private boolean order = AlgorithmUtil.DESC_ORDER;
 
 	private void initialization() {
@@ -182,27 +181,12 @@ public class GreedyDSVS01 implements IGreedyDS, ITask {
 		for (Integer v : vertices) {
 			dominatedMap.put(v, false);
 		}
-		// order vertex according to their degree from lowest to highest
+		// order vertex according to their degree from highest to lowest
 		vdOriginalMap = AlgorithmUtil.sortVertexMapAccordingToDegree(gOriginal, order);
 
 	}
 
-	private Integer getLowestDegreeNeighborOfAVertex(Integer v, TreeMap<Integer, Integer> vdMap) {
-		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
-		vNegList.add(v);
 
-		Set<Integer> keySet = vdMap.descendingKeySet();
-
-		for (Integer key : keySet) {
-			if (vNegList.contains(key)) {
-				return key;
-			}
-
-		}
-
-		return null;
-	}
 
 	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, List<Integer> potentialVList, Integer v) {
 		addDominatingVertex(ds, potentialVList, v);
@@ -352,14 +336,13 @@ public class GreedyDSVS01 implements IGreedyDS, ITask {
 			List<Integer> kVertices = new ArrayList<Integer>();
 			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
 
-			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
+			getKVerticesAndTheirDS(kVerticesDS, kVertices);
 
 			AlgorithmUtil.prepareGraph(am, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
 			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
-
 			List<Integer> ag2DS = ag2.getDs2();
 
 			this.dsInitial = ag2DS;
@@ -401,8 +384,6 @@ public class GreedyDSVS01 implements IGreedyDS, ITask {
 		return verticesToAddInGraph;
 	}
 
-
-
 	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
 			Graph<Integer, Integer> gI) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
@@ -418,26 +399,21 @@ public class GreedyDSVS01 implements IGreedyDS, ITask {
 
 	}
 
-	private void getKVerticesAndTheirDS(Collection<Integer> undominatedVertices, int undomiantedVerticesSize,
-			List<Integer> kVerticesDS, List<Integer> kVertices) {
-		int fromIndex = 0;
-		int toIndex = Math.min(k, undomiantedVerticesSize);
-
-		TreeMap<Integer, Integer> vdMap = AlgorithmUtil.sortVertexMapAccordingToDegreeInclude(gOriginal,
-				undominatedVertices, order);
-
-		TreeMap<Integer, Integer> allVdMap = AlgorithmUtil.sortVertexMapAccordingToDegree(gOriginal, order);
-
-		List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
-
-		for (Integer u : vList) {
-
-			AlgorithmUtil.addElementToList(kVerticesDS, u);
-			AlgorithmUtil.addElementToList(kVertices, u);
-			Integer w = getLowestDegreeNeighborOfAVertex(u, allVdMap);
-			AlgorithmUtil.addElementToList(kVertices, w);
-
+	private void getKVerticesAndTheirDS(List<Integer> kVerticesDS, List<Integer> kVertices) {
+		int count = 0;
+		Set<Integer> keySet = this.vdOriginalMap.keySet();
+		for (Integer v : keySet) {
+			if (count >= k) {
+				break;
+			}
+			AlgorithmUtil.addElementToList(kVerticesDS, v);
+			AlgorithmUtil.addElementToList(kVertices, v);
+			count++;
 		}
+		for (Integer v : kVerticesDS) {
+			this.vdOriginalMap.remove(v);
+		}
+
 	}
 
 }

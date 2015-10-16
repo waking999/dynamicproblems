@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -166,7 +166,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 		this.runningTime = end - start;
 	}
 
-	private TreeMap<Integer, Integer> vdOriginalMap;
+	private NavigableMap<Integer, Integer> vdOriginalMap;
 
 	private void initialization() {
 
@@ -185,7 +185,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	}
 
-	private Integer getHighestDegreeNeighborOfAVertex(Integer v, TreeMap<Integer, Integer> vdMap) {
+	private Integer getHighestDegreeNeighborOfAVertex(Integer v, NavigableMap<Integer, Integer> vdMap) {
 		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
 		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
 		vNegList.add(v);
@@ -291,14 +291,12 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 		}
 
 		if (initialVertices.isEmpty()) {
-			
 
-		
 			Integer v = this.vdOriginalMap.lastKey();
 
-			addDominatingVertexAndItsNeigbors(this.dsInitial,this.initialVertices, v);
+			addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, v);
 		}
-		
+
 		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
 
 	}
@@ -321,7 +319,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices);
 		}
 	}
-	
+
 	private void addNeighborOfVToDS(List<Integer> ds, Integer v, Integer w, Collection<Integer> wNegb,
 			List<Integer> initalVerteices) {
 		/*
@@ -352,25 +350,29 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 			List<Integer> kVertices = new ArrayList<Integer>();
 			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
 
-			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
+			getKVerticesAndTheirDS(undominatedVertices, kVerticesDS, kVertices);
 
 			AlgorithmUtil.prepareGraph(am, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
-			
-			GreedyNative ag1=useGreedyNativeCalcDS(gI);
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
-			
+
+			GreedyNative ag1 = useGreedyNativeCalcDS(gI);
 			List<Integer> ag1DS = ag1.getDominatingSet();
-			List<Integer> ag2DS=ag2.getDs2();
-			
-			if(ag1DS.size()<ag2DS.size()){
-				this.dsInitial=ag1DS;
-			}else{
-				this.dsInitial=ag2DS;
+			int ag1DSSize = ag1DS.size();
+			int ag1DSSizeDiff = ag1DSSize - dsInitial.size();
+			if(ag1DSSizeDiff<0){
+				ag1DSSizeDiff=0;
 			}
-			
-			
+
+			DDSFPT ag2 = useDDSFPTSubToCalcDS(ag1DSSizeDiff, gOriginalVerticeSize, kVerticesDS, kVertices, gI);
+			List<Integer> ag2DS = ag2.getDs2();
+
+			if (ag1DSSize < ag2DS.size()) {
+				this.dsInitial = ag1DS;
+			} else {
+				this.dsInitial = ag2DS;
+			}
+
 			List<Integer> verticesToAddInGraph = markDominatedVertices(undominatedVertices, dsInitialCopy);
 
 			undomiantedVerticesSize = undominatedVertices.size();
@@ -408,22 +410,19 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 		return verticesToAddInGraph;
 	}
 
-	private GreedyNative useGreedyNativeCalcDS(Graph<Integer, Integer> gI)  throws InterruptedException {
-		
-		
+	private GreedyNative useGreedyNativeCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
+
 		GreedyNative ag = new GreedyNative(gI);
 		ag.run();
 		return ag;
-		
-	}
-	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS,
-			List<Integer> kVertices, Graph<Integer, Integer> gI)
-					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
-		
 
-		
+	}
+
+	private DDSFPT useDDSFPTSubToCalcDS(int ag1DSSizeDiff,int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
+			Graph<Integer, Integer> gI) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int paramR = Math.min(kVerticesDS.size(), r);
+		paramR=Math.min(paramR, ag1DSSizeDiff);
 
 		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
 
@@ -432,26 +431,51 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 		ag.computing();
 
 		return ag;
-		
+
 	}
 
-	private void getKVerticesAndTheirDS(Collection<Integer> undominatedVertices, int undomiantedVerticesSize,
-			List<Integer> kVerticesDS, List<Integer> kVertices) {
-		int fromIndex = 0;
-		int toIndex = Math.min(k, undomiantedVerticesSize);
-		TreeMap<Integer, Integer> vdMap = AlgorithmUtil.sortVertexMapAccordingToDegreeInclude(gOriginal, undominatedVertices);
-				
-		TreeMap<Integer, Integer> allVdMap = AlgorithmUtil.sortVertexMapAccordingToDegree(gOriginal);
+	private void getKVerticesAndTheirDS(Collection<Integer> undominatedVertices,List<Integer> kVerticesDS, List<Integer> kVertices) {
+		// int fromIndex = 0;
+		// int toIndex = Math.min(k, undomiantedVerticesSize);
+		// TreeMap<Integer, Integer> vdMap =
+		// AlgorithmUtil.sortVertexMapAccordingToDegreeInclude(gOriginal,
+		// undominatedVertices);
+		//
+		// TreeMap<Integer, Integer> allVdMap =
+		// AlgorithmUtil.sortVertexMapAccordingToDegree(gOriginal);
+		//
+		// List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap,
+		// fromIndex, toIndex);
+		//
+		// for (Integer u : vList) {
+		// Integer w = getHighestDegreeNeighborOfAVertex(u, allVdMap);
+		// AlgorithmUtil.addElementToList(kVerticesDS, w);
+		// AlgorithmUtil.addElementToList(kVertices, w);
+		// AlgorithmUtil.addElementToList(kVertices, u);
+		//
+		int count=0;
+		
+		
+		NavigableMap<Integer, Integer> subMap = AlgorithmUtil.sortVertexMapAccordingToDegreeInclude(gOriginal, undominatedVertices);
 
-		List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
-
-		for (Integer u : vList) {
-			Integer w = getHighestDegreeNeighborOfAVertex(u, allVdMap);
-			AlgorithmUtil.addElementToList(kVerticesDS, w);
-			AlgorithmUtil.addElementToList(kVertices, w);
-			AlgorithmUtil.addElementToList(kVertices, u);
-
+		
+		Set<Integer> keySet = subMap.keySet();
+		
+		for(Integer v:keySet){
+			if(count>=k){
+				break;
+			}
+			Integer u=this.getHighestDegreeNeighborOfAVertex(v, vdOriginalMap);
+			AlgorithmUtil.addElementToList(kVerticesDS, u);
+			AlgorithmUtil.addElementToList(kVertices, v);
+			count++;
 		}
+		for (Integer v : kVertices) {
+			this.vdOriginalMap.remove(v);
+		}
+		
+		kVertices.addAll(kVerticesDS);
+		
 	}
 
 }

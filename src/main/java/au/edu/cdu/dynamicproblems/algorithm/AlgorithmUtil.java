@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
@@ -34,8 +35,7 @@ public class AlgorithmUtil {
 
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
-	
-	
+
 	public final static boolean DESC_ORDER = false;
 	public final static boolean ASC_ORDER = true;
 
@@ -171,7 +171,7 @@ public class AlgorithmUtil {
 		return vList;
 	}
 
-	public static List<Integer> getVertexListFromMap(TreeMap<Integer, Integer> vdMap, int fromIndex, int toIndex) {
+	public static List<Integer> getVertexListFromMap(NavigableMap<Integer, Integer> vdMap, int fromIndex, int toIndex) {
 		Set<Integer> keySet = vdMap.keySet();
 
 		List<Integer> keyList = new ArrayList<Integer>(keySet);
@@ -246,23 +246,23 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, ASC_ORDER);
 	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap,boolean order) {
+
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
+			Map<Integer, Boolean> dominatedMap, boolean order) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, order);
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityIncludeASC(Graph<Integer, Integer> g,
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToUtilityIncludeASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, includeList, ASC_ORDER);
 	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList,boolean order) {
+
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
+			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList, boolean order) {
 
 		if (includeList == null) {
 			includeList = g.getVertices();
@@ -275,34 +275,34 @@ public class AlgorithmUtil {
 			map.put(v, utility);
 		}
 
-		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
-		}
-		
+		NavigableMap<Integer, Integer> sorted = null;
+
+		sorted = new TreeMap<Integer, Integer>(new ValueComparator(map));
+
 		sorted.putAll(map);
+
+		if (order == DESC_ORDER) {
+			sorted=sorted.descendingMap();
+		}
 		return sorted;
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,ASC_ORDER);
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g) {
+		return sortVertexMapAccordingToDegreeInclude(g, null, ASC_ORDER);
 	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g,boolean order) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,order);
+
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g, boolean order) {
+		return sortVertexMapAccordingToDegreeInclude(g, null, order);
 	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
+
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
 			Collection<Integer> includeList) {
 
-		return sortVertexMapAccordingToDegreeInclude(g,includeList,ASC_ORDER);
+		return sortVertexMapAccordingToDegreeInclude(g, includeList, ASC_ORDER);
 	}
 
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
-			Collection<Integer> includeList,boolean order) {
+	public static NavigableMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
+			Collection<Integer> includeList, boolean order) {
 
 		if (includeList == null) {
 			includeList = g.getVertices();
@@ -314,14 +314,14 @@ public class AlgorithmUtil {
 			int utility = AlgorithmUtil.getVertexDegree(g, v);
 			map.put(v, utility);
 		}
-		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
-		}
+		NavigableMap<Integer, Integer> sorted = new TreeMap<Integer, Integer>(new ValueComparator(map));
+
 		sorted.putAll(map);
+
+		if (order == DESC_ORDER) {
+			sorted=sorted.descendingMap();
+		}
+		
 		return sorted;
 	}
 

@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -26,6 +26,7 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
+@Deprecated 
 public class GreedyDSV2 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
@@ -165,7 +166,7 @@ public class GreedyDSV2 implements IGreedyDS, ITask {
 		this.runningTime = end - start;
 	}
 
-	private TreeMap<Integer, Integer> vdOriginalMap;
+	private NavigableMap<Integer, Integer> vdOriginalMap;
 
 	private void initialization() {
 
@@ -184,7 +185,7 @@ public class GreedyDSV2 implements IGreedyDS, ITask {
 	
 	}
 
-	private Integer getHighestUtilityNeighborOfAVertex(Integer v, TreeMap<Integer, Integer> vdMap) {
+	private Integer getHighestUtilityNeighborOfAVertex(Integer v, NavigableMap<Integer, Integer> vdMap) {
 		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
 		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
 		vNegList.add(v);
@@ -257,8 +258,8 @@ public class GreedyDSV2 implements IGreedyDS, ITask {
 			
 			int fromIndex=0;
 			int toIndex=Math.min(k, undomiantedVerticesSize);
-			TreeMap<Integer, Integer> vdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityIncludeASC(gOriginal, dominatedMap, undominatedVertices);
-			TreeMap<Integer, Integer> allVdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
+			NavigableMap<Integer, Integer> vdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityIncludeASC(gOriginal, dominatedMap, undominatedVertices);
+			NavigableMap<Integer, Integer> allVdMap=AlgorithmUtil.sortVertexMapAccordingToUtilityASC(gOriginal, dominatedMap);
 			
 			List<Integer> vList=AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
 									
