@@ -226,9 +226,10 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 
 		initialVertices = new ArrayList<Integer>();
 
-		Integer v = this.vdOriginalMap.lastKey();
+		Integer v = this.vdOriginalMap.firstKey();
+		Integer u=this.getHighestDegreeNeighborOfAVertex(v, this.vdOriginalMap);
 
-		addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, v);
+		addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, u);
 
 		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
 

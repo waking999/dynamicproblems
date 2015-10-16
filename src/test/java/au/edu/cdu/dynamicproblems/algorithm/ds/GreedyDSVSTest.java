@@ -72,29 +72,29 @@ public class GreedyDSVSTest {
 					int rUpper = kr[1];
 					int r = rUpper;
 
-//					GreedyDSVS01 ag01 = new GreedyDSVS01(this.getClass().getName(), am, k, r);
-//					ag01.computing();
-//					List<Integer> ds01 = ag01.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds01));
-//					int ds01Size = ds01.size();
-//
-//					GreedyDSVS02 ag02 = new GreedyDSVS02(this.getClass().getName(), am, k, r);
-//					ag02.computing();
-//					List<Integer> ds02 = ag02.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds02));
-//					int ds02Size = ds02.size();
-//
-//					GreedyDSVS03 ag03 = new GreedyDSVS03(this.getClass().getName(), am, k, r);
-//					ag03.computing();
-//					List<Integer> ds03 = ag03.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds03));
-//					int ds03Size = ds03.size();
-//
-//					GreedyDSVS04 ag04 = new GreedyDSVS04(this.getClass().getName(), am, k, r);
-//					ag04.computing();
-//					List<Integer> ds04 = ag04.getDs();
-//					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds04));
-//					int ds04Size = ds04.size();
+					GreedyDSVS01 ag01 = new GreedyDSVS01(this.getClass().getName(), am, k, r);
+					ag01.computing();
+					List<Integer> ds01 = ag01.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds01));
+					int ds01Size = ds01.size();
+
+					GreedyDSVS02 ag02 = new GreedyDSVS02(this.getClass().getName(), am, k, r);
+					ag02.computing();
+					List<Integer> ds02 = ag02.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds02));
+					int ds02Size = ds02.size();
+
+					GreedyDSVS03 ag03 = new GreedyDSVS03(this.getClass().getName(), am, k, r);
+					ag03.computing();
+					List<Integer> ds03 = ag03.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds03));
+					int ds03Size = ds03.size();
+
+					GreedyDSVS04 ag04 = new GreedyDSVS04(this.getClass().getName(), am, k, r);
+					ag04.computing();
+					List<Integer> ds04 = ag04.getDs();
+					Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am), ds04));
+					int ds04Size = ds04.size();
 					
 					GreedyDSVS11 ag11 = new GreedyDSVS11(this.getClass().getName(), am, k, r);
 					ag11.computing();
@@ -121,54 +121,54 @@ public class GreedyDSVSTest {
 					int ds14Size = ds14.size();
 
 					
-					int minDSSize = ds11Size;
-					int chooseDS = 5;
+					int minDSSize = ds01Size;
+					int chooseDS = 1;
 
 				
 					
-//					if (minDSSize >= ds02Size) {
-//
-//						minDSSize = ds02Size;
-//						chooseDS = 2;
-//					}
-//
-//					if (minDSSize >= ds03Size) {
-//						
-//						minDSSize = ds03Size;
-//						chooseDS = 3;
-//					}
-//
-//					if (minDSSize >= ds04Size) {
-//						
-//						minDSSize = ds04Size;
-//						chooseDS = 4;
-//					}
-//
-//					if (minDSSize >= ds11Size) {
-//
-//						minDSSize = ds11Size;
-//						chooseDS = 5;
-//					}
+					if (minDSSize > ds02Size) {
+
+						minDSSize = ds02Size;
+						chooseDS = 2;
+					}
+
+					if (minDSSize > ds03Size) {
+						
+						minDSSize = ds03Size;
+						chooseDS = 3;
+					}
+
+					if (minDSSize > ds04Size) {
+						
+						minDSSize = ds04Size;
+						chooseDS = 4;
+					}
+
+					if (minDSSize > ds11Size) {
+
+						minDSSize = ds11Size;
+						chooseDS = 5;
+					}
 					
-					if (minDSSize >= ds12Size) {
+					if (minDSSize > ds12Size) {
 
 						minDSSize = ds12Size;
 						chooseDS = 6;
 					}
 
-					if (minDSSize >= ds13Size) {
+					if (minDSSize > ds13Size) {
 						
 						minDSSize = ds13Size;
 						chooseDS = 7;
 					}
 
-					if (minDSSize >= ds14Size) {
+					if (minDSSize > ds14Size) {
 						
 						minDSSize = ds14Size;
 						chooseDS = 8;
 					}
 					
-					Result result = getResult(chooseDS,minDSSize,k,r,ag11,ag12,ag13,ag14);
+					Result result = getResult(chooseDS,minDSSize,k,r,ag12);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
@@ -261,7 +261,7 @@ public class GreedyDSVSTest {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[][] krArray = { { 15, 15 } };
+		int[][] krArray = { { 10, 10 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 

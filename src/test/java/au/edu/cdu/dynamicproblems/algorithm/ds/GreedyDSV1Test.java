@@ -81,7 +81,7 @@ public class GreedyDSV1Test {
 		}
 	}
 
-@Ignore
+	// @Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -91,26 +91,14 @@ public class GreedyDSV1Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/KONECT/";
-		String[] files = {
-				 "000027_zebra.konet", "000034_zachary.konet",
-				 "000062_dolphins.konet",
-				 "000112_David_Copperfield.konet",
-				 "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				 "001133_rovira.konet",
-				"001174_euroroad.konet",
-				 "001858_hamster.konet"
-				// "002426_hamster_ful.konet",
-				// "002888_facebook.konet",
-				// "003133_Human_protein_Vidal.konet",
-				// "004941_powergrid.konet",
-				// "006327_reactome.konet",
-				// "010680_Pretty_Good_Privacy.konet",
-				// "06474_Route_views.konet"
-		};
+		String[] files = { "000027_zebra.konet", 
+				"000034_zachary.konet", "000062_dolphins.konet",
+				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet" 
+				};
 
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
-		int[][] krArray = {  { 10, 10 } };
-		
+		int[][] krArray = { { 15, 15 } };
+
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
@@ -159,14 +147,13 @@ public class GreedyDSV1Test {
 				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
-		int[][] krArray = {  { 10, 10 } };
-		
+		int[][] krArray = { { 10, 10 } };
+
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -188,9 +175,8 @@ public class GreedyDSV1Test {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		//int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
-		int[][] krArray = {  { 10, 10 } };
-		
+		int[][] krArray = { { 10, 10 } };
+
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
