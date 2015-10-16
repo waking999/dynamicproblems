@@ -126,7 +126,7 @@ public class GreedyDSV1Test {
 		return msg;
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -145,13 +145,13 @@ public class GreedyDSV1Test {
 				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		int[][] krArray = { { 15, 15 } };
+		int[][] krArray = { { 10, 10 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -161,7 +161,8 @@ public class GreedyDSV1Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/BHOSLIB/";
-		String[] files = { "frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
+		String[] files = { 
+				"frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
 				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis", "frb35-17-mis/frb35-17-1.mis",
 				"frb35-17-mis/frb35-17-2.mis", "frb35-17-mis/frb35-17-3.mis", "frb35-17-mis/frb35-17-4.mis",
 				"frb35-17-mis/frb35-17-5.mis", "frb40-19-mis/frb40-19-1.mis", "frb40-19-mis/frb40-19-2.mis",
@@ -172,8 +173,10 @@ public class GreedyDSV1Test {
 				"frb53-24-mis/frb53-24-5.mis", "frb56-25-mis/frb56-25-1.mis", "frb56-25-mis/frb56-25-2.mis",
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
-				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[][] krArray = { { 10, 10 } };
+				"frb59-26-mis/frb59-26-4.mis", 
+				"frb59-26-mis/frb59-26-5.mis" 
+				};
+		int[][] krArray = { { 15, 15 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
