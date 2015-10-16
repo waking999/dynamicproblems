@@ -9,8 +9,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TreeMap;
 
+import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
@@ -26,7 +28,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 @Deprecated
 public class GreedyDSV4 implements IGreedyDS, ITask {
 
-	//private List<Integer> ds1;
+	private List<Integer> ds1;
 	
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSV4.class);
@@ -109,7 +111,7 @@ public class GreedyDSV4 implements IGreedyDS, ITask {
 		this.r = r;
 		this.ds = null;
 		this.dsInitial = null;
-		//this.ds1=ds1;
+		this.ds1=ds1;
 	}
 
 	public void setIndicator(String indicator) {
@@ -164,7 +166,7 @@ public class GreedyDSV4 implements IGreedyDS, ITask {
 		this.runningTime = end - start;
 	}
 
-	private NavigableMap<Integer, Integer> vdOriginalMap;
+	private TreeMap<Integer, Integer> vdOriginalMap;
 
 	private void initialization() {
 
@@ -183,22 +185,22 @@ public class GreedyDSV4 implements IGreedyDS, ITask {
 
 	}
 
-//	private Integer getHighestUtilityNeighborOfAVertex(Integer v, NavigableMap<Integer, Integer> vdMap) {
-//		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-//		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
-//		vNegList.add(v);
-//
-//		Set<Integer> keySet = vdMap.descendingKeySet();
-//
-//		for (Integer key : keySet) {
-//			if (vNegList.contains(key)) {
-//				return key;
-//			}
-//
-//		}
-//
-//		return null;
-//	}
+	private Integer getHighestUtilityNeighborOfAVertex(Integer v, TreeMap<Integer, Integer> vdMap) {
+		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
+		vNegList.add(v);
+
+		Set<Integer> keySet = vdMap.descendingKeySet();
+
+		for (Integer key : keySet) {
+			if (vNegList.contains(key)) {
+				return key;
+			}
+
+		}
+
+		return null;
+	}
 
 	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, List<Integer> potentialVList, Integer v) {
 		addDominatingVertex(ds, potentialVList, v);
@@ -338,11 +340,11 @@ public class GreedyDSV4 implements IGreedyDS, ITask {
 	private void start()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 
-		//Collection<Integer> gOrigialVertices = gOriginal.getVertices();
+		Collection<Integer> gOrigialVertices = gOriginal.getVertices();
 		//int gOriginalVerticeSize = gOrigialVertices.size();
-		//Collection<Integer> gInitialVertices = gInitial.getVertices();
+		Collection<Integer> gInitialVertices = gInitial.getVertices();
 
-		//Collection<Integer> undominatedVertices = CollectionUtils.subtract(gOrigialVertices, gInitialVertices);
+		Collection<Integer> undominatedVertices = CollectionUtils.subtract(gOrigialVertices, gInitialVertices);
 //		int undomiantedVerticesSize = undominatedVertices.size();
 //		
 		

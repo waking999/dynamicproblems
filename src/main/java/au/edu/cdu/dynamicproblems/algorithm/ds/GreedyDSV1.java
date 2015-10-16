@@ -1,25 +1,21 @@
 /**
  * implement Michael's original idea
- * 
- * 1) from lowest degree to highest
- * 2) no reduction rules
- * 3) without guarantee 
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -33,8 +29,10 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 public class GreedyDSV1 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSVS2Test.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSV1.class);
 	private long runningTime;
+
+	
 
 	@Override
 	public Result run() throws InterruptedException {
@@ -167,7 +165,7 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 		this.runningTime = end - start;
 	}
 
-	private NavigableMap<Integer, Integer> vdOriginalMap;
+	private List<VertexDegree> vdOriginalList;
 
 	private void initialization() {
 
@@ -182,28 +180,29 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 			dominatedMap.put(v, false);
 		}
 		// order vertex according to their degree from lowest to highest
-		vdOriginalMap = AlgorithmUtil.sortVertexMapAccordingToDegree(gOriginal);
-
+		vdOriginalList=AlgorithmUtil.sortVertexAccordingToDegree(gOriginal);
+		Collections.reverse(vdOriginalList);
 	}
 
-	private Integer getHighestDegreeNeighborOfAVertex(Integer v, NavigableMap<Integer, Integer> vdMap) {
+	private Integer getHighestDegreeNeighborOfAVertex(Integer v, List<VertexDegree> vdList) {
 		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
 		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
-		vNegList.add(v);
 
-		Set<Integer> keySet = vdMap.descendingKeySet();
+		int vdListSize = vdList.size();
+		for (int i = vdListSize - 1; i >= 0; i--) {
+			VertexDegree vd = vdList.get(i);
+			Integer u = vd.getVertex();
 
-		for (Integer key : keySet) {
-			if (vNegList.contains(key)) {
-				return key;
+			int index = Collections.binarySearch(vNegList, u);
+			if (index >=0) {
+				return vNegList.get(index);
 			}
-
 		}
 
 		return null;
 	}
 
-	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, List<Integer> potentialVList, Integer v) {
+	private void addDominatingVertexAndItsNeigbors(List<Integer> ds,List<Integer> potentialVList, Integer v) {
 		addDominatingVertex(ds, potentialVList, v);
 		Collection<Integer> vNegb = gOriginal.getNeighbors(v);
 		for (Integer w : vNegb) {
@@ -213,6 +212,7 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 
 	private void addDominatingVertex(List<Integer> ds, List<Integer> potentialVList, Integer u) {
 		AlgorithmUtil.addElementToList(ds, u);
+		dominatedMap.put(u, true);
 		addDominatedVertex(potentialVList, u);
 	}
 
@@ -226,13 +226,22 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 
 		initialVertices = new ArrayList<Integer>();
 
-		Integer v = this.vdOriginalMap.firstKey();
-		Integer u=this.getHighestDegreeNeighborOfAVertex(v, this.vdOriginalMap);
+	
+		// order vertex according to their degree from lowest to highest
+//		List<VertexDegree> vertexDegreeList = AlgorithmUtil.sortVertexAccordingToDegree(gOriginal);
+//		Collections.reverse(vertexDegreeList);
 
-		addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, u);
+		// put the the highest vertex in N[lowest degree vertex] into dsInitial,
+		// gInitial
+		VertexDegree vd = this.vdOriginalList.get(0);
+		Integer v0 = vd.getVertex();
+		Integer u0 = getHighestDegreeNeighborOfAVertex(v0, this.vdOriginalList);
+
+		addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, u0);
 
 		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
-
+		
+		
 	}
 
 	private void start()
@@ -242,99 +251,83 @@ public class GreedyDSV1 implements IGreedyDS, ITask {
 		Collection<Integer> gInitialVertices = gInitial.getVertices();
 
 		Collection<Integer> undominatedVertices = CollectionUtils.subtract(gOrigialVertices, gInitialVertices);
-
+		
 		int undomiantedVerticesSize = undominatedVertices.size();
 		
-
-		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			List<Integer> kVerticesDS = new ArrayList<Integer>();
-			List<Integer> kVertices = new ArrayList<Integer>();
-			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
-
-			getKVerticesAndTheirDS(undominatedVertices, kVerticesDS, kVertices);
-
-			AlgorithmUtil.prepareGraph(am, gI, kVertices);
+		
+		while (undomiantedVerticesSize > 0) {
+			List<Integer> kVerticesDS=new ArrayList<Integer>();
+			List<Integer> kVertices=new ArrayList<Integer>();
+			Graph<Integer,Integer> gI=AlgorithmUtil.copyGrapy(gInitial);
+			
+			int fromIndex=0;
+			int toIndex=Math.min(k, undomiantedVerticesSize);
+			List<VertexDegree> vdList=AlgorithmUtil.sortVertexAccordingToDegreeInclude(gOriginal, undominatedVertices);
+			Collections.reverse(vdList);
+			
+			List<Integer> vList=AlgorithmUtil.getVertexList(vdList);
+			
+			List<Integer> subVList=vList.subList(fromIndex, toIndex);
+			
+			for(Integer u:subVList){
+				Integer w=getHighestDegreeNeighborOfAVertex(u,this.vdOriginalList);
+				AlgorithmUtil.addElementToList(kVerticesDS, w);
+				AlgorithmUtil.addElementToList(kVertices, w);
+				AlgorithmUtil.addElementToList(kVertices, u);
+				
+			}
+			
+			AlgorithmUtil.prepareGraph(am,gI, kVertices);
+			
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
+			
+			int paramR = Math.min(kVerticesDS.size(), r);
+			
+			DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+			// Collection<Integer> considerableCandidateVertices4DS=
+			// CollectionUtils.union(t.getV2(), this.dsInitial);
 
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
-			List<Integer> ag2DS = ag2.getDs2();
+			ag.setConsiderableCandidateVertices4DS(kVerticesDS);
+			ag.setOriginalVertexNum(gOriginalVerticeSize);
+			ag.computing();
 
-			this.dsInitial = ag2DS;
+			//List<Integer> dominatedUndominatedDifference = new ArrayList<Integer>();
 
-			List<Integer> verticesToAddInGraph = markDominatedVertices(undominatedVertices, dsInitialCopy);
+			dsInitial = ag.getDs2();
+			Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
+			List<Integer> verticesToAddInGraph=new ArrayList<Integer>();
+			for (Integer v : addedDSVertices) {
+				dominatedMap.put(v, true);
+				AlgorithmUtil.addElementToList(verticesToAddInGraph, v);
+				undominatedVertices.remove(v);
+				
+				Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+				for (Integer u : vNeg) {
+					dominatedMap.put(u, true);
+					
+					if (!gInitial.containsVertex(u)) {
+						AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
+						//dominatedUndominatedDifference.add(u);
+					}
+				}
+				undominatedVertices.removeAll(vNeg);
+
+			}
+			
+			
 
 			undomiantedVerticesSize = undominatedVertices.size();
-
-			if (undomiantedVerticesSize == 0) {
+			
+			if(undomiantedVerticesSize==0){
 				break;
 			}
-
+			
 			AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
-
+			
 		}
-
+		
 		this.ds = this.dsInitial;
-	}
-
-	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
-		Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
-		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
-		for (Integer v : addedDSVertices) {
-			dominatedMap.put(v, true);
-			AlgorithmUtil.addElementToList(verticesToAddInGraph, v);
-			undominatedVertices.remove(v);
-
-			Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-			for (Integer u : vNeg) {
-				dominatedMap.put(u, true);
-
-				if (!gInitial.containsVertex(u)) {
-					AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
-				}
-			}
-			undominatedVertices.removeAll(vNeg);
-
-		}
-		return verticesToAddInGraph;
-	}
-
-	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
-			Graph<Integer, Integer> gI) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
-
-		int paramR = Math.min(kVerticesDS.size(), r);
-
-		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
-
-		ag.setConsiderableCandidateVertices4DS(kVerticesDS);
-		ag.setOriginalVertexNum(gOriginalVerticeSize);
-		ag.computing();
-
-		return ag;
-
-	}
-
-	private void getKVerticesAndTheirDS(Collection<Integer> undominatedVertices, List<Integer> kVerticesDS, List<Integer> kVertices) {
-
-		int count = 0;
-
-		NavigableMap<Integer, Integer> subMap = AlgorithmUtil.sortVertexMapAccordingToDegreeInclude(gOriginal, undominatedVertices);
-
-		Set<Integer> keySet = subMap.keySet();
-
-		for (Integer v : keySet) {
-
-			if (count >= k) {
-				
-				break;
-			}
-			Integer u = this.getHighestDegreeNeighborOfAVertex(v, vdOriginalMap);
-			AlgorithmUtil.addElementToList(kVerticesDS, u);
-			AlgorithmUtil.addElementToList(kVertices, v);
-			count++;
-		}
-
-		kVertices.addAll(kVerticesDS);
 	}
 
 }

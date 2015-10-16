@@ -11,14 +11,9 @@ public class ValueComparator implements Comparator<Integer> {
 	    }
 
 	public int compare(Integer a, Integer b) {
-		if(a.equals(b)){
-	        return 0;
-	    }
-		if (base.get(a).intValue() < base.get(b).intValue()) {
+		if (base.get(a) <= base.get(b)) {
 			return -1;
-		} else if (base.get(a).intValue() == base.get(b).intValue()){
-			return a.intValue()-b.intValue();
-		}else {
+		} else {
 			return 1;
 		} // returning 0 would merge keys
 	}

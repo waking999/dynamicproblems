@@ -93,8 +93,17 @@ public class GreedyDSV1Test {
 		String path = "src/test/resources/KONECT/";
 		String[] files = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
 				"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet" };
+				"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet"
+				// "002426_hamster_ful.konet",
+				// "002888_facebook.konet",
+				// "003133_Human_protein_Vidal.konet",
+				// "004941_powergrid.konet",
+				// "006327_reactome.konet",
+				// "010680_Pretty_Good_Privacy.konet",
+				// "06474_Route_views.konet"
+		};
 
+		// int[][] krArray = { { 5, 5 }, { 10, 10 },{15,15}};
 		int[][] krArray = { { 10, 10 } };
 
 		runStrategies(path, krArray, files, destFile, 1, 1);
@@ -145,8 +154,8 @@ public class GreedyDSV1Test {
 				"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
+		// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 }, { 20, 20 } };
 		int[][] krArray = { { 10, 10 } };
-
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
@@ -161,8 +170,7 @@ public class GreedyDSV1Test {
 		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/BHOSLIB/";
-		String[] files = { 
-				"frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
+		String[] files = { "frb30-15-mis/frb30-15-1.mis", "frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
 				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis", "frb35-17-mis/frb35-17-1.mis",
 				"frb35-17-mis/frb35-17-2.mis", "frb35-17-mis/frb35-17-3.mis", "frb35-17-mis/frb35-17-4.mis",
 				"frb35-17-mis/frb35-17-5.mis", "frb40-19-mis/frb40-19-1.mis", "frb40-19-mis/frb40-19-2.mis",
@@ -173,11 +181,9 @@ public class GreedyDSV1Test {
 				"frb53-24-mis/frb53-24-5.mis", "frb56-25-mis/frb56-25-1.mis", "frb56-25-mis/frb56-25-2.mis",
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
-				"frb59-26-mis/frb59-26-4.mis", 
-				"frb59-26-mis/frb59-26-5.mis" 
-				};
-		int[][] krArray = { { 15, 15 } };
-
+				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
+		// int[][] krArray = { { 5, 5 }, { 10, 10 }, { 15, 15 } };
+		int[][] krArray = { { 10, 10 } };
 		runStrategies(path, krArray, files, destFile, 1, 1);
 
 	}
