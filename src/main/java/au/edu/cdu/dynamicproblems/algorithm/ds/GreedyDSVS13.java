@@ -358,7 +358,7 @@ public class GreedyDSVS13 implements IGreedyDS, ITask {
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 			
-			GreedyNative ag1=useGreedyNativeCalcDS(gI);
+			GreedyNativeV1 ag1=useGreedyNativeCalcDS(gI);
 			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
 			
 			List<Integer> ag1DS = ag1.getDominatingSet();
@@ -408,10 +408,10 @@ public class GreedyDSVS13 implements IGreedyDS, ITask {
 		return verticesToAddInGraph;
 	}
 
-	private GreedyNative useGreedyNativeCalcDS(Graph<Integer, Integer> gI)  throws InterruptedException {
+	private GreedyNativeV1 useGreedyNativeCalcDS(Graph<Integer, Integer> gI)  throws InterruptedException {
 		
 		
-		GreedyNative ag = new GreedyNative(gI);
+		GreedyNativeV1 ag = new GreedyNativeV1(gI);
 		ag.run();
 		return ag;
 		

@@ -399,9 +399,9 @@ public class GreedyDSVS02 implements IGreedyDS, ITask {
 		return verticesToAddInGraph;
 	}
 
-	private GreedyNative useGreedyNativeCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
+	private GreedyNativeV1 useGreedyNativeCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
 
-		GreedyNative ag = new GreedyNative(gI);
+		GreedyNativeV1 ag = new GreedyNativeV1(gI);
 		ag.run();
 		return ag;
 

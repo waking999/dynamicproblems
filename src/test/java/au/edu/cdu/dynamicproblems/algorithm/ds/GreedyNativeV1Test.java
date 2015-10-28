@@ -13,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNativeV1;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
@@ -21,7 +22,7 @@ import edu.uci.ics.jung.graph.Graph;
 
 public class GreedyNativeV1Test {
 
-	private Logger log = LogUtil.getLogger(GreedyNativeV1.class);
+	private Logger log = LogUtil.getLogger(GreedyNativeV1Test.class);
 
 	@Ignore
 	@Test
@@ -60,7 +61,7 @@ public class GreedyNativeV1Test {
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
 
-		GreedyNative ag = new GreedyNative(g);
+		GreedyNativeV1 ag = new GreedyNativeV1(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -70,19 +71,18 @@ public class GreedyNativeV1Test {
 		log.debug(r.getString());
 	}
 
-	//@Ignore 
+	@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/KONECT-" + this.getClass().getSimpleName();
-
-		String destFile = destDir + "-" + timeStamp + ".csv";
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
+				.getInstance().getTime());
+		String destFile = "out/output-"+this.getClass().getName()+"-KONECT-" + timeStamp
+				+ ".csv";
 		
 		String path = "src/test/resources/KONECT/";
 		String[] files = { "000027_zebra.konet", "000034_zachary.konet",
-				"000062_dolphins.konet", 
-				"000112_David_Copperfield.konet",
+				"000062_dolphins.konet", "000112_David_Copperfield.konet",
 				"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
 				"001133_rovira.konet", "001174_euroroad.konet",
 				"001858_hamster.konet",
@@ -95,7 +95,7 @@ public class GreedyNativeV1Test {
 		// "06474_Route_views.konet"
 		};
 
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 10; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
@@ -107,28 +107,29 @@ public class GreedyNativeV1Test {
 		}
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/DIMACS-" + this.getClass().getSimpleName();
-
-		String destFile = destDir + "-" + timeStamp + ".csv";
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
+				.getInstance().getTime());
+		String destFile = "out/output-"+this.getClass().getName()+"-DIMACS-" + timeStamp
+				+ ".csv";
 
 		String path = "src/test/resources/DIMACS/";
-		String[] files = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq",
-				"C2000.9.clq", "C250.9.clq", "C4000.5.clq", "C500.9.clq",
-				"DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
-				"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
-				"brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
-				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
-				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
-				"keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
-				"p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
-				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
-				"p_hat700-2.clq", "p_hat700-3.clq"
+		String[] files = { //"C1000.9.clq", "C125.9.clq", 
+				"C2000.5.clq",
+//				"C2000.9.clq", "C250.9.clq", "C4000.5.clq", "C500.9.clq",
+//				"DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
+//				"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
+//				"brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
+//				"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+//				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+//				"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+//				"keller4.clq", "keller5.clq", "keller6.clq", "p_hat1500-1.clq",
+//				"p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
+//				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq",
+//				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
 		for (int i = 1; i <= 1; i++) {
@@ -147,10 +148,10 @@ public class GreedyNativeV1Test {
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-		String destDir = "out/BHOSLIB-" + this.getClass().getSimpleName();
-
-		String destFile = destDir + "-" + timeStamp + ".csv";
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
+				.getInstance().getTime());
+		String destFile = "out/output-"+this.getClass().getName()+"-BHOSLIB-" + timeStamp
+				+ ".csv";
 
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis",
@@ -193,10 +194,10 @@ public class GreedyNativeV1Test {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		GreedyNativeV1 ag = new GreedyNativeV1(inputFile,am);
+		GreedyNativeV1 ag = new GreedyNativeV1(g);
 		ag.run();
 
-		List<Integer> ds = ag.getDs();
+		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
 
 		Result r = ag.getResult();

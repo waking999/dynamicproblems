@@ -1,12 +1,7 @@
-/**
- * implement Michael's original idea
- */
-
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,279 +20,164 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyNativeV1 implements IAlgorithm, ITask {
+public class GreedyNativeV1 implements ITask, IAlgorithm {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyNativeV1Test.class);
+	private static Logger log = LogUtil.getLogger(GreedyNativeV1.class);
 	private long runningTime;
 
-	@Override
+	private TaskLock lock;
+
+	public TaskLock getLock() {
+		return lock;
+	}
+
+	public void setLock(TaskLock lock) {
+		this.lock = lock;
+	}
+
 	public Result run() throws InterruptedException {
+
 		try {
 			computing();
 			Thread.sleep(1000);
 			Result r = getResult();
 
 			return r;
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public long getRunningTime() {
-		return runningTime;
-	}
-
-	public String getIndicator() {
-		return indicator;
-	}
-
-	private TaskLock lock;
-
-	@Override
-	public TaskLock getLock() {
-		return lock;
-	}
-
-	@Override
-	public void setLock(TaskLock lock) {
-		this.lock = lock;
-	}
-
-	private String indicator;
-	private List<String[]> am;
-
-	private List<Integer> ds;
-
-	// used for pre-process
-	// private List<Integer> dsInitial;
-	// private List<Integer> initialVertices;
-
-	public List<Integer> getDs() {
-		return ds;
-	}
-
-	private Map<Integer, Boolean> dominatedMap;
-
-	/**
-	 * the original graph
-	 */
-	private Graph<Integer, Integer> gOriginal;
-
-	/**
-	 * the graph after pre-process
-	 */
-	// private Graph<Integer, Integer> gInitial;
-
-	public GreedyNativeV1(String indicator, List<String[]> am) {
-		this.indicator = indicator;
-		this.am = am;
-
-		this.ds = null;
-	}
-
-	public void setIndicator(String indicator) {
-		this.indicator = indicator;
-	}
-
-	public void setAm(List<String[]> am) {
-		this.am = am;
 	}
 
 	public Result getResult() {
 		Result r = new Result();
 		r.setHasSolution(true);
 		StringBuffer sb = new StringBuffer();
-
-		sb.append(",").append(this.ds.size()).append(",").append(this.runningTime);
+		
+		sb.append(",").append(this.dominatingSet.size()).append(",")
+				.append(this.runningTime);
 		r.setString(sb.toString());
 		return r;
 	}
 
-	public void computing()
-			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+	/**
+	 * the graph
+	 */
+	private Graph<Integer, Integer> g;
+	/**
+	 * 
+	 * a sorted vertices with their degree (from highest degree to the lowest)
+	 */
+	@SuppressWarnings("unused")
+	private String indicator;
 
-		initialization();
-		long start = System.nanoTime();
-		// preprocess();
+	Map<Integer, Boolean> dominatedMap;
+	/**
+	 * the desired dominating set
+	 */
+	List<Integer> dominatingSet;
 
-		start();
-		long end = System.nanoTime();
-
-		this.runningTime = end - start;
+	public List<Integer> getDominatingSet() {
+		return dominatingSet;
 	}
 
-	private List<VertexDegree> vdOriginalList;
+	/**
+	 * number of vertices
+	 */
+	@SuppressWarnings("unused")
+	private int numOfVertices;
+
+	/**
+	 * the adjacency matrix of the graph
+	 */
+	private List<String[]> adjacencyMatrix;
+
+	public GreedyNativeV1(List<String[]> adjacencyMatrix) {
+		this.adjacencyMatrix = adjacencyMatrix;
+		this.numOfVertices = adjacencyMatrix.size();
+		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+
+	}
+
+	public GreedyNativeV1(String indicator, List<String[]> adjacencyMatrix) {
+		this.indicator = indicator;
+		this.adjacencyMatrix = adjacencyMatrix;
+		this.numOfVertices = adjacencyMatrix.size();
+		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+
+	}
+
+	public GreedyNativeV1(Graph<Integer, Integer> g) {
+		this.g = g;
+		this.numOfVertices = g.getVertexCount();
+
+	}
+
+	/**
+	 * the major function do the computing to get the desired solution. In this
+	 * case, the desired result is a dominating set
+	 */
+	public void computing() throws MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException {
+		long start = System.nanoTime();
+		initialization();
+		greedy();
+		long end = System.nanoTime();
+		runningTime = end - start;
+
+	}
 
 	private void initialization() {
-
-		this.gOriginal = AlgorithmUtil.prepareGraph(am);
-
-		this.ds = new ArrayList<Integer>();
-		// this.dsInitial = new ArrayList<Integer>();
+		dominatingSet = new ArrayList<Integer>();
 
 		dominatedMap = new HashMap<Integer, Boolean>();
-		Collection<Integer> vertices = gOriginal.getVertices();
+		Collection<Integer> vertices = g.getVertices();
 		for (Integer v : vertices) {
 			dominatedMap.put(v, false);
 		}
-		// order vertex according to their degree from lowest to highest
-		vdOriginalList = AlgorithmUtil.sortVertexAccordingToDegree(gOriginal);
-		Collections.reverse(vdOriginalList);
 	}
 
-	private Integer getHighestDegreeNeighborOfAVertex(Integer v, List<VertexDegree> vdList) {
-		Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-		List<Integer> vNegList = new ArrayList<Integer>(vNeg);
+	private void greedy() {
 
-		int vdListSize = vdList.size();
-		for (int i = vdListSize - 1; i >= 0; i--) {
-			VertexDegree vd = vdList.get(i);
-			Integer u = vd.getVertex();
+		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
+			// get the vertex with highest utility (the number of undominated
+			// neighbors)
+			List<VertexDegree> vdList = AlgorithmUtil
+					.sortVertexAccordingToUtility(g, dominatedMap);
+			VertexDegree vd = vdList.get(0);
 
-			int index = Collections.binarySearch(vNegList, u);
-			if (index >= 0) {
-				return vNegList.get(index);
+			Integer v = vd.getVertex();
+			/*
+			 * this is commented out because we don't need the vertex of highest
+			 * utility in the close neighborhood, we just want the vertex with
+			 * highest utility itself; Integer w = AlgorithmUtil
+			 * .getVertexFromClosedNeighborhoodWithHighestUtility(v, g, vdList,
+			 * dominatedMap);
+			 * 
+			 * // add it into dominating set
+			 * AlgorithmUtil.addElementToList(dominatingSet, w); // set it is
+			 * dominated dominatedMap.put(w, true);
+			 * 
+			 * // set its neigbors is dominated Collection<Integer> wNeigs =
+			 * g.getNeighbors(w);
+			 * 
+			 * for (Integer u : wNeigs) { dominatedMap.put(u, true); }
+			 */
+
+			// add it into dominating set
+			AlgorithmUtil.addElementToList(dominatingSet, v);
+			// set it is dominated
+			dominatedMap.put(v, true);
+
+			// set its neigbors is dominated
+			Collection<Integer> wNeigs = g.getNeighbors(v);
+
+			for (Integer u : wNeigs) {
+				dominatedMap.put(u, true);
 			}
 		}
 
-		return null;
-	}
-
-	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, Integer v) {
-		AlgorithmUtil.addElementToList(ds, v);
-		dominatedMap.put(v, true);
-		Collection<Integer> vNegb = gOriginal.getNeighbors(v);
-		for (Integer w : vNegb) {
-			dominatedMap.put(w, true);
-		}
-	}
-
-	// private void preprocess() {
-	// this.gInitial = new SparseMultigraph<Integer, Integer>();
-	//
-	// initialVertices = new ArrayList<Integer>();
-	//
-	//
-	// // order vertex according to their degree from lowest to highest
-	//// List<VertexDegree> vertexDegreeList =
-	// AlgorithmUtil.sortVertexAccordingToDegree(gOriginal);
-	//// Collections.reverse(vertexDegreeList);
-	//
-	// // put the the highest vertex in N[lowest degree vertex] into dsInitial,
-	// // gInitial
-	// VertexDegree vd = this.vdOriginalList.get(0);
-	// Integer v0 = vd.getVertex();
-	// Integer u0 = getHighestDegreeNeighborOfAVertex(v0, this.vdOriginalList);
-	//
-	// addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices,
-	// u0);
-	//
-	// AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
-	//
-	//
-	// }
-
-	private void start()
-			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
-
-		int i = 0;
-		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			VertexDegree vd = this.vdOriginalList.get(i);
-			Integer v = vd.getVertex();
-			Integer u = getHighestDegreeNeighborOfAVertex(v, this.vdOriginalList);
-			addDominatingVertexAndItsNeigbors(this.ds, u);
-			i++;
-		}
-
-		// Collection<Integer> gOrigialVertices = gOriginal.getVertices();
-		// int gOriginalVerticeSize = gOrigialVertices.size();
-		// Collection<Integer> gInitialVertices = gInitial.getVertices();
-		//
-		// Collection<Integer> undominatedVertices =
-		// CollectionUtils.subtract(gOrigialVertices, gInitialVertices);
-		//
-		// int undomiantedVerticesSize = undominatedVertices.size();
-		//
-		//
-		// while (undomiantedVerticesSize > 0) {
-		// List<Integer> kVerticesDS=new ArrayList<Integer>();
-		// List<Integer> kVertices=new ArrayList<Integer>();
-		// Graph<Integer,Integer> gI=AlgorithmUtil.copyGrapy(gInitial);
-		//
-		// int fromIndex=0;
-		// int toIndex=Math.min(k, undomiantedVerticesSize);
-		// List<VertexDegree>
-		// vdList=AlgorithmUtil.sortVertexAccordingToDegreeInclude(gOriginal,
-		// undominatedVertices);
-		// Collections.reverse(vdList);
-		//
-		// List<Integer> vList=AlgorithmUtil.getVertexList(vdList);
-		//
-		// List<Integer> subVList=vList.subList(fromIndex, toIndex);
-		//
-		// for(Integer u:subVList){
-		// Integer w=getHighestDegreeNeighborOfAVertex(u,this.vdOriginalList);
-		// AlgorithmUtil.addElementToList(kVerticesDS, w);
-		// AlgorithmUtil.addElementToList(kVertices, w);
-		// AlgorithmUtil.addElementToList(kVertices, u);
-		//
-		// }
-		//
-		// AlgorithmUtil.prepareGraph(am,gI, kVertices);
-		//
-		// List<Integer> dsInitialCopy = new ArrayList<Integer>();
-		// dsInitialCopy.addAll(dsInitial);
-		//
-		// int paramR = Math.min(kVerticesDS.size(), r);
-		//
-		// DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
-		// // Collection<Integer> considerableCandidateVertices4DS=
-		// // CollectionUtils.union(t.getV2(), this.dsInitial);
-		//
-		// ag.setConsiderableCandidateVertices4DS(kVerticesDS);
-		// ag.setOriginalVertexNum(gOriginalVerticeSize);
-		// ag.computing();
-		//
-		// //List<Integer> dominatedUndominatedDifference = new
-		// ArrayList<Integer>();
-		//
-		// dsInitial = ag.getDs2();
-		// Collection<Integer> addedDSVertices =
-		// CollectionUtils.subtract(dsInitial, dsInitialCopy);
-		// List<Integer> verticesToAddInGraph=new ArrayList<Integer>();
-		// for (Integer v : addedDSVertices) {
-		// dominatedMap.put(v, true);
-		// AlgorithmUtil.addElementToList(verticesToAddInGraph, v);
-		// undominatedVertices.remove(v);
-		//
-		// Collection<Integer> vNeg = gOriginal.getNeighbors(v);
-		// for (Integer u : vNeg) {
-		// dominatedMap.put(u, true);
-		//
-		// if (!gInitial.containsVertex(u)) {
-		// AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
-		// //dominatedUndominatedDifference.add(u);
-		// }
-		// }
-		// undominatedVertices.removeAll(vNeg);
-		//
-		// }
-		//
-		//
-		//
-		// undomiantedVerticesSize = undominatedVertices.size();
-		//
-		// if(undomiantedVerticesSize==0){
-		// break;
-		// }
-		//
-		// AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
-		//
-		// }
-		//
-		// this.ds = this.dsInitial;
 	}
 
 }
