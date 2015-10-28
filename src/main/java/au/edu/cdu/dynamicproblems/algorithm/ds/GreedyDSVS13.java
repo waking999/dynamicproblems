@@ -385,23 +385,7 @@ public class GreedyDSVS13 implements IGreedyDS, ITask {
 
 		}
 
-		// local search
-		int localSearchDistance = 1;
-		int dsInitialSize = this.dsInitial.size();
-		boolean[] chosen = AlgorithmUtil.verifySubDS(this.dsInitial, dsInitialSize, dsInitialSize - localSearchDistance,
-				this.gOriginal);
-		if (chosen == null) {
-			this.ds = this.dsInitial;
-		} else {
-			List<Integer> tempDs = new ArrayList<Integer>(dsInitialSize - localSearchDistance);
-
-			for (int i = 0; i < dsInitialSize; i++) {
-				if (chosen[i]) {
-					tempDs.add(dsInitial.get(i));
-				}
-			}
-			this.ds = tempDs;
-		}
+		this.ds = this.dsInitial;
 	}
 
 	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {

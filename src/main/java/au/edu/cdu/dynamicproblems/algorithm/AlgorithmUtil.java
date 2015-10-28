@@ -16,7 +16,6 @@ import org.apache.commons.lang.StringUtils;
 
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
-import au.edu.cdu.dynamicproblems.exception.NChooseMNoSolutionException;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
@@ -39,9 +38,6 @@ public class AlgorithmUtil {
 	
 	public final static boolean DESC_ORDER = false;
 	public final static boolean ASC_ORDER = true;
-	
-	private final static boolean CHOSEN = true;
-	private final static boolean UNCHOSEN = false;
 
 	/**
 	 * generate an instance of Graph with internal parameters
@@ -985,100 +981,6 @@ public class AlgorithmUtil {
 	public static byte[] longToBinaryArray(int size, Long binaryLong) {
 		String binaryStr = StringUtils.leftPad(Long.toBinaryString(binaryLong), size, BINARY_LEFT_PAD);
 		return stringToBinaryArray(binaryStr);
-	}
-	
-	public static boolean[] verifySubDS(List<Integer> ds, int n, int m,Graph<Integer,Integer> g) throws ArraysNotSameLengthException {
-		if (m > n) {
-			m = n;
-		}
-	
-		boolean isSolution = false;
-		boolean isEnd = false;
-
-		boolean[] chosen = new boolean[n];
-		Arrays.fill(chosen, UNCHOSEN);
-
-		Arrays.fill(chosen, 0, m, CHOSEN);
-
-		// int count = 0;
-		// count++;
-		isSolution = verifyChosen(ds,chosen, m, n,g);
-
-		if (isSolution) {
-			return chosen;
-		}
-
-		
-		do {
-			int pose = 0;
-			int sum = 0;
-			for (int i = 0; i < (n - 1); i++) {
-				if (chosen[i] == CHOSEN && chosen[i + 1] == UNCHOSEN) {
-					chosen[i] = UNCHOSEN;
-					chosen[i + 1] = CHOSEN;
-					pose = i;
-					break;
-				}
-			}
-			// count++;
-
-			isSolution = verifyChosen(ds,chosen, m, n,g);
-
-			if (isSolution) {
-				return chosen;
-			}
-
-			for (int i = 0; i < pose; i++) {
-				if (chosen[i] == CHOSEN) {
-					sum++;
-				}
-			}
-
-			boolean[] copyOfChosen = Arrays.copyOf(chosen, chosen.length);
-
-			Arrays.fill(chosen, 0, sum, CHOSEN);
-			Arrays.fill(chosen, sum, pose, UNCHOSEN);
-
-			if (!Arrays.equals(copyOfChosen, chosen)) {
-				// count++;
-				isSolution = verifyChosen(ds,chosen, m, n,g);
-
-				if (isSolution) {
-					return chosen;
-				}
-			}
-
-			isEnd = true;
-			for (int i = n - m; i < n; i++) {
-
-				if (chosen[i] == UNCHOSEN) {
-					isEnd = false;
-					break;
-				}
-
-			}
-
-		} while (!isEnd);
-		if (!isSolution) {
-			return null;
-		}else{
-			return chosen;
-		}
-
-	}
-	
-	private static boolean verifyChosen(List<Integer> ds,boolean[] chosen, int m, int n,Graph<Integer,Integer> g) throws ArraysNotSameLengthException {
-		List<Integer> tempDs=new ArrayList<Integer>(m);
-		
-		for(int i=0;i<n;i++){
-			if(chosen[i]){
-				tempDs.add(ds.get(i));
-			}
-		}
-		
-		return isDS(g,tempDs);
-		
-
 	}
 
 }
