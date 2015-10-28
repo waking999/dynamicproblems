@@ -245,8 +245,6 @@ public class AlgorithmUtil {
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
 	}
-	
-	
 
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
