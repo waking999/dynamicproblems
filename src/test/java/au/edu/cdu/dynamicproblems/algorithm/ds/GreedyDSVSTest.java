@@ -81,7 +81,7 @@ public class GreedyDSVSTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
@@ -240,7 +240,7 @@ public class GreedyDSVSTest {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
