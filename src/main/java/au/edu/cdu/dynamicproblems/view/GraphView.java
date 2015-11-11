@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Paint;
 import java.awt.geom.Point2D;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -117,7 +118,7 @@ class LocationTransformer implements Transformer<Integer, Point2D> {
 		float x = 0;
 		float y = 0;
 		for (Section section : sections) {
-			List<Integer> vertices = section.getVertices();
+			Collection<Integer> vertices = section.getVertices();
 			if (vertices.contains(vertex)) {
 				x = AlgorithmUtil.randomInRang(section.getLeft(),
 						section.getRight());
