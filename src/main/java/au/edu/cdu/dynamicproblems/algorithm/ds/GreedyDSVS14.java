@@ -75,6 +75,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	private String indicator;
 	private List<String[]> am;
+	private int numOfVertices;
 
 	private List<Integer> ds;
 
@@ -170,7 +171,13 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	private void initialization() {
 
-		this.gOriginal = AlgorithmUtil.prepareGraph(am);
+		this.numOfVertices = am.size();
+
+		Graph<Integer, Integer> gOriginal0 = AlgorithmUtil.prepareGraph(am);
+
+		//this.gOriginal = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices,gOriginal0);
+
+		this.gOriginal=gOriginal0;
 
 		this.ds = new ArrayList<Integer>();
 		this.dsInitial = new ArrayList<Integer>();
@@ -201,6 +208,32 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 		return null;
 	}
+
+//	private List<Integer> getHighestUtilityNeighborOfVertices(int k, List<Integer> vList,
+//			TreeMap<Integer, Integer> vdMap) {
+//		List<Integer> vListNeig = new ArrayList<Integer>();
+//		List<Integer> highestNeigs = new ArrayList<Integer>();
+//		for (Integer v : vList) {
+//			Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+//			vListNeig.addAll(vNeg);
+//		}
+//
+//		Set<Integer> keySet = vdMap.descendingKeySet();
+//
+//		int count = 0;
+//		for (Integer key : keySet) {
+//			if (vListNeig.contains(key)) {
+//				highestNeigs.add(key);
+//				count++;
+//			}
+//			if (count >= k) {
+//				break;
+//			}
+//
+//		}
+//
+//		return highestNeigs;
+//	}
 
 	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, List<Integer> potentialVList, Integer v) {
 		addDominatingVertex(ds, potentialVList, v);
@@ -267,7 +300,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 					Integer u = vNegbList.get(0);
 					Integer w = vNegbList.get(1);
 
-					// get u,w's degree
+					// get u,w's utility
 					int uUtility = AlgorithmUtil.getVertexUtility(gOriginal, u, dominatedMap);
 					int wUtility = AlgorithmUtil.getVertexUtility(gOriginal, w, dominatedMap);
 
@@ -297,7 +330,8 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 			addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, v);
 		}
 
-		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
+		// AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
+		AlgorithmUtil.preparGraph(numOfVertices, gOriginal, gInitial, initialVertices);
 
 	}
 
@@ -352,15 +386,18 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
-			AlgorithmUtil.prepareGraph(am, gI, kVertices);
+			// AlgorithmUtil.prepareGraph(am, gI, kVertices);
+			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
 			// GreedyNativeV1 ag1 = useGreedyNativeCalcDS(gI);
 			List<Integer> ag1DS = useGreedyToCalcDS(gI);
 
-			Collection<Integer> greedyDiff = CollectionUtils.subtract(ag1DS, dsInitialCopy);
-			int greedyDiffSize = greedyDiff.size();
+			// Collection<Integer> greedyDiff = CollectionUtils.subtract(ag1DS,
+			// dsInitialCopy);
+			int greedyDiffSize = ag1DS.size() - dsInitialCopy.size();
+			greedyDiffSize = greedyDiffSize >= 0 ? greedyDiffSize : 0;
 
 			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
 			List<Integer> ag2DS = ag2.getDs2();
@@ -379,11 +416,27 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 				break;
 			}
 
-			AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
-
+			// AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
+			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gInitial, verticesToAddInGraph);
 		}
 
-		this.ds = this.dsInitial;
+		// local search
+		int localSearchDistance = 1;
+		int dsInitialSize = this.dsInitial.size();
+		boolean[] chosen = AlgorithmUtil.verifySubDS(this.dsInitial, dsInitialSize, dsInitialSize - localSearchDistance,
+				this.gOriginal);
+		if (chosen == null) {
+			this.ds = this.dsInitial;
+		} else {
+			List<Integer> tempDs = new ArrayList<Integer>(dsInitialSize - localSearchDistance);
+
+			for (int i = 0; i < dsInitialSize; i++) {
+				if (chosen[i]) {
+					tempDs.add(dsInitial.get(i));
+				}
+			}
+			this.ds = tempDs;
+		}
 	}
 
 	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
@@ -464,13 +517,27 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 		List<Integer> vList = AlgorithmUtil.getVertexListFromMap(vdMap, fromIndex, toIndex);
 
-		for (Integer u : vList) {
-			Integer w = getHighestUtilityNeighborOfAVertex(u, allVdMap);
-			AlgorithmUtil.addElementToList(kVerticesDS, w);
-			AlgorithmUtil.addElementToList(kVertices, w);
-			AlgorithmUtil.addElementToList(kVertices, u);
+		 for (Integer u : vList) {
+		 Integer w = getHighestUtilityNeighborOfAVertex(u, allVdMap);
+		 AlgorithmUtil.addElementToList(kVerticesDS, w);
+		 AlgorithmUtil.addElementToList(kVertices, w);
+		 AlgorithmUtil.addElementToList(kVertices, u);
+		
+		 }
 
-		}
+//		List<Integer> vnList = getHighestUtilityNeighborOfVertices(k, vList, allVdMap);
+//
+//		for (Integer u : vList) {
+//			AlgorithmUtil.addElementToList(kVertices, u);
+//		}
+//
+//		for (Integer u : vnList) {
+//			AlgorithmUtil.addElementToList(kVerticesDS, u);
+//			AlgorithmUtil.addElementToList(kVertices, u);
+//		}
+
 	}
+
+	
 
 }

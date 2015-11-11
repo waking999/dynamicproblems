@@ -32,7 +32,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSVS2Test.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSVS12.class);
 	private long runningTime;
 
 	@Override
@@ -75,6 +75,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	private String indicator;
 	private List<String[]> am;
+	private int numOfVertices;
 
 	private List<Integer> ds;
 
@@ -170,7 +171,14 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	private void initialization() {
 
-		this.gOriginal = AlgorithmUtil.prepareGraph(am);
+		// this.gOriginal = AlgorithmUtil.prepareGraph(am);
+		this.numOfVertices = am.size();
+
+		Graph<Integer, Integer> gOriginal0 = AlgorithmUtil.prepareGraph(am);
+
+		//this.gOriginal = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices, gOriginal0);
+
+		this.gOriginal=gOriginal0;
 
 		this.ds = new ArrayList<Integer>();
 		this.dsInitial = new ArrayList<Integer>();
@@ -297,7 +305,8 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 			addDominatingVertexAndItsNeigbors(this.dsInitial, this.initialVertices, v);
 		}
 
-		AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
+		// AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
+		AlgorithmUtil.preparGraph(numOfVertices, gOriginal, gInitial, initialVertices);
 
 	}
 
@@ -352,19 +361,19 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
-			AlgorithmUtil.prepareGraph(am, gI, kVertices);
+			// AlgorithmUtil.prepareGraph(am, gI, kVertices);
+			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
-			//GreedyNativeV1 ag1 = useGreedyNativeCalcDS(gI);
-List<Integer> ag1DS = useGreedyToCalcDS(gI);
-			
-			Collection<Integer> greedyDiff=CollectionUtils.subtract(ag1DS, dsInitialCopy);
-			int greedyDiffSize=greedyDiff.size();
-			
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI,greedyDiffSize);
+			List<Integer> ag1DS = useGreedyToCalcDS(gI);
 
-			
+			// Collection<Integer> greedyDiff = CollectionUtils.subtract(ag1DS,
+			// dsInitialCopy);
+			int greedyDiffSize = ag1DS.size() - dsInitialCopy.size();
+			greedyDiffSize = greedyDiffSize >= 0 ? greedyDiffSize : 0;
+
+			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
 			List<Integer> ag2DS = ag2.getDs2();
 
 			if (ag1DS.size() < ag2DS.size()) {
@@ -381,11 +390,28 @@ List<Integer> ag1DS = useGreedyToCalcDS(gI);
 				break;
 			}
 
-			AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
+			// AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
+			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gInitial, verticesToAddInGraph);
 
 		}
 
-		this.ds = this.dsInitial;
+		// local search
+		int localSearchDistance = 1;
+		int dsInitialSize = this.dsInitial.size();
+		boolean[] chosen = AlgorithmUtil.verifySubDS(this.dsInitial, dsInitialSize, dsInitialSize - localSearchDistance,
+				this.gOriginal);
+		if (chosen == null) {
+			this.ds = this.dsInitial;
+		} else {
+			List<Integer> tempDs = new ArrayList<Integer>(dsInitialSize - localSearchDistance);
+
+			for (int i = 0; i < dsInitialSize; i++) {
+				if (chosen[i]) {
+					tempDs.add(dsInitial.get(i));
+				}
+			}
+			this.ds = tempDs;
+		}
 	}
 
 	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
@@ -441,11 +467,12 @@ List<Integer> ag1DS = useGreedyToCalcDS(gI);
 	}
 
 	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
-			Graph<Integer, Integer> gI,int greedyDiffSize) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+			Graph<Integer, Integer> gI, int greedyDiffSize)
+					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int paramR = Math.min(kVerticesDS.size(), r);
-		paramR=Math.min(greedyDiffSize, paramR);
-		
+		paramR = Math.min(greedyDiffSize, paramR);
+
 		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
 
 		ag.setConsiderableCandidateVertices4DS(kVerticesDS);

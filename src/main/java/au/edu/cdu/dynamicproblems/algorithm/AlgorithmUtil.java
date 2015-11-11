@@ -34,10 +34,12 @@ public class AlgorithmUtil {
 
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
-	
-	
+
 	public final static boolean DESC_ORDER = false;
 	public final static boolean ASC_ORDER = true;
+
+	private final static boolean CHOSEN = true;
+	private final static boolean UNCHOSEN = false;
 
 	/**
 	 * generate an instance of Graph with internal parameters
@@ -107,6 +109,39 @@ public class AlgorithmUtil {
 	//
 	// return g;
 	// }
+
+	public static Graph<Integer, Integer> preparGraph(int numOfVertices, Graph<Integer, Integer> gRef,
+			Graph<Integer, Integer> g, Collection<Integer> vList) {
+		if (vList.isEmpty()) {
+			return g;
+		}
+
+		for (Integer v : vList) {
+			if (!g.containsVertex(v)) {
+				g.addVertex(v);
+			}
+		}
+
+		Collection<Integer> gVertices = g.getVertices();
+
+		for (Integer v : vList) {
+			Collection<Integer> vNeigInRef = gRef.getNeighbors(v);
+			Collection<Integer> vNeigInRefToAdd = CollectionUtils.intersection(gVertices, vNeigInRef);
+
+			for (Integer u : vNeigInRefToAdd) {
+
+				int e = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, v, u);
+				if (!g.containsEdge(e)) {
+					g.addEdge(e, v, u);
+				}
+
+			}
+		}
+
+		return g;
+
+	}
+
 	/**
 	 * add vertices in vList to g and add edges between such vertices to g as
 	 * well
@@ -245,32 +280,33 @@ public class AlgorithmUtil {
 		Collections.sort(vertexDegreeList);
 		return vertexDegreeList;
 	}
-	
-//	public static List<VertexVote> sortVertexAccordingToVote(Graph<Integer, Integer> g,
-//			Map<Integer, Boolean> dominatedMap) {
-//		List<VertexVote> vertexDegreeList = new ArrayList<VertexVote>();
-//		Collection<Integer> vertices = g.getVertices();
-//		for (Integer v : vertices) {
-//			Collection<Integer> vNeigs = g.getNeighbors(v);
-//			int unDominatedDegree = 0;
-//			for (Integer u : vNeigs) {
-//				if (!dominatedMap.get(u)) {
-//					unDominatedDegree++;
-//				}
-//			}
-//			addElementToList(vertexDegreeList, new VertexVote(v, unDominatedDegree));
-//		}
-//		Collections.sort(vertexDegreeList);
-//		return vertexDegreeList;
-//	}
+
+	// public static List<VertexVote> sortVertexAccordingToVote(Graph<Integer,
+	// Integer> g,
+	// Map<Integer, Boolean> dominatedMap) {
+	// List<VertexVote> vertexDegreeList = new ArrayList<VertexVote>();
+	// Collection<Integer> vertices = g.getVertices();
+	// for (Integer v : vertices) {
+	// Collection<Integer> vNeigs = g.getNeighbors(v);
+	// int unDominatedDegree = 0;
+	// for (Integer u : vNeigs) {
+	// if (!dominatedMap.get(u)) {
+	// unDominatedDegree++;
+	// }
+	// }
+	// addElementToList(vertexDegreeList, new VertexVote(v, unDominatedDegree));
+	// }
+	// Collections.sort(vertexDegreeList);
+	// return vertexDegreeList;
+	// }
 
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, ASC_ORDER);
 	}
-	
+
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtility(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap,boolean order) {
+			Map<Integer, Boolean> dominatedMap, boolean order) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, order);
 	}
 
@@ -278,9 +314,9 @@ public class AlgorithmUtil {
 			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, includeList, ASC_ORDER);
 	}
-	
+
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityInclude(Graph<Integer, Integer> g,
-			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList,boolean order) {
+			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList, boolean order) {
 
 		if (includeList == null) {
 			includeList = g.getVertices();
@@ -294,33 +330,33 @@ public class AlgorithmUtil {
 		}
 
 		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
+
+		if (order == DESC_ORDER) {
+			sorted = new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
+		} else {
+			sorted = new TreeMap<Integer, Integer>(new ValueComparator(map));
 		}
-		
+
 		sorted.putAll(map);
 		return sorted;
 	}
 
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,ASC_ORDER);
+		return sortVertexMapAccordingToDegreeInclude(g, null, ASC_ORDER);
 	}
-	
-	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g,boolean order) {
-		return sortVertexMapAccordingToDegreeInclude(g, null,order);
+
+	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g, boolean order) {
+		return sortVertexMapAccordingToDegreeInclude(g, null, order);
 	}
-	
+
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
 			Collection<Integer> includeList) {
 
-		return sortVertexMapAccordingToDegreeInclude(g,includeList,ASC_ORDER);
+		return sortVertexMapAccordingToDegreeInclude(g, includeList, ASC_ORDER);
 	}
 
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegreeInclude(Graph<Integer, Integer> g,
-			Collection<Integer> includeList,boolean order) {
+			Collection<Integer> includeList, boolean order) {
 
 		if (includeList == null) {
 			includeList = g.getVertices();
@@ -333,11 +369,11 @@ public class AlgorithmUtil {
 			map.put(v, utility);
 		}
 		TreeMap<Integer, Integer> sorted = null;
-		
-		if(order==DESC_ORDER){
-			sorted=new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
-		}else{
-			sorted=new TreeMap<Integer, Integer>(new ValueComparator(map));
+
+		if (order == DESC_ORDER) {
+			sorted = new TreeMap<Integer, Integer>(new ValueComparatorReversed(map));
+		} else {
+			sorted = new TreeMap<Integer, Integer>(new ValueComparator(map));
 		}
 		sorted.putAll(map);
 		return sorted;
@@ -981,6 +1017,194 @@ public class AlgorithmUtil {
 	public static byte[] longToBinaryArray(int size, Long binaryLong) {
 		String binaryStr = StringUtils.leftPad(Long.toBinaryString(binaryLong), size, BINARY_LEFT_PAD);
 		return stringToBinaryArray(binaryStr);
+	}
+
+	public static boolean[] verifySubDS(List<Integer> ds, int n, int m, Graph<Integer, Integer> g)
+			throws ArraysNotSameLengthException {
+		if (m > n) {
+			m = n;
+		}
+
+		boolean isSolution = false;
+		boolean isEnd = false;
+
+		boolean[] chosen = new boolean[n];
+		Arrays.fill(chosen, UNCHOSEN);
+
+		Arrays.fill(chosen, 0, m, CHOSEN);
+
+		// int count = 0;
+		// count++;
+		isSolution = verifyChosen(ds, chosen, m, n, g);
+
+		if (isSolution) {
+			return chosen;
+		}
+
+		do {
+			int pose = 0;
+			int sum = 0;
+			for (int i = 0; i < (n - 1); i++) {
+				if (chosen[i] == CHOSEN && chosen[i + 1] == UNCHOSEN) {
+					chosen[i] = UNCHOSEN;
+					chosen[i + 1] = CHOSEN;
+					pose = i;
+					break;
+				}
+			}
+			// count++;
+
+			isSolution = verifyChosen(ds, chosen, m, n, g);
+
+			if (isSolution) {
+				return chosen;
+			}
+
+			for (int i = 0; i < pose; i++) {
+				if (chosen[i] == CHOSEN) {
+					sum++;
+				}
+			}
+
+			boolean[] copyOfChosen = Arrays.copyOf(chosen, chosen.length);
+
+			Arrays.fill(chosen, 0, sum, CHOSEN);
+			Arrays.fill(chosen, sum, pose, UNCHOSEN);
+
+			if (!Arrays.equals(copyOfChosen, chosen)) {
+				// count++;
+				isSolution = verifyChosen(ds, chosen, m, n, g);
+
+				if (isSolution) {
+					return chosen;
+				}
+			}
+
+			isEnd = true;
+			for (int i = n - m; i < n; i++) {
+
+				if (chosen[i] == UNCHOSEN) {
+					isEnd = false;
+					break;
+				}
+
+			}
+
+		} while (!isEnd);
+		if (!isSolution) {
+			return null;
+		} else {
+			return chosen;
+		}
+
+	}
+
+	private static boolean verifyChosen(List<Integer> ds, boolean[] chosen, int m, int n, Graph<Integer, Integer> g)
+			throws ArraysNotSameLengthException {
+		List<Integer> tempDs = new ArrayList<Integer>(m);
+
+		for (int i = 0; i < n; i++) {
+			if (chosen[i]) {
+				tempDs.add(ds.get(i));
+			}
+		}
+
+		return isDS(g, tempDs);
+
+	}
+
+	public static <T> List<T> getFirstItemInCollection(Collection<T> s) {
+		List<T> rtn = new ArrayList<T>();
+
+		for (T t : s) {
+			rtn.add(t);
+			break;
+		}
+
+		return rtn;
+	}
+	
+	public static Graph<Integer, Integer> applySingleVertexReductionRule(int numOfVertices,Graph<Integer, Integer> g) {
+		Graph<Integer, Integer> gPrime = AlgorithmUtil.copyGrapy(g);
+
+		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
+
+		Collection<Integer> vertices = g.getVertices();
+
+		for (Integer v : vertices) {
+			visited.put(v, false);
+		}
+
+		for (Integer v : vertices) {
+
+			if (!visited.get(v)) {
+				// N1(v) := {u ∈ N(v) | N(u) \ N[v] = ∅},
+				Collection<Integer> vNeig = gPrime.getNeighbors(v);
+				List<Integer> n1 = new ArrayList<Integer>();
+				for (Integer u : vNeig) {
+					Collection<Integer> uNeig = gPrime.getNeighbors(u);
+					Collection<Integer> n1diff = CollectionUtils.subtract(uNeig, vNeig);
+					n1diff.remove(v);
+					if (!n1diff.isEmpty()) {
+						n1.add(u);
+					}
+
+				}
+				// N2(v) := {u ∈ N(v) \ N1(v) | N(u) ∩ N1(v) = ∅},
+				List<Integer> n2 = new ArrayList<Integer>();
+				Collection<Integer> n2base = CollectionUtils.subtract(vNeig, n1);
+				for (Integer u : n2base) {
+					Collection<Integer> uNeig = gPrime.getNeighbors(u);
+					Collection<Integer> uIntsec = CollectionUtils.intersection(uNeig, n1);
+					if (!uIntsec.isEmpty()) {
+						n2.add(u);
+					}
+				}
+				// N3(v) := N(v) \ (N1(v) ∪ N2(v)).
+				Collection<Integer> n3 = CollectionUtils.subtract(vNeig, CollectionUtils.union(n1, n2));
+
+				/*
+				 * Rule 1 If N3(v) = ∅ for some vertex v, then : i) remove
+				 * N2(v) and N3(v) from G and; ii) add a new vertex v with the
+				 * edge {v, v}.
+				 * 
+				 * An equivlant way of ii) is ii.1) to keep a vertex w in N2(v)
+				 * ∪ N3(v)), ii.2) remove edges between w and N(w)\{v}
+				 * 
+				 */
+				if (!n3.isEmpty()) {
+					List<Integer> vInList = new ArrayList<Integer>();
+					vInList.add(v);
+
+					Collection<Integer> n2n3 = CollectionUtils.union(n2, n3);
+					List<Integer> wPrime = AlgorithmUtil.getFirstItemInCollection(n2n3);
+					Collection<Integer> n2n3Except = CollectionUtils.subtract(n2n3, wPrime);
+
+					for (Integer w : n2n3Except) {
+						gPrime.removeVertex(w);
+						visited.put(w, true);
+					}
+
+					for (Integer w : wPrime) {
+						Collection<Integer> wNeig = gPrime.getNeighbors(w);
+
+						wNeig = CollectionUtils.subtract(wNeig, vInList);
+						for (Integer x : wNeig) {
+							int wx = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, x, w);
+							gPrime.removeEdge(wx);
+						}
+
+						visited.put(w, true);
+					}
+
+				}
+
+				visited.put(v, true);
+			}
+
+		}
+
+		return gPrime;
 	}
 
 }
