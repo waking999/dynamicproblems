@@ -177,7 +177,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 		 * order to apply the reduction rules
 		 */
 		Collection<Integer> verticesInG2 = g2.getVertices();
-		//int verticesNum = verticesInG2.size();
+		int verticesNum = verticesInG2.size();
 		List<Integer> neighboursOfDs1InG2 = AlgorithmUtil.getNeighborsOfS(g2, ds1);
 		neighboursOfDs1InG2 = (List<Integer>) CollectionUtils.subtract(neighboursOfDs1InG2, ds1);
 		vertexCover = CollectionUtils.subtract(verticesInG2, neighboursOfDs1InG2);
@@ -195,7 +195,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 		g2 = r2(g2, neighboursOfDs1InG2, vertexCover);
 
-		g2 = r3(g2, neighboursOfDs1InG2);
+		g2 = r3(g2, neighboursOfDs1InG2, verticesNum);
 
 		// viewGraph(g2, vertexSections);
 
@@ -272,12 +272,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 			
 			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, SStar);
 		} else {
-			if(vertexCover.size()>this.considerableCandidateVertices4DS.size()){
-				this.ds2 = (List<Integer>) CollectionUtils.union(ds1, this.considerableCandidateVertices4DS);
-			}else{
-				this.ds2 = (List<Integer>) CollectionUtils.union(ds1, vertexCover);
-			}
-			
+			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, vertexCover);
 		}
 	}
 
@@ -345,7 +340,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 	 *            , the neighbours of ds1 in g2
 	 * @return
 	 */
-	private Graph<Integer, Integer> r3(Graph<Integer, Integer> g, Collection<Integer> B) {
+	private Graph<Integer, Integer> r3(Graph<Integer, Integer> g, Collection<Integer> B, int verticesNum) {
 
 		for (Integer b1 : B) {
 			for (Integer b2 : B) {

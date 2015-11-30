@@ -156,7 +156,8 @@ public class GreedyDSVS13 implements IGreedyDS, ITask {
 
 	public void computing()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
-
+		
+		
 		initialization();
 		long start = System.nanoTime();
 		preprocess();

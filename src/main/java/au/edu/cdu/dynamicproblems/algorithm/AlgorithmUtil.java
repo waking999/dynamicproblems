@@ -13,14 +13,16 @@ import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
+import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
 public class AlgorithmUtil {
-	// private static Logger log = LogUtil.getLogger(AlgorithmUtil.class);
+	private static Logger log = LogUtil.getLogger(AlgorithmUtil.class);
 
 	public static final String CONNECTED = "1";
 	public static final String UNCONNECTED = "0";
@@ -1385,7 +1387,7 @@ public class AlgorithmUtil {
 										visited.put(x, true);
 									}
 
-									for (Integer z : zList) {										
+									for (Integer z : zList) {
 
 										// leave vz,remove xz
 										Collection<Integer> zNeig = gPrime.getNeighbors(z);
@@ -1414,7 +1416,6 @@ public class AlgorithmUtil {
 									}
 
 									for (Integer z : zList) {
-										
 
 										// leave wz,remove xz
 										Collection<Integer> zNeig = gPrime.getNeighbors(z);
@@ -1472,6 +1473,17 @@ public class AlgorithmUtil {
 		return gPrime;
 	}
 
+	/**
+	 * if a vertex set(vList) is dominated by another vertex (v)
+	 * 
+	 * @param v,
+	 *            the dominating vertex
+	 * @param vList,
+	 *            the dominated vertex set
+	 * @param g,
+	 *            the graph instance
+	 * @return true: vList is dominated by v;false, no
+	 */
 	public static boolean isAVertexDominateASet(int v, Collection<Integer> vList, Graph<Integer, Integer> g) {
 		Collection<Integer> vNeig = g.getNeighbors(v);
 		if (CollectionUtils.subtract(vList, vNeig).isEmpty()) {
@@ -1481,6 +1493,41 @@ public class AlgorithmUtil {
 
 	}
 
+	/**
+	 * if a vertex (u) is dominated by another vertex (v)
+	 * 
+	 * @param v,
+	 *            the dominating vertex
+	 * @param u,
+	 *            the dominated vertex
+	 * @param g,
+	 *            the graph instance
+	 * @return true: u is dominated by v;false, no
+	 */
+	public static boolean isAVertexDominateAVertex(int v, int u, Graph<Integer, Integer> g) {
+		if (u == v) {
+			// a vertex always dominates itself
+			return true;
+		}
+		Collection<Integer> vNeig = g.getNeighbors(v);
+		if (vNeig.contains(u)) {
+			return true;
+		}
+		return false;
+
+	}
+
+	/**
+	 * if a vertex set(edSet) is dominated by a vertex in a set (ingSet)
+	 * 
+	 * @param ingSet,
+	 *            the set where the dominating vertex is in
+	 * @param edSet,
+	 *            the dominated vertex set
+	 * @param g,
+	 *            the graph instance
+	 * @return true: vList is dominated by v;false, no
+	 */
 	public static boolean isAVertexInASetDominateASet(Collection<Integer> ingSet, Collection<Integer> edSet,
 			Graph<Integer, Integer> g) {
 		for (Integer v : ingSet) {
@@ -1492,5 +1539,74 @@ public class AlgorithmUtil {
 
 		return false;
 	}
+
+	/**
+	 * a GRASP local search
+	 * 
+	 * @param g,
+	 *            the graph
+	 * @param d,
+	 *            the dominating set
+	 * @return the dominating set after local search
+	 */
+	public static List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
+		Collection<Integer> vertices = g.getVertices();
+		int numOfVertices = vertices.size();
+		int[] coveredby = new int[numOfVertices];
+
+		for (int i = 0; i < numOfVertices; i++) {
+			coveredby[i] = 0;
+		}
+
+		for (Integer w : d) {
+			coveredby[w]++;
+			Collection<Integer> wNeig = g.getNeighbors(w);
+			for (Integer v : wNeig) {
+				coveredby[v]++;
+			}
+		}
+		int dSize = d.size();
+		for (int i = 0; i < dSize - 1; i++) {
+			Integer vi = d.get(i);
+			for (int j = i + 1; j < dSize; j++) {
+				Integer vj = d.get(j);
+				if (!vi.equals(vj)) {
+					List<Integer> U = new ArrayList<Integer>();
+					for (Integer vk : vertices) {
+						int covby = coveredby[vk];
+						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
+							covby--;
+						}
+						if (AlgorithmUtil.isAVertexDominateAVertex(vj, vk, g)) {
+							covby--;
+						}
+						if (covby == 0) {
+							AlgorithmUtil.addElementToList(U, vk);
+						}
+					}
+					if (U.isEmpty()) {
+						d.remove(vi);
+						d.remove(vj);
+						log.debug("ds changed here.");
+						return grasp(g, d);
+					} else {
+						for (Integer vk : vertices) {
+							if (AlgorithmUtil.isAVertexDominateASet(vk, U, g)) {
+								d.remove(vi);
+								d.remove(vj);
+								d.add(vk);
+								log.debug("ds changed here.");
+								return grasp(g, d);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return d;
+	}
+	
+	
 
 }

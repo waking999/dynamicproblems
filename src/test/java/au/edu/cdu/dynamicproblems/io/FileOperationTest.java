@@ -4,11 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.Ignore;
 import org.junit.Test;
-
-import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import junit.framework.Assert;
 
 public class FileOperationTest {
 	@Ignore
@@ -23,8 +22,8 @@ public class FileOperationTest {
 
 		List<String[]> am = fo.getAdjacencyMatrix();
 
-		Assert.assertEquals(AlgorithmUtil.CONNECTED, am.get(0)[1]);
-		Assert.assertEquals(AlgorithmUtil.UNCONNECTED, am.get(0)[500]);
+		Assert.assertEquals(FileOperation.CONNECTED, am.get(0)[1]);
+		Assert.assertEquals(FileOperation.UNCONNECTED, am.get(0)[500]);
 	}
 
 	@Ignore
@@ -39,7 +38,7 @@ public class FileOperationTest {
 
 		List<String[]> am = fo.getAdjacencyMatrix();
 
-		Assert.assertEquals(AlgorithmUtil.CONNECTED, am.get(1)[2]);
-		Assert.assertEquals(AlgorithmUtil.UNCONNECTED, am.get(0)[2]);
+		Assert.assertEquals(FileOperation.CONNECTED, am.get(1)[2]);
+		Assert.assertEquals(FileOperation.UNCONNECTED, am.get(0)[2]);
 	}
 }

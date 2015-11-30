@@ -12,9 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 
 /**
  * This class work for getting input from files
@@ -24,10 +23,10 @@ import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
  */
 public class FileOperation {
 	private static final String COMMA = ",";
-	
+	private static final String BLANK = " ";
 
-//	public static final String CONNECTED = "1";
-//	public static final String UNCONNECTED = "0";
+	public static final String CONNECTED = "1";
+	public static final String UNCONNECTED = "0";
 
 	/*
 	 * the input file path and name
@@ -110,12 +109,30 @@ public class FileOperation {
 	public void retriveProblemInfoByEdgePair() throws FileNotFoundException, IOException {
 		Path path = Paths.get(this.fileInfo.getInputFile());
 		List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
-		this.adjacencyMatrix=AlgorithmUtil.transferEdgePairToMatrix(lines);
-		this.numOfVertices=this.adjacencyMatrix.size();
+		String line0 = lines.get(0);
+		String[] line0Array = line0.split(BLANK);
+		String numOfVerStr = line0Array[0];
+		numOfVertices = Integer.parseInt(numOfVerStr);
+
+		adjacencyMatrix = new ArrayList<String[]>(numOfVertices);
+		for (int i = 0; i < numOfVertices; i++) {
+			String[] row = new String[numOfVertices];
+			Arrays.fill(row, UNCONNECTED);
+			adjacencyMatrix.add(row);
+		}
+
+		int linesSize = lines.size();
+		for (int i = 1; i < linesSize; i++) {
+			String line = lines.get(i);
+			String[] lineArray = line.split(BLANK);
+			int v1 = Integer.parseInt(lineArray[0]) - 1;
+			int v2 = Integer.parseInt(lineArray[1]) - 1;
+
+			adjacencyMatrix.get(v1)[v2] = CONNECTED;
+			adjacencyMatrix.get(v2)[v1] = CONNECTED;
+		}
 
 	}
-
-	
 
 	// /**
 	// * retrive graph info in adjacent matrix format
@@ -209,7 +226,7 @@ public class FileOperation {
 			String[] row = operationList.get(i);
 			StringBuffer sb = new StringBuffer();
 			for (int j = 0; j < 3; j++) {
-				sb.append(row[j]).append(AlgorithmUtil.BLANK);
+				sb.append(row[j]).append(BLANK);
 			}
 			bw.write(sb.append("\r\n").toString());
 

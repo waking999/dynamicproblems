@@ -19,11 +19,11 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyVoteTest {
+public class GreedyVoteGrTest {
 
-	private Logger log = LogUtil.getLogger(GreedyVoteTest.class);
+	private Logger log = LogUtil.getLogger(GreedyVoteGrTest.class);
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -70,7 +70,7 @@ public class GreedyVoteTest {
 		log.debug(r.getString());
 	}
 
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -80,7 +80,8 @@ public class GreedyVoteTest {
 				+ ".csv";
 		
 		String path = "src/test/resources/KONECT/";
-		String[] files = { "000027_zebra.konet", "000034_zachary.konet",
+		String[] files = {
+				"000027_zebra.konet", "000034_zachary.konet",
 				"000062_dolphins.konet", "000112_David_Copperfield.konet",
 				"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
 				"001133_rovira.konet", "001174_euroroad.konet",
@@ -144,7 +145,7 @@ public class GreedyVoteTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -194,7 +195,7 @@ public class GreedyVoteTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		GreedyVote ag = new GreedyVote(g);
+		GreedyVoteGr ag = new GreedyVoteGr(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
