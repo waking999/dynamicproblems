@@ -173,14 +173,14 @@ public class GreedyDSVS11 implements IGreedyDS, ITask {
 
 	private void initialization() {
 
-		// this.gOriginal = AlgorithmUtil.prepareGraph(am);
 		this.numOfVertices = am.size();
 
 		Graph<Integer, Integer> gOriginal0 = AlgorithmUtil.prepareGraph(am);
 
-		//this.gOriginal = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices, gOriginal0);
-
-		this.gOriginal=gOriginal0;
+		Graph<Integer, Integer> gOriginal1 = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices,gOriginal0);
+		gOriginal1 = AlgorithmUtil.applyPairVerticesReductionRule(this.numOfVertices,gOriginal1);
+		
+		this.gOriginal=gOriginal1;
 
 		this.ds = new ArrayList<Integer>();
 		this.dsInitial = new ArrayList<Integer>();
@@ -383,6 +383,8 @@ public class GreedyDSVS11 implements IGreedyDS, ITask {
 			} else {
 				this.dsInitial = ag2DS;
 			}
+			
+			this.dsInitial=localSearchMinimal(this.dsInitial,gI);
 
 			List<Integer> verticesToAddInGraph = markDominatedVertices(undominatedVertices, dsInitialCopy);
 
@@ -398,12 +400,17 @@ public class GreedyDSVS11 implements IGreedyDS, ITask {
 		}
 
 		// local search
+		this.ds=localSearchMinimal(this.dsInitial,this.gOriginal);
+	}
+
+	private List<Integer> localSearchMinimal(List<Integer> dsInitial, Graph<Integer, Integer> g)
+			throws ArraysNotSameLengthException {
+		// local search
 		int localSearchDistance = 1;
-		int dsInitialSize = this.dsInitial.size();
-		boolean[] chosen = AlgorithmUtil.verifySubDS(this.dsInitial, dsInitialSize, dsInitialSize - localSearchDistance,
-				this.gOriginal);
+		int dsInitialSize = dsInitial.size();
+		boolean[] chosen = AlgorithmUtil.verifySubDS(dsInitial, dsInitialSize, dsInitialSize - localSearchDistance, g);
 		if (chosen == null) {
-			this.ds = this.dsInitial;
+			return dsInitial;
 		} else {
 			List<Integer> tempDs = new ArrayList<Integer>(dsInitialSize - localSearchDistance);
 
@@ -412,10 +419,10 @@ public class GreedyDSVS11 implements IGreedyDS, ITask {
 					tempDs.add(dsInitial.get(i));
 				}
 			}
-			this.ds = tempDs;
+			return tempDs;
 		}
 	}
-
+	
 	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
 		Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
 		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();

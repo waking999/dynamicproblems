@@ -1,5 +1,7 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,7 +12,6 @@ import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -20,10 +21,10 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyNativeV1 implements ITask, IAlgorithm {
+public class Exact implements ITask, IAlgorithm {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyNativeV1.class);
+	private static Logger log = LogUtil.getLogger(Exact.class);
 	private long runningTime;
 
 	private TaskLock lock;
@@ -85,33 +86,36 @@ public class GreedyNativeV1 implements ITask, IAlgorithm {
 	/**
 	 * number of vertices
 	 */
-	@SuppressWarnings("unused")
 	private int numOfVertices;
+	
+	private int exactSolutionSize;
 
 	/**
 	 * the adjacency matrix of the graph
 	 */
 	private List<String[]> adjacencyMatrix;
 
-	public GreedyNativeV1(List<String[]> adjacencyMatrix) {
+	public Exact(List<String[]> adjacencyMatrix,int exactSolutionSize) {
 		this.adjacencyMatrix = adjacencyMatrix;
+		this.exactSolutionSize=exactSolutionSize;
 		this.numOfVertices = adjacencyMatrix.size();
 		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
 
 	}
 
-	public GreedyNativeV1(String indicator, List<String[]> adjacencyMatrix) {
+	public Exact(String indicator, List<String[]> adjacencyMatrix,int exactSolutionSize) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
+		this.exactSolutionSize=exactSolutionSize;
 		this.numOfVertices = adjacencyMatrix.size();
 		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
 
 	}
 
-	public GreedyNativeV1(Graph<Integer, Integer> g) {
+	public Exact(Graph<Integer, Integer> g,int exactSolutionSize) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
-
+		this.exactSolutionSize=exactSolutionSize;
 	}
 
 	/**
@@ -122,7 +126,7 @@ public class GreedyNativeV1 implements ITask, IAlgorithm {
 			ArraysNotSameLengthException {
 		long start = System.nanoTime();
 		initialization();
-		greedy();
+		start();
 		long end = System.nanoTime();
 		runningTime = end - start;
 
@@ -138,55 +142,26 @@ public class GreedyNativeV1 implements ITask, IAlgorithm {
 		}
 	}
 
-	private void greedy() {
-		Collection<Integer> vertices = g.getVertices();
-		for (Integer v : vertices) {
-			int degree=g.degree(v);
-			
-			if(degree==0){
-				dominatedMap.put(v, true);
-				AlgorithmUtil.addElementToList(dominatingSet, v);
+	private void start() throws  ArraysNotSameLengthException {
+		Collection<Integer> vertices=g.getVertices();
+		List<Integer> vList = new ArrayList<Integer>(vertices);
+		
+		boolean[] chosen = AlgorithmUtil.verifySubDS(vList, this.numOfVertices, this.exactSolutionSize,
+				this.g);
+		if(chosen==null){
+			//do nothing
+		}else{
+			List<Integer> tempDs = new ArrayList<Integer>(this.exactSolutionSize);
+
+			for (int i = 0; i < this.numOfVertices; i++) {
+				if (chosen[i]) {
+					tempDs.add(vList.get(i));
+				}
 			}
+			this.dominatingSet = tempDs;
 		}
 		
-
-		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			// get the vertex with highest utility (the number of undominated
-			// neighbors)
-			List<VertexDegree> vdList = AlgorithmUtil
-					.sortVertexAccordingToUtility(g, dominatedMap);
-			VertexDegree vd = vdList.get(0);
-
-			Integer v = vd.getVertex();
-			/*
-			 * this is commented out because we don't need the vertex of highest
-			 * utility in the close neighborhood, we just want the vertex with
-			 * highest utility itself; Integer w = AlgorithmUtil
-			 * .getVertexFromClosedNeighborhoodWithHighestUtility(v, g, vdList,
-			 * dominatedMap);
-			 * 
-			 * // add it into dominating set
-			 * AlgorithmUtil.addElementToList(dominatingSet, w); // set it is
-			 * dominated dominatedMap.put(w, true);
-			 * 
-			 * // set its neigbors is dominated Collection<Integer> wNeigs =
-			 * g.getNeighbors(w);
-			 * 
-			 * for (Integer u : wNeigs) { dominatedMap.put(u, true); }
-			 */
-
-			// add it into dominating set
-			AlgorithmUtil.addElementToList(dominatingSet, v);
-			// set it is dominated
-			dominatedMap.put(v, true);
-
-			// set its neigbors is dominated
-			Collection<Integer> wNeigs = g.getNeighbors(v);
-
-			for (Integer u : wNeigs) {
-				dominatedMap.put(u, true);
-			}
-		}
+		
 
 	}
 

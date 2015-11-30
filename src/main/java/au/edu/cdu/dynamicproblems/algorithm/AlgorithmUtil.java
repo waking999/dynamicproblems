@@ -25,6 +25,8 @@ public class AlgorithmUtil {
 	public static final String CONNECTED = "1";
 	public static final String UNCONNECTED = "0";
 
+	public static final String BLANK = " ";
+
 	// used for vertex covers to show if they are dominated or not
 	public final static byte MARKED = 1;
 	public final static byte UNMARKED = 0;
@@ -190,6 +192,32 @@ public class AlgorithmUtil {
 		}
 
 		return g;
+	}
+
+	public static List<String[]> transferEdgePairToMatrix(List<String> lines) {
+		String line0 = lines.get(0);
+		String[] line0Array = line0.split(BLANK);
+		String numOfVerStr = line0Array[0];
+		int numOfVertices = Integer.parseInt(numOfVerStr);
+
+		List<String[]> adjacencyMatrix = new ArrayList<String[]>(numOfVertices);
+		for (int i = 0; i < numOfVertices; i++) {
+			String[] row = new String[numOfVertices];
+			Arrays.fill(row, UNCONNECTED);
+			adjacencyMatrix.add(row);
+		}
+
+		int linesSize = lines.size();
+		for (int i = 1; i < linesSize; i++) {
+			String line = lines.get(i);
+			String[] lineArray = line.split(BLANK);
+			int v1 = Integer.parseInt(lineArray[0]) - 1;
+			int v2 = Integer.parseInt(lineArray[1]) - 1;
+
+			adjacencyMatrix.get(v1)[v2] = CONNECTED;
+			adjacencyMatrix.get(v2)[v1] = CONNECTED;
+		}
+		return adjacencyMatrix;
 	}
 
 	/**
@@ -1123,8 +1151,32 @@ public class AlgorithmUtil {
 
 		return rtn;
 	}
-	
-	public static Graph<Integer, Integer> applySingleVertexReductionRule(int numOfVertices,Graph<Integer, Integer> g) {
+
+	public static <T> List<T> getFirstNItemsInCollection(int n, Collection<T> s) {
+		List<T> rtn = new ArrayList<T>();
+		int count = 0;
+		for (T t : s) {
+			rtn.add(t);
+			count++;
+			if (count == n) {
+				break;
+			}
+		}
+
+		return rtn;
+	}
+
+	/**
+	 * Apply DS reduction rule 1 in michael's paper
+	 * 
+	 * @param numOfVertices,
+	 *            number of vertices in the original graph,it is used for
+	 *            computing edge label
+	 * @param g,
+	 *            the original graph
+	 * @return reduced graph
+	 */
+	public static Graph<Integer, Integer> applySingleVertexReductionRule(int numOfVertices, Graph<Integer, Integer> g) {
 		Graph<Integer, Integer> gPrime = AlgorithmUtil.copyGrapy(g);
 
 		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
@@ -1205,6 +1257,240 @@ public class AlgorithmUtil {
 		}
 
 		return gPrime;
+	}
+
+	/**
+	 * Apply DS reduction rule 2 in michael's paper
+	 * 
+	 * @param numOfVertices,
+	 *            number of vertices in the original graph,it is used for
+	 *            computing edge label
+	 * @param g,the
+	 *            original graph
+	 * @return reduced graph
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public static Graph<Integer, Integer> applyPairVerticesReductionRule(int numOfVertices, Graph<Integer, Integer> g) {
+		Graph<Integer, Integer> gPrime = AlgorithmUtil.copyGrapy(g);
+
+		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
+
+		Collection<Integer> vertices = g.getVertices();
+
+		for (Integer v : vertices) {
+			visited.put(v, false);
+		}
+
+		for (Integer v : vertices) {
+
+			if (!visited.get(v)) {
+
+				for (Integer w : vertices) {
+					if (!visited.get(w)) {
+						Collection<Integer> vNeig = gPrime.getNeighbors(v);
+
+						if (v.equals(w)) {
+							continue;
+						}
+
+						if (vNeig.contains(w)) {
+							continue;
+						}
+
+						Collection<Integer> wNeig = gPrime.getNeighbors(w);
+
+						Collection<Integer> vwNeig = CollectionUtils.union(vNeig, wNeig);
+
+						List<Integer> n1 = new ArrayList<Integer>();
+						for (Integer u : vwNeig) {
+							Collection<Integer> uNeig = gPrime.getNeighbors(u);
+							if (uNeig == null) {
+								uNeig = CollectionUtils.EMPTY_COLLECTION;
+							}
+							Collection<Integer> n1diff = CollectionUtils.subtract(uNeig, vwNeig);
+							n1diff.remove(v);
+							n1diff.remove(w);
+							if (!n1diff.isEmpty()) {
+								n1.add(u);
+							}
+						}
+
+						List<Integer> n2 = new ArrayList<Integer>();
+						Collection<Integer> n2base = CollectionUtils.subtract(vwNeig, n1);
+						for (Integer u : n2base) {
+							Collection<Integer> uNeig = gPrime.getNeighbors(u);
+							if (uNeig == null) {
+								uNeig = CollectionUtils.EMPTY_COLLECTION;
+							}
+							Collection<Integer> uIntsec = CollectionUtils.intersection(uNeig, n1);
+							if (!uIntsec.isEmpty()) {
+								n2.add(u);
+							}
+						}
+
+						Collection<Integer> n3 = CollectionUtils.subtract(vwNeig, CollectionUtils.union(n1, n2));
+
+						if (!n3.isEmpty()) {
+							List<Integer> vInList = new ArrayList<Integer>();
+							vInList.add(v);
+
+							List<Integer> wInList = new ArrayList<Integer>();
+							wInList.add(w);
+
+							List<Integer> vwInList = new ArrayList<Integer>();
+							vwInList.add(v);
+							vwInList.add(w);
+
+							if (isAVertexDominateASet(v, n3, gPrime) || isAVertexDominateASet(w, n3, gPrime)) {
+								// n3 can be dominated by a single vertex from
+								// {v,w}
+								if (CollectionUtils.isSubCollection(n3, vNeig)
+										&& CollectionUtils.isSubCollection(n3, wNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, vNeig);
+									insec = CollectionUtils.intersection(insec, wNeig);
+									insec = CollectionUtils.union(n3, insec);
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(2, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, vwInList);
+										for (Integer x : zNeig) {
+											int xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+
+								} else if (CollectionUtils.isSubCollection(n3, vNeig)
+										&& !CollectionUtils.isSubCollection(n3, wNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, vNeig);
+									insec = CollectionUtils.union(n3, insec);
+
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(1, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {										
+
+										// leave vz,remove xz
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, vInList);
+										for (Integer x : zNeig) {
+											int xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+
+								} else if (CollectionUtils.isSubCollection(n3, wNeig)
+										&& !CollectionUtils.isSubCollection(n3, vNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, wNeig);
+									insec = CollectionUtils.union(n3, insec);
+
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(1, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {
+										
+
+										// leave wz,remove xz
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, wInList);
+										for (Integer x : zNeig) {
+											int xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+								}
+							} else {
+								// n3 cannot be dominated by a single vertex
+								// from {v,w}
+								Collection<Integer> insec = CollectionUtils.union(n3, n2);
+
+								List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(2, insec);
+
+								Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+								for (Integer x : insecExcept) {
+									gPrime.removeVertex(x);
+									visited.put(x, true);
+								}
+
+								for (Integer z : zList) {
+									Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+									for (Integer x : zNeig) {
+										int xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, x, z);
+										gPrime.removeEdge(xz);
+									}
+								}
+
+								Integer z0 = zList.get(0);
+								Integer z1 = zList.get(1);
+
+								int z0v = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, z0, v);
+								gPrime.addEdge(z0v, z0, v);
+								int z1w = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, z1, w);
+								gPrime.addEdge(z1w, z1, w);
+
+								visited.put(z0, true);
+								visited.put(z1, true);
+							}
+						}
+					}
+					visited.put(w, true);
+				}
+			}
+			visited.put(v, true);
+		}
+		return gPrime;
+	}
+
+	public static boolean isAVertexDominateASet(int v, Collection<Integer> vList, Graph<Integer, Integer> g) {
+		Collection<Integer> vNeig = g.getNeighbors(v);
+		if (CollectionUtils.subtract(vList, vNeig).isEmpty()) {
+			return true;
+		}
+		return false;
+
+	}
+
+	public static boolean isAVertexInASetDominateASet(Collection<Integer> ingSet, Collection<Integer> edSet,
+			Graph<Integer, Integer> g) {
+		for (Integer v : ingSet) {
+			boolean isDominate = isAVertexDominateASet(v, edSet, g);
+			if (isDominate) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
