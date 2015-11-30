@@ -142,19 +142,19 @@ public class GreedyDSVSTest {
 					// ds11));
 					// int ds11Size = ds11.size();
 					//
-					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
-					ag12.computing();
-					List<Integer> ds12 = ag12.getDs();
-					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
-					// ds12));
-					int ds12Size = ds12.size();
-
-//					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
-//					ag13.computing();
-//					List<Integer> ds13 = ag13.getDs();
+//					GreedyDSVS12 ag12 = new GreedyDSVS12(this.getClass().getName(), am, k, r);
+//					ag12.computing();
+//					List<Integer> ds12 = ag12.getDs();
 //					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
-//					// ds13));
-//					int ds13Size = ds13.size();
+//					// ds12));
+//					int ds12Size = ds12.size();
+
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
+					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
+					// ds13));
+					int ds13Size = ds13.size();
 //
 //					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
 //					ag14.computing();
@@ -163,8 +163,8 @@ public class GreedyDSVSTest {
 //					// ds14));
 //					int ds14Size = ds14.size();
 					//
-					int minDSSize = ds12Size;
-					int chooseDS = 6;
+					int minDSSize = ds13Size;
+					int chooseDS = 7;
 
 					// if (minDSSize >= ds11Size) {
 					//
@@ -188,7 +188,7 @@ public class GreedyDSVSTest {
 //						chooseDS = 8;
 //					}
 
-					Result result = getResult(chooseDS, minDSSize, k, r, ag12);
+					Result result = getResult(chooseDS, minDSSize, k, r, ag13);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
