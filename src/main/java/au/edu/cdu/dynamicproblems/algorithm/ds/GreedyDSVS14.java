@@ -19,7 +19,6 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -82,8 +81,6 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	// used for pre-process
 	private List<Integer> dsInitial;
-	private List<Integer> dsComponent;
-	private List<List<Integer>> dsComponentList;
 	private List<Integer> initialVertices;
 
 	public List<Integer> getDs() {
@@ -166,9 +163,6 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		preprocess();
 
 		start();
-		
-		this.ds=(List<Integer>)CollectionUtils.union(this.ds, this.dsComponent);
-		
 		long end = System.nanoTime();
 
 		this.runningTime = end - start;
@@ -179,21 +173,24 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 	private void initialization() {
 
 		this.numOfVertices = am.size();
-		this.dsComponent=new ArrayList<Integer>();
-		this.dsComponentList=new ArrayList<List<Integer>>();
 
 		Graph<Integer, Integer> gOriginal0 = AlgorithmUtil.prepareGraph(am);
 		
-
-		AlgorithmUtil.componentReductionRule(gOriginal0,dsComponent);
-		
+		List<Set<Integer>> componentList0=AlgorithmUtil.getAllConnectedCompoents(gOriginal0);
+		if(componentList0.size()>1){
+			log.debug("there are "+componentList0.size()+" connected component exist in this graph before michael's rr");
+			AlgorithmUtil.printEachComponentSize(componentList0);
+		}
 		
 		Graph<Integer, Integer> gOriginal1 = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices,
 				gOriginal0);
 		gOriginal1 = AlgorithmUtil.applyPairVerticesReductionRule(this.numOfVertices, gOriginal1);
 
-		AlgorithmUtil.componentReductionRule(gOriginal1,dsComponent);
-
+		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(gOriginal1);
+		if(componentList.size()>1){
+			log.debug("there are "+componentList.size()+" connected component exist in this graph after michael's rr");
+			AlgorithmUtil.printEachComponentSize(componentList);
+		}
 		
 		
 		this.gOriginal = gOriginal1;
@@ -228,7 +225,32 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		return null;
 	}
 
-	
+	// private List<Integer> getHighestUtilityNeighborOfVertices(int k,
+	// List<Integer> vList,
+	// TreeMap<Integer, Integer> vdMap) {
+	// List<Integer> vListNeig = new ArrayList<Integer>();
+	// List<Integer> highestNeigs = new ArrayList<Integer>();
+	// for (Integer v : vList) {
+	// Collection<Integer> vNeg = gOriginal.getNeighbors(v);
+	// vListNeig.addAll(vNeg);
+	// }
+	//
+	// Set<Integer> keySet = vdMap.descendingKeySet();
+	//
+	// int count = 0;
+	// for (Integer key : keySet) {
+	// if (vListNeig.contains(key)) {
+	// highestNeigs.add(key);
+	// count++;
+	// }
+	// if (count >= k) {
+	// break;
+	// }
+	//
+	// }
+	//
+	// return highestNeigs;
+	// }
 
 	private void addDominatingVertexAndItsNeigbors(List<Integer> ds, List<Integer> potentialVList, Integer v) {
 		addDominatingVertex(ds, potentialVList, v);

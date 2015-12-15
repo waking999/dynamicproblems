@@ -1665,7 +1665,7 @@ public class AlgorithmUtil {
 	public static void componentReductionRule(Graph<Integer, Integer> g, List<Integer> d) {
 		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(g);
 		for (Set<Integer> component : componentList) {
-			int componentSize=component.size();
+			int componentSize=componentList.size();
 			if(componentSize==1 || componentSize==2 ){
 				//if only 1 or 2 vertices in the connected component, take a random one
 				Integer v= AlgorithmUtil.getFirstItemInCollection(component);
@@ -1684,8 +1684,5 @@ public class AlgorithmUtil {
 			}
 		}
 	}
-	
-	
-	
 
 }

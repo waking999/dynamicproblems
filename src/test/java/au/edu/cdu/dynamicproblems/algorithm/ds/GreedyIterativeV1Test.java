@@ -45,7 +45,7 @@ public class GreedyIterativeV1Test {
 				// "010680_Pretty_Good_Privacy.konet",
 				// "006474_Route_views.konet"
 		};
-		int[] times = { 10, 100};
+		int[] times = { 1000};
 
 		run(path, files, destFile, times, 1, 10);
 
@@ -73,7 +73,7 @@ public class GreedyIterativeV1Test {
 
 		int[] times = { 1000};
 
-		run(path, files, destFile, times, 3, 5);
+		run(path, files, destFile, times, 6, 8);
 	}
 
 	@Ignore
@@ -96,9 +96,9 @@ public class GreedyIterativeV1Test {
 				"frb56-25-mis/frb56-25-3.mis", "frb56-25-mis/frb56-25-4.mis", "frb56-25-mis/frb56-25-5.mis",
 				"frb59-26-mis/frb59-26-1.mis", "frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		int[] times = { 10, 100};
+		int[] times = { 1000};
 
-		run(path, files, destFile, times, 1, 10);
+		run(path, files, destFile, times, 2, 2);
 	}
 
 	private void run(String path, String[] files, String destFile, int[] times, int iStart, int iEnd)
