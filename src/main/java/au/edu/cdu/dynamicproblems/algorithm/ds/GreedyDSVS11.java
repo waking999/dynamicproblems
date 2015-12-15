@@ -2,7 +2,7 @@
  * 
  * 1) from highest degree to lowest
  * 2) and reduction rules
- * 3) and guarantee (compare with greedy native)
+ * 3) and guarantee (compare with greedy native/vote)
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
