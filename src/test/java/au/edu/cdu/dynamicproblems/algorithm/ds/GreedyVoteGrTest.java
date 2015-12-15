@@ -70,14 +70,15 @@ public class GreedyVoteGrTest {
 		log.debug(r.getString());
 	}
 
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
 				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-KONECT-" + timeStamp
-				+ ".csv";
+		String destDir = "out/KONECT-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
 		
 		String path = "src/test/resources/KONECT/";
 		String[] files = {
@@ -95,7 +96,7 @@ public class GreedyVoteGrTest {
 		// "06474_Route_views.konet"
 		};
 
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 10; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
@@ -107,14 +108,15 @@ public class GreedyVoteGrTest {
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
 				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-DIMACS-" + timeStamp
-				+ ".csv";
+		String destDir = "out/DIMACS-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { 
@@ -151,8 +153,9 @@ public class GreedyVoteGrTest {
 			FileNotFoundException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
 				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-BHOSLIB-" + timeStamp
-				+ ".csv";
+		String destDir = "out/BHOSLIB-" + this.getClass().getSimpleName();
+
+		String destFile = destDir + "-" + timeStamp + ".csv";
 
 		String path = "src/test/resources/BHOSLIB/";
 		String[] files = { "frb30-15-mis/frb30-15-1.mis",
@@ -173,7 +176,7 @@ public class GreedyVoteGrTest {
 				"frb56-25-mis/frb56-25-5.mis", "frb59-26-mis/frb59-26-1.mis",
 				"frb59-26-mis/frb59-26-2.mis", "frb59-26-mis/frb59-26-3.mis",
 				"frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 10; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
