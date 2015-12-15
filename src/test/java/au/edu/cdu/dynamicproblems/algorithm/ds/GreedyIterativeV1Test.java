@@ -71,9 +71,9 @@ public class GreedyIterativeV1Test {
 
 		};
 
-		int[] times = { 10,100};
+		int[] times = { 1000};
 
-		run(path, files, destFile, times, 1, 10);
+		run(path, files, destFile, times, 3, 5);
 	}
 
 	@Ignore

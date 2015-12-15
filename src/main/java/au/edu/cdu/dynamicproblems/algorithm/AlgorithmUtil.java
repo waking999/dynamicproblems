@@ -1539,6 +1539,33 @@ public class AlgorithmUtil {
 
 		return false;
 	}
+	/**
+	 * minimalization to reduce redundant vertices
+	 * 
+	 * @param g
+	 * @param ds
+	 * @return
+	 * @throws ArraysNotSameLengthException
+	 */
+	public static List<Integer> minimal( Graph<Integer, Integer> g,List<Integer> ds)
+			throws ArraysNotSameLengthException {
+		
+		int distance = 1;
+		int dsSize = ds.size();
+		boolean[] chosen = AlgorithmUtil.verifySubDS(ds, dsSize, dsSize - distance, g);
+		if (chosen == null) {
+			return ds;
+		} else {
+			List<Integer> tempDs = new ArrayList<Integer>(dsSize - distance);
+
+			for (int i = 0; i < dsSize; i++) {
+				if (chosen[i]) {
+					tempDs.add(ds.get(i));
+				}
+			}
+			return tempDs;
+		}
+	}
 
 	/**
 	 * a GRASP local search
@@ -1552,17 +1579,20 @@ public class AlgorithmUtil {
 	public static List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
 		Collection<Integer> vertices = g.getVertices();
 		int numOfVertices = vertices.size();
-		int[] coveredby = new int[numOfVertices];
+		Map<Integer,Integer> coveredbyMap=new HashMap<Integer,Integer>(numOfVertices);
+		
+		
 
-		for (int i = 0; i < numOfVertices; i++) {
-			coveredby[i] = 0;
+		for (Integer v:vertices) {
+			coveredbyMap.put(v, 0);
 		}
 
 		for (Integer w : d) {
-			coveredby[w]++;
+						
+			coveredbyMap.put(w, coveredbyMap.get(w).intValue()+1);
 			Collection<Integer> wNeig = g.getNeighbors(w);
 			for (Integer v : wNeig) {
-				coveredby[v]++;
+				coveredbyMap.put(v, coveredbyMap.get(v).intValue()+1);			
 			}
 		}
 		int dSize = d.size();
@@ -1573,7 +1603,7 @@ public class AlgorithmUtil {
 				if (!vi.equals(vj)) {
 					List<Integer> U = new ArrayList<Integer>();
 					for (Integer vk : vertices) {
-						int covby = coveredby[vk];
+						int covby = coveredbyMap.get(vk);
 						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
 							covby--;
 						}

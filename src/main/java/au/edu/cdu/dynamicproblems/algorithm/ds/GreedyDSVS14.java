@@ -156,9 +156,10 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	public void computing()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+		long start = System.nanoTime();
 		
 		initialization();
-		long start = System.nanoTime();
+		
 		preprocess();
 
 		start();
@@ -386,19 +387,16 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 			List<Integer> kVerticesDS = new ArrayList<Integer>();
 			List<Integer> kVertices = new ArrayList<Integer>();
 			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
-
+			Graph<Integer, Integer> gIStar = AlgorithmUtil.copyGrapy(gI);
+			
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
-			// AlgorithmUtil.prepareGraph(am, gI, kVertices);
 			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
-			// GreedyNativeV1 ag1 = useGreedyNativeCalcDS(gI);
 			List<Integer> ag1DS = useGreedyToCalcDS(gI);
 
-			// Collection<Integer> greedyDiff = CollectionUtils.subtract(ag1DS,
-			// dsInitialCopy);
 			int greedyDiffSize = ag1DS.size() - dsInitialCopy.size();
 			greedyDiffSize = greedyDiffSize >= 0 ? greedyDiffSize : 0;
 
@@ -411,7 +409,8 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 				this.dsInitial = ag2DS;
 			}
 			
-			this.dsInitial=localSearchMinimal(this.dsInitial,gI);
+			this.dsInitial=AlgorithmUtil.minimal(gIStar,this.dsInitial);
+			this.dsInitial = AlgorithmUtil.grasp(gIStar, this.dsInitial);
 
 			List<Integer> verticesToAddInGraph = markDominatedVertices(undominatedVertices, dsInitialCopy);
 
@@ -421,32 +420,17 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 				break;
 			}
 
-			// AlgorithmUtil.prepareGraph(am, gInitial, verticesToAddInGraph);
 			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gInitial, verticesToAddInGraph);
+
+			gI=null;
+			gIStar=null;
 		}
 
-		this.ds=localSearchMinimal(this.dsInitial,this.gOriginal);
+		this.ds=AlgorithmUtil.minimal(this.gOriginal,this.dsInitial);
+		this.ds = AlgorithmUtil.grasp(this.gOriginal, this.dsInitial);
 	}
 
-	private List<Integer> localSearchMinimal(List<Integer> dsInitial, Graph<Integer, Integer> g)
-			throws ArraysNotSameLengthException {
-		// local search
-		int localSearchDistance = 1;
-		int dsInitialSize = dsInitial.size();
-		boolean[] chosen = AlgorithmUtil.verifySubDS(dsInitial, dsInitialSize, dsInitialSize - localSearchDistance, g);
-		if (chosen == null) {
-			return dsInitial;
-		} else {
-			List<Integer> tempDs = new ArrayList<Integer>(dsInitialSize - localSearchDistance);
-
-			for (int i = 0; i < dsInitialSize; i++) {
-				if (chosen[i]) {
-					tempDs.add(dsInitial.get(i));
-				}
-			}
-			return tempDs;
-		}
-	}
+	
 
 	private List<Integer> markDominatedVertices(Collection<Integer> undominatedVertices, List<Integer> dsInitialCopy) {
 		Collection<Integer> addedDSVertices = CollectionUtils.subtract(dsInitial, dsInitialCopy);
@@ -470,15 +454,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		return verticesToAddInGraph;
 	}
 
-	// private GreedyNativeV1 useGreedyNativeCalcDS(Graph<Integer, Integer> gI)
-	// throws InterruptedException {
-	//
-	//
-	// GreedyNativeV1 ag = new GreedyNativeV1(gI);
-	// ag.run();
-	// return ag;
-	//
-	// }
+
 	private List<Integer> useGreedyToCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
 
 		GreedyNativeV1 ag = new GreedyNativeV1(gI);
@@ -534,17 +510,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 		}
 
-		// List<Integer> vnList = getHighestUtilityNeighborOfVertices(k, vList,
-		// allVdMap);
-		//
-		// for (Integer u : vList) {
-		// AlgorithmUtil.addElementToList(kVertices, u);
-		// }
-		//
-		// for (Integer u : vnList) {
-		// AlgorithmUtil.addElementToList(kVerticesDS, u);
-		// AlgorithmUtil.addElementToList(kVertices, u);
-		// }
+		
 
 	}
 

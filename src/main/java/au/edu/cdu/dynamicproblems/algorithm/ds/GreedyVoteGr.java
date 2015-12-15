@@ -172,7 +172,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 
 		}
 
-		this.dominatingSet = grasp(this.g, this.dominatingSet);
+		this.dominatingSet = AlgorithmUtil.grasp(this.g, this.dominatingSet);
 
 	}
 
@@ -226,64 +226,64 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 
 	}
 
-	/**
-	 * a GRASP local search
-	 * 
-	 * @param g,
-	 *            the graph
-	 * @param d,
-	 *            the dominating set
-	 */
-	private List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
-		Collection<Integer> vertices = g.getVertices();
-		int[] coveredby = new int[this.numOfVertices];
-
-		for (int i = 0; i < this.numOfVertices; i++) {
-			coveredby[i] = 0;
-		}
-
-		for (Integer w : d) {
-			coveredby[w]++;
-			coveredby[w] = coveredby[w] + g.getNeighborCount(w);
-		}
-		int dSize = d.size();
-		for (int i = 0; i < dSize - 1; i++) {
-			Integer vi = d.get(i);
-			for (int j = i + 1; j < dSize; j++) {
-				Integer vj = d.get(j);
-				if (!vi.equals(vj)) {
-					List<Integer> U = new ArrayList<Integer>();
-					for (Integer vk : vertices) {
-						int covby = coveredby[vk];
-						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
-							covby--;
-						}
-						if (AlgorithmUtil.isAVertexDominateAVertex(vj, vk, g)) {
-							covby--;
-						}
-						if (covby == 0) {
-							AlgorithmUtil.addElementToList(U, vk);
-						}
-					}
-					if (U.isEmpty()) {
-						d.remove(vi);
-						d.remove(vj);
-						return grasp(g, d);
-					} else {
-						for (Integer vk : vertices) {
-							if (AlgorithmUtil.isAVertexDominateASet(vk, U, g)) {
-								d.remove(vi);
-								d.remove(vj);
-								d.add(vk);
-								return grasp(g, d);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return d;
-	}
+//	/**
+//	 * a GRASP local search
+//	 * 
+//	 * @param g,
+//	 *            the graph
+//	 * @param d,
+//	 *            the dominating set
+//	 */
+//	private List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
+//		Collection<Integer> vertices = g.getVertices();
+//		int[] coveredby = new int[this.numOfVertices];
+//
+//		for (int i = 0; i < this.numOfVertices; i++) {
+//			coveredby[i] = 0;
+//		}
+//
+//		for (Integer w : d) {
+//			coveredby[w]++;
+//			coveredby[w] = coveredby[w] + g.getNeighborCount(w);
+//		}
+//		int dSize = d.size();
+//		for (int i = 0; i < dSize - 1; i++) {
+//			Integer vi = d.get(i);
+//			for (int j = i + 1; j < dSize; j++) {
+//				Integer vj = d.get(j);
+//				if (!vi.equals(vj)) {
+//					List<Integer> U = new ArrayList<Integer>();
+//					for (Integer vk : vertices) {
+//						int covby = coveredby[vk];
+//						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
+//							covby--;
+//						}
+//						if (AlgorithmUtil.isAVertexDominateAVertex(vj, vk, g)) {
+//							covby--;
+//						}
+//						if (covby == 0) {
+//							AlgorithmUtil.addElementToList(U, vk);
+//						}
+//					}
+//					if (U.isEmpty()) {
+//						d.remove(vi);
+//						d.remove(vj);
+//						return grasp(g, d);
+//					} else {
+//						for (Integer vk : vertices) {
+//							if (AlgorithmUtil.isAVertexDominateASet(vk, U, g)) {
+//								d.remove(vi);
+//								d.remove(vj);
+//								d.add(vk);
+//								return grasp(g, d);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//
+//		return d;
+//	}
 
 }
