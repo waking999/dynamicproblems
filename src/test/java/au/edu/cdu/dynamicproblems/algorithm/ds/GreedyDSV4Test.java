@@ -141,7 +141,7 @@ public class GreedyDSV4Test {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		GreedyNativeV1 ag = new GreedyNativeV1(g);
+		GreedyNative ag = new GreedyNative(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();

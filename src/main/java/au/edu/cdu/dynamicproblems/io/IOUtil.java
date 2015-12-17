@@ -3,7 +3,12 @@ package au.edu.cdu.dynamicproblems.io;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * this class is used for common methods used for io operations
+ * 
+ * @author kai wang
+ *
+ */
 public class IOUtil {
 	/**
 	 * get the adjacent matrix from a file

@@ -1,5 +1,6 @@
 package au.edu.cdu.dynamicproblems.algorithm;
 
+@Deprecated
 public class Tuple<V1, V2> {
 
 	protected V1 v1;

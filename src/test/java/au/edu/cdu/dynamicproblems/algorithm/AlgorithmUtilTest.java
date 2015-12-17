@@ -4,13 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNative;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
@@ -81,6 +81,7 @@ public class AlgorithmUtilTest {
 
 	@Ignore
 	@Test
+	@Deprecated
 	public void testLongToBinaryArray() {
 		byte[] e1 = { 0, 1, 1 };
 		long l1 = 3;
@@ -337,26 +338,61 @@ public class AlgorithmUtilTest {
 
 		Assert.assertTrue(l.size() == 1);
 	}
-	
-	
-	@Ignore
-	@Test
-	public void testGetAllConnectedComponet() {
-		List<String[]> am = new ArrayList<String[]>();
-	
 
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "0" });
-		AlgorithmUtil.addElementToList(am, new String[] { "0", "0", "0" });
+	@Test
+	public void testApplyPairVerticesReductionRule() throws InterruptedException, IOException, FileNotFoundException {
+		List<String> lines = new ArrayList<String>();
+
+		AlgorithmUtil.addElementToList(lines, "23 34");
+		AlgorithmUtil.addElementToList(lines, "1 2");
+		AlgorithmUtil.addElementToList(lines, "1 5");
+		AlgorithmUtil.addElementToList(lines, "2 3");
+		AlgorithmUtil.addElementToList(lines, "2 5");
+		AlgorithmUtil.addElementToList(lines, "2 6");
+		AlgorithmUtil.addElementToList(lines, "2 7");
+		AlgorithmUtil.addElementToList(lines, "3 4");
+		AlgorithmUtil.addElementToList(lines, "3 7");
+		AlgorithmUtil.addElementToList(lines, "3 8");
+		AlgorithmUtil.addElementToList(lines, "3 17");
+		AlgorithmUtil.addElementToList(lines, "5 12");
+		AlgorithmUtil.addElementToList(lines, "5 15");
+		AlgorithmUtil.addElementToList(lines, "6 15");
+		AlgorithmUtil.addElementToList(lines, "6 16");
+		AlgorithmUtil.addElementToList(lines, "6 7");
+		AlgorithmUtil.addElementToList(lines, "7 16");
+		AlgorithmUtil.addElementToList(lines, "7 17");
+		AlgorithmUtil.addElementToList(lines, "9 12");
+		AlgorithmUtil.addElementToList(lines, "10 12");
+		AlgorithmUtil.addElementToList(lines, "11 12");
+		AlgorithmUtil.addElementToList(lines, "12 13");
+		AlgorithmUtil.addElementToList(lines, "12 14");
+		AlgorithmUtil.addElementToList(lines, "12 15");
+		AlgorithmUtil.addElementToList(lines, "13 15");
+		AlgorithmUtil.addElementToList(lines, "14 15");
+		AlgorithmUtil.addElementToList(lines, "15 16");
+		AlgorithmUtil.addElementToList(lines, "15 17");
+		AlgorithmUtil.addElementToList(lines, "15 18");
+		AlgorithmUtil.addElementToList(lines, "15 22");
+		AlgorithmUtil.addElementToList(lines, "15 23");
+		AlgorithmUtil.addElementToList(lines, "16 17");
+		AlgorithmUtil.addElementToList(lines, "17 18");
+		AlgorithmUtil.addElementToList(lines, "18 19");
+		AlgorithmUtil.addElementToList(lines, "18 20");
+		AlgorithmUtil.addElementToList(lines, "18 21");
+		AlgorithmUtil.addElementToList(lines, "18 22");
+		AlgorithmUtil.addElementToList(lines, "22 23");
+
+		List<String[]> am = AlgorithmUtil.transferEdgePairToMatrix(lines);
+		int numOfVertices = am.size();
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(g);
-		
-		Assert.assertEquals(2, componentList.size());
-		
-		for(Set<Integer> component:componentList){
-			System.out.println(component.toString());
-		}
+		Graph<Integer, Integer> g1 = AlgorithmUtil.applyPairVerticesReductionRule(numOfVertices, g);
+
+		GreedyNative ag = new GreedyNative(g1);
+		ag.run();
+
+		List<Integer> ds = ag.getDominatingSet();
+		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
 	}
 }

@@ -13,7 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNativeV1;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNative;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
@@ -58,9 +58,9 @@ public class ExactTest {
 				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
+		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGraph(g);
 
-		GreedyNativeV1 ag = new GreedyNativeV1(g);
+		GreedyNative ag = new GreedyNative(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();

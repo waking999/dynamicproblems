@@ -21,7 +21,13 @@ import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
-
+/**
+ * This class is used for implementing Greedy Vote Gr Algorithm in the
+ * paper:Laura A Sanchis. Experimental analysis of heuristic algorithms for the
+ * dominating set problem. Algorithmica, 33(1):3–18, 2002.
+ * 
+ * @author kai wang
+ */
 public class GreedyVoteGr implements ITask, IAlgorithm {
 
 	@SuppressWarnings("unused")
@@ -37,7 +43,12 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	public void setLock(TaskLock lock) {
 		this.lock = lock;
 	}
-
+	/**
+	 * the major method to be invoked to run the algorithm
+	 * 
+	 * @return the formated running result,including dominating set size and
+	 *         running time
+	 */
 	public Result run() throws InterruptedException {
 
 		try {
@@ -96,6 +107,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	 */
 	private List<String[]> adjacencyMatrix;
 
+	@SuppressWarnings("deprecation")
 	public GreedyVoteGr(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
@@ -103,6 +115,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public GreedyVoteGr(String indicator, List<String[]> adjacencyMatrix) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
@@ -125,7 +138,8 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 
 	/**
 	 * the major function do the computing to get the desired solution. In this
-	 * case, the desired result is a dominating set
+	 * case, the desired result is a dominating set the major difference between
+	 * this and that of Greedy Vote is invoking grasp in extra
 	 */
 	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 		long start = System.nanoTime();

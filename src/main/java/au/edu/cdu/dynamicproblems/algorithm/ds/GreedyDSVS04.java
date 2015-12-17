@@ -28,7 +28,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-
+@Deprecated
 public class GreedyDSVS04 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
@@ -348,7 +348,7 @@ public class GreedyDSVS04 implements IGreedyDS, ITask {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			List<Integer> kVerticesDS = new ArrayList<Integer>();
 			List<Integer> kVertices = new ArrayList<Integer>();
-			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
+			Graph<Integer, Integer> gI = AlgorithmUtil.copyGraph(gInitial);
 
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
@@ -356,7 +356,7 @@ public class GreedyDSVS04 implements IGreedyDS, ITask {
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
+			DDSFPTV0 ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI);
 
 			List<Integer> ag2DS = ag2.getDs2();
 
@@ -401,12 +401,12 @@ public class GreedyDSVS04 implements IGreedyDS, ITask {
 
 	
 
-	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
+	private DDSFPTV0 useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
 			Graph<Integer, Integer> gI) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int paramR = Math.min(kVerticesDS.size(), r);
 
-		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+		DDSFPTV0 ag = new DDSFPTV0(indicator, gI, dsInitial, paramR);
 
 		ag.setConsiderableCandidateVertices4DS(kVerticesDS);
 		ag.setOriginalVertexNum(gOriginalVerticeSize);

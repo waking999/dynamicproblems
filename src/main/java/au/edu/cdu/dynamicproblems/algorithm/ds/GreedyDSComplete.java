@@ -203,8 +203,8 @@ public class GreedyDSComplete implements IGreedyDS, ITask {
 			// DDSFPT subroutine
 			// copy grapy gI because dds fpt may modify graph via reduction
 			// rules
-			Graph<Integer, Integer> gICopy = AlgorithmUtil.copyGrapy(gI);
-			DDSFPT ag = new DDSFPT(indicator, gICopy, ds1, r);
+			Graph<Integer, Integer> gICopy = AlgorithmUtil.copyGraph(gI);
+			DDSFPTV0 ag = new DDSFPTV0(indicator, gICopy, ds1, r);
 
 			ag.computing();
 			List<Integer> ds2 = ag.getDs2();

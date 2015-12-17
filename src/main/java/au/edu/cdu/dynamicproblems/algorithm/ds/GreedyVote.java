@@ -21,11 +21,21 @@ import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
-
+/**
+ * This class is used for implementing Greedy Vote Gr Algorithm in the
+ * paper:Laura A Sanchis. Experimental analysis of heuristic algorithms for the
+ * dominating set problem. Algorithmica, 33(1):3–18, 2002.
+ * 
+ * @author kai wang
+ */
 public class GreedyVote implements ITask, IAlgorithm {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyVote.class);
+	
+	/**
+	 * recording running time
+	 */
 	private long runningTime;
 
 	private TaskLock lock;
@@ -37,7 +47,12 @@ public class GreedyVote implements ITask, IAlgorithm {
 	public void setLock(TaskLock lock) {
 		this.lock = lock;
 	}
-
+	/**
+	 * the major method to be invoked to run the algorithm
+	 * 
+	 * @return the formated running result,including dominating set size and
+	 *         running time
+	 */
 	public Result run() throws InterruptedException {
 
 		try {
@@ -51,7 +66,11 @@ public class GreedyVote implements ITask, IAlgorithm {
 		}
 		return null;
 	}
-
+	/**
+	 * 
+	 * @return the formated running result,including dominating set size and
+	 *         running time
+	 */
 	public Result getResult() {
 		Result r = new Result();
 		r.setHasSolution(true);
@@ -72,9 +91,17 @@ public class GreedyVote implements ITask, IAlgorithm {
 	 */
 	@SuppressWarnings("unused")
 	private String indicator;
-
+	/**
+	 * a map keeps pair of (vertex, dominated)
+	 */
 	Map<Integer, Boolean> dominatedMap;
+	/**
+	 * a map keeps pair of(vertex, vote)
+	 */
 	Map<Integer, Float> voteMap;
+	/**
+	 * a map keeps pair of(vertex, weight)
+	 */
 	Map<Integer, Float> weightMap;
 
 	/**
@@ -96,6 +123,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 	 */
 	private List<String[]> adjacencyMatrix;
 
+	@SuppressWarnings("deprecation")
 	public GreedyVote(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
@@ -103,6 +131,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public GreedyVote(String indicator, List<String[]> adjacencyMatrix) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
@@ -110,7 +139,12 @@ public class GreedyVote implements ITask, IAlgorithm {
 		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
 
 	}
-
+	/**
+	 * constructor method
+	 * 
+	 * @param g,
+	 *            a graph instance
+	 */
 	public GreedyVote(Graph<Integer, Integer> g) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
@@ -129,7 +163,10 @@ public class GreedyVote implements ITask, IAlgorithm {
 		runningTime = end - start;
 
 	}
-
+	/**
+	 * do some preparation before real calculation, eg., initialize arrays
+	 * recording vote,weight,and dominated info
+	 */
 	private void initialization() {
 		dominatingSet = new ArrayList<Integer>();
 
@@ -137,6 +174,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 		voteMap = new HashMap<Integer, Float>(this.numOfVertices);
 		weightMap = new HashMap<Integer, Float>(this.numOfVertices);
 		Collection<Integer> vertices = g.getVertices();
+		// calculate vote for each vertex and initialize weight map
 		for (Integer v : vertices) {
 			dominatedMap.put(v, false);
 			int degree = g.degree(v);
@@ -144,7 +182,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 			voteMap.put(v, vote);
 			weightMap.put(v, vote);
 		}
-
+		// calculate weight for each vertex
 		for (Integer v : vertices) {
 			Collection<Integer> vNeig = g.getNeighbors(v);
 			float weightv = weightMap.get(v);
@@ -155,7 +193,10 @@ public class GreedyVote implements ITask, IAlgorithm {
 			weightMap.put(v, weightv);
 		}
 	}
-
+	/**
+	 * the major part of greedy algorithm, implemented according to the
+	 * algorithm description in the paper
+	 */
 	private void greedy() {
 
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
@@ -167,7 +208,13 @@ public class GreedyVote implements ITask, IAlgorithm {
 		}
 
 	}
-
+	/**
+	 * adjust weight of a vertex, implemented according to the algorithm
+	 * description in the paper
+	 * 
+	 * @param v,
+	 *            the vertex
+	 */
 	private void adjustWeight(Integer v) {
 		Collection<Integer> vNeigs = g.getNeighbors(v);
 		boolean coveredv = dominatedMap.get(v);
@@ -200,7 +247,12 @@ public class GreedyVote implements ITask, IAlgorithm {
 		}
 		dominatedMap.put(v, true);
 	}
-
+	/**
+	 * choose a vertex according to the weight, implemented according to the
+	 * algorithm description in the paper
+	 * 
+	 * @return a vertex
+	 */
 	private Integer chooseVertex() {
 		List<VertexWeight> vertexWeightList = new ArrayList<VertexWeight>(this.numOfVertices);
 

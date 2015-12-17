@@ -26,7 +26,7 @@ import junit.framework.Assert;
 
 public class IGreedyDSTest {
 	Logger log = LogUtil.getLogger(IGreedyDSTest.class);
-	private final static String COMMA = ",";
+	//private final static String COMMA = ",";
 
 	// @Ignore
 	@Test
@@ -177,8 +177,8 @@ public class IGreedyDSTest {
 
 				RunningResult rr = rrList.get(i);
 
-				rowSB.append(rr.getSize()).append(COMMA).append(rr.getK()).append(COMMA).append(rr.getR()).append(COMMA)
-						.append(rr.getNanoSec()).append(COMMA);
+				rowSB.append(rr.getSize()).append(AlgorithmUtil.COMMA).append(rr.getK()).append(AlgorithmUtil.COMMA).append(rr.getR()).append(AlgorithmUtil.COMMA)
+						.append(rr.getNanoSec()).append(AlgorithmUtil.COMMA);
 
 				rr = null;
 				// if (minRR.getSize() >= rr.getSize()) {

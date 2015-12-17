@@ -58,9 +58,9 @@ public class GreedyNativeV0Test {
 				"0", "0", "0", "0", "0", "0", "0", "1", "1", "0" });
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
-		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGrapy(g);
+		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGraph(g);
 
-		GreedyNativeV1 ag = new GreedyNativeV1(g);
+		GreedyNative ag = new GreedyNative(g);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();

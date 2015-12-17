@@ -24,7 +24,7 @@ import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
-
+@Deprecated
 public class GreedyIterativeV0 implements IAlgorithm, ITask {
 
 	@SuppressWarnings("unused")

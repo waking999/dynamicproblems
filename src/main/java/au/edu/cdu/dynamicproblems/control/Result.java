@@ -1,6 +1,11 @@
 package au.edu.cdu.dynamicproblems.control;
-
+/**
+ * this java bean is used to contain information of the running result
+ * @author kai wang
+ *
+ */
 public class Result {
+	@Deprecated
 	private long index;
 	
 	public long getIndex() {
@@ -10,7 +15,7 @@ public class Result {
 	public void setIndex(long index) {
 		this.index = index;
 	}
-
+	@Deprecated
 	private boolean hasSolution;
 	
 	

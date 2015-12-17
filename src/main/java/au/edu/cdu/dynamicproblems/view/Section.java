@@ -1,21 +1,21 @@
 package au.edu.cdu.dynamicproblems.view;
 
-import java.util.Collection;
+import java.util.List;
 
 public class Section {
 	float left;
 	float top;
 	float right;
 
-	public Collection<Integer> getVertices() {
+	public List<Integer> getVertices() {
 		return vertices;
 	}
 
 	float bottom;
-	Collection<Integer> vertices;
+	List<Integer> vertices;
 
 	public Section(float left, float top, float right, float bottom,
-			Collection<Integer> vertices) {
+			List<Integer> vertices) {
 
 		this.left = left;
 		this.top = top;

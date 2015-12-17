@@ -147,22 +147,22 @@ public class GreedyDSVSTest {
 //					// ds12));
 //					int ds12Size = ds12.size();
 //
-//					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
-//					ag13.computing();
-//					List<Integer> ds13 = ag13.getDs();
-//					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
-//					// ds13));
-//					int ds13Size = ds13.size();
-//
-					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
-					ag14.computing();
-					List<Integer> ds14 = ag14.getDs();
+					GreedyDSVS13 ag13 = new GreedyDSVS13(this.getClass().getName(), am, k, r);
+					ag13.computing();
+					List<Integer> ds13 = ag13.getDs();
 					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
-					// ds14));
-					int ds14Size = ds14.size();
+					// ds13));
+					int ds13Size = ds13.size();
+//
+//					GreedyDSVS14 ag14 = new GreedyDSVS14(this.getClass().getName(), am, k, r);
+//					ag14.computing();
+//					List<Integer> ds14 = ag14.getDs();
+//					// Assert.assertTrue(AlgorithmUtil.isDS(AlgorithmUtil.prepareGraph(am),
+//					// ds14));
+//					int ds14Size = ds14.size();
 
-					int minDSSize = ds14Size;
-					int chooseDS = 8;
+					int minDSSize = ds13Size;
+					int chooseDS = 7;
 
 //					if (minDSSize >= ds11Size) {
 //
@@ -186,7 +186,7 @@ public class GreedyDSVSTest {
 //						chooseDS = 8;
 //					}
 
-					Result result = getResult(chooseDS, minDSSize, k, r, ag14);
+					Result result = getResult(chooseDS, minDSSize, k, r, ag13);
 
 					log.debug(chooseDS + "," + result.getString());
 					if (destFile != null) {
@@ -238,9 +238,9 @@ public class GreedyDSVSTest {
 //				"gen400_p0.9_55.clq", "gen400_p0.9_65.clq", "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
 //				"keller4.clq", "keller5.clq", "p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq",
 //				"p_hat300-2.clq", "p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq",
-				// "C4000.5.clq",
-				 "MANN_a81.clq",
-				 //"keller6.clq",
+				 "C4000.5.clq",
+				// "MANN_a81.clq",
+				// "keller6.clq",
 		};
 		int[][] krArray = { { 10, 10 } };
 		runStrategies(path, krArray, files, destFile, 1, 1);

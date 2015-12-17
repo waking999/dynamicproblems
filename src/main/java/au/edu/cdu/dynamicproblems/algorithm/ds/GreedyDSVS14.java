@@ -2,7 +2,7 @@
  * 
  * 1) from lowest utility to highest
  * 2) and reduction rules
- * 3) and guarantee (compare with greedy native/vote)
+ * 3) and guarantee (compare with greedy native)
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
@@ -28,7 +28,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-
+@Deprecated
 public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
@@ -175,24 +175,11 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		this.numOfVertices = am.size();
 
 		Graph<Integer, Integer> gOriginal0 = AlgorithmUtil.prepareGraph(am);
-		
-		List<Set<Integer>> componentList0=AlgorithmUtil.getAllConnectedCompoents(gOriginal0);
-		if(componentList0.size()>1){
-			log.debug("there are "+componentList0.size()+" connected component exist in this graph before michael's rr");
-			AlgorithmUtil.printEachComponentSize(componentList0);
-		}
-		
+
 		Graph<Integer, Integer> gOriginal1 = AlgorithmUtil.applySingleVertexReductionRule(this.numOfVertices,
 				gOriginal0);
 		gOriginal1 = AlgorithmUtil.applyPairVerticesReductionRule(this.numOfVertices, gOriginal1);
 
-		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(gOriginal1);
-		if(componentList.size()>1){
-			log.debug("there are "+componentList.size()+" connected component exist in this graph after michael's rr");
-			AlgorithmUtil.printEachComponentSize(componentList);
-		}
-		
-		
 		this.gOriginal = gOriginal1;
 
 		this.ds = new ArrayList<Integer>();
@@ -350,11 +337,6 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		// AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
 		AlgorithmUtil.preparGraph(numOfVertices, gOriginal, gInitial, initialVertices);
 
-		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(gInitial);
-		if(componentList.size()>1){
-			log.debug("there are "+componentList.size()+" connected component exist in this graph after our rr");
-			AlgorithmUtil.printEachComponentSize(componentList);
-		}
 	}
 
 	private Collection<Integer> getClosedNeighborsWithoutV(Integer v, Integer w) {
@@ -404,15 +386,12 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			List<Integer> kVerticesDS = new ArrayList<Integer>();
 			List<Integer> kVertices = new ArrayList<Integer>();
-			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
-			
+			Graph<Integer, Integer> gI = AlgorithmUtil.copyGraph(gInitial);
+			Graph<Integer, Integer> gIStar = AlgorithmUtil.copyGraph(gI);
 			
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
-			
-			
+
 			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
-			Graph<Integer, Integer> gIStar = AlgorithmUtil.copyGrapy(gI);
-			
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
@@ -421,14 +400,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 			int greedyDiffSize = ag1DS.size() - dsInitialCopy.size();
 			greedyDiffSize = greedyDiffSize >= 0 ? greedyDiffSize : 0;
 
-			List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(gI);
-			if(componentList.size()>1){
-				log.debug("there are "+componentList.size()+" connected component exist in this graph in an iteration");
-				AlgorithmUtil.printEachComponentSize(componentList);
-			}
-			
-			
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
+			DDSFPTV0 ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
 			List<Integer> ag2DS = ag2.getDs2();
 
 			if (ag1DS.size() < ag2DS.size()) {
@@ -485,10 +457,10 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	private List<Integer> useGreedyToCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
 
-		GreedyNativeV1 ag = new GreedyNativeV1(gI);
+		GreedyNative ag = new GreedyNative(gI);
 		ag.run();
 
-		GreedyVoteGr ag1 = new GreedyVoteGr(gI);
+		GreedyVote ag1 = new GreedyVote(gI);
 		ag1.run();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -503,14 +475,14 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 
 	}
 
-	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
+	private DDSFPTV0 useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
 			Graph<Integer, Integer> gI, int greedyDiffSize)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int paramR = Math.min(kVerticesDS.size(), r);
 		paramR = Math.min(greedyDiffSize, paramR);
 
-		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+		DDSFPTV0 ag = new DDSFPTV0(indicator, gI, dsInitial, paramR);
 
 		ag.setConsiderableCandidateVertices4DS(kVerticesDS);
 		ag.setOriginalVertexNum(gOriginalVerticeSize);

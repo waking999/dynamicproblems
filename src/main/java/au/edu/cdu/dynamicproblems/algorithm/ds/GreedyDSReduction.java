@@ -369,9 +369,9 @@ public class GreedyDSReduction implements IGreedyDS, ITask {
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
-			Graph<Integer, Integer> gInitialCopy = AlgorithmUtil.copyGrapy(gInitial);
+			Graph<Integer, Integer> gInitialCopy = AlgorithmUtil.copyGraph(gInitial);
 
-			DDSFPT ag = new DDSFPT(indicator, gInitialCopy, dsInitial, paramR);
+			DDSFPTV0 ag = new DDSFPTV0(indicator, gInitialCopy, dsInitial, paramR);
 			// Collection<Integer> considerableCandidateVertices4DS=
 			// CollectionUtils.union(t.getV2(), this.dsInitial);
 

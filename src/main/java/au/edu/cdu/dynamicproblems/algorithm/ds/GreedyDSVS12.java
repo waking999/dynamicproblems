@@ -2,7 +2,7 @@
  * 
  * 1) from lowest degree to highest
  * 2) and reduction rules
- * 3) and guarantee (compare with greedy native/vote)
+ * 3) and guarantee (compare with greedy native)
  */
 
 package au.edu.cdu.dynamicproblems.algorithm.ds;
@@ -28,7 +28,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-
+@Deprecated
 public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
@@ -357,12 +357,12 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			List<Integer> kVerticesDS = new ArrayList<Integer>();
 			List<Integer> kVertices = new ArrayList<Integer>();
-			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
+			Graph<Integer, Integer> gI = AlgorithmUtil.copyGraph(gInitial);
 
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
 			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
-			Graph<Integer, Integer> gIStar = AlgorithmUtil.copyGrapy(gI);
+			Graph<Integer, Integer> gIStar = AlgorithmUtil.copyGraph(gI);
 			
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
@@ -372,7 +372,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 			int greedyDiffSize = ag1DS.size() - dsInitialCopy.size();
 			greedyDiffSize = greedyDiffSize >= 0 ? greedyDiffSize : 0;
 
-			DDSFPT ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
+			DDSFPTV0 ag2 = useDDSFPTSubToCalcDS(gOriginalVerticeSize, kVerticesDS, kVertices, gI, greedyDiffSize);
 			List<Integer> ag2DS = ag2.getDs2();
 
 			if (ag1DS.size() < ag2DS.size()) {
@@ -431,7 +431,7 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	private List<Integer> useGreedyToCalcDS(Graph<Integer, Integer> gI) throws InterruptedException {
 
-		GreedyNativeV1 ag = new GreedyNativeV1(gI);
+		GreedyNative ag = new GreedyNative(gI);
 		ag.run();
 
 		GreedyVote ag1 = new GreedyVote(gI);
@@ -449,14 +449,14 @@ public class GreedyDSVS12 implements IGreedyDS, ITask {
 
 	}
 
-	private DDSFPT useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
+	private DDSFPTV0 useDDSFPTSubToCalcDS(int gOriginalVerticeSize, List<Integer> kVerticesDS, List<Integer> kVertices,
 			Graph<Integer, Integer> gI, int greedyDiffSize)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int paramR = Math.min(kVerticesDS.size(), r);
 		paramR = Math.min(greedyDiffSize, paramR);
 
-		DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+		DDSFPTV0 ag = new DDSFPTV0(indicator, gI, dsInitial, paramR);
 
 		ag.setConsiderableCandidateVertices4DS(kVerticesDS);
 		ag.setOriginalVertexNum(gOriginalVerticeSize);

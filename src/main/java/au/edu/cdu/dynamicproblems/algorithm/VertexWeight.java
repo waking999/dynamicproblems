@@ -6,6 +6,7 @@ package au.edu.cdu.dynamicproblems.algorithm;
  * @author Kai Wang
  * 
  */
+@Deprecated
 public class VertexWeight implements Comparable<VertexWeight> {
 	public final static double ZERO_DIFF=1E-12;
 	/**

@@ -27,7 +27,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-
+@Deprecated
 public class GreedyDSV3 implements IGreedyDS, ITask {
 
 	@SuppressWarnings("unused")
@@ -349,7 +349,7 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			List<Integer> kVerticesDS = new ArrayList<Integer>();
 			List<Integer> kVertices = new ArrayList<Integer>();
-			Graph<Integer, Integer> gI = AlgorithmUtil.copyGrapy(gInitial);
+			Graph<Integer, Integer> gI = AlgorithmUtil.copyGraph(gInitial);
 
 			int fromIndex = 0;
 			int toIndex = Math.min(k, undomiantedVerticesSize);
@@ -374,7 +374,7 @@ public class GreedyDSV3 implements IGreedyDS, ITask {
 
 			int paramR = Math.min(kVerticesDS.size(), r);
 
-			DDSFPT ag = new DDSFPT(indicator, gI, dsInitial, paramR);
+			DDSFPTV0 ag = new DDSFPTV0(indicator, gI, dsInitial, paramR);
 
 			ag.setConsiderableCandidateVertices4DS(kVerticesDS);
 			ag.setOriginalVertexNum(gOriginalVerticeSize);
