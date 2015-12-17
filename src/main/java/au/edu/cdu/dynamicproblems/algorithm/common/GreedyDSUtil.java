@@ -25,22 +25,23 @@ public class GreedyDSUtil {
 	 * @param runningTimeMap
 	 * @return
 	 */
-	public static Result getResult(List<Integer> dominatingSet, Map<String, Long> runningTimeMap) {
-		Result r = new Result();
-		r.setHasSolution(true);
-		StringBuffer sb = new StringBuffer();
+	public static Result getResult(int k, int r, List<Integer> dominatingSet, Map<String, Long> runningTimeMap) {
+		Result result = new Result();
+		result.setHasSolution(true);
+		StringBuilder sb = new StringBuilder();
 
-		sb.append(",").append(dominatingSet.size()).append(",");
+		sb.append(AlgorithmUtil.COMMA).append(dominatingSet.size()).append(AlgorithmUtil.COMMA).append(k)
+				.append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
 		Set<Entry<String, Long>> runningTimeSet = runningTimeMap.entrySet();
 		for (Entry<String, Long> entry : runningTimeSet) {
 			String desc = entry.getKey();
 			Long runningTime = entry.getValue();
-			sb.append(desc).append(",").append(runningTime).append(",");
+			sb.append(runningTime).append(AlgorithmUtil.COMMA).append(desc).append(AlgorithmUtil.COMMA);
 		}
 
-		r.setString(sb.toString());
-		return r;
+		result.setString(sb.toString());
+		return result;
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class GreedyDSUtil {
 	 *            a list of vertices
 	 * @return
 	 */
-	public static   Map<Integer, Boolean> presetDominatedMap(List<Integer> vList) {
+	public static Map<Integer, Boolean> presetDominatedMap(List<Integer> vList) {
 		Map<Integer, Boolean> dominatedMap = new HashMap<Integer, Boolean>();
 		for (Integer w : vList) {
 			dominatedMap.put(w, false);
@@ -74,8 +75,8 @@ public class GreedyDSUtil {
 	 *            the dominated vertex
 	 * @return
 	 */
-	public static <V,E> List<V> getUAndOneNeighborToBeDominated(Graph<V, E> g,
-			Map<V, Boolean> dominatedMap, Graph<V, E> gIPre, V u, V v) {
+	public static <V, E> List<V> getUAndOneNeighborToBeDominated(Graph<V, E> g, Map<V, Boolean> dominatedMap,
+			Graph<V, E> gIPre, V u, V v) {
 		List<V> uList = new ArrayList<V>();
 		AlgorithmUtil.addElementToList(uList, u);
 		AlgorithmUtil.addElementToList(uList, v);
@@ -89,16 +90,21 @@ public class GreedyDSUtil {
 	}
 
 	/**
-	 * put solution to be built, and sub-graph at the pos-th position in the storage
-	 * of the queue
+	 * put solution to be built, and sub-graph at the pos-th position in the
+	 * storage of the queue
 	 * 
-	 * @param pos, the position,
-	 * @param vertexSolutionList, a list for storing the solutions in each iteration
-	 * @param dI, a solutions in each iteration
-	 * @param vertexGraphList,a list for storing the sub-graph in each iteration
-	 * @param gI, a sub-graph in each iteration
+	 * @param pos,
+	 *            the position,
+	 * @param vertexSolutionList,
+	 *            a list for storing the solutions in each iteration
+	 * @param dI,
+	 *            a solutions in each iteration
+	 * @param vertexGraphList,a
+	 *            list for storing the sub-graph in each iteration
+	 * @param gI,
+	 *            a sub-graph in each iteration
 	 */
-	public static <V,E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> vertexSolutionList, List<V> dI,
+	public static <V, E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> vertexSolutionList, List<V> dI,
 			List<Graph<V, E>> vertexGraphList, Graph<V, E> gI) {
 		try {
 			vertexSolutionList.set(pos, dI);
@@ -113,9 +119,9 @@ public class GreedyDSUtil {
 		}
 
 	}
-	
-	
-	public static <E> Map<Integer, Boolean> getDominatedMap(Graph<Integer,E> g,List<Integer> vList, List<Integer> dI) {
+
+	public static <E> Map<Integer, Boolean> getDominatedMap(Graph<Integer, E> g, List<Integer> vList,
+			List<Integer> dI) {
 		Map<Integer, Boolean> dominatedMapPre = presetDominatedMap(vList);
 
 		for (Integer v : dI) {

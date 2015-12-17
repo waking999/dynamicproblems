@@ -49,6 +49,12 @@ public class AlgorithmUtil {
 	public static final String COMMA = ",";
 	public static final String UNDERLINE = "_";
 
+	public final static boolean DESC_ORDER = false;
+	public final static boolean ASC_ORDER = true;
+	
+	
+	public final static String RUNNING_TIME_TOTAL="Total";
+	
 	// used for left pad for binary string of an integer
 	@Deprecated
 	private static final String BINARY_LEFT_PAD = "0";
@@ -56,11 +62,12 @@ public class AlgorithmUtil {
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
 
-	public final static boolean DESC_ORDER = false;
-	public final static boolean ASC_ORDER = true;
+
 
 	private final static boolean CHOSEN = true;
 	private final static boolean UNCHOSEN = false;
+	
+	
 
 	/**
 	 * generate an instance of Graph with internal parameters

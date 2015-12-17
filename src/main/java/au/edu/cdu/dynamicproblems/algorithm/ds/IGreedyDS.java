@@ -17,7 +17,6 @@ public interface IGreedyDS extends IAlgorithm {
 	
 	public Result getResult(long threadId);
 	
-	
 	public void setIndicator(String indicator) ;
 
 	public void setK(int k) ;
