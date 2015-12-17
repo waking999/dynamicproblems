@@ -15,7 +15,6 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import agape.tools.Components;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
@@ -1144,25 +1143,16 @@ public class AlgorithmUtil {
 
 	}
 
-	public static <T> List<T> getFirstItemInListFromCollection(Collection<T> s) {
-		List<T> rtn = new ArrayList<T>();
-
-		for (T t : s) {
-			rtn.add(t);
-			break;
-		}
-
-		return rtn;
-	}
-	
-	public static <T> T getFirstItemInCollection(Collection<T> s) {
-		
-
-		for (T t : s) {
-			return t;
-		}
-
-		return null;
+	public static <T> List<T> getFirstItemInCollection(Collection<T> s) {
+//		List<T> rtn = new ArrayList<T>();
+//
+//		for (T t : s) {
+//			rtn.add(t);
+//			break;
+//		}
+//
+//		return rtn;
+		return getFirstNItemsInCollection(1,s);
 	}
 
 	public static <T> List<T> getFirstNItemsInCollection(int n, Collection<T> s) {
@@ -1242,7 +1232,7 @@ public class AlgorithmUtil {
 					vInList.add(v);
 
 					Collection<Integer> n2n3 = CollectionUtils.union(n2, n3);
-					List<Integer> wPrime = AlgorithmUtil.getFirstItemInListFromCollection(n2n3);
+					List<Integer> wPrime = AlgorithmUtil.getFirstItemInCollection(n2n3);
 					Collection<Integer> n2n3Except = CollectionUtils.subtract(n2n3, wPrime);
 
 					for (Integer w : n2n3Except) {
@@ -1550,7 +1540,6 @@ public class AlgorithmUtil {
 
 		return false;
 	}
-
 	/**
 	 * minimalization to reduce redundant vertices
 	 * 
@@ -1559,9 +1548,9 @@ public class AlgorithmUtil {
 	 * @return
 	 * @throws ArraysNotSameLengthException
 	 */
-	public static List<Integer> minimal(Graph<Integer, Integer> g, List<Integer> ds)
+	public static List<Integer> minimal( Graph<Integer, Integer> g,List<Integer> ds)
 			throws ArraysNotSameLengthException {
-
+		
 		int distance = 1;
 		int dsSize = ds.size();
 		boolean[] chosen = AlgorithmUtil.verifySubDS(ds, dsSize, dsSize - distance, g);
@@ -1591,18 +1580,20 @@ public class AlgorithmUtil {
 	public static List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
 		Collection<Integer> vertices = g.getVertices();
 		int numOfVertices = vertices.size();
-		Map<Integer, Integer> coveredbyMap = new HashMap<Integer, Integer>(numOfVertices);
+		Map<Integer,Integer> coveredbyMap=new HashMap<Integer,Integer>(numOfVertices);
+		
+		
 
-		for (Integer v : vertices) {
+		for (Integer v:vertices) {
 			coveredbyMap.put(v, 0);
 		}
 
 		for (Integer w : d) {
-
-			coveredbyMap.put(w, coveredbyMap.get(w).intValue() + 1);
+						
+			coveredbyMap.put(w, coveredbyMap.get(w).intValue()+1);
 			Collection<Integer> wNeig = g.getNeighbors(w);
 			for (Integer v : wNeig) {
-				coveredbyMap.put(v, coveredbyMap.get(v).intValue() + 1);
+				coveredbyMap.put(v, coveredbyMap.get(v).intValue()+1);			
 			}
 		}
 		int dSize = d.size();
@@ -1646,43 +1637,28 @@ public class AlgorithmUtil {
 
 		return d;
 	}
-
-	public static List<Set<Integer>> getAllConnectedCompoents(Graph<Integer, Integer> g) {
-
-		List<Set<Integer>> componentList = Components.getAllConnectedComponent(g);
-		return componentList;
-	}
-
-	public static void printEachComponentSize(List<Set<Integer>> componentList) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("the size of each component are:");
-		for (Set<Integer> component : componentList) {
-			sb.append(component.size()).append(",");
+	
+	
+	/**
+	 * if one of a vertex v's close neighbors (besides u) has already in the solution list d, it is a moment of regret; otherwise not
+	 * @param v, the vertex whose highest utility close neighbor will be added to d
+	 * @param u, the highest utility close neighbor of v
+	 * @param g, the graph v is in
+	 * @param d, a set which is being built to be the solution
+	 * @return true, it is a moment of regret; false, it is not.
+	 */
+	public static boolean isMomentOfRegret(Integer v,Graph<Integer,Integer> g, List<Integer> d,Integer u){
+		Collection<Integer> vNeig=g.getNeighbors(v);
+		vNeig.add(v);
+		
+		Collection<Integer> intsec=CollectionUtils.intersection(vNeig, d);
+		intsec.remove(u);
+		
+		if(intsec.isEmpty()){
+			return false;
+		}else{
+			return true;
 		}
-		log.debug(sb.toString());
+		
 	}
-
-	public static void componentReductionRule(Graph<Integer, Integer> g, List<Integer> d) {
-		List<Set<Integer>> componentList=AlgorithmUtil.getAllConnectedCompoents(g);
-		for (Set<Integer> component : componentList) {
-			int componentSize=componentList.size();
-			if(componentSize==1 || componentSize==2 ){
-				//if only 1 or 2 vertices in the connected component, take a random one
-				Integer v= AlgorithmUtil.getFirstItemInCollection(component);
-				AlgorithmUtil.addElementToList(d, v);
-				for(Integer u:component){
-					g.removeVertex(u);
-				}
-			}else if(componentSize==3){
-				//if there are 3 vertices int the connected component, take the highest degree one
-				List<VertexDegree> vdList=AlgorithmUtil.sortVertexAccordingToDegreeInclude(g,component);
-				List<Integer> vList=getVertexList(vdList);
-				AlgorithmUtil.addElementToList(d, vList.get(0));
-				for(Integer u:vList){
-					g.removeVertex(u);
-				}
-			}
-		}
-	}
-
 }
