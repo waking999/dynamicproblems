@@ -177,7 +177,7 @@ public class GreedyDSM0 implements ITask, IAlgorithm {
 			Graph<Integer, String> gIPre = vertexGraphList.get(previousIndex);
 			List<Integer> dIPre = vertexSolutionList.get(previousIndex);
 
-			dominatedMap = GreedyDSUtil.getDominatedMap(g, vList, dIPre);
+			dominatedMap = GreedyDSUtil.getDominatedMap(g, dIPre);
 
 			v = vList.get(i);
 			if (!dominatedMap.get(v)) {

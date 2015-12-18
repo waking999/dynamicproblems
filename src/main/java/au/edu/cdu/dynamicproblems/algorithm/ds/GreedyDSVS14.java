@@ -335,7 +335,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 		}
 
 		// AlgorithmUtil.prepareGraph(am, gInitial, initialVertices);
-		AlgorithmUtil.preparGraph(numOfVertices, gOriginal, gInitial, initialVertices);
+		AlgorithmUtil.prepareGraph(numOfVertices, gOriginal, gInitial, initialVertices);
 
 	}
 
@@ -391,7 +391,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 			
 			getKVerticesAndTheirDS(undominatedVertices, undomiantedVerticesSize, kVerticesDS, kVertices);
 
-			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gI, kVertices);
+			AlgorithmUtil.prepareGraph(this.numOfVertices, gOriginal, gI, kVertices);
 			List<Integer> dsInitialCopy = new ArrayList<Integer>();
 			dsInitialCopy.addAll(dsInitial);
 
@@ -420,7 +420,7 @@ public class GreedyDSVS14 implements IGreedyDS, ITask {
 				break;
 			}
 
-			AlgorithmUtil.preparGraph(this.numOfVertices, gOriginal, gInitial, verticesToAddInGraph);
+			AlgorithmUtil.prepareGraph(this.numOfVertices, gOriginal, gInitial, verticesToAddInGraph);
 
 			gI=null;
 			gIStar=null;

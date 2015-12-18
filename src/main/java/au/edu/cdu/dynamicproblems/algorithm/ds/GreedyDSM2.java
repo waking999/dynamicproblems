@@ -1,17 +1,16 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
 import au.edu.cdu.dynamicproblems.algorithm.common.DegreeDesc;
+import au.edu.cdu.dynamicproblems.algorithm.common.DegreeRRReturn;
 import au.edu.cdu.dynamicproblems.algorithm.common.GreedyDSUtil;
 import au.edu.cdu.dynamicproblems.algorithm.common.IPriorityOrder;
 import au.edu.cdu.dynamicproblems.control.ITask;
@@ -22,16 +21,17 @@ import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
 
 public class GreedyDSM2 implements ITask, IAlgorithm {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSM2.class);
 	private Map<String, Long> runningTimeMap;
+
 	public Map<String, Long> getRunningTimeMap() {
 		return runningTimeMap;
 	}
+
 	private TaskLock lock;
 
 	public TaskLock getLock() {
@@ -59,11 +59,11 @@ public class GreedyDSM2 implements ITask, IAlgorithm {
 	public Result getResult() {
 		return GreedyDSUtil.getResult(this.k, this.rUpperBoundary, this.dominatingSet, this.runningTimeMap);
 	}
-
-	/**
-	 * the graph
-	 */
-	private Graph<Integer, String> g;
+	//
+	// /**
+	// * the graph
+	// */
+	// private Graph<Integer, String> g;
 
 	private String indicator;
 
@@ -95,7 +95,7 @@ public class GreedyDSM2 implements ITask, IAlgorithm {
 	public GreedyDSM2(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		// this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
+		// this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 		this.k = k;
 		this.rUpperBoundary = rUpperBoundary;
@@ -116,79 +116,100 @@ public class GreedyDSM2 implements ITask, IAlgorithm {
 
 	}
 
+	// /* a graph generated according to the adjacency matrix */
+	// private Graph<Integer, String> gOriginal;
+
+	private int queueSize = 0;
+
 	private void initialization() {
 		dominatingSet = new ArrayList<Integer>();
 		this.runningTimeMap = new HashMap<String, Long>();
 
+		/* the size of the queue */
+		queueSize = k + 1;
+
 	}
 
-	/* a list for storing the solutions in each iteration */
-	private List<List<Integer>> vertexSolutionList;
-	/* a list for storing the sub-graph in each iteration */
-	private List<Graph<Integer, String>> vertexGraphList;
+	// private List<Integer> dsAfterDegreeRR;
+	// private List<Integer> verticesAfterDegreeRR;
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
+		long startPolyRR = System.nanoTime();
+		/* apply poly-rr */
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal);
+		long endPolyRR = System.nanoTime();
+		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (endPolyRR - startPolyRR));
+		/* apply degree-rr */
+		long startDegreeRR = System.nanoTime();
+		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g);
+		long endDegreeRR = System.nanoTime();
+		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (endDegreeRR - startDegreeRR));
 
-		/* the size of the queue */
-		int queueSize = k + 1;
-
-		vertexSolutionList = new ArrayList<List<Integer>>(queueSize);
-		vertexGraphList = new ArrayList<Graph<Integer, String>>(queueSize);
+		Map<Integer, Boolean> dominatedMap = drrr.getDominatedMap();
 
 		// sort a list of vertex from lowest degree to highest
 		IPriorityOrder<Integer, String> pocb = new DegreeDesc<Integer, String>();
 		List<Integer> vList = pocb.getOrderedVertexList(g);
 
+		List<Integer> dI;
+		Graph<Integer, String> gI;
+		List<Integer> uList;
 		int i = 0;
 
-		Map<Integer, Boolean> dominatedMap = GreedyDSUtil.presetDominatedMap(vList);
-		Integer v = vList.get(i);
-		Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
+		/* a list for storing the solutions in each iteration */
+		List<List<Integer>> vertexSolutionList = new ArrayList<List<Integer>>(queueSize);
 
-		List<Integer> dI = new ArrayList<Integer>();
-		AlgorithmUtil.addElementToList(dI, u);
-		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
-		List<Integer> uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g, dominatedMap, gI, u, v);
-		AlgorithmUtil.prepareGenericGraph(adjacencyMatrix, gI, uList);
+		/* a list for storing the sub-graph in each iteration */
+		List<Graph<Integer, String>> vertexGraphList = new ArrayList<Graph<Integer, String>>(queueSize);
 
-		GreedyDSUtil.setStatusOfIthVertexInQueue(i, vertexSolutionList, dI, vertexGraphList, gI);
+		GreedyDSUtil.setG0(i, g, drrr, dominatedMap, vList, vertexSolutionList, vertexGraphList);
 
 		/*
 		 * because the size of queue is only k+1, we need reuse some positions,
 		 * therefore, we need several indexes to record different information
 		 */
-		/* backIndex is for calculating the position after back k vertices. */
+		/* index shows vertex position in the list, it can be larger than k */
+		/*
+		 * because a vertex will not be count if it is dominated, currentIndex
+		 * works for the index of step, it could be larger than k;
+		 */
+		int currentIndex = 0;
+		/*
+		 * backIndex is for calculating the position after back k vertices. k
+		 * vertices at the leftside of current index, it could be larger than k
+		 */
 		int backKIndex = 0;
+
+		/* pos shows status position in the storage, they are less than k */
 		/*
 		 * previousIndex is used for to get previous status in the queue to
 		 * calculate current status
 		 */
-		int previousIndex = 0;
-		/* record the position of the best solution in the queue */
-		int bestSolutionPos = 0;
+		int previousPos = 0;
 		/*
-		 * because a vertex will not be count if it is dominated, currentIndex
-		 * works for the index of step
+		 * record the position of the best solution in the queue
 		 */
-		int currentIndex = 0;
+		int currentPos = 0;
 
-		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			// for (i = 1; i < this.numOfVertices; i++) {
-			i++;
-			// get latest dominatedMapI
-			Graph<Integer, String> gIPre = vertexGraphList.get(previousIndex);
-			List<Integer> dIPre = vertexSolutionList.get(previousIndex);
+		int vListSize = vList.size();
+		for (i = 1; i < vListSize; i++) {
 
-			dominatedMap = GreedyDSUtil.getDominatedMap(g, vList, dIPre);
-			
-			if(AlgorithmUtil.isAllDominated(dominatedMap)){
+			// get previous sub-graph and dominating set to calculate
+			// dominatedMap
+			Graph<Integer, String> gIPre = vertexGraphList.get(previousPos);
+			List<Integer> dIPre = vertexSolutionList.get(previousPos);
+			dominatedMap = GreedyDSUtil.getDominatedMap(g, dIPre);
+
+			if (AlgorithmUtil.isAllDominated(dominatedMap)) {
 				break;
 			}
 
-			v = vList.get(i);
+			Integer v = vList.get(i);
 			if (!dominatedMap.get(v)) {
 				currentIndex++;
-				u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
+				Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
 
 				// the solution in each round: add u
 				dI = new ArrayList<Integer>();
@@ -210,15 +231,16 @@ public class GreedyDSM2 implements ITask, IAlgorithm {
 				 */
 				gI = AlgorithmUtil.copyGraph(gIPre);
 				uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g, dominatedMap, gI, u, v);
-				AlgorithmUtil.prepareGenericGraph(adjacencyMatrix, gI, uList);
+				AlgorithmUtil.prepareGraph(g, gI, uList);
 
-				previousIndex++;
-				if (previousIndex >= queueSize) {
-					previousIndex = 0;
-				}
-				bestSolutionPos = currentIndex % queueSize;
+				// previousIndex++;
+				// if (previousIndex >= queueSize) {
+				// previousIndex = 0;
+				// }
+				currentPos = currentIndex % queueSize;
 
-				GreedyDSUtil.setStatusOfIthVertexInQueue(bestSolutionPos, vertexSolutionList, dI, vertexGraphList, gI);
+				// GreedyDSUtil.setStatusOfIthVertexInQueue(curentSolutionPos,
+				// vertexSolutionList, dI, vertexGraphList, gI);
 
 				// if it is a moment of regret, apply dds fpt
 				List<Integer> ddsI = null;
@@ -233,53 +255,60 @@ public class GreedyDSM2 implements ITask, IAlgorithm {
 					if (backKIndex < 0) {
 						continue;
 					}
-					previousIndex = backKIndex % queueSize;
+					previousPos = backKIndex % queueSize;
 
-					/*
-					 * get the solution at the back up point for future usage in
-					 * dds fpt
-					 */
-					List<Integer> dK = vertexSolutionList.get(previousIndex);
-					/*
-					 * get the current sub-graph as G' for future usage in dds
-					 * fpt, but it should be a copy rather than the original one
-					 * because the sub-graph will be changed during dds fpt
-					 */
-					Graph<Integer, String> gICopy = AlgorithmUtil.copyGraph(gI);
-					DDSFPTV1 ag = new DDSFPTV1(indicator, gICopy, dK, rUpperBoundary);
-
-					/*
-					 * the difference between the current solution and the
-					 * solution at back up point could be a considerable
-					 * solution in dds fpt
-					 */
-					Collection<Integer> dsDiff = CollectionUtils.subtract(dI, dK);
-
-					ag.setConsiderableCandidateVertices4DS(dsDiff);
-					ag.computing();
-
-					ddsI = ag.getDs2();
-				}
+					
+					ddsI = GreedyDSUtil.invokeDDSFPT(previousPos, vertexSolutionList, gI, dI, ddsI, this.indicator,
+							this.rUpperBoundary,this.runningTimeMap);
+					
+					
+					
+				} 
 
 				if (ddsI != null && ddsI.size() <= dI.size()) {
-					GreedyDSUtil.setStatusOfIthVertexInQueue(previousIndex, vertexSolutionList, ddsI, vertexGraphList,
-							gI);
+					// long startMin = System.nanoTime();
+					// ddsI = AlgorithmUtil.minimal(gI, ddsI);
+					// long endMin = System.nanoTime();
+					// this.runningTimeMap.put("Minimal", (endMin - startMin));
+					//
+					// long startGrasp = System.nanoTime();
+					// ddsI = AlgorithmUtil.grasp(gI, ddsI);
+					// long endGrasp = System.nanoTime();
+					// this.runningTimeMap.put("GRASP", (endGrasp -
+					// startGrasp));
 					/*
 					 * if we get a smaller solution from dds fpt than the
 					 * current solution, we will reset the ith position of the
 					 * queue i) no change to gI; ii) no change to dominatedMap;
 					 * iii) change dI
 					 */
+					dI=ddsI;
 
-					bestSolutionPos = previousIndex;
+				} 
+				
+				GreedyDSUtil.setStatusOfIthVertexInQueue(currentPos, vertexSolutionList, dI, vertexGraphList, gI);
 
-				}
+				previousPos = currentPos;
 
+		
 			}
-
+			if (AlgorithmUtil.isAllDominated(dominatedMap)) {
+				break;
+			}
 		}
-		this.dominatingSet = this.vertexSolutionList.get(bestSolutionPos);
+
+		this.dominatingSet = vertexSolutionList.get(currentPos);
+		
+		GreedyDSUtil.applyMinimal(g,this.dominatingSet, this.runningTimeMap);
+		
+
+		GreedyDSUtil.applyLS(g,this.dominatingSet, this.runningTimeMap);
+		
 
 	}
+
+	
+
+	
 
 }

@@ -51,10 +51,13 @@ public class AlgorithmUtil {
 
 	public final static boolean DESC_ORDER = false;
 	public final static boolean ASC_ORDER = true;
-	
-	
-	public final static String RUNNING_TIME_TOTAL="Total";
-	
+
+	public final static String RUNNING_TIME_TOTAL = "Total";
+	public final static String RUNNING_TIME_DDS = "DDS";
+	public final static String RUNNING_TIME_MINI = "MINIMAL";
+	public final static String RUNNING_TIME_LS = "LS";
+	public final static String RUNNING_TIME_POLYRR = "Poly-RR";
+	public final static String RUNNING_TIME_DEGREERR = "Degree-RR";
 	// used for left pad for binary string of an integer
 	@Deprecated
 	private static final String BINARY_LEFT_PAD = "0";
@@ -62,12 +65,8 @@ public class AlgorithmUtil {
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
 
-
-
 	private final static boolean CHOSEN = true;
 	private final static boolean UNCHOSEN = false;
-	
-	
 
 	/**
 	 * generate an instance of Graph with internal parameters
@@ -131,7 +130,7 @@ public class AlgorithmUtil {
 		}
 		return g;
 	}
-	
+
 	/**
 	 * add vertices in vList to g and add edges between such vertices to g as
 	 * well
@@ -182,9 +181,8 @@ public class AlgorithmUtil {
 		return g;
 	}
 
-	
-
-	public static Graph<Integer, Integer> preparGraph(int numOfVertices, Graph<Integer, Integer> gRef,
+	@Deprecated
+	public static Graph<Integer, Integer> prepareGraph(int numOfVertices, Graph<Integer, Integer> gRef,
 			Graph<Integer, Integer> g, Collection<Integer> vList) {
 		if (vList.isEmpty()) {
 			return g;
@@ -205,6 +203,38 @@ public class AlgorithmUtil {
 			for (Integer u : vNeigInRefToAdd) {
 
 				int e = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(numOfVertices, v, u);
+				if (!g.containsEdge(e)) {
+					g.addEdge(e, v, u);
+				}
+
+			}
+		}
+
+		return g;
+
+	}
+
+	public static Graph<Integer, String> prepareGraph(Graph<Integer, String> gRef, Graph<Integer, String> g,
+			Collection<Integer> vList) {
+		if (vList.isEmpty()) {
+			return g;
+		}
+
+		for (Integer v : vList) {
+			if (!g.containsVertex(v)) {
+				g.addVertex(v);
+			}
+		}
+
+		Collection<Integer> gVertices = g.getVertices();
+
+		for (Integer v : vList) {
+			Collection<Integer> vNeigInRef = gRef.getNeighbors(v);
+			Collection<Integer> vNeigInRefToAdd = CollectionUtils.intersection(gVertices, vNeigInRef);
+
+			for (Integer u : vNeigInRefToAdd) {
+
+				String e = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(v, u);
 				if (!g.containsEdge(e)) {
 					g.addEdge(e, v, u);
 				}
@@ -267,8 +297,6 @@ public class AlgorithmUtil {
 		return g;
 	}
 
-	
-	
 	public static List<String[]> transferEdgePairToMatrix(List<String> lines) {
 		String line0 = lines.get(0);
 		String[] line0Array = line0.split(BLANK);
@@ -534,9 +562,13 @@ public class AlgorithmUtil {
 
 	/**
 	 * get the highest utility neighbor of a vertex
-	 * @param v, the vertex
-	 * @param g, the graph instance
-	 * @param dominatedMap, the dominated map (a map keeping pair of <vertex, dominated>)
+	 * 
+	 * @param v,
+	 *            the vertex
+	 * @param g,
+	 *            the graph instance
+	 * @param dominatedMap,
+	 *            the dominated map (a map keeping pair of <vertex, dominated>)
 	 * @return
 	 */
 	public static <V, E> V getHighestUtilityNeighborOfAVertex(V v, Graph<V, E> g, Map<V, Boolean> dominatedMap) {
@@ -652,10 +684,10 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
-	public static int getVertexUtility(Graph<Integer, Integer> g, Integer v, Map<Integer, Boolean> dominatedMap) {
-		Collection<Integer> vNeigs = g.getNeighbors(v);
+	public static <V, E> int getVertexUtility(Graph<V, E> g, V v, Map<V, Boolean> dominatedMap) {
+		Collection<V> vNeigs = g.getNeighbors(v);
 		int unDominatedDegree = 0;
-		for (Integer u : vNeigs) {
+		for (V u : vNeigs) {
 			if (!dominatedMap.get(u)) {
 				unDominatedDegree++;
 			}
@@ -1047,16 +1079,17 @@ public class AlgorithmUtil {
 	 *            , a set of vertices
 	 * @return
 	 */
-	public static <V,E> Collection<V> getNeighborsOfS(Graph<V, E> g, Collection<V> S) {
+	public static <V, E> Collection<V> getNeighborsOfS(Graph<V, E> g, Collection<V> S) {
 		Collection<V> ngs = new ArrayList<V>();
 		for (V s : S) {
 			Collection<V> col = g.getNeighbors(s);
 			if (col != null) {
-				ngs =  CollectionUtils.union(ngs, col);
+				ngs = CollectionUtils.union(ngs, col);
 			}
 		}
 		return ngs;
 	}
+
 	/**
 	 * decide if it is a dominating set solution of a graph
 	 * 
@@ -1066,7 +1099,7 @@ public class AlgorithmUtil {
 	 *            , a potential dominating set
 	 * @return true, is dominating set ; no, not
 	 */
-	public static <V,E> boolean isDS(Graph<V, E> g, List<V> ds) {
+	public static <V, E> boolean isDS(Graph<V, E> g, List<V> ds) {
 		Collection<V> vertices = g.getVertices();
 		Collection<V> complementaryDS = CollectionUtils.subtract(vertices, ds);
 
@@ -1090,25 +1123,26 @@ public class AlgorithmUtil {
 
 	}
 
-//	/**
-//	 * get a copy of source graph
-//	 * 
-//	 * @param src
-//	 *            , source graph
-//	 * @return a copy of source graph
-//	 */
-//	@Deprecated
-//	public static Graph<Integer, Integer> copyGraph(Graph<Integer, Integer> src) {
-//		Graph<Integer, Integer> dest = new SparseMultigraph<Integer, Integer>();
-//		for (Integer v : src.getVertices())
-//			dest.addVertex(v);
-//
-//		for (Integer e : src.getEdges())
-//			dest.addEdge(e, src.getIncidentVertices(e));
-//
-//		return dest;
-//	}
-	
+	// /**
+	// * get a copy of source graph
+	// *
+	// * @param src
+	// * , source graph
+	// * @return a copy of source graph
+	// */
+	// @Deprecated
+	// public static Graph<Integer, Integer> copyGraph(Graph<Integer, Integer>
+	// src) {
+	// Graph<Integer, Integer> dest = new SparseMultigraph<Integer, Integer>();
+	// for (Integer v : src.getVertices())
+	// dest.addVertex(v);
+	//
+	// for (Integer e : src.getEdges())
+	// dest.addEdge(e, src.getIncidentVertices(e));
+	//
+	// return dest;
+	// }
+
 	/**
 	 * get a copy of source graph
 	 * 
@@ -1116,7 +1150,7 @@ public class AlgorithmUtil {
 	 *            , source graph
 	 * @return a copy of source graph
 	 */
-	public static <V,E> Graph<V, E> copyGraph(Graph<V, E> src) {
+	public static <V, E> Graph<V, E> copyGraph(Graph<V, E> src) {
 		Graph<V, E> dest = new SparseMultigraph<V, E>();
 		for (V v : src.getVertices())
 			dest.addVertex(v);
@@ -1279,7 +1313,7 @@ public class AlgorithmUtil {
 		return stringToBinaryArray(binaryStr);
 	}
 
-	public static boolean[] verifySubDS(List<Integer> ds, int n, int m, Graph<Integer, Integer> g)
+	public static <V,E> boolean[] verifySubDS(List<V> ds, int n, int m, Graph<V, E> g)
 			throws ArraysNotSameLengthException {
 		if (m > n) {
 			m = n;
@@ -1359,9 +1393,9 @@ public class AlgorithmUtil {
 
 	}
 
-	private static boolean verifyChosen(List<Integer> ds, boolean[] chosen, int m, int n, Graph<Integer, Integer> g)
+	private static <V,E> boolean verifyChosen(List<V> ds, boolean[] chosen, int m, int n, Graph<V, E> g)
 			throws ArraysNotSameLengthException {
-		List<Integer> tempDs = new ArrayList<Integer>(m);
+		List<V> tempDs = new ArrayList<V>(m);
 
 		for (int i = 0; i < n; i++) {
 			if (chosen[i]) {
@@ -1409,6 +1443,7 @@ public class AlgorithmUtil {
 	 *            the original graph
 	 * @return reduced graph
 	 */
+	@Deprecated
 	public static Graph<Integer, Integer> applySingleVertexReductionRule(int numOfVertices, Graph<Integer, Integer> g) {
 		Graph<Integer, Integer> gPrime = AlgorithmUtil.copyGraph(g);
 
@@ -1493,6 +1528,98 @@ public class AlgorithmUtil {
 	}
 
 	/**
+	 * Apply DS reduction rule 1 in michael's paper
+	 * 
+	 * 
+	 * @param g,
+	 *            the original graph
+	 * @return reduced graph
+	 */
+
+	public static Graph<Integer, String> applySingleVertexReductionRule(Graph<Integer, String> g) {
+		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
+
+		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
+
+		Collection<Integer> vertices = g.getVertices();
+
+		for (Integer v : vertices) {
+			visited.put(v, false);
+		}
+
+		for (Integer v : vertices) {
+
+			if (!visited.get(v)) {
+				// N1(v) := {u ∈ N(v) | N(u) \ N[v] = ∅},
+				Collection<Integer> vNeig = gPrime.getNeighbors(v);
+				List<Integer> n1 = new ArrayList<Integer>();
+				for (Integer u : vNeig) {
+					Collection<Integer> uNeig = gPrime.getNeighbors(u);
+					Collection<Integer> n1diff = CollectionUtils.subtract(uNeig, vNeig);
+					n1diff.remove(v);
+					if (!n1diff.isEmpty()) {
+						n1.add(u);
+					}
+
+				}
+				// N2(v) := {u ∈ N(v) \ N1(v) | N(u) ∩ N1(v) = ∅},
+				List<Integer> n2 = new ArrayList<Integer>();
+				Collection<Integer> n2base = CollectionUtils.subtract(vNeig, n1);
+				for (Integer u : n2base) {
+					Collection<Integer> uNeig = gPrime.getNeighbors(u);
+					Collection<Integer> uIntsec = CollectionUtils.intersection(uNeig, n1);
+					if (!uIntsec.isEmpty()) {
+						n2.add(u);
+					}
+				}
+				// N3(v) := N(v) \ (N1(v) ∪ N2(v)).
+				Collection<Integer> n3 = CollectionUtils.subtract(vNeig, CollectionUtils.union(n1, n2));
+
+				/*
+				 * Rule 1 If N3(v) = ∅ for some vertex v, then : i) remove
+				 * N2(v) and N3(v) from G and; ii) add a new vertex v with the
+				 * edge {v, v}.
+				 * 
+				 * An equivlant way of ii) is ii.1) to keep a vertex w in N2(v)
+				 * ∪ N3(v)), ii.2) remove edges between w and N(w)\{v}
+				 * 
+				 */
+				if (!n3.isEmpty()) {
+					List<Integer> vInList = new ArrayList<Integer>();
+					vInList.add(v);
+
+					Collection<Integer> n2n3 = CollectionUtils.union(n2, n3);
+					List<Integer> wPrime = AlgorithmUtil.getFirstItemInCollection(n2n3);
+					Collection<Integer> n2n3Except = CollectionUtils.subtract(n2n3, wPrime);
+
+					for (Integer w : n2n3Except) {
+						gPrime.removeVertex(w);
+						visited.put(w, true);
+					}
+
+					for (Integer w : wPrime) {
+						Collection<Integer> wNeig = gPrime.getNeighbors(w);
+
+						wNeig = CollectionUtils.subtract(wNeig, vInList);
+						for (Integer x : wNeig) {
+							String wx = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(x, w);
+							gPrime.removeEdge(wx);
+						}
+
+						visited.put(w, true);
+					}
+
+				}
+
+				visited.put(v, true);
+			}
+
+		}
+
+		return gPrime;
+	}
+
+	/**
 	 * Apply DS reduction rule 2 in michael's paper
 	 * 
 	 * @param numOfVertices,
@@ -1504,6 +1631,7 @@ public class AlgorithmUtil {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
+	@Deprecated
 	public static Graph<Integer, Integer> applyPairVerticesReductionRule(int numOfVertices, Graph<Integer, Integer> g) {
 		Graph<Integer, Integer> gPrime = AlgorithmUtil.copyGraph(g);
 
@@ -1705,6 +1833,216 @@ public class AlgorithmUtil {
 	}
 
 	/**
+	 * Apply DS reduction rule 2 in michael's paper
+	 * 
+	 * 
+	 * @param g,the
+	 *            original graph
+	 * @return reduced graph
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public static Graph<Integer, String> applyPairVerticesReductionRule(Graph<Integer, String> g) {
+		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
+
+		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
+
+		Collection<Integer> vertices = g.getVertices();
+
+		for (Integer v : vertices) {
+			visited.put(v, false);
+		}
+
+		for (Integer v : vertices) {
+
+			if (!visited.get(v)) {
+
+				for (Integer w : vertices) {
+					if (!visited.get(w)) {
+						Collection<Integer> vNeig = gPrime.getNeighbors(v);
+
+						if (v.equals(w)) {
+							continue;
+						}
+
+						if (vNeig.contains(w)) {
+							continue;
+						}
+
+						Collection<Integer> wNeig = gPrime.getNeighbors(w);
+
+						Collection<Integer> vwNeig = CollectionUtils.union(vNeig, wNeig);
+
+						List<Integer> n1 = new ArrayList<Integer>();
+						for (Integer u : vwNeig) {
+							Collection<Integer> uNeig = gPrime.getNeighbors(u);
+							if (uNeig == null) {
+								uNeig = CollectionUtils.EMPTY_COLLECTION;
+							}
+							Collection<Integer> n1diff = CollectionUtils.subtract(uNeig, vwNeig);
+							n1diff.remove(v);
+							n1diff.remove(w);
+							if (!n1diff.isEmpty()) {
+								n1.add(u);
+							}
+						}
+
+						List<Integer> n2 = new ArrayList<Integer>();
+						Collection<Integer> n2base = CollectionUtils.subtract(vwNeig, n1);
+						for (Integer u : n2base) {
+							Collection<Integer> uNeig = gPrime.getNeighbors(u);
+							if (uNeig == null) {
+								uNeig = CollectionUtils.EMPTY_COLLECTION;
+							}
+							Collection<Integer> uIntsec = CollectionUtils.intersection(uNeig, n1);
+							if (!uIntsec.isEmpty()) {
+								n2.add(u);
+							}
+						}
+
+						Collection<Integer> n3 = CollectionUtils.subtract(vwNeig, CollectionUtils.union(n1, n2));
+
+						if (!n3.isEmpty()) {
+							List<Integer> vInList = new ArrayList<Integer>();
+							vInList.add(v);
+
+							List<Integer> wInList = new ArrayList<Integer>();
+							wInList.add(w);
+
+							List<Integer> vwInList = new ArrayList<Integer>();
+							vwInList.add(v);
+							vwInList.add(w);
+
+							if (isAVertexDominateASet(v, n3, gPrime) || isAVertexDominateASet(w, n3, gPrime)) {
+								// n3 can be dominated by a single vertex from
+								// {v,w}
+								if (CollectionUtils.isSubCollection(n3, vNeig)
+										&& CollectionUtils.isSubCollection(n3, wNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, vNeig);
+									insec = CollectionUtils.intersection(insec, wNeig);
+									insec = CollectionUtils.union(n3, insec);
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(2, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, vwInList);
+										for (Integer x : zNeig) {
+											String xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+
+								} else if (CollectionUtils.isSubCollection(n3, vNeig)
+										&& !CollectionUtils.isSubCollection(n3, wNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, vNeig);
+									insec = CollectionUtils.union(n3, insec);
+
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(1, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {
+
+										// leave vz,remove xz
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, vInList);
+										for (Integer x : zNeig) {
+											String xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+
+								} else if (CollectionUtils.isSubCollection(n3, wNeig)
+										&& !CollectionUtils.isSubCollection(n3, vNeig)) {
+									Collection<Integer> insec = CollectionUtils.intersection(n2, wNeig);
+									insec = CollectionUtils.union(n3, insec);
+
+									List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(1, insec);
+
+									Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+									for (Integer x : insecExcept) {
+										gPrime.removeVertex(x);
+										visited.put(x, true);
+									}
+
+									for (Integer z : zList) {
+
+										// leave wz,remove xz
+										Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+										zNeig = CollectionUtils.subtract(zNeig, wInList);
+										for (Integer x : zNeig) {
+											String xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(x, z);
+											gPrime.removeEdge(xz);
+										}
+
+										visited.put(z, true);
+									}
+								}
+							} else {
+								// n3 cannot be dominated by a single vertex
+								// from {v,w}
+								Collection<Integer> insec = CollectionUtils.union(n3, n2);
+
+								List<Integer> zList = AlgorithmUtil.getFirstNItemsInCollection(2, insec);
+
+								Collection<Integer> insecExcept = CollectionUtils.subtract(insec, zList);
+
+								for (Integer x : insecExcept) {
+									gPrime.removeVertex(x);
+									visited.put(x, true);
+								}
+
+								for (Integer z : zList) {
+									Collection<Integer> zNeig = gPrime.getNeighbors(z);
+
+									for (Integer x : zNeig) {
+										String xz = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(x, z);
+										gPrime.removeEdge(xz);
+									}
+								}
+
+								Integer z0 = zList.get(0);
+								Integer z1 = zList.get(1);
+
+								String z0v = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(z0, v);
+								gPrime.addEdge(z0v, z0, v);
+								String z1w = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(z1, w);
+								gPrime.addEdge(z1w, z1, w);
+
+								visited.put(z0, true);
+								visited.put(z1, true);
+							}
+						}
+					}
+					visited.put(w, true);
+				}
+			}
+			visited.put(v, true);
+		}
+		return gPrime;
+	}
+
+	/**
 	 * if a vertex set(vList) is dominated by another vertex (v)
 	 * 
 	 * @param v,
@@ -1715,8 +2053,8 @@ public class AlgorithmUtil {
 	 *            the graph instance
 	 * @return true: vList is dominated by v;false, no
 	 */
-	public static boolean isAVertexDominateASet(int v, Collection<Integer> vList, Graph<Integer, Integer> g) {
-		Collection<Integer> vNeig = g.getNeighbors(v);
+	public static <V, E> boolean isAVertexDominateASet(V v, Collection<V> vList, Graph<V, E> g) {
+		Collection<V> vNeig = g.getNeighbors(v);
 		if (CollectionUtils.subtract(vList, vNeig).isEmpty()) {
 			return true;
 		}
@@ -1735,12 +2073,12 @@ public class AlgorithmUtil {
 	 *            the graph instance
 	 * @return true: u is dominated by v;false, no
 	 */
-	public static boolean isAVertexDominateAVertex(int v, int u, Graph<Integer, Integer> g) {
-		if (u == v) {
+	public static <V,E> boolean isAVertexDominateAVertex(V v, V u, Graph<V, E> g) {
+		if (u.equals(v)) {
 			// a vertex always dominates itself
 			return true;
 		}
-		Collection<Integer> vNeig = g.getNeighbors(v);
+		Collection<V> vNeig = g.getNeighbors(v);
 		if (vNeig.contains(u)) {
 			return true;
 		}
@@ -1779,7 +2117,7 @@ public class AlgorithmUtil {
 	 * @return
 	 * @throws ArraysNotSameLengthException
 	 */
-	public static List<Integer> minimal(Graph<Integer, Integer> g, List<Integer> ds)
+	public static <V,E> List<V> minimal(Graph<V, E> g, List<V> ds)
 			throws ArraysNotSameLengthException {
 
 		int distance = 1;
@@ -1788,7 +2126,7 @@ public class AlgorithmUtil {
 		if (chosen == null) {
 			return ds;
 		} else {
-			List<Integer> tempDs = new ArrayList<Integer>(dsSize - distance);
+			List<V> tempDs = new ArrayList<V>(dsSize - distance);
 
 			for (int i = 0; i < dsSize; i++) {
 				if (chosen[i]) {
@@ -1808,31 +2146,31 @@ public class AlgorithmUtil {
 	 *            the dominating set
 	 * @return the dominating set after local search
 	 */
-	public static List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
-		Collection<Integer> vertices = g.getVertices();
+	public static <V,E> List<V> grasp(Graph<V, E> g, List<V> d) {
+		Collection<V> vertices = g.getVertices();
 		int numOfVertices = vertices.size();
-		Map<Integer, Integer> coveredbyMap = new HashMap<Integer, Integer>(numOfVertices);
+		Map<V, Integer> coveredbyMap = new HashMap<V, Integer>(numOfVertices);
 
-		for (Integer v : vertices) {
+		for (V v : vertices) {
 			coveredbyMap.put(v, 0);
 		}
 
-		for (Integer w : d) {
+		for (V w : d) {
 
 			coveredbyMap.put(w, coveredbyMap.get(w).intValue() + 1);
-			Collection<Integer> wNeig = g.getNeighbors(w);
-			for (Integer v : wNeig) {
+			Collection<V> wNeig = g.getNeighbors(w);
+			for (V v : wNeig) {
 				coveredbyMap.put(v, coveredbyMap.get(v).intValue() + 1);
 			}
 		}
 		int dSize = d.size();
 		for (int i = 0; i < dSize - 1; i++) {
-			Integer vi = d.get(i);
+			V vi = d.get(i);
 			for (int j = i + 1; j < dSize; j++) {
-				Integer vj = d.get(j);
+				V vj = d.get(j);
 				if (!vi.equals(vj)) {
-					List<Integer> U = new ArrayList<Integer>();
-					for (Integer vk : vertices) {
+					List<V> U = new ArrayList<V>();
+					for (V vk : vertices) {
 						int covby = coveredbyMap.get(vk);
 						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
 							covby--;
@@ -1850,7 +2188,7 @@ public class AlgorithmUtil {
 						log.debug("ds changed here.");
 						return grasp(g, d);
 					} else {
-						for (Integer vk : vertices) {
+						for (V vk : vertices) {
 							if (AlgorithmUtil.isAVertexDominateASet(vk, U, g)) {
 								d.remove(vi);
 								d.remove(vj);
@@ -1882,7 +2220,7 @@ public class AlgorithmUtil {
 	 *            a set which is being built to be the solution
 	 * @return true, it is a moment of regret; false, it is not.
 	 */
-	public static <V,E> boolean isMomentOfRegret(V v, Graph<V, E> g, List<V> d, V u) {
+	public static <V, E> boolean isMomentOfRegret(V v, Graph<V, E> g, List<V> d, V u) {
 		Collection<V> vNeig = g.getNeighbors(v);
 		vNeig.add(v);
 

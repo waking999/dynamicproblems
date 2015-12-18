@@ -12,7 +12,7 @@ public class TestUtil {
 		return destFile;
 	}
 
-	public static final String DIMCACS_PATH = "src/test/resources/DIMACS/";
+	public static final String DIMACS_PATH = "src/test/resources/DIMACS/";
 	public static final String[] DIMACS_FILES = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq",
 			"C250.9.clq", "C4000.5.clq", "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
 			"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
@@ -39,16 +39,10 @@ public class TestUtil {
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
 	public static final String[] KONECT_FILES = { 
-//			"000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-//			"000112_David_Copperfield.konet", 
-			"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-			"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet",
-			// "002426_hamster_ful.konet",
-			// "002888_facebook.konet",
-			// "003133_Human_protein_Vidal.konet",
-			// "004941_powergrid.konet",
-			// "006327_reactome.konet",
-			// "010680_Pretty_Good_Privacy.konet",
-			// "06474_Route_views.konet"
+			//"000027_zebra.konet", "000034_zachary.konet", 
+			"000062_dolphins.konet",
+			//"000112_David_Copperfield.konet", 
+			//"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+			//"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet",
 	};
 }
