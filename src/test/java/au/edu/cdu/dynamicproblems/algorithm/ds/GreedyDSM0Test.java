@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.TestUtil;
@@ -22,7 +23,7 @@ public class GreedyDSM0Test {
 	private Logger log = LogUtil.getLogger(GreedyDSM0Test.class);
 	private static final String CLASS_NAME=GreedyDSM0Test.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -42,7 +43,7 @@ public class GreedyDSM0Test {
 	
 		log.debug(result.getString());
 	}
-	//@Ignore
+	@Ignore
 	@Test
 	public void test1(){
 		List<String[]> am = TestUtil.simpleAM0();

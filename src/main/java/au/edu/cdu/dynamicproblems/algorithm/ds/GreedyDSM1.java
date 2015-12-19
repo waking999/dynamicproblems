@@ -102,8 +102,9 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	/**
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a dominating set
+	 * @throws InterruptedException 
 	 */
-	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		long start = System.nanoTime();
 		initialization();
 		greedy();
@@ -120,30 +121,31 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 
 	private void initialization() {
 		dominatingSet = new ArrayList<Integer>();
+		
 		this.runningTimeMap = new HashMap<String, Long>();
+		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
+		
 
 		/* the size of the queue */
 		queueSize = k + 1;
 
 	}
 
+	
+
 	// private List<Integer> dsAfterDegreeRR;
 	// private List<Integer> verticesAfterDegreeRR;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
-		long startPolyRR = System.nanoTime();
+		
 		/* apply poly-rr */
-		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal);
-		long endPolyRR = System.nanoTime();
-		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (endPolyRR - startPolyRR));
-		/* apply degree-rr */
-		long startDegreeRR = System.nanoTime();
-		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g);
-		long endDegreeRR = System.nanoTime();
-		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (endDegreeRR - startDegreeRR));
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal,this.runningTimeMap);
 
+		/* apply degree-rr */
+		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g,this.runningTimeMap);
+		
 		Map<Integer, Boolean> dominatedMap = drrr.getDominatedMap();
 
 		// sort a list of vertex from lowest degree to highest
@@ -206,7 +208,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 			}
 
 			Integer v = vList.get(i);
-			if (!dominatedMap.get(v)) {
+			//if (!dominatedMap.get(v)) {
 				currentIndex++;
 				Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
 
@@ -251,17 +253,14 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 					 * than k, we will not back until it equals k
 					 */
 					backKIndex = currentIndex - k;
-					if (backKIndex < 0) {
-						continue;
-					}
+					if (backKIndex >=0) {
+						 
 					previousPos = backKIndex % queueSize;
 
 					
 					ddsI = GreedyDSUtil.invokeDDSFPT(previousPos, vertexSolutionList, gI, dI, ddsI, this.indicator,
 							this.rUpperBoundary,this.runningTimeMap);
-					
-					
-					
+					}
 				} 
 
 				if (ddsI != null && ddsI.size() <= dI.size()) {
@@ -290,19 +289,28 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 				previousPos = currentPos;
 
 		
-			}
+			//}
 			if (AlgorithmUtil.isAllDominated(dominatedMap)) {
 				break;
 			}
 		}
 
-		this.dominatingSet = vertexSolutionList.get(currentPos);
+		
+		//do guarantee, minimal, ls at the last step;
+		
+		dI = vertexSolutionList.get(currentPos);
+		
+		List<Integer> gDI=GreedyDSUtil.useGreedyToCalcDS(g,this.runningTimeMap);
+		if (dI.size() < gDI.size()) {
+			this.dominatingSet = dI;
+		} else {
+			this.dominatingSet = gDI;
+		}
+		
 		
 		GreedyDSUtil.applyMinimal(g,this.dominatingSet, this.runningTimeMap);
-		
-
 		GreedyDSUtil.applyLS(g,this.dominatingSet, this.runningTimeMap);
-		
+	
 
 	}
 

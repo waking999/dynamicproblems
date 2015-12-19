@@ -26,13 +26,23 @@ public class TestUtil {
 	}
 
 	public static final String DIMACS_PATH = "src/test/resources/DIMACS/";
-	public static final String[] DIMACS_FILES = { "C1000.9.clq", "C125.9.clq", "C2000.5.clq", "C2000.9.clq",
-			"C250.9.clq", "C4000.5.clq", "C500.9.clq", "DSJC1000.5.clq", "DSJC500.5.clq", "MANN_a27.clq",
-			"MANN_a81.clq", "brock200_2.clq", "brock200_4.clq", "brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
-			"brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
-			"gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq", "keller4.clq", "keller5.clq", "keller6.clq",
-			"p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq", "p_hat300-1.clq", "p_hat300-2.clq",
-			"p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq", "p_hat700-3.clq"
+	public static final String[] DIMACS_FILES = { 
+			 "C1000.9.clq", 
+			"C125.9.clq", 
+			 "C2000.5.clq", 
+			 "C2000.9.clq",
+			 "C250.9.clq", "C4000.5.clq", "C500.9.clq", "DSJC1000.5.clq",
+			 "DSJC500.5.clq", "MANN_a27.clq",
+			 "MANN_a81.clq", "brock200_2.clq", "brock200_4.clq",
+			 "brock400_2.clq", "brock400_4.clq", "brock800_2.clq",
+			 "brock800_4.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq",
+			 "gen400_p0.9_55.clq", "gen400_p0.9_65.clq",
+			 "gen400_p0.9_75.clq", "hamming10-4.clq", "hamming8-4.clq",
+			 "keller4.clq", "keller5.clq", "keller6.clq",
+			 "p_hat1500-1.clq", "p_hat1500-2.clq", "p_hat1500-3.clq",
+			 "p_hat300-1.clq", "p_hat300-2.clq",
+			 "p_hat300-3.clq", "p_hat700-1.clq", "p_hat700-2.clq",
+			 "p_hat700-3.clq"
 
 	};
 
@@ -51,9 +61,14 @@ public class TestUtil {
 			"frb59-26-mis/frb59-26-3.mis", "frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
-	public static final String[] KONECT_FILES = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
-			"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-			"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet", };
+	public static final String[] KONECT_FILES = { 
+//			"000027_zebra.konet", 
+//			"000034_zachary.konet", 
+//			"000062_dolphins.konet",
+//			"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+//			"001133_rovira.konet", "001174_euroroad.konet",
+			"001858_hamster.konet", 
+			};
 
 	public static List<String[]> simpleAM0() {
 		List<String[]> am = new ArrayList<String[]>();

@@ -148,6 +148,19 @@ public class GreedyVote implements ITask, IGreedyDS <Integer>{
 		this.numOfVertices = g.getVertexCount();
 
 	}
+	
+	/**
+	 * constructor method
+	 * 
+	 * @param g,
+	 *            a graph instance
+	 */
+	public GreedyVote(String indicator, Graph<Integer, String> g) {
+		this.indicator=indicator;
+		this.g = g;
+		this.numOfVertices = g.getVertexCount();
+
+	}
 
 	/**
 	 * the major function do the computing to get the desired solution. In this

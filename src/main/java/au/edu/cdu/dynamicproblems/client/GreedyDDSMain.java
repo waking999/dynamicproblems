@@ -18,13 +18,14 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 
+@Deprecated
 public class GreedyDDSMain extends AbstractAlgorithmMain {
 	private static Logger log = LogUtil.getLogger(GreedyDDSMain.class);
 
 	private static Map<String, String> inputFileMap = new HashMap<String, String>();
+
 	static {
-		inputFileMap.put("50_0.3_testcase_a",
-				"src/main/resources/50_0.3_testcase_a.csv");
+		inputFileMap.put("50_0.3_testcase_a", "src/main/resources/50_0.3_testcase_a.csv");
 
 		// inputFileMap.put("1000_0.3_2_testcase_b",
 		// "src/main/resources/1000/1000_0.3_2_testcase_b.csv");
@@ -47,11 +48,9 @@ public class GreedyDDSMain extends AbstractAlgorithmMain {
 		runSingleThread(new IThreadFunc() {
 			@Override
 			public void threadFunc(ThreadFuncParameter tfp)
-					throws MOutofNException, ExceedLongMaxException,
-					ArraysNotSameLengthException {
+					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 
-				GreedyDSCompleteVA ag = new GreedyDSCompleteVA(tfp.getIndicator(), tfp.getAm(),
-						tfp.getK(), tfp.getR());
+				GreedyDSCompleteVA ag = new GreedyDSCompleteVA(tfp.getIndicator(), tfp.getAm(), tfp.getK(), tfp.getR());
 				Result result = null;
 
 				ag.computing();
@@ -70,8 +69,7 @@ public class GreedyDDSMain extends AbstractAlgorithmMain {
 	}
 
 	@Override
-	void runMajority(TaskContainer tc, IThreadFunc tf)
-			throws FileNotFoundException, IOException, MOutofNException,
+	void runMajority(TaskContainer tc, IThreadFunc tf) throws FileNotFoundException, IOException, MOutofNException,
 			ExceedLongMaxException, ArraysNotSameLengthException {
 		Set<String> keySet = inputFileMap.keySet();
 		for (String key : keySet) {
@@ -89,7 +87,7 @@ public class GreedyDDSMain extends AbstractAlgorithmMain {
 
 					// int k = 500;
 					// int r = 3;
-					
+
 					ThreadFuncParameter tfp = new ThreadFuncParameter();
 					tfp.setAm(am);
 					tfp.setIndicator(key);

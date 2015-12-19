@@ -8,7 +8,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.va.GreedyVoteGrVA;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyVote;
+import au.edu.cdu.dynamicproblems.algorithm.ds.IGreedyDS;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
@@ -25,8 +26,8 @@ public class AlgorithmMain {
 
 	// KONECT
 	private static String konectPath = "src/main/resources/KONECT/";
-	private static String[] konectFiles = { "001133_rovira.konet", "001174_euroroad.konet",
-
+	private static String[] konectFiles = { 
+			"001133_rovira.konet", "001174_euroroad.konet",
 	};
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -42,9 +43,9 @@ public class AlgorithmMain {
 			FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + inputFile);
 			List<String[]> am = fo.getAdjacencyMatrix();
 
-			Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+			Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 			// change for invoking different algorithms
-			GreedyVoteGrVA ag = new GreedyVoteGrVA(inputFile, g);
+			IGreedyDS<Integer> ag = new GreedyVote(inputFile, g);
 			Result r = ag.run();
 
 			List<Integer> ds = ag.getDominatingSet();
@@ -57,7 +58,7 @@ public class AlgorithmMain {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}catch(InterruptedException e){
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

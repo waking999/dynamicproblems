@@ -102,8 +102,11 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 	/**
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a dominating set
+	 * 
+	 * @throws InterruptedException
 	 */
-	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	public void computing()
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		long start = System.nanoTime();
 		initialization();
 		greedy();
@@ -121,7 +124,7 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 	private void initialization() {
 		dominatingSet = new ArrayList<Integer>();
 		this.runningTimeMap = new HashMap<String, Long>();
-
+		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
 		/* the size of the queue */
 		queueSize = k + 1;
 
@@ -131,22 +134,19 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 	// private List<Integer> verticesAfterDegreeRR;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	private void greedy()
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
-		long startPolyRR = System.nanoTime();
+
 		/* apply poly-rr */
-		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal);
-		long endPolyRR = System.nanoTime();
-		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (endPolyRR - startPolyRR));
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap);
+
 		/* apply degree-rr */
-		long startDegreeRR = System.nanoTime();
-		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g);
-		long endDegreeRR = System.nanoTime();
-		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (endDegreeRR - startDegreeRR));
+		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 
 		Map<Integer, Boolean> dominatedMap = drrr.getDominatedMap();
 
-		// sort a list of vertex from lowest degree to highest
+		// sort a list of vertex from highest degree to lowest
 		List<Integer> vList = OrderPackageUtil.getVertexListDegreeDesc(g);
 
 		List<Integer> dI;
@@ -203,110 +203,105 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 			}
 
 			Integer v = vList.get(i);
-			if (!dominatedMap.get(v)) {
-				currentIndex++;
-				Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
+			// if (!dominatedMap.get(v)) {
+			currentIndex++;
+			Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, dominatedMap);
 
-				// the solution in each round: add u
-				dI = new ArrayList<Integer>();
-				dI.addAll(dIPre);
-				AlgorithmUtil.addElementToList(dI, u);
+			// the solution in each round: add u
+			dI = new ArrayList<Integer>();
+			dI.addAll(dIPre);
+			AlgorithmUtil.addElementToList(dI, u);
 
+			/*
+			 * the subgraph in each round: add u and one of its neighbor (other
+			 * than vertices in previous sub graph)
+			 *
+			 * the purpose of adding u and only one of its neighbor is: 1. if
+			 * only u, then sometimes u can be removed by dds fpt in a subgraph
+			 * that u is dominated by another vertex but this makes other
+			 * vertices dominated by u will be undominated; 2. if add all
+			 * neighbors of u, the distance between G and G' can be huge such
+			 * that slow down the process of dds fpt; 3. only u and one of its
+			 * neighbor is a balance to not lose the generality and 2k is
+			 * acceptable distance;
+			 */
+			gI = AlgorithmUtil.copyGraph(gIPre);
+			uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g, dominatedMap, gI, u, v);
+			AlgorithmUtil.prepareGraph(g, gI, uList);
+
+			// previousIndex++;
+			// if (previousIndex >= queueSize) {
+			// previousIndex = 0;
+			// }
+			currentPos = currentIndex % queueSize;
+
+			// GreedyDSUtil.setStatusOfIthVertexInQueue(curentSolutionPos,
+			// vertexSolutionList, dI, vertexGraphList, gI);
+
+			// if it is a moment of regret, apply dds fpt
+			List<Integer> ddsI = null;
+			if (AlgorithmUtil.isMomentOfRegret(v, g, dI, u)) {
 				/*
-				 * the subgraph in each round: add u and one of its neighbor
-				 * (other than vertices in previous sub graph)
-				 *
-				 * the purpose of adding u and only one of its neighbor is: 1.
-				 * if only u, then sometimes u can be removed by dds fpt in a
-				 * subgraph that u is dominated by another vertex but this makes
-				 * other vertices dominated by u will be undominated; 2. if add
-				 * all neighbors of u, the distance between G and G' can be huge
-				 * such that slow down the process of dds fpt; 3. only u and one
-				 * of its neighbor is a balance to not lose the generality and
-				 * 2k is acceptable distance;
+				 * back k vertices
+				 * 
+				 * if the number of vertices that has been visited is less than
+				 * k, we will not back until it equals k
 				 */
-				gI = AlgorithmUtil.copyGraph(gIPre);
-				uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g, dominatedMap, gI, u, v);
-				AlgorithmUtil.prepareGraph(g, gI, uList);
+				backKIndex = currentIndex - k;
+				if (backKIndex >= 0) {
 
-				// previousIndex++;
-				// if (previousIndex >= queueSize) {
-				// previousIndex = 0;
-				// }
-				currentPos = currentIndex % queueSize;
-
-				// GreedyDSUtil.setStatusOfIthVertexInQueue(curentSolutionPos,
-				// vertexSolutionList, dI, vertexGraphList, gI);
-
-				// if it is a moment of regret, apply dds fpt
-				List<Integer> ddsI = null;
-				if (AlgorithmUtil.isMomentOfRegret(v, g, dI, u)) {
-					/*
-					 * back k vertices
-					 * 
-					 * if the number of vertices that has been visited is less
-					 * than k, we will not back until it equals k
-					 */
-					backKIndex = currentIndex - k;
-					if (backKIndex < 0) {
-						continue;
-					}
 					previousPos = backKIndex % queueSize;
 
-					
 					ddsI = GreedyDSUtil.invokeDDSFPT(previousPos, vertexSolutionList, gI, dI, ddsI, this.indicator,
-							this.rUpperBoundary,this.runningTimeMap);
-					
-					
-					
-				} 
+							this.rUpperBoundary, this.runningTimeMap);
+				}
 
-				if (ddsI != null && ddsI.size() <= dI.size()) {
-					// long startMin = System.nanoTime();
-					// ddsI = AlgorithmUtil.minimal(gI, ddsI);
-					// long endMin = System.nanoTime();
-					// this.runningTimeMap.put("Minimal", (endMin - startMin));
-					//
-					// long startGrasp = System.nanoTime();
-					// ddsI = AlgorithmUtil.grasp(gI, ddsI);
-					// long endGrasp = System.nanoTime();
-					// this.runningTimeMap.put("GRASP", (endGrasp -
-					// startGrasp));
-					/*
-					 * if we get a smaller solution from dds fpt than the
-					 * current solution, we will reset the ith position of the
-					 * queue i) no change to gI; ii) no change to dominatedMap;
-					 * iii) change dI
-					 */
-					dI=ddsI;
-
-				} 
-				
-				GreedyDSUtil.setStatusOfIthVertexInQueue(currentPos, vertexSolutionList, dI, vertexGraphList, gI);
-
-				previousPos = currentPos;
-
-		
 			}
+
+			if (ddsI != null && ddsI.size() <= dI.size()) {
+				// long startMin = System.nanoTime();
+				// ddsI = AlgorithmUtil.minimal(gI, ddsI);
+				// long endMin = System.nanoTime();
+				// this.runningTimeMap.put("Minimal", (endMin - startMin));
+				//
+				// long startGrasp = System.nanoTime();
+				// ddsI = AlgorithmUtil.grasp(gI, ddsI);
+				// long endGrasp = System.nanoTime();
+				// this.runningTimeMap.put("GRASP", (endGrasp -
+				// startGrasp));
+				/*
+				 * if we get a smaller solution from dds fpt than the current
+				 * solution, we will reset the ith position of the queue i) no
+				 * change to gI; ii) no change to dominatedMap; iii) change dI
+				 */
+				dI = ddsI;
+
+			}
+
+			GreedyDSUtil.setStatusOfIthVertexInQueue(currentPos, vertexSolutionList, dI, vertexGraphList, gI);
+
+			previousPos = currentPos;
+
+			// }
 			if (AlgorithmUtil.isAllDominated(dominatedMap)) {
 				break;
 			}
 		}
 
-		this.dominatingSet = vertexSolutionList.get(currentPos);
-		
-		GreedyDSUtil.applyMinimal(g,this.dominatingSet, this.runningTimeMap);
-		
+		// do guarantee, minimal, ls at the last step;
 
-		GreedyDSUtil.applyLS(g,this.dominatingSet, this.runningTimeMap);
-		
+		dI = vertexSolutionList.get(currentPos);
+
+		List<Integer> gDI = GreedyDSUtil.useGreedyToCalcDS(g, this.runningTimeMap);
+		if (dI.size() < gDI.size()) {
+			this.dominatingSet = dI;
+		} else {
+			this.dominatingSet = gDI;
+		}
+
+		GreedyDSUtil.applyMinimal(g, this.dominatingSet, this.runningTimeMap);
+		GreedyDSUtil.applyLS(g, this.dominatingSet, this.runningTimeMap);
 
 	}
-
-
-
-	
-
-	
 
 }

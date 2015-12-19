@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.TestUtil;
@@ -23,7 +24,7 @@ public class GreedyDSMVSTest {
 	private Logger log = LogUtil.getLogger(GreedyDSMVSTest.class);
 	private static final String CLASS_NAME = GreedyDSMVSTest.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
@@ -36,7 +37,7 @@ public class GreedyDSMVSTest {
 		runStrategies(path, krArray, files, destFile, 1, 1);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {

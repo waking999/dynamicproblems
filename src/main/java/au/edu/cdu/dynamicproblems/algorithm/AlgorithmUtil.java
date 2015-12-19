@@ -32,6 +32,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
  *
  */
 public class AlgorithmUtil {
+	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(AlgorithmUtil.class);
 
 	public static final String CONNECTED = "1";
@@ -51,10 +52,11 @@ public class AlgorithmUtil {
 
 	public final static String RUNNING_TIME_TOTAL = "Total";
 	public final static String RUNNING_TIME_DDS = "DDS";
-	public final static String RUNNING_TIME_MINI = "MINIMAL";
+	public final static String RUNNING_TIME_MINI = "Minimal";
 	public final static String RUNNING_TIME_LS = "LS";
 	public final static String RUNNING_TIME_POLYRR = "Poly-RR";
 	public final static String RUNNING_TIME_DEGREERR = "Degree-RR";
+	public final static String RUNNING_TIME_GUARANTEE = "Guarantee";
 	// used for left pad for binary string of an integer
 //	@Deprecated
 //	private static final String BINARY_LEFT_PAD = "0";
@@ -936,7 +938,6 @@ public class AlgorithmUtil {
 	 *            ,the up bound of the random number
 	 * @return,a random float number in a range
 	 */
-	@Deprecated
 	public static float randomInRang(float min, float max) {
 		Random random = new Random();
 		float s = random.nextFloat() * (max - min) + min;
@@ -2150,7 +2151,7 @@ public class AlgorithmUtil {
 					if (U.isEmpty()) {
 						d.remove(vi);
 						d.remove(vj);
-						log.debug("ds changed here.");
+						//log.debug("ds changed here.");
 						return grasp(g, d);
 					} else {
 						for (V vk : vertices) {
@@ -2158,7 +2159,7 @@ public class AlgorithmUtil {
 								d.remove(vi);
 								d.remove(vj);
 								d.add(vk);
-								log.debug("ds changed here.");
+								//log.debug("ds changed here.");
 								return grasp(g, d);
 							}
 						}

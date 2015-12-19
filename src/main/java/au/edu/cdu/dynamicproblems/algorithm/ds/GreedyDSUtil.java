@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.collections15.CollectionUtils;
+import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.order.DegreeRRReturn;
@@ -17,6 +18,7 @@ import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
+import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
@@ -27,6 +29,8 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
  *
  */
 public class GreedyDSUtil {
+	@SuppressWarnings("unused")
+	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
 	/**
 	 * 
 	 * @param dominatingSet
@@ -164,10 +168,15 @@ public class GreedyDSUtil {
 	 *            the graph before applying reduction rule
 	 * @return
 	 */
-	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g) {
-
+	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g, Map<String,Long> runningTimeMap) {
+		long start = System.nanoTime();
+		
 		Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
 		gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
+		
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
+		
 		return gRR;
 	}
 
@@ -179,7 +188,9 @@ public class GreedyDSUtil {
 	 *            the graph before applying the reduction rule
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static DegreeRRReturn applyDegreeReductionRules(Graph<Integer, String> g) {
+	public static DegreeRRReturn applyDegreeReductionRules(Graph<Integer, String> g, Map<String,Long> runningTimeMap) {
+		
+		long start = System.nanoTime();
 		List<Integer> dsAfterDegreeRR = new ArrayList<Integer>();
 		List<Integer> verticesAfterDegreeRR = new ArrayList<Integer>();
 
@@ -245,6 +256,10 @@ public class GreedyDSUtil {
 			}
 		}
 
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (end - start));
+
+		
 		return new DegreeRRReturn(dsAfterDegreeRR, verticesAfterDegreeRR, dominatedMap);
 	}
 
@@ -351,6 +366,7 @@ public class GreedyDSUtil {
 			Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI, String indicator, int rUpperBoundary,
 			Map<String, Long> runningTimeMap)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+		//log.debug("invoke dds");
 		long start = System.nanoTime();
 		/*
 		 * get the solution at the back up point for future usage in dds fpt
@@ -421,7 +437,7 @@ public class GreedyDSUtil {
 		if (existingRunningTime == null) {
 			existingRunningTime = Long.valueOf(0);
 		}
-		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_MINI, existingRunningTime + (end - start));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_LS, existingRunningTime + (end - start));
 	}
 	/**
 	 * 
@@ -429,8 +445,10 @@ public class GreedyDSUtil {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	public static List<Integer> useGreedyToCalcDS(Graph<Integer, String> g) throws InterruptedException {
+	public static List<Integer> useGreedyToCalcDS(Graph<Integer, String> g,Map<String,Long> runningTimeMap) throws InterruptedException {
 
+		long start = System.nanoTime();
+		
 		GreedyNative ag = new GreedyNative(g);
 		ag.run();
 
@@ -441,6 +459,15 @@ public class GreedyDSUtil {
 		int dsSize = ds.size();
 		List<Integer> ds1 = ag1.getDominatingSet();
 		int ds1Size = ds1.size();
+		
+		long end = System.nanoTime();
+		Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_GUARANTEE);
+		if (existingRunningTime == null) {
+			existingRunningTime = Long.valueOf(0);
+		}
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_GUARANTEE, existingRunningTime + (end - start));
+
+		
 		if (dsSize <= ds1Size) {
 			return ds;
 		} else {
@@ -460,5 +487,19 @@ public class GreedyDSUtil {
 		List<V> vList = OrderPackageUtil.getVertexListWeightDesc(g, weightMap);
 		return vList.get(0);
 
+	}
+	/**
+	 * 
+	 * @param runningTimeMap
+	 */
+	public static void initRunningTimeMap(Map<String,Long> runningTimeMap) {
+		
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_GUARANTEE, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_MINI, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_LS, Long.valueOf(0));
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_TOTAL, Long.valueOf(0));
 	}
 }

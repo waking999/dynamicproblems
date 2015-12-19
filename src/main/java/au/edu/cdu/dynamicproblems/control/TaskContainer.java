@@ -12,7 +12,7 @@ import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 
 public class TaskContainer {
 
-	private List<Future> futureList = new ArrayList<Future>();
+	private List<Future<Result>> futureList = new ArrayList<Future<Result>>();
 	private TaskLock lock;
 	private ExecutorService container;
 
@@ -21,11 +21,11 @@ public class TaskContainer {
 		lock = new TaskLock(containerSize, join);
 	}
 
-	public <R> void putTasks(ITask task) {
+	public void putTasks(ITask task) {
 	    task.setLock(lock);
 		
 		lock.getSemaphore().acquireUninterruptibly();
-		Future future = container.submit(task);
+		Future<Result> future = container.submit(task);
 		if (lock.isJoin()) {
 			//futureList.add(future);
 			AlgorithmUtil.addElementToList(futureList, future);
@@ -37,7 +37,8 @@ public class TaskContainer {
 
 	}
 
-	public <R> List<R> joinTasks() throws InterruptedException,
+	@SuppressWarnings("unchecked")
+	public  List<Result> joinTasks() throws InterruptedException,
 			ExecutionException {
 		synchronized (lock) {
 			while (lock.getTaskCount() > 0) {
@@ -45,15 +46,15 @@ public class TaskContainer {
 			}
 		}
 
-		List<R> list = new ArrayList<R>();
+		List<Result> list = new ArrayList<Result>();
 
-		for (Future f : futureList) {
+		for (Future<Result> f : futureList) {
 			Object o = f.get();
 			if (o != null) {
 				if (o instanceof Collection) {
-					list.addAll((Collection<R>) o);
+					list.addAll((Collection<Result>) o);
 				} else {
-					list.add((R) o);
+					list.add((Result) o);
 				}
 			}
 		}
