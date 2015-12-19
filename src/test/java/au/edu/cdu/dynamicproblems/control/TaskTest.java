@@ -4,20 +4,19 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 
 public class TaskTest {
 	private Logger log = LogUtil.getLogger(TaskTest.class);
-	@Ignore
+	//@Ignore
 	@Test
 	public void testMulTask() throws ExecutionException, InterruptedException {
 
 		TaskContainer tc = new TaskContainer(50, true);
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 5; i++) {
 			tc.putTasks(new TestTask(i));
 		}
 		List<Result> l = tc.joinTasks();

@@ -1,7 +1,20 @@
 package au.edu.cdu.dynamicproblems;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.junit.Assert;
+
+import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.ds.IGreedyDS;
+import au.edu.cdu.dynamicproblems.control.Result;
+import au.edu.cdu.dynamicproblems.io.FileOperation;
+import edu.uci.ics.jung.graph.Graph;
 
 public class TestUtil {
 	public static String getOutputFileName(String datasetName, String className) {
@@ -38,11 +51,70 @@ public class TestUtil {
 			"frb59-26-mis/frb59-26-3.mis", "frb59-26-mis/frb59-26-4.mis", "frb59-26-mis/frb59-26-5.mis" };
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
-	public static final String[] KONECT_FILES = { 
-			//"000027_zebra.konet", "000034_zachary.konet", 
-			"000062_dolphins.konet",
-			//"000112_David_Copperfield.konet", 
-			//"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-			//"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet",
-	};
+	public static final String[] KONECT_FILES = { "000027_zebra.konet", "000034_zachary.konet", "000062_dolphins.konet",
+			"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+			"001133_rovira.konet", "001174_euroroad.konet", "001858_hamster.konet", };
+
+	public static List<String[]> simpleAM0() {
+		List<String[]> am = new ArrayList<String[]>();
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "1", "0", "0", "1", "1", "1", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "0", "0", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "1", "0", "0" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "1" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "1" });
+		AlgorithmUtil.addElementToList(am,
+				new String[] { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0" });
+		return am;
+	}
+
+	/**
+	 * 
+	 * @param inputFile
+	 * @param destFile
+	 * @param ag
+	 * @param log
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+
+	public static <V,E> void run(String inputFile, String destFile, Graph<V, E> g, IGreedyDS<V> ag, Logger log)
+			throws InterruptedException, IOException, FileNotFoundException {
+
+		Result r = ag.run();
+
+		List<V> ds = ag.getDominatingSet();
+		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+
+		StringBuffer sb=new StringBuffer();
+		sb.append(inputFile).append(AlgorithmUtil.COMMA).append(r.getString());
+		String sbStr=sb.toString();
+		log.debug(sbStr);
+		if (destFile != null) {
+			FileOperation.saveCVSFile(destFile, sbStr);
+		}
+
+	}
+	
 }

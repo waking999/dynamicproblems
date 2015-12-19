@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyVoteGr;
+import au.edu.cdu.dynamicproblems.algorithm.ds.va.GreedyVoteGrVA;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
@@ -44,7 +44,7 @@ public class AlgorithmMain {
 
 			Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 			// change for invoking different algorithms
-			GreedyVoteGr ag = new GreedyVoteGr(inputFile, g);
+			GreedyVoteGrVA ag = new GreedyVoteGrVA(inputFile, g);
 			Result r = ag.run();
 
 			List<Integer> ds = ag.getDominatingSet();

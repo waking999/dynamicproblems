@@ -25,10 +25,12 @@ public class TestRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Result result = JUnitCore.runClasses(TestSuit.class);
+		Result result = JUnitCore.runClasses(AssistantSuite.class);
 		// log the result
 		for (Failure failure : result.getFailures()) {
-			log.info(failure.toString());
+			
+			log.info(failure.getDescription());
 		}
+		 System.out.println(result.wasSuccessful());
 	}
 }

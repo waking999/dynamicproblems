@@ -9,8 +9,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -20,11 +19,14 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyNative implements ITask, IAlgorithm {
+public class GreedyNative implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyNative.class);
 	private long runningTime;
+	public Map<String, Long> getRunningTimeMap(){
+		return null;
+	}
 
 	private TaskLock lock;
 
@@ -36,6 +38,7 @@ public class GreedyNative implements ITask, IAlgorithm {
 		this.lock = lock;
 	}
 
+	@Override
 	public Result run() throws InterruptedException {
 
 		try {
@@ -64,7 +67,7 @@ public class GreedyNative implements ITask, IAlgorithm {
 	/**
 	 * the graph
 	 */
-	private Graph<Integer, Integer> g;
+	private Graph<Integer, String> g;
 	/**
 	 * 
 	 * a sorted vertices with their degree (from highest degree to the lowest)
@@ -96,7 +99,7 @@ public class GreedyNative implements ITask, IAlgorithm {
 	public GreedyNative(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
@@ -104,11 +107,11 @@ public class GreedyNative implements ITask, IAlgorithm {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
-	public GreedyNative(Graph<Integer, Integer> g) {
+	public GreedyNative(Graph<Integer, String> g) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
 
@@ -153,28 +156,16 @@ public class GreedyNative implements ITask, IAlgorithm {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			// get the vertex with highest utility (the number of undominated
 			// neighbors)
-			List<VertexDegree> vdList = AlgorithmUtil
-					.sortVertexAccordingToUtility(g, dominatedMap);
-			VertexDegree vd = vdList.get(0);
-
-			Integer v = vd.getVertex();
-			/*
-			 * this is commented out because we don't need the vertex of highest
-			 * utility in the close neighborhood, we just want the vertex with
-			 * highest utility itself; Integer w = AlgorithmUtil
-			 * .getVertexFromClosedNeighborhoodWithHighestUtility(v, g, vdList,
-			 * dominatedMap);
-			 * 
-			 * // add it into dominating set
-			 * AlgorithmUtil.addElementToList(dominatingSet, w); // set it is
-			 * dominated dominatedMap.put(w, true);
-			 * 
-			 * // set its neigbors is dominated Collection<Integer> wNeigs =
-			 * g.getNeighbors(w);
-			 * 
-			 * for (Integer u : wNeigs) { dominatedMap.put(u, true); }
-			 */
-
+//			List<VertexDegree> vdList = AlgorithmUtil
+//					.sortVertexAccordingToUtility(g, dominatedMap);
+//			VertexDegree vd = vdList.get(0);
+//
+//			Integer v = vd.getVertex();
+	
+			List<Integer> vList = OrderPackageUtil.getVertexListUtilityDesc(this.g,this.dominatedMap);
+			Integer v=vList.get(0);
+			
+			
 			// add it into dominating set
 			AlgorithmUtil.addElementToList(dominatingSet, v);
 			// set it is dominated
@@ -189,5 +180,7 @@ public class GreedyNative implements ITask, IAlgorithm {
 		}
 
 	}
+
+	
 
 }

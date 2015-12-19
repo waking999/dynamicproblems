@@ -2,17 +2,15 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.VertexWeight;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -21,6 +19,7 @@ import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
+
 /**
  * This class is used for implementing Greedy Vote Gr Algorithm in the
  * paper:Laura A Sanchis. Experimental analysis of heuristic algorithms for the
@@ -28,11 +27,14 @@ import edu.uci.ics.jung.graph.Graph;
  * 
  * @author kai wang
  */
-public class GreedyVoteGr implements ITask, IAlgorithm {
+public class GreedyVoteGr implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyVoteGr.class);
 	private long runningTime;
+	public Map<String, Long> getRunningTimeMap(){
+		return null;
+	}
 
 	private TaskLock lock;
 
@@ -43,6 +45,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	public void setLock(TaskLock lock) {
 		this.lock = lock;
 	}
+
 	/**
 	 * the major method to be invoked to run the algorithm
 	 * 
@@ -76,7 +79,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	/**
 	 * the graph
 	 */
-	private Graph<Integer, Integer> g;
+	private Graph<Integer, String> g;
 	/**
 	 * 
 	 * a sorted vertices with their degree (from highest degree to the lowest)
@@ -107,30 +110,28 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	 */
 	private List<String[]> adjacencyMatrix;
 
-	@SuppressWarnings("deprecation")
 	public GreedyVoteGr(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public GreedyVoteGr(String indicator, List<String[]> adjacencyMatrix) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
-	public GreedyVoteGr(Graph<Integer, Integer> g) {
+	public GreedyVoteGr(Graph<Integer, String> g) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
 
 	}
 
-	public GreedyVoteGr(String indicator, Graph<Integer, Integer> g) {
+	public GreedyVoteGr(String indicator, Graph<Integer, String> g) {
 		this.indicator = indicator;
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
@@ -197,7 +198,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 		float votev = voteMap.get(v);
 		for (Integer u : vNeigs) {
 			float weightu = weightMap.get(u);
-			if (weightu - 0.0f > VertexWeight.ZERO_DIFF) {
+			if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
 				float voteu = voteMap.get(u);
 				if (!coveredv) {
 					weightMap.put(u, weightu - votev);
@@ -211,7 +212,7 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 					Collection<Integer> uNeigs = g.getNeighbors(u);
 					for (Integer w : uNeigs) {
 						float weightw = weightMap.get(w);
-						if (weightu - 0.0f > VertexWeight.ZERO_DIFF) {
+						if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
 							weightMap.put(w, weightw - voteu);
 						}
 					}
@@ -224,80 +225,25 @@ public class GreedyVoteGr implements ITask, IAlgorithm {
 	}
 
 	private Integer chooseVertex() {
-		List<VertexWeight> vertexWeightList = new ArrayList<VertexWeight>(this.numOfVertices);
-
-		Set<Integer> keySet = this.weightMap.keySet();
-		for (Integer key : keySet) {
-			float weight = weightMap.get(key);
-			AlgorithmUtil.addElementToList(vertexWeightList, new VertexWeight(key, weight));
-
-		}
-
-		Collections.sort(vertexWeightList);
-		VertexWeight vw = vertexWeightList.get(0);
-
-		return vw.getVertex();
-
+		// List<VertexPriority<Integer>> vertexPriorityList = new
+		// ArrayList<VertexPriority<Integer>>(this.numOfVertices);
+		//
+		// Set<Integer> keySet = this.weightMap.keySet();
+		// for (Integer key : keySet) {
+		// float weight = weightMap.get(key);
+		// AlgorithmUtil.addElementToList(vertexPriorityList, new
+		// VertexPriority<Integer>(key, weight));
+		//
+		// }
+		//
+		// Collections.sort(vertexPriorityList);
+		// VertexPriority vw = vertexPriorityList.get(0);
+		//
+		// return vw.getVertex();
+		List<Integer> vList = OrderPackageUtil.getVertexListWeightDesc(this.g, this.weightMap);
+		return vList.get(0);
 	}
 
-//	/**
-//	 * a GRASP local search
-//	 * 
-//	 * @param g,
-//	 *            the graph
-//	 * @param d,
-//	 *            the dominating set
-//	 */
-//	private List<Integer> grasp(Graph<Integer, Integer> g, List<Integer> d) {
-//		Collection<Integer> vertices = g.getVertices();
-//		int[] coveredby = new int[this.numOfVertices];
-//
-//		for (int i = 0; i < this.numOfVertices; i++) {
-//			coveredby[i] = 0;
-//		}
-//
-//		for (Integer w : d) {
-//			coveredby[w]++;
-//			coveredby[w] = coveredby[w] + g.getNeighborCount(w);
-//		}
-//		int dSize = d.size();
-//		for (int i = 0; i < dSize - 1; i++) {
-//			Integer vi = d.get(i);
-//			for (int j = i + 1; j < dSize; j++) {
-//				Integer vj = d.get(j);
-//				if (!vi.equals(vj)) {
-//					List<Integer> U = new ArrayList<Integer>();
-//					for (Integer vk : vertices) {
-//						int covby = coveredby[vk];
-//						if (AlgorithmUtil.isAVertexDominateAVertex(vi, vk, g)) {
-//							covby--;
-//						}
-//						if (AlgorithmUtil.isAVertexDominateAVertex(vj, vk, g)) {
-//							covby--;
-//						}
-//						if (covby == 0) {
-//							AlgorithmUtil.addElementToList(U, vk);
-//						}
-//					}
-//					if (U.isEmpty()) {
-//						d.remove(vi);
-//						d.remove(vj);
-//						return grasp(g, d);
-//					} else {
-//						for (Integer vk : vertices) {
-//							if (AlgorithmUtil.isAVertexDominateASet(vk, U, g)) {
-//								d.remove(vi);
-//								d.remove(vj);
-//								d.add(vk);
-//								return grasp(g, d);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//
-//		return d;
-//	}
+	
 
 }

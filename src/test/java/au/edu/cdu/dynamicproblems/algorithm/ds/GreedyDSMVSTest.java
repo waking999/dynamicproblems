@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.TestUtil;
@@ -24,9 +23,9 @@ public class GreedyDSMVSTest {
 	private Logger log = LogUtil.getLogger(GreedyDSMVSTest.class);
 	private static final String CLASS_NAME = GreedyDSMVSTest.class.getSimpleName();
 
-	@Ignore
+	//@Ignore
 	@Test
-	public void testDIMACS() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
+	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException, InterruptedException {
 		String datasetName = "DIMACS";
 		String path = TestUtil.DIMACS_PATH;
@@ -37,9 +36,9 @@ public class GreedyDSMVSTest {
 		runStrategies(path, krArray, files, destFile, 1, 1);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
-	public void testBHOSLIB() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
@@ -55,7 +54,7 @@ public class GreedyDSMVSTest {
 
 	//@Ignore
 	@Test
-	public void testKONECT() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
+	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
 			InterruptedException {
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
@@ -68,6 +67,8 @@ public class GreedyDSMVSTest {
 		runStrategies(path, krArray, files, destFile, 1, 1);
 	}
 
+
+	@SuppressWarnings("unchecked")
 	private void runStrategies(String path, int[][] krArray, String[] files, String destFile, int iStart, int iEnd)
 			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, InterruptedException {
@@ -94,14 +95,14 @@ public class GreedyDSMVSTest {
 
 					StringBuilder sb = new StringBuilder();
 
-					GreedyDSM1 ag01 = new GreedyDSM1(am, k, r);
+					IGreedyDS<Integer> ag01 = new GreedyDSM1(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
 
-					GreedyDSM2 ag02 = new GreedyDSM2(am, k, r);
+					IGreedyDS<Integer> ag02 = new GreedyDSM2(am, k, r);
 					Result result02 = ag02.run();
 					List<Integer> ds02 = ag02.getDominatingSet();
 					int ds02Size = ds02.size();
@@ -143,6 +144,8 @@ public class GreedyDSMVSTest {
 		return msgSb.toString();
 	}
 
+
+	@SuppressWarnings("unchecked")
 	private void setRunningTime(StringBuilder sb, Map<String, Long>... agRunningTimeMaps) {
 		long allAlgTotalRunningTime = 0;
 		for (Map<String, Long> agRunningTimeMap : agRunningTimeMaps) {

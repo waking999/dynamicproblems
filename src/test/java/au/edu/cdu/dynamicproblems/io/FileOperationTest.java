@@ -4,18 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import junit.framework.Assert;
-
-import org.junit.Ignore;
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class FileOperationTest {
-	@Ignore
+	//@Ignore
 	@Test
 	public void testRetriveProblemInfoByEdgePair()
 			throws FileNotFoundException, IOException {
 		FileInfo fi = new FileInfo();
-		fi.setInputFile("src/test/resources/edge-pair.txt");
+		fi.setInputFile("src/test/resources/KONECT/000027_zebra.konet");
 		FileOperation fo = new FileOperation();
 		fo.setFileInfo(fi);
 		fo.retriveProblemInfoByEdgePair();
@@ -23,10 +22,10 @@ public class FileOperationTest {
 		List<String[]> am = fo.getAdjacencyMatrix();
 
 		Assert.assertEquals(FileOperation.CONNECTED, am.get(0)[1]);
-		Assert.assertEquals(FileOperation.UNCONNECTED, am.get(0)[500]);
+		Assert.assertEquals(FileOperation.UNCONNECTED, am.get(0)[15]);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testRetriveProblemInfo() throws FileNotFoundException,
 			IOException {

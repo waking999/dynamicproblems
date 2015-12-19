@@ -1,4 +1,4 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds;
+package au.edu.cdu.dynamicproblems.algorithm.ds.va;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,14 +13,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.ds.RoundResult;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
+@Deprecated
+public class GreedyIterativeV1VATest {
 
-public class GreedyIterativeTest {
-
-	private Logger log = LogUtil.getLogger(GreedyIterativeTest.class);
+	private Logger log = LogUtil.getLogger(GreedyIterativeV1VATest.class);
 
 	@Ignore
 	@Test
@@ -124,9 +125,9 @@ public class GreedyIterativeTest {
 					long finalRunningtime = -1;
 
 					for (int i = 0; i < times[j]; i++) {
-						Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
+						Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-						GreedyIterative ag = new GreedyIterative(this.getClass().getName(),am);
+						GreedyIterativeV1VA ag = new GreedyIterativeV1VA(this.getClass().getName(),am);
 						ag.run();
 
 						List<Integer> ds = ag.getDominatingSet();

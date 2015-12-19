@@ -1,4 +1,4 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds;
+package au.edu.cdu.dynamicproblems.algorithm.ds.va;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
-
-public interface IGreedyDS extends IAlgorithm {
+@Deprecated
+public interface IGreedyDSVA extends IAlgorithm {
 
 	public List<Integer> getDs();
 

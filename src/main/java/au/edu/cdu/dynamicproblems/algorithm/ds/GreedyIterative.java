@@ -5,12 +5,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.VertexDegree;
+import au.edu.cdu.dynamicproblems.algorithm.order.IOrder;
+import au.edu.cdu.dynamicproblems.algorithm.order.IPriority;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderDesc;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.PriorityBean;
+import au.edu.cdu.dynamicproblems.algorithm.order.PriorityDegree;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -48,7 +55,7 @@ public class GreedyIterative implements ITask, IAlgorithm {
 			Result r = getResult();
 
 			return r;
-		} catch (Exception e) {			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -58,9 +65,8 @@ public class GreedyIterative implements ITask, IAlgorithm {
 		Result r = new Result();
 		r.setHasSolution(true);
 		StringBuffer sb = new StringBuffer();
-		
-		sb.append(",").append(this.dominatingSet.size()).append(",")
-				.append(this.runningTime);
+
+		sb.append(",").append(this.dominatingSet.size()).append(",").append(this.runningTime);
 		r.setString(sb.toString());
 		return r;
 	}
@@ -68,7 +74,7 @@ public class GreedyIterative implements ITask, IAlgorithm {
 	/**
 	 * the graph
 	 */
-	private Graph<Integer, Integer> g;
+	private Graph<Integer, String> g;
 	/**
 	 * 
 	 * a sorted vertices with their degree (from highest degree to the lowest)
@@ -89,7 +95,6 @@ public class GreedyIterative implements ITask, IAlgorithm {
 	/**
 	 * number of vertices
 	 */
-	@SuppressWarnings("unused")
 	private int numOfVertices;
 
 	/**
@@ -100,7 +105,7 @@ public class GreedyIterative implements ITask, IAlgorithm {
 	public GreedyIterative(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
@@ -108,11 +113,11 @@ public class GreedyIterative implements ITask, IAlgorithm {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
-	public GreedyIterative(Graph<Integer, Integer> g) {
+	public GreedyIterative(Graph<Integer, String> g) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
 
@@ -122,8 +127,7 @@ public class GreedyIterative implements ITask, IAlgorithm {
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a dominating set
 	 */
-	public void computing() throws MOutofNException, ExceedLongMaxException,
-			ArraysNotSameLengthException {
+	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 		long start = System.nanoTime();
 		initialization();
 		greedy();
@@ -147,13 +151,14 @@ public class GreedyIterative implements ITask, IAlgorithm {
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
 			// get the vertex with highest utility (the number of undominated
 			// neighbors)
-			//List<VertexDegree> vdList = AlgorithmUtil.sortVertexAccordingToUtility(g, dominatedMap);
-			List<VertexDegree> vdList=AlgorithmUtil.sortVertexAccordingToUtility(g, dominatedMap);
-						
+			// List<VertexDegree> vdList =
+			// AlgorithmUtil.sortVertexAccordingToUtility(g, dominatedMap);
+//			List<VertexDegree> vdList = AlgorithmUtil.sortVertexAccordingToUtility(g, dominatedMap);
+//
+//			Integer v = getProabilityVertex(vdList);
 
-			Integer v = getProabilityVertex(vdList);
-		
-
+			Integer v= getProabilityVertex();
+			
 			// add it into dominating set
 			AlgorithmUtil.addElementToList(dominatingSet, v);
 			// set it is dominated
@@ -168,38 +173,81 @@ public class GreedyIterative implements ITask, IAlgorithm {
 		}
 
 	}
-	
-	private Integer getProabilityVertex(List<VertexDegree> vdList){
-		Integer[] vertices=new Integer[this.numOfVertices];
-		int[] utilities=new int[this.numOfVertices];
-		
-		for(int i=0;i<this.numOfVertices;i++){
-			VertexDegree vd=vdList.get(i);
-			vertices[i]=vd.getVertex();
-			if(i==0){
-				
-				utilities[i]=vd.getDegree();
-			}else{
-				utilities[i]=vd.getDegree()+utilities[i-1];
+
+	private Integer getProabilityVertex() {
+		Integer[] vertices = new Integer[this.numOfVertices];
+		float[] utilities = new float[this.numOfVertices];
+
+		IPriority pcb = new PriorityDegree();
+		IOrder<Integer> ocb = new OrderDesc<Integer>();
+		Queue<VertexPriority<Integer>> q = OrderPackageUtil
+				.getOrderedVertexPriorityQueue(new PriorityBean<Integer, String>(g, null, null), pcb, ocb);
+
+		int i = 0;
+		while (!q.isEmpty()) {
+
+			VertexPriority<Integer> vp = q.poll();
+			vertices[i] = vp.getVertex();
+			if (i == 0) {
+
+				utilities[i] = vp.getPriority();
+			} else {
+				utilities[i] = vp.getPriority() + utilities[i - 1];
 			}
-			
+			i++;
+
 		}
 		
-		int maxNum=utilities[this.numOfVertices-1];
-		
-		int randNum=(int) Math.round(Math.random() * maxNum);
-		
-		if(randNum<=utilities[0]){
+		float maxNum = utilities[this.numOfVertices - 1];
+
+		float randNum = (float) Math.round(Math.random() * maxNum);
+
+		if (randNum <= utilities[0]) {
 			return vertices[0];
 		}
-		
-		int i=0;
-		while(randNum>utilities[i]){
+
+		i = 0;
+		while (randNum > utilities[i]) {
 			i++;
 		}
-		
+
 		return vertices[i];
+
 		
 	}
+
+//	private Integer getProabilityVertex(List<VertexDegree> vdList) {
+//
+//		Integer[] vertices = new Integer[this.numOfVertices];
+//		int[] utilities = new int[this.numOfVertices];
+//
+//		for (int i = 0; i < this.numOfVertices; i++) {
+//			VertexDegree vd = vdList.get(i);
+//			vertices[i] = vd.getVertex();
+//			if (i == 0) {
+//
+//				utilities[i] = vd.getDegree();
+//			} else {
+//				utilities[i] = vd.getDegree() + utilities[i - 1];
+//			}
+//
+//		}
+//
+//		int maxNum = utilities[this.numOfVertices - 1];
+//
+//		int randNum = (int) Math.round(Math.random() * maxNum);
+//
+//		if (randNum <= utilities[0]) {
+//			return vertices[0];
+//		}
+//
+//		int i = 0;
+//		while (randNum > utilities[i]) {
+//			i++;
+//		}
+//
+//		return vertices[i];
+//
+//	}
 
 }

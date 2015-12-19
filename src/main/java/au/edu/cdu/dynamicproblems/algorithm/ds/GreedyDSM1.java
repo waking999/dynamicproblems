@@ -8,11 +8,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.common.DegreeAsc;
-import au.edu.cdu.dynamicproblems.algorithm.common.DegreeRRReturn;
-import au.edu.cdu.dynamicproblems.algorithm.common.GreedyDSUtil;
-import au.edu.cdu.dynamicproblems.algorithm.common.IPriorityOrder;
+import au.edu.cdu.dynamicproblems.algorithm.order.DegreeRRReturn;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -22,7 +19,7 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyDSM1 implements ITask, IAlgorithm {
+public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyDSM1.class);
@@ -150,8 +147,10 @@ public class GreedyDSM1 implements ITask, IAlgorithm {
 		Map<Integer, Boolean> dominatedMap = drrr.getDominatedMap();
 
 		// sort a list of vertex from lowest degree to highest
-		IPriorityOrder<Integer, String> pocb = new DegreeAsc<Integer, String>();
-		List<Integer> vList = pocb.getOrderedVertexList(g);
+//		IPriorityOrder<Integer, String> pocb = new DegreeAsc<Integer, String>();
+//		List<Integer> vList = pocb.getOrderedVertexList(g);
+		
+		List<Integer> vList=OrderPackageUtil.getVertexListDegreeAsc(g);
 
 		List<Integer> dI;
 		Graph<Integer, String> gI;

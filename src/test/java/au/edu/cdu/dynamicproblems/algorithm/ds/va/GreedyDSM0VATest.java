@@ -1,10 +1,8 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds;
+package au.edu.cdu.dynamicproblems.algorithm.ds.va;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,16 +10,18 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import au.edu.cdu.dynamicproblems.TestUtil;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
+@Deprecated
+public class GreedyDSM0VATest {
 
-public class GreedyVoteGrTest {
-
-	private Logger log = LogUtil.getLogger(GreedyVoteGrTest.class);
+	private Logger log = LogUtil.getLogger(GreedyDSM0VATest.class);
+	private static final String CLASS_NAME=GreedyDSM0VATest.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -60,61 +60,58 @@ public class GreedyVoteGrTest {
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 		Graph<Integer, Integer> gCopy = AlgorithmUtil.copyGraph(g);
 
-		GreedyVote ag = new GreedyVote(g);
+		int k=10;
+		int r=10;
+		GreedyDSM0VA ag = new GreedyDSM0VA(am,k,r);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
 
-		Result r = ag.getResult();
-		log.debug(r.getString());
+		Result result = ag.getResult();
+		log.debug(result.getString());
 	}
 
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
-				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-KONECT-" + timeStamp
-				+ ".csv";
 		
+		String datasetName="KONECT";
+		String destFile = TestUtil.getOutputFileName(datasetName,CLASS_NAME);
+
 		String path = "src/test/resources/KONECT/";
-		String[] files = {
-				"000027_zebra.konet", "000034_zachary.konet",
-				"000062_dolphins.konet", "000112_David_Copperfield.konet",
-				"000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+		String[] files = { 
+//				"000027_zebra.konet",
+//				"000034_zachary.konet",
+//				"000062_dolphins.konet", 
+				"000112_David_Copperfield.konet",
+				"000198_Jazz_musicians.konet", 
+				"000212_pdzbase.konet",
 				"001133_rovira.konet", "001174_euroroad.konet",
 				"001858_hamster.konet",
-		// "002426_hamster_ful.konet",
-		// "002888_facebook.konet",
-		// "003133_Human_protein_Vidal.konet",
-		// "004941_powergrid.konet",
-		// "006327_reactome.konet",
-		// "010680_Pretty_Good_Privacy.konet",
-		// "06474_Route_views.konet"
 		};
 
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 1; i <=1 ; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
 			}
+			int k=10;
+			int r=10;
 			for (String file : files) {
 
-				run(path + file, destFile);
+				run(path + file, destFile,k,r);
 			}
 		}
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
-				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-DIMACS-" + timeStamp
-				+ ".csv";
+		String datasetName="DIMACS";
+		String destFile = TestUtil.getOutputFileName(datasetName,CLASS_NAME);
 
 		String path = "src/test/resources/DIMACS/";
 		String[] files = { 
@@ -133,29 +130,33 @@ public class GreedyVoteGrTest {
 				"p_hat700-2.clq", "p_hat700-3.clq"
 
 		};
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 1; i++) {
 			log.debug(i + "------------");
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
 			}
+			int k=10;
+			int r=10;
 			for (String file : files) {
 
-				run(path + file, destFile);
+				run(path + file, destFile,k,r);
 			}
 		}
 	}
+
+	
 
 	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar
-				.getInstance().getTime());
-		String destFile = "out/output-"+this.getClass().getName()+"-BHOSLIB-" + timeStamp
-				+ ".csv";
+		String datasetName="BHOSLIB";
+		
+		String destFile = TestUtil.getOutputFileName(datasetName,CLASS_NAME);
 
 		String path = "src/test/resources/BHOSLIB/";
-		String[] files = { "frb30-15-mis/frb30-15-1.mis",
+		String[] files = { 
+				"frb30-15-mis/frb30-15-1.mis",
 				"frb30-15-mis/frb30-15-2.mis", "frb30-15-mis/frb30-15-3.mis",
 				"frb30-15-mis/frb30-15-4.mis", "frb30-15-mis/frb30-15-5.mis",
 				"frb35-17-mis/frb35-17-1.mis", "frb35-17-mis/frb35-17-2.mis",
@@ -165,7 +166,8 @@ public class GreedyVoteGrTest {
 				"frb40-19-mis/frb40-19-4.mis", "frb40-19-mis/frb40-19-5.mis",
 				"frb45-21-mis/frb45-21-1.mis", "frb45-21-mis/frb45-21-2.mis",
 				"frb45-21-mis/frb45-21-3.mis", "frb45-21-mis/frb45-21-4.mis",
-				"frb45-21-mis/frb45-21-5.mis", "frb53-24-mis/frb53-24-1.mis",
+				"frb45-21-mis/frb45-21-5.mis", 
+				"frb53-24-mis/frb53-24-1.mis",
 				"frb53-24-mis/frb53-24-2.mis", "frb53-24-mis/frb53-24-3.mis",
 				"frb53-24-mis/frb53-24-4.mis", "frb53-24-mis/frb53-24-5.mis",
 				"frb56-25-mis/frb56-25-1.mis", "frb56-25-mis/frb56-25-2.mis",
@@ -178,16 +180,18 @@ public class GreedyVoteGrTest {
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, i + "--------");
 			}
+			int k=10;
+			int r=10;
 			for (String file : files) {
 
-				run(path + file, destFile);
+				run(path + file, destFile,k,r);
 			}
 		}
 	}
 
 	
 
-	private void run(String inputFile, String destFile)
+	private void run(String inputFile, String destFile,int k,int r)
 			throws InterruptedException, IOException, FileNotFoundException {
 		
 		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
@@ -195,17 +199,17 @@ public class GreedyVoteGrTest {
 
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
-		GreedyVoteGr ag = new GreedyVoteGr(g);
+		GreedyDSM0VA ag = new GreedyDSM0VA(am,k,r);
 		ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
 
-		Result r = ag.getResult();
-		log.debug(r.getString());
+		Result result = ag.getResult();
+		log.debug(result.getString());
 		if (destFile != null) {
 			FileOperation
-					.saveCVSFile(destFile, inputFile + "," + r.getString());
+					.saveCVSFile(destFile, inputFile + "," + result.getString());
 		}
 
 	}

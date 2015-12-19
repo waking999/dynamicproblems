@@ -2,17 +2,14 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.IAlgorithm;
-import au.edu.cdu.dynamicproblems.algorithm.VertexWeight;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -28,7 +25,7 @@ import edu.uci.ics.jung.graph.Graph;
  * 
  * @author kai wang
  */
-public class GreedyVote implements ITask, IAlgorithm {
+public class GreedyVote implements ITask, IGreedyDS <Integer>{
 
 	@SuppressWarnings("unused")
 	private static Logger log = LogUtil.getLogger(GreedyVote.class);
@@ -37,6 +34,9 @@ public class GreedyVote implements ITask, IAlgorithm {
 	 * recording running time
 	 */
 	private long runningTime;
+	public Map<String, Long> getRunningTimeMap(){
+		return null;
+	}
 
 	private TaskLock lock;
 
@@ -84,7 +84,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 	/**
 	 * the graph
 	 */
-	private Graph<Integer, Integer> g;
+	private Graph<Integer, String> g;
 	/**
 	 * 
 	 * a sorted vertices with their degree (from highest degree to the lowest)
@@ -123,20 +123,18 @@ public class GreedyVote implements ITask, IAlgorithm {
 	 */
 	private List<String[]> adjacencyMatrix;
 
-	@SuppressWarnings("deprecation")
 	public GreedyVote(List<String[]> adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public GreedyVote(String indicator, List<String[]> adjacencyMatrix) {
 		this.indicator = indicator;
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.numOfVertices = adjacencyMatrix.size();
-		this.g = AlgorithmUtil.prepareGraph(this.adjacencyMatrix);
+		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 	}
 	/**
@@ -145,7 +143,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 	 * @param g,
 	 *            a graph instance
 	 */
-	public GreedyVote(Graph<Integer, Integer> g) {
+	public GreedyVote(Graph<Integer, String> g) {
 		this.g = g;
 		this.numOfVertices = g.getVertexCount();
 
@@ -200,7 +198,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 	private void greedy() {
 
 		while (!AlgorithmUtil.isAllDominated(dominatedMap)) {
-			Integer v = chooseVertex();
+			Integer v = GreedyDSUtil.chooseVertex(this.g, this.weightMap);
 
 			AlgorithmUtil.addElementToList(dominatingSet, v);
 			adjustWeight(v);
@@ -222,7 +220,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 		float votev = voteMap.get(v);
 		for (Integer u : vNeigs) {
 			float weightu = weightMap.get(u);
-			if (weightu - 0.0f > VertexWeight.ZERO_DIFF) {
+			if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
 				float voteu = voteMap.get(u);
 				if (!coveredv) {
 					weightMap.put(u, weightu - votev);
@@ -236,7 +234,7 @@ public class GreedyVote implements ITask, IAlgorithm {
 					Collection<Integer> uNeigs = g.getNeighbors(u);
 					for (Integer w : uNeigs) {
 						float weightw = weightMap.get(w);
-						if (weightu - 0.0f > VertexWeight.ZERO_DIFF) {
+						if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
 							weightMap.put(w, weightw - voteu);
 						}
 					}
@@ -247,27 +245,6 @@ public class GreedyVote implements ITask, IAlgorithm {
 		}
 		dominatedMap.put(v, true);
 	}
-	/**
-	 * choose a vertex according to the weight, implemented according to the
-	 * algorithm description in the paper
-	 * 
-	 * @return a vertex
-	 */
-	private Integer chooseVertex() {
-		List<VertexWeight> vertexWeightList = new ArrayList<VertexWeight>(this.numOfVertices);
 
-		Set<Integer> keySet = this.weightMap.keySet();
-		for (Integer key : keySet) {
-			float weight = weightMap.get(key);
-			AlgorithmUtil.addElementToList(vertexWeightList, new VertexWeight(key, weight));
-
-		}
-
-		Collections.sort(vertexWeightList);
-		VertexWeight vw = vertexWeightList.get(0);
-
-		return vw.getVertex();
-
-	}
 
 }

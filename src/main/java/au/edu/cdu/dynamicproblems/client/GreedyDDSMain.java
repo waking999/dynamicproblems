@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSComplete;
+import au.edu.cdu.dynamicproblems.algorithm.ds.va.GreedyDSCompleteVA;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskContainer;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
@@ -50,7 +50,7 @@ public class GreedyDDSMain extends AbstractAlgorithmMain {
 					throws MOutofNException, ExceedLongMaxException,
 					ArraysNotSameLengthException {
 
-				GreedyDSComplete ag = new GreedyDSComplete(tfp.getIndicator(), tfp.getAm(),
+				GreedyDSCompleteVA ag = new GreedyDSCompleteVA(tfp.getIndicator(), tfp.getAm(),
 						tfp.getK(), tfp.getR());
 				Result result = null;
 

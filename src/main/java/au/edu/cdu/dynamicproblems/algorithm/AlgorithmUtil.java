@@ -7,23 +7,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.commons.collections15.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import au.edu.cdu.dynamicproblems.algorithm.common.IOrderCallBack;
-import au.edu.cdu.dynamicproblems.algorithm.common.IPriorityCallBack;
-import au.edu.cdu.dynamicproblems.algorithm.common.OrderDesc;
-import au.edu.cdu.dynamicproblems.algorithm.common.PriorityUtility;
-import au.edu.cdu.dynamicproblems.algorithm.common.VertexPriority;
+import au.edu.cdu.dynamicproblems.algorithm.order.IOrder;
+import au.edu.cdu.dynamicproblems.algorithm.order.IPriority;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderDesc;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.PriorityBean;
+import au.edu.cdu.dynamicproblems.algorithm.order.PriorityUtility;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
-import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
@@ -59,8 +56,8 @@ public class AlgorithmUtil {
 	public final static String RUNNING_TIME_POLYRR = "Poly-RR";
 	public final static String RUNNING_TIME_DEGREERR = "Degree-RR";
 	// used for left pad for binary string of an integer
-	@Deprecated
-	private static final String BINARY_LEFT_PAD = "0";
+//	@Deprecated
+//	private static final String BINARY_LEFT_PAD = "0";
 
 	// the ascii code of 0
 	private static final byte ASCII_0_SEQ_NO = 48;
@@ -329,6 +326,7 @@ public class AlgorithmUtil {
 	 * @param vdList
 	 * @return
 	 */
+	@Deprecated
 	public static List<Integer> getVertexList(List<VertexDegree> vdList) {
 		List<Integer> vList = new ArrayList<Integer>();
 		for (VertexDegree vd : vdList) {
@@ -337,6 +335,7 @@ public class AlgorithmUtil {
 		return vList;
 	}
 
+	@Deprecated
 	public static List<Integer> getVertexListFromMap(TreeMap<Integer, Integer> vdMap, int fromIndex, int toIndex) {
 		Set<Integer> keySet = vdMap.keySet();
 
@@ -364,6 +363,12 @@ public class AlgorithmUtil {
 		return edge;
 	}
 
+	/**
+	 * 
+	 * @param v1
+	 * @param v2
+	 * @return
+	 */
 	public static String getEdgeLabelBy2VerticesLabel(int v1, int v2) {
 		int min = Math.min(v1, v2);
 		int max = Math.max(v1, v2);
@@ -379,6 +384,7 @@ public class AlgorithmUtil {
 	 *            , an instance of Graph,
 	 * @return List<VertexDegree>, a list of vertices with their degrees
 	 */
+	@Deprecated
 	public static List<VertexDegree> sortVertexAccordingToDegree(Graph<Integer, Integer> g) {
 
 		// get the sorted vertex according their degree
@@ -392,82 +398,6 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
-	/**
-	 * Get a list of vertex and it's priority by using callback functions
-	 * 
-	 * @param g,
-	 *            a graph instance
-	 * @param pcb,
-	 *            priority call back (decide what really priority is: degree,
-	 *            utility, ...)
-	 * @return
-	 */
-	private static <V, E> List<VertexPriority<V>> getVertexPriorityList(Graph<V, E> g, IPriorityCallBack pcb,
-			Map<V, Boolean> dominatedMap) {
-		List<VertexPriority<V>> vertexPriorityList = new ArrayList<VertexPriority<V>>();
-		Collection<V> vertices = g.getVertices();
-		for (V i : vertices) {
-			float priority = pcb.getPriority(g, i, dominatedMap);
-			addElementToList(vertexPriorityList, new VertexPriority<V>(i, priority));
-		}
-
-		return vertexPriorityList;
-	}
-
-	/**
-	 * Get a priority queue of vertices and their priorities.
-	 * 
-	 * @param g,
-	 *            a graph instance
-	 * @param pcb,
-	 *            priority call back (decide what really priority is: degree,
-	 *            utility, ...)
-	 * @param ocb,
-	 *            order call back (decide what order to follow: asc, desc, ...)
-	 * @return
-	 */
-	private static <V, E> Queue<VertexPriority<V>> getOrderedVertexPriorityQueue(Graph<V, E> g, IPriorityCallBack pcb,
-			IOrderCallBack<V> ocb, Map<V, Boolean> dominatedMap) {
-		List<VertexPriority<V>> vpList = AlgorithmUtil.getVertexPriorityList(g, pcb, dominatedMap);
-		Queue<VertexPriority<V>> q = new PriorityQueue<VertexPriority<V>>(ocb.getComparator());
-		q.addAll(vpList);
-		return q;
-	}
-
-	/**
-	 * get vertices from an ordered vertex priority queue
-	 * 
-	 * @param q,
-	 *            a queue of ordered vertex priority
-	 * @return vertex list
-	 */
-	private static <V> List<V> getOrderedVertexList(Queue<VertexPriority<V>> q) {
-		List<V> vList = new ArrayList<V>(q.size());
-		while (!q.isEmpty()) {
-			vList.add(q.poll().getVertex());
-		}
-		return vList;
-	}
-
-	/**
-	 * get vertices from an ordered vertex priority queue obtained by pcb and
-	 * ocb
-	 * 
-	 * @param g,
-	 *            a graph instance
-	 * @param pcb,
-	 *            priority call back (decide what really priority is: degree,
-	 *            utility, ...)
-	 * @param ocb,
-	 *            order call back (decide what order to follow: asc, desc, ...)
-	 * @return
-	 */
-	public static <V, E> List<V> getOrderedVertexList(Graph<V, E> g, IPriorityCallBack pcb, IOrderCallBack<V> ocb,
-			Map<V, Boolean> dominatedMap) {
-		Queue<VertexPriority<V>> q = getOrderedVertexPriorityQueue(g, pcb, ocb, dominatedMap);
-		List<V> vList = getOrderedVertexList(q);
-		return vList;
-	}
 
 	/**
 	 * get a list of sorted vertices with utility (the number of their
@@ -480,6 +410,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
+	@Deprecated
 	public static List<VertexDegree> sortVertexAccordingToUtility(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
@@ -498,25 +429,7 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
-	// public static List<VertexVote> sortVertexAccordingToVote(Graph<Integer,
-	// Integer> g,
-	// Map<Integer, Boolean> dominatedMap) {
-	// List<VertexVote> vertexDegreeList = new ArrayList<VertexVote>();
-	// Collection<Integer> vertices = g.getVertices();
-	// for (Integer v : vertices) {
-	// Collection<Integer> vNeigs = g.getNeighbors(v);
-	// int unDominatedDegree = 0;
-	// for (Integer u : vNeigs) {
-	// if (!dominatedMap.get(u)) {
-	// unDominatedDegree++;
-	// }
-	// }
-	// addElementToList(vertexDegreeList, new VertexVote(v, unDominatedDegree));
-	// }
-	// Collections.sort(vertexDegreeList);
-	// return vertexDegreeList;
-	// }
-
+	@Deprecated
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, ASC_ORDER);
@@ -527,7 +440,7 @@ public class AlgorithmUtil {
 			Map<Integer, Boolean> dominatedMap, boolean order) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, null, order);
 	}
-
+@Deprecated
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToUtilityIncludeASC(Graph<Integer, Integer> g,
 			Map<Integer, Boolean> dominatedMap, Collection<Integer> includeList) {
 		return sortVertexMapAccordingToUtilityInclude(g, dominatedMap, includeList, ASC_ORDER);
@@ -572,10 +485,10 @@ public class AlgorithmUtil {
 	 * @return
 	 */
 	public static <V, E> V getHighestUtilityNeighborOfAVertex(V v, Graph<V, E> g, Map<V, Boolean> dominatedMap) {
-		IPriorityCallBack pcb = new PriorityUtility();
-		IOrderCallBack<V> ocb = new OrderDesc<V>();
+		IPriority pcb = new PriorityUtility();
+		IOrder<V> ocb = new OrderDesc<V>();
 
-		List<V> vList = AlgorithmUtil.getOrderedVertexList(g, pcb, ocb, dominatedMap);
+		List<V> vList = OrderPackageUtil.getOrderedVertexList(new PriorityBean<V, E>(g, dominatedMap, null), pcb, ocb);
 
 		Collection<V> vNeg = g.getNeighbors(v);
 		vNeg.add(v);
@@ -639,6 +552,7 @@ public class AlgorithmUtil {
 	 * @param vList
 	 * @return
 	 */
+	@Deprecated
 	public static List<VertexDegree> sortVertexAccordingToDegreeInclude(Graph<Integer, Integer> g,
 			Collection<Integer> vList) {
 
@@ -666,6 +580,7 @@ public class AlgorithmUtil {
 	 * @return List<VertexDegree>, a sorted list of vertices with the number of
 	 *         their un-dominated neighbors
 	 */
+	@Deprecated
 	public static List<VertexDegree> sortVertexAccordingToUtilityInclude(Graph<Integer, Integer> g,
 			Collection<Integer> vList, Map<Integer, Boolean> dominatedMap) {
 		List<VertexDegree> vertexDegreeList = new ArrayList<VertexDegree>();
@@ -684,6 +599,13 @@ public class AlgorithmUtil {
 		return vertexDegreeList;
 	}
 
+	/**
+	 * 
+	 * @param g
+	 * @param v
+	 * @param dominatedMap
+	 * @return
+	 */
 	public static <V, E> int getVertexUtility(Graph<V, E> g, V v, Map<V, Boolean> dominatedMap) {
 		Collection<V> vNeigs = g.getNeighbors(v);
 		int unDominatedDegree = 0;
@@ -695,7 +617,13 @@ public class AlgorithmUtil {
 		return unDominatedDegree;
 	}
 
-	public static int getVertexDegree(Graph<Integer, Integer> g, Integer v) {
+	/**
+	 * 
+	 * @param g
+	 * @param v
+	 * @return
+	 */
+	public static <V, E> int getVertexDegree(Graph<V, E> g, V v) {
 
 		int unDominatedDegree = g.degree(v);
 		return unDominatedDegree;
@@ -727,6 +655,7 @@ public class AlgorithmUtil {
 	 * @param excludeList
 	 * @return
 	 */
+	@Deprecated
 	public static List<VertexDegree> sortVertexAccordingToDegreeExclude(Graph<Integer, Integer> g,
 			Collection<Integer> excludeList) {
 
@@ -749,6 +678,7 @@ public class AlgorithmUtil {
 	 * @param vdl
 	 * @return
 	 */
+	@Deprecated
 	public static List<Integer> sortVertexAccordingToSortedVertexList(List<Integer> vl, List<VertexDegree> vdl) {
 		int vlSize = vl.size();
 		List<Integer> rtn = new ArrayList<Integer>(vlSize);
@@ -782,16 +712,16 @@ public class AlgorithmUtil {
 		return true;
 	}
 
-	public static int getDominatedNumber(Map<Integer, Boolean> dominatedMap) {
-		int count = 0;
-		Collection<Boolean> values = dominatedMap.values();
-		for (Boolean b : values) {
-			if (b) {
-				count++;
-			}
-		}
-		return count;
-	}
+//	public static int getDominatedNumber(Map<Integer, Boolean> dominatedMap) {
+//		int count = 0;
+//		Collection<Boolean> values = dominatedMap.values();
+//		for (Boolean b : values) {
+//			if (b) {
+//				count++;
+//			}
+//		}
+//		return count;
+//	}
 
 	/**
 	 * if the vertices in the list are all marked as dominated.
@@ -818,6 +748,7 @@ public class AlgorithmUtil {
 	 *            , the number of vertices
 	 * @return a complete graph with n vertices
 	 */
+	@Deprecated
 	public static List<String[]> generateCompleteGraph(int n) {
 		List<String[]> am = new ArrayList<String[]>(n);
 		// construct a complete graph
@@ -832,32 +763,32 @@ public class AlgorithmUtil {
 		return am;
 	}
 
-	/**
-	 * construct a complete graph from a graph
-	 * 
-	 * @param g
-	 * @param numOfVertices
-	 * @return
-	 */
-	public static Graph<Integer, Integer> constructCompleteGraph(Graph<Integer, Integer> g, int numOfVertices) {
-		Graph<Integer, Integer> gK = new SparseMultigraph<Integer, Integer>();
-
-		Collection<Integer> vertices = g.getVertices();
-		for (Integer v : vertices) {
-			gK.addVertex(v);
-		}
-
-		for (Integer i : vertices) {
-			for (Integer j : vertices) {
-				if (i < j) {
-					int edge = getEdgeLabelBy2VerticesLabel(numOfVertices, i, j);
-					gK.addEdge(edge, i, j);
-				}
-			}
-		}
-
-		return gK;
-	}
+//	/**
+//	 * construct a complete graph from a graph
+//	 * 
+//	 * @param g
+//	 * @param numOfVertices
+//	 * @return
+//	 */
+//	public static Graph<Integer, Integer> constructCompleteGraph(Graph<Integer, Integer> g, int numOfVertices) {
+//		Graph<Integer, Integer> gK = new SparseMultigraph<Integer, Integer>();
+//
+//		Collection<Integer> vertices = g.getVertices();
+//		for (Integer v : vertices) {
+//			gK.addVertex(v);
+//		}
+//
+//		for (Integer i : vertices) {
+//			for (Integer j : vertices) {
+//				if (i < j) {
+//					int edge = getEdgeLabelBy2VerticesLabel(numOfVertices, i, j);
+//					gK.addEdge(edge, i, j);
+//				}
+//			}
+//		}
+//
+//		return gK;
+//	}
 
 	/**
 	 * generate a random graph
@@ -906,95 +837,95 @@ public class AlgorithmUtil {
 
 	}
 
-	/**
-	 * Do the edge deletion to get henning distance
-	 * 
-	 * @param am1
-	 *            , the adjacent matrix of graph g1
-	 * @param g1
-	 *            , the graph object of g1
-	 * @param ds1
-	 *            , a dominating set of g1
-	 * @param k
-	 *            , the maximum number of edge deletion
-	 * @return an instance of HEdit containing the output adjacent matrix and
-	 *         operation list
-	 */
-	public static HEdit hEditEdgeDeletion(List<String[]> am1, Graph<Integer, Integer> g1, List<Integer> ds1, int k) {
-		List<String[]> operationList = new ArrayList<String[]>();
+//	/**
+//	 * Do the edge deletion to get henning distance
+//	 * 
+//	 * @param am1
+//	 *            , the adjacent matrix of graph g1
+//	 * @param g1
+//	 *            , the graph object of g1
+//	 * @param ds1
+//	 *            , a dominating set of g1
+//	 * @param k
+//	 *            , the maximum number of edge deletion
+//	 * @return an instance of HEdit containing the output adjacent matrix and
+//	 *         operation list
+//	 */
+//	public static HEdit hEditEdgeDeletion(List<String[]> am1, Graph<Integer, Integer> g1, List<Integer> ds1, int k) {
+//		List<String[]> operationList = new ArrayList<String[]>();
+//
+//		// generate a copy of adjacency matrix 1
+//		List<String[]> am2 = new ArrayList<String[]>(am1);
+//
+//		Collection<Integer> vertices1 = g1.getVertices();
+//		// get the complementary set of dominating set 1 in graph 1
+//		List<Integer> complementOfDS1 = (List<Integer>) CollectionUtils.subtract(vertices1, ds1);
+//
+//		List<Integer> randomKVerInComplementOfDS1Set = getKRandomVerticesInSet(k, complementOfDS1);
+//
+//		for (Integer cDsv : randomKVerInComplementOfDS1Set) {
+//			Collection<Integer> neighboursOfCDsv = g1.getNeighbors(cDsv);
+//
+//			for (Integer nCdsv : neighboursOfCDsv) {
+//				if (ds1.contains(nCdsv)) {
+//					am2.get(cDsv)[nCdsv] = UNCONNECTED;
+//					am2.get(nCdsv)[cDsv] = UNCONNECTED;
+//
+//					// change operation list
+//					String[] operation = { UNCONNECTED, Integer.toString(cDsv), Integer.toString(nCdsv) };
+//
+//					addElementToList(operationList, operation);
+//				}
+//			}
+//
+//		}
+//
+//		HEdit hEdit = new HEdit();
+//		hEdit.setOperationList(operationList);
+//		hEdit.setOutputAdjacencyMatrix(am2);
+//
+//		return hEdit;
+//
+//	}
 
-		// generate a copy of adjacency matrix 1
-		List<String[]> am2 = new ArrayList<String[]>(am1);
-
-		Collection<Integer> vertices1 = g1.getVertices();
-		// get the complementary set of dominating set 1 in graph 1
-		List<Integer> complementOfDS1 = (List<Integer>) CollectionUtils.subtract(vertices1, ds1);
-
-		List<Integer> randomKVerInComplementOfDS1Set = getKRandomVerticesInSet(k, complementOfDS1);
-
-		for (Integer cDsv : randomKVerInComplementOfDS1Set) {
-			Collection<Integer> neighboursOfCDsv = g1.getNeighbors(cDsv);
-
-			for (Integer nCdsv : neighboursOfCDsv) {
-				if (ds1.contains(nCdsv)) {
-					am2.get(cDsv)[nCdsv] = UNCONNECTED;
-					am2.get(nCdsv)[cDsv] = UNCONNECTED;
-
-					// change operation list
-					String[] operation = { UNCONNECTED, Integer.toString(cDsv), Integer.toString(nCdsv) };
-
-					addElementToList(operationList, operation);
-				}
-			}
-
-		}
-
-		HEdit hEdit = new HEdit();
-		hEdit.setOperationList(operationList);
-		hEdit.setOutputAdjacencyMatrix(am2);
-
-		return hEdit;
-
-	}
-
-	/**
-	 * get at most k number of random numbers which are between n1 and n2; in
-	 * another words, the number of random numbers may be less than k
-	 * 
-	 * @param k
-	 *            , the number of random vertices
-	 * @param n1
-	 *            , the bottom bound of the random numbers
-	 * @param n2
-	 *            , the up bound of the random numbers
-	 * @return k number of random numbers which are between n1 and n2;
-	 */
-	public static List<Integer> getKRandomVerticesInSet(int k, Collection<Integer> s) {
-		int sSize = s.size();
-		Integer[] sArray = new Integer[sSize];
-
-		sArray = s.toArray(sArray);
-
-		List<Integer> rtn = new ArrayList<Integer>();
-		if (sSize <= 0) {
-			return rtn;
-		}
-		if (sSize < k) {
-			k = sSize;
-		}
-
-		for (int i = 0; i < k; i++) {
-			int ran = (int) (Math.random() * (sSize - 1));
-			Integer sRan = sArray[ran];
-			if (rtn.contains(sRan)) {
-				i--;
-			} else {
-				addElementToList(rtn, sRan);
-			}
-		}
-
-		return rtn;
-	}
+//	/**
+//	 * get at most k number of random numbers which are between n1 and n2; in
+//	 * another words, the number of random numbers may be less than k
+//	 * 
+//	 * @param k
+//	 *            , the number of random vertices
+//	 * @param n1
+//	 *            , the bottom bound of the random numbers
+//	 * @param n2
+//	 *            , the up bound of the random numbers
+//	 * @return k number of random numbers which are between n1 and n2;
+//	 */
+//	public static List<Integer> getKRandomVerticesInSet(int k, Collection<Integer> s) {
+//		int sSize = s.size();
+//		Integer[] sArray = new Integer[sSize];
+//
+//		sArray = s.toArray(sArray);
+//
+//		List<Integer> rtn = new ArrayList<Integer>();
+//		if (sSize <= 0) {
+//			return rtn;
+//		}
+//		if (sSize < k) {
+//			k = sSize;
+//		}
+//
+//		for (int i = 0; i < k; i++) {
+//			int ran = (int) (Math.random() * (sSize - 1));
+//			Integer sRan = sArray[ran];
+//			if (rtn.contains(sRan)) {
+//				i--;
+//			} else {
+//				addElementToList(rtn, sRan);
+//			}
+//		}
+//
+//		return rtn;
+//	}
 
 	/**
 	 * get a random float number in a range
@@ -1005,6 +936,7 @@ public class AlgorithmUtil {
 	 *            ,the up bound of the random number
 	 * @return,a random float number in a range
 	 */
+	@Deprecated
 	public static float randomInRang(float min, float max) {
 		Random random = new Random();
 		float s = random.nextFloat() * (max - min) + min;
@@ -1050,25 +982,25 @@ public class AlgorithmUtil {
 		return ruler1;
 	}
 
-	/**
-	 * get neighbours of vertices in a set
-	 * 
-	 * @param g
-	 *            , a graph
-	 * @param S
-	 *            , a set of vertices
-	 * @return
-	 */
-	public static List<Integer> getNeighborsOfS(Graph<Integer, Integer> g, List<Integer> S) {
-		List<Integer> ngs = new ArrayList<Integer>();
-		for (Integer s : S) {
-			Collection<Integer> col = g.getNeighbors(s);
-			if (col != null) {
-				ngs = (List<Integer>) CollectionUtils.union(ngs, col);
-			}
-		}
-		return ngs;
-	}
+//	/**
+//	 * get neighbours of vertices in a set
+//	 * 
+//	 * @param g
+//	 *            , a graph
+//	 * @param S
+//	 *            , a set of vertices
+//	 * @return
+//	 */
+//	public static List<Integer> getNeighborsOfS(Graph<Integer, Integer> g, List<Integer> S) {
+//		List<Integer> ngs = new ArrayList<Integer>();
+//		for (Integer s : S) {
+//			Collection<Integer> col = g.getNeighbors(s);
+//			if (col != null) {
+//				ngs = (List<Integer>) CollectionUtils.union(ngs, col);
+//			}
+//		}
+//		return ngs;
+//	}
 
 	/**
 	 * get neighbours of vertices in a set
@@ -1079,7 +1011,7 @@ public class AlgorithmUtil {
 	 *            , a set of vertices
 	 * @return
 	 */
-	public static <V, E> Collection<V> getNeighborsOfS(Graph<V, E> g, Collection<V> S) {
+	public static <V, E> List<V> getNeighborsOfS(Graph<V, E> g, Collection<V> S) {
 		Collection<V> ngs = new ArrayList<V>();
 		for (V s : S) {
 			Collection<V> col = g.getNeighbors(s);
@@ -1087,7 +1019,7 @@ public class AlgorithmUtil {
 				ngs = CollectionUtils.union(ngs, col);
 			}
 		}
-		return ngs;
+		return (List<V>) ngs;
 	}
 
 	/**
@@ -1161,87 +1093,91 @@ public class AlgorithmUtil {
 		return dest;
 	}
 
-	/**
-	 * get the number of edge difference of two adjacent matrixes, because the
-	 * adjacent matrix is symmetrical, it only count the half
-	 * 
-	 * @param am1
-	 *            , adjacent matrix 1
-	 * @param am2
-	 *            , adjacent matrix 2
-	 * @return the number of edge difference of two adjacent matrixes
-	 */
-	public static int getDifferentEdgeNumber(List<String[]> am1, List<String[]> am2)
-			throws ArraysNotSameLengthException {
+//	/**
+//	 * get the number of edge difference of two adjacent matrixes, because the
+//	 * adjacent matrix is symmetrical, it only count the half
+//	 * 
+//	 * @param am1
+//	 *            , adjacent matrix 1
+//	 * @param am2
+//	 *            , adjacent matrix 2
+//	 * @return the number of edge difference of two adjacent matrixes
+//	 */
+//	public static int getDifferentEdgeNumber(List<String[]> am1, List<String[]> am2)
+//			throws ArraysNotSameLengthException {
+//
+//		int n = am1.size();
+//		int count = 0;
+//		for (int i = 0; i < n; i++) {
+//
+//			String[] am1row = am1.get(i);
+//			String[] am2row = am2.get(i);
+//			count += arrayXorDifference(am1row, am2row);
+//		}
+//
+//		return count / 2;
+//	}
 
-		int n = am1.size();
-		int count = 0;
-		for (int i = 0; i < n; i++) {
+//	/**
+//	 * do the Exclusive-OR operation of each corresponding elements of 2 string
+//	 * arrays and then get the number of differences. the 2 string arrays are of
+//	 * the same length
+//	 * 
+//	 * @param a1
+//	 *            , string array 1
+//	 * @param a2
+//	 *            , string array 2
+//	 * @return the number of differences
+//	 */
+//	private static int arrayXorDifference(String[] a1, String[] a2) throws ArraysNotSameLengthException {
+//		int a1Len = a1.length;
+//		int a2Len = a2.length;
+//		if (a1Len != a2Len) {
+//			throw new ArraysNotSameLengthException("The two byte arrays are not of the same length.");
+//		}
+//
+//		int count = 0;
+//
+//		for (int i = 0; i < a1Len; i++) {
+//			byte a1i = Byte.parseByte(a1[i]);
+//			byte a2i = Byte.parseByte(a2[i]);
+//			if ((a1i ^ a2i) == 1) {
+//				count++;
+//			}
+//		}
+//
+//		return count;
+//
+//	}
 
-			String[] am1row = am1.get(i);
-			String[] am2row = am2.get(i);
-			count += arrayXorDifference(am1row, am2row);
-		}
-
-		return count / 2;
-	}
-
-	/**
-	 * do the Exclusive-OR operation of each corresponding elements of 2 string
-	 * arrays and then get the number of differences. the 2 string arrays are of
-	 * the same length
-	 * 
-	 * @param a1
-	 *            , string array 1
-	 * @param a2
-	 *            , string array 2
-	 * @return the number of differences
-	 */
-	private static int arrayXorDifference(String[] a1, String[] a2) throws ArraysNotSameLengthException {
-		int a1Len = a1.length;
-		int a2Len = a2.length;
-		if (a1Len != a2Len) {
-			throw new ArraysNotSameLengthException("The two byte arrays are not of the same length.");
-		}
-
-		int count = 0;
-
-		for (int i = 0; i < a1Len; i++) {
-			byte a1i = Byte.parseByte(a1[i]);
-			byte a2i = Byte.parseByte(a2[i]);
-			if ((a1i ^ a2i) == 1) {
-				count++;
-			}
-		}
-
-		return count;
-
-	}
-
-	/**
-	 * convert a binary byte array to a long integer
-	 * 
-	 * @param binary
-	 *            , a binary byte array @return, a long integer corresponding to
-	 *            the binary byte array
-	 * @throws ExceedLongMaxException
-	 */
-	public static long arrayToLong(byte[] binary) throws ExceedLongMaxException {
-		// we assume that the size of binary does not exceed 63;
-		int binarySize = binary.length;
-		if (binarySize >= (long) (Math.log(Long.MAX_VALUE) / Math.log(2))) {
-			throw new ExceedLongMaxException("Excceed the max value allowed for Long integer.");
-		}
-
-		long sum = 0;
-		for (int i = binarySize - 1; i >= 0; i--) {
-			sum += (long) (Math.pow(2, binarySize - 1 - i) * binary[i]);
-		}
-
-		return sum;
-
-	}
-
+//	/**
+//	 * convert a binary byte array to a long integer
+//	 * 
+//	 * @param binary
+//	 *            , a binary byte array @return, a long integer corresponding to
+//	 *            the binary byte array
+//	 * @throws ExceedLongMaxException
+//	 */
+//	public static long arrayToLong(byte[] binary) throws ExceedLongMaxException {
+//		// we assume that the size of binary does not exceed 63;
+//		int binarySize = binary.length;
+//		if (binarySize >= (long) (Math.log(Long.MAX_VALUE) / Math.log(2))) {
+//			throw new ExceedLongMaxException("Excceed the max value allowed for Long integer.");
+//		}
+//
+//		long sum = 0;
+//		for (int i = binarySize - 1; i >= 0; i--) {
+//			sum += (long) (Math.pow(2, binarySize - 1 - i) * binary[i]);
+//		}
+//
+//		return sum;
+//
+//	}
+/**
+ * 
+ * @param binary
+ * @return
+ */
 	public static String arrayToString(byte[] binary) {
 		int binarySize = binary.length;
 		char[] chArray = new char[binarySize];
@@ -1251,7 +1187,11 @@ public class AlgorithmUtil {
 		String rtn = new String(chArray);
 		return rtn;
 	}
-
+/**
+ * 
+ * @param binaryStr
+ * @return
+ */
 	public static byte[] stringToBinaryArray(String binaryStr) {
 		byte[] binaryArray = binaryStr.getBytes();
 		int binaryArraySize = binaryArray.length;
@@ -1261,59 +1201,67 @@ public class AlgorithmUtil {
 		return binaryArray;
 	}
 
-	public static List<Integer> stringToIntList(String binaryStr) {
-		List<Integer> intList = new ArrayList<Integer>();
+//	public static List<Integer> stringToIntList(String binaryStr) {
+//		List<Integer> intList = new ArrayList<Integer>();
+//
+//		byte[] binaryArray = binaryStr.getBytes();
+//		int binaryArraySize = binaryArray.length;
+//		for (int i = 0; i < binaryArraySize; i++) {
+//			binaryArray[i] -= ASCII_0_SEQ_NO;
+//			if (binaryArray[i] == AlgorithmUtil.MARKED) {
+//				addElementToList(intList, i);
+//			}
+//		}
+//
+//		return intList;
+//	}
 
-		byte[] binaryArray = binaryStr.getBytes();
-		int binaryArraySize = binaryArray.length;
-		for (int i = 0; i < binaryArraySize; i++) {
-			binaryArray[i] -= ASCII_0_SEQ_NO;
-			if (binaryArray[i] == AlgorithmUtil.MARKED) {
-				addElementToList(intList, i);
-			}
-		}
+//	/**
+//	 * 
+//	 * @param size
+//	 * @param list
+//	 * @return
+//	 */
+//	public static String intListToString(int size, List<Integer> list) {
+//
+//		char[] chArray = new char[size];
+//		for (int i = 0; i < size; i++) {
+//			chArray[i] = (char) (ASCII_0_SEQ_NO);
+//		}
+//
+//		for (Integer i : list) {
+//			chArray[i] = (char) (ASCII_0_SEQ_NO + 1);
+//		}
+//
+//		String rtn = new String(chArray);
+//		return rtn;
+//
+//	}
 
-		return intList;
-	}
-
-	/**
-	 * 
-	 * @param size
-	 * @param list
-	 * @return
-	 */
-	public static String intListToString(int size, List<Integer> list) {
-
-		char[] chArray = new char[size];
-		for (int i = 0; i < size; i++) {
-			chArray[i] = (char) (ASCII_0_SEQ_NO);
-		}
-
-		for (Integer i : list) {
-			chArray[i] = (char) (ASCII_0_SEQ_NO + 1);
-		}
-
-		String rtn = new String(chArray);
-		return rtn;
-
-	}
-
-	/**
-	 * convert a long integer to a binary byte array
-	 * 
-	 * @param size
-	 *            , the target binary byte array length
-	 * @param binaryLong
-	 *            , the long integer
-	 * @return a binary byte array corresponding to the long integer
-	 */
-	@Deprecated
-	public static byte[] longToBinaryArray(int size, Long binaryLong) {
-		String binaryStr = StringUtils.leftPad(Long.toBinaryString(binaryLong), size, BINARY_LEFT_PAD);
-		return stringToBinaryArray(binaryStr);
-	}
-
-	public static <V,E> boolean[] verifySubDS(List<V> ds, int n, int m, Graph<V, E> g)
+//	/**
+//	 * convert a long integer to a binary byte array
+//	 * 
+//	 * @param size
+//	 *            , the target binary byte array length
+//	 * @param binaryLong
+//	 *            , the long integer
+//	 * @return a binary byte array corresponding to the long integer
+//	 */
+//	@Deprecated
+//	public static byte[] longToBinaryArray(int size, Long binaryLong) {
+//		String binaryStr = StringUtils.leftPad(Long.toBinaryString(binaryLong), size, BINARY_LEFT_PAD);
+//		return stringToBinaryArray(binaryStr);
+//	}
+/**
+ * 
+ * @param ds
+ * @param n
+ * @param m
+ * @param g
+ * @return
+ * @throws ArraysNotSameLengthException
+ */
+	public static <V, E> boolean[] verifySubDS(List<V> ds, int n, int m, Graph<V, E> g)
 			throws ArraysNotSameLengthException {
 		if (m > n) {
 			m = n;
@@ -1392,8 +1340,17 @@ public class AlgorithmUtil {
 		}
 
 	}
-
-	private static <V,E> boolean verifyChosen(List<V> ds, boolean[] chosen, int m, int n, Graph<V, E> g)
+/**
+ * 
+ * @param ds
+ * @param chosen
+ * @param m
+ * @param n
+ * @param g
+ * @return
+ * @throws ArraysNotSameLengthException
+ */
+	private static <V, E> boolean verifyChosen(List<V> ds, boolean[] chosen, int m, int n, Graph<V, E> g)
 			throws ArraysNotSameLengthException {
 		List<V> tempDs = new ArrayList<V>(m);
 
@@ -1406,7 +1363,11 @@ public class AlgorithmUtil {
 		return isDS(g, tempDs);
 
 	}
-
+/**
+ * 
+ * @param s
+ * @return
+ */
 	public static <T> List<T> getFirstItemInCollection(Collection<T> s) {
 		// List<T> rtn = new ArrayList<T>();
 		//
@@ -1418,7 +1379,12 @@ public class AlgorithmUtil {
 		// return rtn;
 		return getFirstNItemsInCollection(1, s);
 	}
-
+/**
+ * 
+ * @param n
+ * @param s
+ * @return
+ */
 	public static <T> List<T> getFirstNItemsInCollection(int n, Collection<T> s) {
 		List<T> rtn = new ArrayList<T>();
 		int count = 0;
@@ -2073,7 +2039,7 @@ public class AlgorithmUtil {
 	 *            the graph instance
 	 * @return true: u is dominated by v;false, no
 	 */
-	public static <V,E> boolean isAVertexDominateAVertex(V v, V u, Graph<V, E> g) {
+	public static <V, E> boolean isAVertexDominateAVertex(V v, V u, Graph<V, E> g) {
 		if (u.equals(v)) {
 			// a vertex always dominates itself
 			return true;
@@ -2086,28 +2052,28 @@ public class AlgorithmUtil {
 
 	}
 
-	/**
-	 * if a vertex set(edSet) is dominated by a vertex in a set (ingSet)
-	 * 
-	 * @param ingSet,
-	 *            the set where the dominating vertex is in
-	 * @param edSet,
-	 *            the dominated vertex set
-	 * @param g,
-	 *            the graph instance
-	 * @return true: vList is dominated by v;false, no
-	 */
-	public static boolean isAVertexInASetDominateASet(Collection<Integer> ingSet, Collection<Integer> edSet,
-			Graph<Integer, Integer> g) {
-		for (Integer v : ingSet) {
-			boolean isDominate = isAVertexDominateASet(v, edSet, g);
-			if (isDominate) {
-				return true;
-			}
-		}
-
-		return false;
-	}
+//	/**
+//	 * if a vertex set(edSet) is dominated by a vertex in a set (ingSet)
+//	 * 
+//	 * @param ingSet,
+//	 *            the set where the dominating vertex is in
+//	 * @param edSet,
+//	 *            the dominated vertex set
+//	 * @param g,
+//	 *            the graph instance
+//	 * @return true: vList is dominated by v;false, no
+//	 */
+//	public static boolean isAVertexInASetDominateASet(Collection<Integer> ingSet, Collection<Integer> edSet,
+//			Graph<Integer, Integer> g) {
+//		for (Integer v : ingSet) {
+//			boolean isDominate = isAVertexDominateASet(v, edSet, g);
+//			if (isDominate) {
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	}
 
 	/**
 	 * minimalization to reduce redundant vertices
@@ -2117,8 +2083,7 @@ public class AlgorithmUtil {
 	 * @return
 	 * @throws ArraysNotSameLengthException
 	 */
-	public static <V,E> List<V> minimal(Graph<V, E> g, List<V> ds)
-			throws ArraysNotSameLengthException {
+	public static <V, E> List<V> minimal(Graph<V, E> g, List<V> ds) throws ArraysNotSameLengthException {
 
 		int distance = 1;
 		int dsSize = ds.size();
@@ -2146,7 +2111,7 @@ public class AlgorithmUtil {
 	 *            the dominating set
 	 * @return the dominating set after local search
 	 */
-	public static <V,E> List<V> grasp(Graph<V, E> g, List<V> d) {
+	public static <V, E> List<V> grasp(Graph<V, E> g, List<V> d) {
 		Collection<V> vertices = g.getVertices();
 		int numOfVertices = vertices.size();
 		Map<V, Integer> coveredbyMap = new HashMap<V, Integer>(numOfVertices);
