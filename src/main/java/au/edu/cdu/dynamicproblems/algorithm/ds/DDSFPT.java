@@ -127,7 +127,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 		this.hasLessR = false;
 	}
 
-	private Collection<Integer> considerableCandidateVertices4DS; 
+	private Collection<Integer> considerableCandidateVertices4DS;
 
 	public void setConsiderableCandidateVertices4DS(Collection<Integer> considerableCandidateVertices4DS) {
 		this.considerableCandidateVertices4DS = considerableCandidateVertices4DS;
@@ -143,7 +143,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 		reductionRulesOnGraph2();
 
 		int vertexCoverSize = vertexCover.size();
-
+		log.debug("n=" + vertexCoverSize);
 		try {
 			if (vertexCoverSize > 0) {
 
@@ -183,8 +183,6 @@ public class DDSFPT implements IAlgorithm, ITask {
 		vertexCover = CollectionUtils.subtract(verticesInG2, neighboursOfDs1InG2);
 		vertexCover = CollectionUtils.subtract(vertexCover, ds1);
 
-		
-		
 		// apply reduction rules
 		g2 = r1(g2, ds1);
 
@@ -192,15 +190,13 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 		g2 = r3(g2, neighboursOfDs1InG2, verticesNum);
 
-
 	}
-
-	
 
 	private void domAVcFpt(Collection<Integer> vertexCover, Graph<Integer, String> gStar, int r)
 			throws MOutofNException, NChooseMNoSolutionException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int tryR = R_START;
+		// int tryR=r;
 		if (r < tryR) {
 			tryR = r;
 		}
@@ -242,10 +238,10 @@ public class DDSFPT implements IAlgorithm, ITask {
 		} while (!this.hasLessR);
 		if (this.hasLessR) {
 			Collection<Integer> SStar = ag.getDominatingVertexCoverSet();
-			if(SStar.size()>=this.considerableCandidateVertices4DS.size()){
-				SStar=this.considerableCandidateVertices4DS;
+			if (SStar.size() >= this.considerableCandidateVertices4DS.size()) {
+				SStar = this.considerableCandidateVertices4DS;
 			}
-			
+
 			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, SStar);
 		} else {
 			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, vertexCover);
@@ -262,7 +258,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 	 *            , dominating set of graph 1(ds1)
 	 * @return
 	 */
-	private <V,E> Graph<V, E> r1(Graph<V, E> g, Collection<V> S) {
+	private <V, E> Graph<V, E> r1(Graph<V, E> g, Collection<V> S) {
 		for (V s : S) {
 			synchronized (s) {
 				g.removeVertex(s);
@@ -283,7 +279,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 	 *            , the undominated vertices by ds1
 	 * @return
 	 */
-	private <V,E> Graph<V, E> r2(Graph<V, E> g, Collection<V> B, Collection<V> C) {
+	private <V, E> Graph<V, E> r2(Graph<V, E> g, Collection<V> B, Collection<V> C) {
 		for (V b : B) {
 			Collection<V> neiB = g.getNeighbors(b);
 			Collection<V> intsec = null;
@@ -300,7 +296,6 @@ public class DDSFPT implements IAlgorithm, ITask {
 		return g;
 	}
 
-
 	/**
 	 * reduction rule 3, if(u,v) is an edge and {u,v} belongs B, remove the
 	 * edge(U,v)
@@ -316,8 +311,8 @@ public class DDSFPT implements IAlgorithm, ITask {
 		for (Integer b1 : B) {
 			for (Integer b2 : B) {
 				if (!b1.equals(b2)) {
-					
-					String edge=AlgorithmUtil.getEdgeLabelBy2VerticesLabel(b1, b2);
+
+					String edge = AlgorithmUtil.getEdgeLabelBy2VerticesLabel(b1, b2);
 					if (g.containsEdge(edge)) {
 						g.removeEdge(edge);
 					}

@@ -60,7 +60,7 @@ public class GreedyDSM0Test {
 		
 	}
 
-	//@Ignore 
+	@Ignore 
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -71,10 +71,10 @@ public class GreedyDSM0Test {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, files, destFile,1,1,10,10);
+		basicFunc(path, files, destFile,1,1,5,4);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -83,7 +83,7 @@ public class GreedyDSM0Test {
 		String[] files = TestUtil.DIMACS_FILES;
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 		
-		basicFunc(path, files, destFile,1,1,10,10);
+		basicFunc(path, files, destFile,1,1,5,4);
 	}
 
 	
@@ -98,7 +98,7 @@ public class GreedyDSM0Test {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 		
-		basicFunc(path, files, destFile,1,1,10,10);
+		basicFunc(path, files, destFile,1,1,3,2);
 	}
 	
 	

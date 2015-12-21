@@ -30,7 +30,7 @@ public class VertexPriority<V> {
 		sb.append(this.getVertex()).append("-");
 		
 		float priority=this.getPriority();
-		float round=Math.round(priority);
+		int round=Math.round(priority);
 		float diff=Math.abs(priority-round);
 		if(diff<=ZERO_DIFF){
 			sb.append(round);

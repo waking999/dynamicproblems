@@ -12,9 +12,8 @@ import java.util.List;
 public class UtilityDesc<V,E> implements IPriorityOrder<V, E> {
 	@Override
 	public List<V> getOrderedVertexList(PriorityBean<V,E> pb){
-		IPriority pcb=new PriorityUtility();
+		IPriority pcb = new PriorityUtility();
 		IOrder<V> ocb = new OrderDesc<V>();
-		/*there is no need for a weight map (<vertex(V), weigh(float)>) for ordering by degree*/
 		List<V> vList=OrderPackageUtil.getOrderedVertexList(pb, pcb, ocb);
 		return vList;
 	}

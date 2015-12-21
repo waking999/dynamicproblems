@@ -144,7 +144,7 @@ public class DomAVCFPT {
 			// m always <= n;
 			m = n;
 		}
-		// log.debug(n + " choose " + m);
+	//	 log.debug(n + " choose " + m);
 
 		boolean isSolution = false;
 		boolean isEnd = false;
@@ -329,6 +329,7 @@ public class DomAVCFPT {
 	}
 
 	private boolean verifyChosen(boolean[] chosen, int m, int n) throws ArraysNotSameLengthException {
+	
 		List<Integer> possibleDomVCSet = new ArrayList<Integer>(m);
 
 		int vertexCoverSize = vertexCover.size();

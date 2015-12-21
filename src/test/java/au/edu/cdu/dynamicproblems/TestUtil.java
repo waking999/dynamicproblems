@@ -62,11 +62,12 @@ public class TestUtil {
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
 	public static final String[] KONECT_FILES = { 
-//			"000027_zebra.konet", 
-//			"000034_zachary.konet", 
-//			"000062_dolphins.konet",
-//			"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
-//			"001133_rovira.konet", "001174_euroroad.konet",
+			"000027_zebra.konet", 
+			"000034_zachary.konet", 
+			"000062_dolphins.konet",
+			"000112_David_Copperfield.konet", "000198_Jazz_musicians.konet", "000212_pdzbase.konet",
+			"001133_rovira.konet", 
+			"001174_euroroad.konet",
 			"001858_hamster.konet", 
 			};
 
