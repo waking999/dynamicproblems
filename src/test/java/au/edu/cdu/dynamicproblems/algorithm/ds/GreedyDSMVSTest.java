@@ -10,8 +10,9 @@ import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import au.edu.cdu.dynamicproblems.TestUtil;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.TestParameter;
+import au.edu.cdu.dynamicproblems.algorithm.TestUtil;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
@@ -26,15 +27,14 @@ public class GreedyDSMVSTest {
 
 	@Ignore
 	@Test
-	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
-			InterruptedException, InterruptedException {
+	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+			IOException, InterruptedException, InterruptedException {
 		String datasetName = "DIMACS";
 		String path = TestUtil.DIMACS_PATH;
-		String[] files = TestUtil.DIMACS_FILES;
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
-		int[][] krArray = { { 10, 10 } };
-		runStrategies(path, krArray, files, destFile, 1, 1);
+
+		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
 	@Ignore
@@ -43,56 +43,53 @@ public class GreedyDSMVSTest {
 			IOException, InterruptedException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
-		String[] files = TestUtil.BHOSLIB_FILES;
+	
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		int[][] krArray = { { 10, 10 } };
 
-		runStrategies(path, krArray, files, destFile, 1, 1);
+		runStrategies(path, TestUtil.BHOSLIB_TP, destFile, 1, 1);
 
 	}
 
-	//@Ignore
+	// @Ignore
 	@Test
-	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, IOException,
-			InterruptedException {
+	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+			IOException, InterruptedException {
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
-		String[] files = TestUtil.KONECT_FILES;
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		int[][] krArray = { { 10, 10 } };
-
-		runStrategies(path, krArray, files, destFile, 1, 1);
+		
+		runStrategies(path, TestUtil.KONECT_TP, destFile, 1, 1);
 	}
 
-
 	@SuppressWarnings("unchecked")
-	private void runStrategies(String path, int[][] krArray, String[] files, String destFile, int iStart, int iEnd)
+	private void runStrategies(String path, TestParameter[] tps, String destFile, int iStart, int iEnd)
 			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, InterruptedException {
 
 		log.debug(destFile);
 
-		for (String file : files) {
-			FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + file);
+		for (TestParameter tp : tps) {
+			FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + tp.getFile());
 			List<String[]> am = fo.getAdjacencyMatrix();
+			if (tp.isBeTest()) {
+				int k = tp.getK();
+				int rUpper = tp.getR();
+				int r = rUpper;
+				
+				for (int i = iStart; i <= iEnd; i++) {
 
-			for (int i = iStart; i <= iEnd; i++) {
+					String msg;
 
-				String msg;
+					msg = setMessage(tp.getFile(), i);
 
-				msg = setMessage(file, i);
+					log.debug(msg);
+					FileOperation.saveCVSFile(destFile, msg);
 
-				log.debug(msg);
-				FileOperation.saveCVSFile(destFile, msg);
-
-				for (int[] kr : krArray) {
-					int k = kr[0];
-					int rUpper = kr[1];
-					int r = rUpper;
+					
 
 					StringBuilder sb = new StringBuilder();
 
@@ -132,7 +129,6 @@ public class GreedyDSMVSTest {
 					if (destFile != null) {
 						FileOperation.saveCVSFile(destFile, sb.toString());
 					}
-
 				}
 
 			}
@@ -144,7 +140,6 @@ public class GreedyDSMVSTest {
 		msgSb.append(file).append("-i=").append(i);
 		return msgSb.toString();
 	}
-
 
 	@SuppressWarnings("unchecked")
 	private void setRunningTime(StringBuilder sb, Map<String, Long>... agRunningTimeMaps) {

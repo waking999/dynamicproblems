@@ -419,6 +419,7 @@ public class GreedyDSUtil {
 	 * @throws ExceedLongMaxException
 	 * @throws ArraysNotSameLengthException
 	 */
+	@Deprecated
 	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> vertexSolutionList,
 			Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI, String indicator, int rUpperBoundary,
 			Map<String, Long> runningTimeMap)

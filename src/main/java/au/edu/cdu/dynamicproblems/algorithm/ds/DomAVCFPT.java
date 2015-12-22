@@ -144,7 +144,7 @@ public class DomAVCFPT {
 			// m always <= n;
 			m = n;
 		}
-	//	 log.debug(n + " choose " + m);
+	//log.debug(n + " choose " + m);
 
 		boolean isSolution = false;
 		boolean isEnd = false;

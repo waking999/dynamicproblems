@@ -10,8 +10,8 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import au.edu.cdu.dynamicproblems.TestUtil;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.TestUtil;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;

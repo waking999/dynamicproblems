@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
@@ -126,26 +128,15 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
 	}
 
-	/* a list for storing the solutions in each iteration */
-	private List<List<Integer>> vertexSolutionList;
-	/* a list for storing the sub-graph in each iteration */
-	private List<Graph<Integer, String>> vertexGraphList;
-
 	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
-
-		/* the size of the queue */
-		int queueSize = k + 1;
-
-		vertexSolutionList = new ArrayList<List<Integer>>(queueSize);
-		vertexGraphList = new ArrayList<Graph<Integer, String>>(queueSize);
 
 		/* sort a list of vertex from lowest degree to highest */
 		List<Integer> vList = OrderPackageUtil.getVertexListDegreeAsc(g);
 
 		/*
-		 * i) get the first vertex in the list(the lowest degree); and ii) get
-		 * its highest utility neighbor and iii) put it in D0; and iv)
-		 * initialize a G0 with them; v) put D0 and G0 in queue
+		 * i) get the first vertex v0 in the list(the lowest degree); and ii)
+		 * get its highest utility neighbor u0 and iii) put u0 in D0; and iv)
+		 * initialize a G0 with N[u0];
 		 * 
 		 */
 		// i)
@@ -159,174 +150,161 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 		AlgorithmUtil.addElementToList(dI, u);
 		// iv)
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
-		// List<Integer> uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g,
-		// gDominatedMap, gI, u, v);
-		// AlgorithmUtil.prepareGenericGraph(adjacencyMatrix, gI, uList);
-		List<Integer> uList = new ArrayList<Integer>();
-		AlgorithmUtil.addElementToList(uList, u);
-		addCloseNeighborToSubgraph(g, gI, uList);
-		// v)
-		GreedyDSUtil.setStatusOfIthVertexInQueue(i, vertexSolutionList, dI, vertexGraphList, gI);
+		addCloseNeighborToSubgraph(g, gI, u);
 
-		/*
-		 * because the size of queue is only k+1, we need reuse some positions,
-		 * therefore, we need several indexes to record different information
-		 */
-		/* index shows vertex position in the list, it can be larger than k */
-		/*
-		 * because a vertex will not be count if it is dominated, currentIndex
-		 * works for the index of step, it could be larger than k;
-		 */
-		int currentIndex = 0;
-		/*
-		 * backIndex is for calculating the position after back k vertices. k
-		 * vertices at the left side of current index, it could be larger than k
-		 */
-		int backKIndex = 0;
+		gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
+		List<Integer> undominatedVertices = getUndominatedVertices(gDominatedMap);
 
-		/* pos shows status position in the storage, they are less than k */
-		/*
-		 * previousIndex is used for to get previous status in the queue to
-		 * calculate current status
-		 */
-		int previousPos = 0;
-		/*
-		 * record the position of the best solution in the queue
-		 */
-		int currentPos = 0;
+		// for (i = 1; i < this.numOfVertices; i++) {
 
-		for (i = 1; i < this.numOfVertices; i++) {
-			/*
-			 * get last round sub-graph G_{i-1} and ds solution D_{i-1}
-			 */
-			Graph<Integer, String> gIPre = vertexGraphList.get(previousPos);
-			List<Integer> dIPre = vertexSolutionList.get(previousPos);
-
+		do {
+			// i++;
 			/*
 			 * this dominated map is for the whole graph to satisfy quit
 			 * condition
 			 */
-			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dIPre);
+			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
 			if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
 				break;
 			}
 			/* get the ith vertex in the sorted list */
-			v = vList.get(i);
-
-			// /*
-			// * this dominated map only set vertices in existing sub-graph,
-			// which
-			// * means some neighbors of a dominating vertex may not be set and
-			// * they may be considered in the later if branch. Otherwise, they
-			// * may be excluded in the later if branch.
-			// */
-			// Map<Integer, Boolean> gIDominatedMap =
-			// GreedyDSUtil.getDominatedMapI(g, gIPre, dIPre);
+			// v = vList.get(i);
+			v = getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
 
 			if (!gDominatedMap.get(v)) {
 				/*
-				 * if v is not dominated, i) get its highest utility
-				 * neighbor;ii) put it in DI; and iii) construct a GI with them;
-				 * and iv) calculate the position of the queue to put DI and GI;
-				 * v) if it is a moment of regret, apply dds fpt; vi) and put
-				 * the smaller solution ( of DI and DDSI ) and GI in the queue;
-				 * vii) move the cursor of previousPos of the queue to
-				 * currentPos;viii) because DI changes, we check the
-				 * dominatedMap, if all have been dominated,we will quit the
-				 * loop
+				 * if vi is not dominated, i) get its highest utility neighbor
+				 * vi;ii) put ui in DI; and iii) construct a GI with N[ui]; and
+				 * iv) if it is a moment of regret (in michael's original idea,
+				 * it always true),
+				 * 
+				 * divide gI into V and DI, divide V into Vk (the k highest
+				 * degree vertices in V) and Vl (vertices not in Vk), divide DI
+				 * into Dk(Vk's neigbors which do not have neighbors in Vl), and
+				 * Dl(the neighbors of Vl)
+				 * 
+				 * take Dk, GI, r as parameters to invoke dds fpt to get a
+				 * solution DDSI; v) set the smaller solution (of DI and DDSI )
+				 * to be solution for GI
 				 */
 
 				// i)
 				u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, gDominatedMap);
 				// ii)
-				dI = new ArrayList<Integer>();
-				dI.addAll(dIPre);
 				AlgorithmUtil.addElementToList(dI, u);
-
-				/*
-				 * the subgraph in each round: add u and one of its neighbor
-				 * (other than vertices in previous sub graph)
-				 *
-				 * the purpose of adding u and only one of its neighbor is: 1.
-				 * if only u, then sometimes u can be removed by dds fpt in a
-				 * subgraph that u is dominated by another vertex but this makes
-				 * other vertices dominated by u will be undominated; 2. if add
-				 * all neighbors of u, the distance between G and G' can be huge
-				 * such that slow down the process of dds fpt; 3. only u and one
-				 * of its neighbor is a balance to not lose the generality and
-				 * 2k is acceptable distance;
-				 */
 				// iii)
-				gI = AlgorithmUtil.copyGraph(gIPre);
-//				uList = GreedyDSUtil.getUAndOneNeighborToBeDominated(g, gDominatedMap, gI, u, v);
-//				AlgorithmUtil.prepareGenericGraph(adjacencyMatrix, gI, uList);
-				uList = new ArrayList<Integer>();
-				AlgorithmUtil.addElementToList(uList, u);
-				addCloseNeighborToSubgraph(g, gI, uList);
-				
-				// iv)
-				/* we only count un-dominated vertex and then step next */
-				currentIndex++;
-				// currentPos = currentIndex % queueSize;
-				currentPos++;
-				if (currentPos >= queueSize) {
-					currentPos = 0;
-				}
-				// v)
+				addCloseNeighborToSubgraph(g, gI, u);
+
 				List<Integer> ddsI = null;
+				Graph<Integer, String> gICopyNextRound = null;
 				if (isMomentOfRegret()) {
+					int gISize = gI.getVertexCount();
+					int dISize = dI.size();
+					int dominatedVerticesSize = gISize - dISize;
 
-					/*
-					 * back k vertices, if the number of vertices that has been
-					 * visited is less than k, we will back the the smallest
-					 * number, in another words, we only back to 0 rather than
-					 * negative position
-					 */
+					// if the number of dominated vertices is less than k, we
+					// only go back this number steps rather than k steps.
+					int kCount=Math.min(k, dominatedVerticesSize);
+					
 
-					backKIndex = currentIndex - k;
-					if (backKIndex >= 0) {
-						// backKIndex = 0;
-						 log.debug(i + ":dds fpt");
-						previousPos = backKIndex % queueSize;
+					Collection<Integer> gIVertices = gI.getVertices();
 
-						ddsI = GreedyDSUtil.invokeDDSFPT(previousPos, vertexSolutionList, gI, dI, ddsI, this.indicator,
-								this.rUpperBoundary, this.runningTimeMap);
+					// V
+					Collection<Integer> dominatedVertices = CollectionUtils.subtract(gIVertices, dI);
+					// Vk
+					List<Integer> kVertices = new ArrayList<Integer>();
+
+					int count = kCount;
+					for (int j = this.numOfVertices - 1; j >= 0; j--) {
+						if (count > 0) {
+							Integer w = vList.get(j);
+							if (dominatedVertices.contains(w)) {
+								AlgorithmUtil.addElementToList(kVertices, w);
+								count--;
+							}
+						}
 					}
+					// Vl
+					dominatedVertices.removeAll(kVertices);
+
+					// Dk
+					List<Integer> dominatingKVertices = new ArrayList<Integer>();
+					for (Integer w : kVertices) {
+						Collection<Integer> wNeig = gI.getNeighbors(w);
+						Collection<Integer> dW = CollectionUtils.intersection(wNeig, dI);
+						for (Integer dw : dW) {
+							Collection<Integer> dwNeig = gI.getNeighbors(dw);
+							Collection<Integer> dwIntsec = CollectionUtils.intersection(dwNeig, dominatedVertices);
+							if (dwIntsec.isEmpty()) {
+								AlgorithmUtil.addElementToList(dominatingKVertices, dw);
+							}
+						}
+
+					}
+
+					int dominatingKVerticesSize = dominatingKVertices.size();
+
+					/* being less than 2 is too trivial */
+					if (dominatingKVerticesSize >= 2) {
+						long start = System.nanoTime();
+						// Dl
+						List<Integer> dICopy = new ArrayList<Integer>();
+						dICopy.addAll(dI);
+						dICopy.removeAll(dominatingKVertices);
+
+						// a copy of gI for next round
+						gICopyNextRound = AlgorithmUtil.copyGraph(gI);
+						for (Integer w : kVertices) {
+							gICopyNextRound.removeVertex(w);
+						}
+
+						for (Integer w : dominatingKVertices) {
+							gICopyNextRound.removeVertex(w);
+						}
+
+						// a copy of gI for dds fpt because the graph will
+						// be
+						// modified;
+						Graph<Integer, String> gICopyDDS = AlgorithmUtil.copyGraph(gI);
+						// log.debug("m="+dominatingKVerticesSize);
+						int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
+
+						DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
+
+						ag.setConsiderableCandidateVertices4DS(dominatedVertices);
+						ag.computing();
+
+						ddsI = ag.getDs2();
+
+						long end = System.nanoTime();
+						Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
+						if (existingRunningTime == null) {
+							existingRunningTime = Long.valueOf(0);
+						}
+						runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
+					}
+
 				}
 
-				if (ddsI != null && ddsI.size() < dI.size()) {
+				if ((ddsI != null && ddsI.size()>0) && ddsI.size() < dI.size()) {
 					dI = ddsI;
+
+					addCloseNeighborToSubgraph(g, gICopyNextRound, dI);
+					gI = gICopyNextRound;
 				}
-
-				// vi)
-				GreedyDSUtil.setStatusOfIthVertexInQueue(currentPos, vertexSolutionList, dI, vertexGraphList, gI);
-
-				// vii)
-				previousPos = currentPos;
 
 				// viii)
 				gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
-				if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
-					break;
-				}
+				// if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
+				// break;
+				// }
+				undominatedVertices = getUndominatedVertices(gDominatedMap);
 
-			} else {
-
-				/*
-				 * if v has already been dominated, i) add v to gI; ii) and
-				 * replace gI at previousPos of the queue ; iii) don't move the
-				 * cursor of the queue
-				 */
-				// i)
-				uList = new ArrayList<Integer>();
-				AlgorithmUtil.addElementToList(uList, v);
-				AlgorithmUtil.prepareGenericGraph(adjacencyMatrix, gI, uList);
-				// ii)
-				GreedyDSUtil.setStatusOfIthVertexInQueue(previousPos, vertexSolutionList, dI, vertexGraphList, gI);
 			}
 
-		}
-		this.dominatingSet = this.vertexSolutionList.get(currentPos);
+		} while (!AlgorithmUtil.isAllDominated(gDominatedMap));
+
+		this.dominatingSet = dI;
 
 	}
 
@@ -352,31 +330,72 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 
 	}
 
-	// private <V> int getUndominatedNum(Map<V, Boolean> dominatedMap) {
-	// int count = 0;
-	// Set<V> keySet = dominatedMap.keySet();
-	//
-	// for (V key : keySet) {
-	// if (!dominatedMap.get(key)) {
-	// count++;
-	// }
-	// }
-	// return count;
-	// }
+//	private <V> String getUndominatedNum(Map<V, Boolean> dominatedMap) {
+//		StringBuffer sb = new StringBuffer();
+//
+//		List<V> undominatedVertices = getUndominatedVertices(dominatedMap);
+//
+//		int count = undominatedVertices.size();
+//
+//		for (V v : undominatedVertices) {
+//			sb.append(v.toString()).append(AlgorithmUtil.COMMA);
+//		}
+//
+//		sb.append(":").append(count);
+//		return sb.toString();
+//	}
 
-	private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, List<Integer> dI) {
+	private <V> List<V> getUndominatedVertices(Map<V, Boolean> dominatedMap) {
+		List<V> rtnList = new ArrayList<V>();
+
+		Set<V> keySet = dominatedMap.keySet();
+
+		for (V key : keySet) {
+			if (!dominatedMap.get(key)) {
+				AlgorithmUtil.addElementToList(rtnList, key);
+			}
+		}
+
+		return rtnList;
+	}
+
+	private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, Integer u) {
 		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
 
-		for (Integer w : dI) {
-			Collection<Integer> wNeig = gRef.getNeighbors(w);
-			for (Integer x : wNeig) {
-				if (!gI.containsVertex(x)) {
-					AlgorithmUtil.addElementToList(verticesToAddInGraph, x);
+		Collection<Integer> uNeig = gRef.getNeighbors(u);
+		for (Integer w : uNeig) {
+			if (!gI.containsVertex(w)) {
+				AlgorithmUtil.addElementToList(verticesToAddInGraph, w);
+			}
+		}
+		AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
+
+		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
+	}
+
+	private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI,
+			List<Integer> uList) {
+		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
+
+		for (Integer u : uList) {
+			Collection<Integer> uNeig = gRef.getNeighbors(u);
+			for (Integer w : uNeig) {
+				if (!gI.containsVertex(w)) {
+					AlgorithmUtil.addElementToList(verticesToAddInGraph, w);
 				}
 			}
-
+			AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
 		}
 		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
 	}
 
+	private Integer getTheFirstItemInOrderedListAndInAnotherList(Collection<Integer> orderedList,
+			Collection<Integer> anotherLst) {
+		for (Integer v : orderedList) {
+			if (anotherLst.contains(v)) {
+				return v;
+			}
+		}
+		return null;
+	}
 }

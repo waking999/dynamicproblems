@@ -8,8 +8,9 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import au.edu.cdu.dynamicproblems.TestUtil;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.TestParameter;
+import au.edu.cdu.dynamicproblems.algorithm.TestUtil;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
@@ -48,10 +49,10 @@ public class GreedyVoteTest {
 			FileNotFoundException {
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
-		String[] files = TestUtil.KONECT_FILES;
+		 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, files, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.KONECT_TP, destFile, 1, 1,log);
 	}
 
 	//@Ignore
@@ -60,10 +61,10 @@ public class GreedyVoteTest {
 			FileNotFoundException {
 		String datasetName = "DIMACS";
 		String path = TestUtil.DIMACS_PATH;
-		String[] files = TestUtil.DIMACS_FILES;
+	 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 		
-		basicFunc(path, files, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1,log);
 	}
 
 	//@Ignore
@@ -72,10 +73,10 @@ public class GreedyVoteTest {
 			FileNotFoundException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
-		String[] files = TestUtil.BHOSLIB_FILES;
+		 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 		
-		basicFunc(path, files, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.BHOSLIB_TP, destFile, 1, 1,log);
 	}
 
 	
@@ -92,7 +93,7 @@ public class GreedyVoteTest {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private static void basicFunc(String path, String[] files, String destFile, int iLower, int iUpper,Logger log)
+	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper,Logger log)
 			throws FileNotFoundException, IOException, InterruptedException {
 
 		for (int i = iLower; i <= iUpper; i++) {
@@ -104,8 +105,8 @@ public class GreedyVoteTest {
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, sbStr);
 			}
-			for (String file : files) {
-				String inputFile=path+file;
+			for (TestParameter tp : tps) {
+				String inputFile=path+tp.getFile();
 				FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
 				List<String[]> am = fo.getAdjacencyMatrix();
 
