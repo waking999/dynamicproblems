@@ -25,7 +25,7 @@ public class GreedyDSMVSTest {
 	private Logger log = LogUtil.getLogger(GreedyDSMVSTest.class);
 	private static final String CLASS_NAME = GreedyDSMVSTest.class.getSimpleName();
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -52,7 +52,7 @@ public class GreedyDSMVSTest {
 
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -107,8 +107,8 @@ public class GreedyDSMVSTest {
 					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
 					sb.append(result02.getString()).append("\n");
 
-					int minDSSize = ds02Size;
-					int chooseDS = 2;
+					int minDSSize = ds01Size;
+					int chooseDS = 1;
 
 					if (minDSSize >= ds01Size) {
 						minDSSize = ds01Size;
@@ -124,6 +124,7 @@ public class GreedyDSMVSTest {
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
 					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					//setRunningTime(sb, ag02RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {

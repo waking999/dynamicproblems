@@ -19,10 +19,10 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyDSM0Test {
+public class GreedyDSM0V1Test {
 
-	private Logger log = LogUtil.getLogger(GreedyDSM0Test.class);
-	private static final String CLASS_NAME = GreedyDSM0Test.class.getSimpleName();
+	private Logger log = LogUtil.getLogger(GreedyDSM0V1Test.class);
+	private static final String CLASS_NAME = GreedyDSM0V1Test.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -34,7 +34,7 @@ public class GreedyDSM0Test {
 
 		int k = 10;
 		int r = 10;
-		IGreedyDS<Integer> ag = new GreedyDSM0(am, k, r);
+		IGreedyDS<Integer> ag = new GreedyDSM0V1(am, k, r);
 		Result result = ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -123,7 +123,7 @@ public class GreedyDSM0Test {
 
 		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-		IGreedyDS<Integer> ag = new GreedyDSM0(am, k, r);
+		IGreedyDS<Integer> ag = new GreedyDSM0V1(am, k, r);
 		TestUtil.run(inputFile, destFile, g, ag, log);
 
 	}

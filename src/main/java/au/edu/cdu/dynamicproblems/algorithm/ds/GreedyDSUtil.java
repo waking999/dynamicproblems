@@ -102,49 +102,50 @@ public class GreedyDSUtil {
 		return uList;
 	}
 
-//	/**
-//	 * 
-//	 * put solution to be built, and sub-graph at the pos-th position in the
-//	 * storage of the queue
-//	 * 
-//	 * @param pos,
-//	 *            the position,
-//	 * @param vertexSolutionList,
-//	 *            a list for storing the solutions in each iteration
-//	 * @param dI,
-//	 *            a solutions in each iteration
-//	 * @param vertexGraphList,a
-//	 *            list for storing the sub-graph in each iteration
-//	 * @param gI,
-//	 *            a sub-graph in each iteration
-//	 * 
-//	 * @param dominatedMapList
-//	 * @param dominatedMap
-//	 */
-//	public static <V, E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> solutionList, List<V> dI,
-//			List<Graph<V, E>> subGraphList, Graph<V, E> gI, List<Map<V, Boolean>> dominatedMapList,
-//			Map<V, Boolean> dominatedMap) {
-//		try {
-//			solutionList.set(pos, dI);
-//		} catch (Exception e) {
-//			solutionList.add(pos, dI);
-//		}
-//
-//		try {
-//			subGraphList.set(pos, gI);
-//		} catch (Exception e) {
-//			subGraphList.add(pos, gI);
-//		}
-//
-//		try {
-//			dominatedMapList.set(pos, dominatedMap);
-//		} catch (Exception e) {
-//			dominatedMapList.add(pos, dominatedMap);
-//		}
-//
-//	}
-	
-	
+	// /**
+	// *
+	// * put solution to be built, and sub-graph at the pos-th position in the
+	// * storage of the queue
+	// *
+	// * @param pos,
+	// * the position,
+	// * @param vertexSolutionList,
+	// * a list for storing the solutions in each iteration
+	// * @param dI,
+	// * a solutions in each iteration
+	// * @param vertexGraphList,a
+	// * list for storing the sub-graph in each iteration
+	// * @param gI,
+	// * a sub-graph in each iteration
+	// *
+	// * @param dominatedMapList
+	// * @param dominatedMap
+	// */
+	// public static <V, E> void setStatusOfIthVertexInQueue(int pos,
+	// List<List<V>> solutionList, List<V> dI,
+	// List<Graph<V, E>> subGraphList, Graph<V, E> gI, List<Map<V, Boolean>>
+	// dominatedMapList,
+	// Map<V, Boolean> dominatedMap) {
+	// try {
+	// solutionList.set(pos, dI);
+	// } catch (Exception e) {
+	// solutionList.add(pos, dI);
+	// }
+	//
+	// try {
+	// subGraphList.set(pos, gI);
+	// } catch (Exception e) {
+	// subGraphList.add(pos, gI);
+	// }
+	//
+	// try {
+	// dominatedMapList.set(pos, dominatedMap);
+	// } catch (Exception e) {
+	// dominatedMapList.add(pos, dominatedMap);
+	// }
+	//
+	// }
+
 	public static <V, E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> solutionList, List<V> dI,
 			List<Graph<V, E>> subGraphList, Graph<V, E> gI) {
 		try {
@@ -226,12 +227,15 @@ public class GreedyDSUtil {
 	 * @return
 	 */
 	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g,
-			Map<String, Long> runningTimeMap) {
+			Map<String, Long> runningTimeMap, int valve) {
 		long start = System.nanoTime();
 
 		Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
-		gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
 
+		if (g.getVertexCount() < valve) {
+			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
+		}
+		
 		long end = System.nanoTime();
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
 
@@ -421,8 +425,8 @@ public class GreedyDSUtil {
 	 */
 	@Deprecated
 	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> vertexSolutionList,
-			Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI, String indicator, int rUpperBoundary,
-			Map<String, Long> runningTimeMap)
+			List<Graph<Integer, String>> graphList, Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI,
+			String indicator, int rUpperBoundary, Map<String, Long> runningTimeMap)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 		// log.debug("invoke dds");
 		long start = System.nanoTime();
@@ -430,25 +434,32 @@ public class GreedyDSUtil {
 		 * get the solution at the back up point for future usage in dds fpt
 		 */
 		List<Integer> dK = vertexSolutionList.get(previousIndex);
-		/*
-		 * get the current sub-graph as G' for future usage in dds fpt, but it
-		 * should be a copy rather than the original one because the sub-graph
-		 * will be changed during dds fpt
-		 */
-		Graph<Integer, String> gICopy = AlgorithmUtil.copyGraph(gI);
-		DDSFPT ag = new DDSFPT(indicator, gICopy, dK, rUpperBoundary);
+		Graph<Integer, String> gK = graphList.get(previousIndex);
 
-		/*
-		 * the difference between the current solution and the solution at back
-		 * up point could be a considerable solution in dds fpt
-		 */
-		Collection<Integer> dsDiff = CollectionUtils.subtract(dI, dK);
+		int dKSize = dK.size();
+		int dISize = dI.size();
+		int dIdiff = dISize - dKSize;
+		if (dIdiff >= 2) {
+			/*
+			 * get the current sub-graph as G' for future usage in dds fpt, but
+			 * it should be a copy rather than the original one because the
+			 * sub-graph will be changed during dds fpt
+			 */
+			int r = Math.min(dIdiff, rUpperBoundary);
+			Graph<Integer, String> gICopy = AlgorithmUtil.copyGraph(gI);
+			DDSFPT ag = new DDSFPT(indicator, gICopy, dK, r);
 
-		ag.setConsiderableCandidateVertices4DS(dsDiff);
-		ag.computing();
+			/*
+			 * the difference between the current solution and the solution at
+			 * back up point could be a considerable solution in dds fpt
+			 */
+			Collection<Integer> dsDiff = CollectionUtils.subtract(dI, dK);
 
-		ddsI = ag.getDs2();
+			ag.setConsiderableCandidateVertices4DS(dsDiff);
+			ag.computing();
 
+			ddsI = ag.getDs2();
+		}
 		long end = System.nanoTime();
 		Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
 		if (existingRunningTime == null) {
@@ -509,10 +520,10 @@ public class GreedyDSUtil {
 
 		long start = System.nanoTime();
 
-		GreedyNative ag = new GreedyNative(g);
+		IGreedyDS<Integer> ag = new GreedyNative(g);
 		ag.run();
 
-		GreedyVoteGr ag1 = new GreedyVoteGr(g);
+		IGreedyDS<Integer> ag1 = new GreedyVote(g);
 		ag1.run();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -562,5 +573,170 @@ public class GreedyDSUtil {
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_MINI, Long.valueOf(0));
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_LS, Long.valueOf(0));
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_TOTAL, Long.valueOf(0));
+	}
+
+	public static Integer getTheFirstItemInOrderedListAndInAnotherList(Collection<Integer> orderedList,
+			Collection<Integer> anotherLst) {
+		for (Integer v : orderedList) {
+			if (anotherLst.contains(v)) {
+				return v;
+			}
+		}
+		return null;
+	}
+
+	public static <V> List<V> getUndominatedVertices(Map<V, Boolean> dominatedMap) {
+		List<V> rtnList = new ArrayList<V>();
+
+		Set<V> keySet = dominatedMap.keySet();
+
+		for (V key : keySet) {
+			if (!dominatedMap.get(key)) {
+				AlgorithmUtil.addElementToList(rtnList, key);
+			}
+		}
+
+		return rtnList;
+	}
+
+	public static void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, Integer u) {
+		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
+
+		Collection<Integer> uNeig = gRef.getNeighbors(u);
+		for (Integer w : uNeig) {
+			if (!gI.containsVertex(w)) {
+				AlgorithmUtil.addElementToList(verticesToAddInGraph, w);
+			}
+		}
+		AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
+
+		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
+	}
+
+	public static void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI,
+			List<Integer> uList) {
+		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
+
+		for (Integer u : uList) {
+			Collection<Integer> uNeig = gRef.getNeighbors(u);
+			for (Integer w : uNeig) {
+				if (!gI.containsVertex(w)) {
+					AlgorithmUtil.addElementToList(verticesToAddInGraph, w);
+				}
+			}
+			AlgorithmUtil.addElementToList(verticesToAddInGraph, u);
+		}
+		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
+	}
+
+	public static MomentRegretReturn<Integer, String> applyAtMomentOfRegret(List<Integer> vList, List<Integer> dI,
+			Graph<Integer, String> gI, String indicator, int k, int rUpperBoundary, Map<String, Long> runningTimeMap)
+					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+					InterruptedException {
+		MomentRegretReturn<Integer, String> mrr;
+		int gISize = gI.getVertexCount();
+		int dISize = dI.size();
+		int dominatedVerticesSize = gISize - dISize;
+
+		// if the number of dominated vertices is less than k, we
+		// only go back this number steps rather than k steps.
+		int kCount = Math.min(k, dominatedVerticesSize);
+
+		Collection<Integer> gIVertices = gI.getVertices();
+
+		// B
+		Collection<Integer> dominatedVertices = CollectionUtils.subtract(gIVertices, dI);
+		// Bk
+		List<Integer> kVertices = new ArrayList<Integer>();
+
+		int count = kCount;
+		int vListSize = vList.size();
+		for (int j = vListSize - 1; j >= 0; j--) {
+			if (count > 0) {
+				Integer w = vList.get(j);
+				if (dominatedVertices.contains(w)) {
+					AlgorithmUtil.addElementToList(kVertices, w);
+					count--;
+				}
+			}
+		}
+		// Bl
+		dominatedVertices.removeAll(kVertices);
+
+		// Dk
+		List<Integer> dominatingKVertices = new ArrayList<Integer>();
+		for (Integer w : kVertices) {
+			Collection<Integer> wNeig = gI.getNeighbors(w);
+			Collection<Integer> dW = CollectionUtils.intersection(wNeig, dI);
+			for (Integer dw : dW) {
+				Collection<Integer> dwNeig = gI.getNeighbors(dw);
+				Collection<Integer> dwIntsec = CollectionUtils.intersection(dwNeig, dominatedVertices);
+				if (dwIntsec.isEmpty()) {
+					AlgorithmUtil.addElementToList(dominatingKVertices, dw);
+				}
+			}
+
+		}
+
+		int dominatingKVerticesSize = dominatingKVertices.size();
+
+		List<Integer> ddsI = null;
+		Graph<Integer, String> gICopyNextRound = null;
+		List<Integer> gDI = null;
+		Graph<Integer, String> gICopyDDS = null;
+		/* being less than 2 is too trivial */
+		if (dominatingKVerticesSize >= 2) {
+			long start = System.nanoTime();
+			// Dl
+			List<Integer> dICopy = new ArrayList<Integer>();
+			dICopy.addAll(dI);
+			dICopy.removeAll(dominatingKVertices);
+
+			// a copy of gI for next round
+			gICopyNextRound = AlgorithmUtil.copyGraph(gI);
+			for (Integer w : kVertices) {
+				gICopyNextRound.removeVertex(w);
+			}
+
+			for (Integer w : dominatingKVertices) {
+				gICopyNextRound.removeVertex(w);
+			}
+
+			/*
+			 * a copy of gI for dds fpt because the graph will be modified;
+			 */
+			gICopyDDS = AlgorithmUtil.copyGraph(gI);
+			
+			// log.debug("m="+dominatingKVerticesSize);
+			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
+
+			gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
+
+			int gDISize = gDI.size();
+
+			realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
+
+			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
+
+			ag.setConsiderableCandidateVertices4DS(dominatedVertices);
+			ag.computing();
+
+			ddsI = ag.getDs2();
+
+			int ddsISize = ddsI.size();
+			if (ddsISize > ddsISize) {
+				ddsI = gDI;
+			}
+
+			long end = System.nanoTime();
+			Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
+			if (existingRunningTime == null) {
+				existingRunningTime = Long.valueOf(0);
+			}
+			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
+		}
+
+		mrr = new MomentRegretReturn<Integer, String>(ddsI, gICopyNextRound);
+		return mrr;
 	}
 }
