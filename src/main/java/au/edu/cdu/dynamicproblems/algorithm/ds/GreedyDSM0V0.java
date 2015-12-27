@@ -1,7 +1,6 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,10 +79,10 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 		return dominatingSet;
 	}
 
-	/**
-	 * number of vertices
-	 */
-	private int numOfVertices;
+//	/**
+//	 * number of vertices
+//	 */
+//	private int numOfVertices;
 
 	/**
 	 * the adjacency matrix of the graph
@@ -98,7 +97,7 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 
 	public GreedyDSM0V0(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
-		this.numOfVertices = adjacencyMatrix.size();
+		//this.numOfVertices = adjacencyMatrix.size();
 		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 		this.k = k;
@@ -109,8 +108,9 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 	/**
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a dominating set
+	 * @throws InterruptedException 
 	 */
-	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		long start = System.nanoTime();
 		initialization();
 		greedy();
@@ -133,7 +133,7 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 	/* a list for storing the dominated map in each iteration */
 	// private List<Map<Integer,Boolean>> dominatedMapList;
 
-	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
+	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 
 		/* the size of the queue */
 		int queueSize = k + 1;
@@ -162,7 +162,7 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 		AlgorithmUtil.addElementToList(dI, u);
 		// iv)
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
-		List<Integer> uList = putUVInList(v, u);
+		List<Integer> uList = GreedyDSUtil.putUVInList(v, u);
 		AlgorithmUtil.prepareGraph(g, gI, uList);
 		// v)
 		GreedyDSUtil.setStatusOfIthVertexInQueue(i, solutionList, dI, graphList, gI);
@@ -250,7 +250,7 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 			 */
 			// iii)
 			gI = AlgorithmUtil.copyGraph(gIPre);
-			uList = putUVInList(v, u);
+			uList = GreedyDSUtil.putUVInList(v, u);
 			AlgorithmUtil.prepareGraph(g, gI, uList);
 
 			// iv)
@@ -280,11 +280,11 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 				previousPos = backKIndex % queueSize;
 
 				ddsI = GreedyDSUtil.invokeDDSFPT(previousPos, solutionList, graphList, gI, dI, ddsI, this.indicator,
-						this.rUpperBoundary, this.runningTimeMap);
+						this.rUpperBoundary, this.runningTimeMap,false);
 
 			}
 
-			if (ddsI != null && ddsI.size() < dI.size()) {
+			if (ddsI != null && ddsI.size() >0 && ddsI.size() < dI.size()) {
 				dI = ddsI;
 			}
 
@@ -321,12 +321,7 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 
 	}
 
-	private List<Integer> putUVInList(Integer v, Integer u) {
-		List<Integer> uList = new ArrayList<Integer>();
-		AlgorithmUtil.addElementToList(uList, u);
-		AlgorithmUtil.addElementToList(uList, v);
-		return uList;
-	}
+
 
 	// private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef,
 	// List<Integer> dI, Graph<Integer, String> gI) {
@@ -362,19 +357,19 @@ public class GreedyDSM0V0 implements ITask, IGreedyDS<Integer> {
 	// return count;
 	// }
 
-	private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, List<Integer> dI) {
-		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
-
-		for (Integer w : dI) {
-			Collection<Integer> wNeig = gRef.getNeighbors(w);
-			for (Integer x : wNeig) {
-				if (!gI.containsVertex(x)) {
-					AlgorithmUtil.addElementToList(verticesToAddInGraph, x);
-				}
-			}
-
-		}
-		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
-	}
+//	private void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, List<Integer> dI) {
+//		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
+//
+//		for (Integer w : dI) {
+//			Collection<Integer> wNeig = gRef.getNeighbors(w);
+//			for (Integer x : wNeig) {
+//				if (!gI.containsVertex(x)) {
+//					AlgorithmUtil.addElementToList(verticesToAddInGraph, x);
+//				}
+//			}
+//
+//		}
+//		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
+//	}
 
 }

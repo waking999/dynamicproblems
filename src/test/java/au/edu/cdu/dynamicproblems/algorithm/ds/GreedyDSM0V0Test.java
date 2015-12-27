@@ -58,20 +58,49 @@ public class GreedyDSM0V0Test {
 
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
 
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
-		
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path,  destFile, 1, 1, TestUtil.KONECT_TP);
+		basicFunc(path, destFile, 1, 1, TestUtil.KONECT_TP);
 	}
 
-	//@Ignore
+	// @Ignore
+	@Test
+	public void testKONECT_differentK() throws InterruptedException, IOException, FileNotFoundException {
+
+		String datasetName = "KONECT";
+		String path = TestUtil.KONECT_PATH;
+
+		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("------------");
+		String sbStr = sb.toString();
+
+		log.debug(sbStr);
+		if (destFile != null) {
+			FileOperation.saveCVSFile(destFile, sbStr);
+		}
+
+		for (TestParameter tp : TestUtil.KONECT_TP) {
+			if (tp.isBeTest()) {
+				int kLow = 17;
+				int kUp=50;
+				for (int j = kLow; j < kUp; j++) {
+					basicFunc(path + tp.getFile(), destFile, j, j);
+				}
+			}
+
+		}
+	}
+
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "DIMACS";
@@ -82,19 +111,18 @@ public class GreedyDSM0V0Test {
 		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
 
-
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path,  destFile, 1, 1, TestUtil.BHOSLIB_TP);
+		basicFunc(path, destFile, 1, 1, TestUtil.BHOSLIB_TP);
 	}
 
-	private void basicFunc(String path,  String destFile, int iLower, int iUpper, TestParameter[] tps)
+	private void basicFunc(String path, String destFile, int iLower, int iUpper, TestParameter[] tps)
 			throws FileNotFoundException, IOException, InterruptedException {
 		for (int i = iLower; i <= iUpper; i++) {
 			StringBuilder sb = new StringBuilder();
@@ -107,10 +135,10 @@ public class GreedyDSM0V0Test {
 			}
 
 			for (TestParameter tp : tps) {
-			if(tp.isBeTest()){
-				basicFunc(path + tp.getFile(), destFile, tp.getK(), tp.getR());
-			}
-				
+				if (tp.isBeTest()) {
+					basicFunc(path + tp.getFile(), destFile, tp.getK(), tp.getR());
+				}
+
 			}
 		}
 	}

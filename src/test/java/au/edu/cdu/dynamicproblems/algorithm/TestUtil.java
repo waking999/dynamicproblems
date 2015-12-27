@@ -89,15 +89,15 @@ public class TestUtil {
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
 
-	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 10, 10, true),
-			new TestParameter("000034_zachary.konet", 10, 10, true),
-			new TestParameter("000062_dolphins.konet", 10, 10, true),
-			new TestParameter("000112_David_Copperfield.konet", 10, 10, true),
-			new TestParameter("000198_Jazz_musicians.konet", 10, 10, true),
-			new TestParameter("000212_pdzbase.konet", 10, 10, true),
-			new TestParameter("001133_rovira.konet", 10, 10, true),
+	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 10, 10, false),
+			new TestParameter("000034_zachary.konet", 10, 10, false),
+			new TestParameter("000062_dolphins.konet", 10, 10, false),
+			new TestParameter("000112_David_Copperfield.konet", 10, 10, false),
+			new TestParameter("000198_Jazz_musicians.konet", 10, 10, false),
+			new TestParameter("000212_pdzbase.konet", 10, 10, false),
+			new TestParameter("001133_rovira.konet", 10, 10, false),
 			new TestParameter("001174_euroroad.konet", 10, 10, true),
-			new TestParameter("001858_hamster.konet", 10, 10, true), };
+			new TestParameter("001858_hamster.konet", 100, 10, false), };
 
 	public static List<String[]> simpleAM0() {
 		List<String[]> am = new ArrayList<String[]>();

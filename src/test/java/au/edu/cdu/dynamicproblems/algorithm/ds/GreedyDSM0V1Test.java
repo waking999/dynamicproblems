@@ -58,7 +58,7 @@ public class GreedyDSM0V1Test {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
 
@@ -71,7 +71,7 @@ public class GreedyDSM0V1Test {
 		basicFunc(path,  destFile, 1, 1, TestUtil.KONECT_TP);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "DIMACS";
