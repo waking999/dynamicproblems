@@ -143,7 +143,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 		reductionRulesOnGraph2();
 
 		int vertexCoverSize = vertexCover.size();
-		//log.debug("n=" + vertexCoverSize+",m="+r);
+		log.debug("n=" + vertexCoverSize+",m="+r);
 		try {
 			if (vertexCoverSize > 0) {
 
