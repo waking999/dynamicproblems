@@ -72,7 +72,7 @@ public class GreedyDSM0VATest {
 		log.debug(result.getString());
 	}
 
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void testKONECT() throws InterruptedException, IOException,
 			FileNotFoundException {
@@ -82,9 +82,9 @@ public class GreedyDSM0VATest {
 
 		String path = "src/test/resources/KONECT/";
 		String[] files = { 
-				"000027_zebra.konet",
-				"000034_zachary.konet",
-				"000062_dolphins.konet", 
+//				"000027_zebra.konet",
+//				"000034_zachary.konet",
+//				"000062_dolphins.konet", 
 				"000112_David_Copperfield.konet",
 				"000198_Jazz_musicians.konet", 
 				"000212_pdzbase.konet",
@@ -146,7 +146,7 @@ public class GreedyDSM0VATest {
 
 	
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException,
 			FileNotFoundException {
