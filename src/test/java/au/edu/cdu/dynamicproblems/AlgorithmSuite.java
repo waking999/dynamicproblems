@@ -3,8 +3,8 @@ package au.edu.cdu.dynamicproblems;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSM0V1Test;
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSMVSV1Test;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSM0Test;
+import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSMVSTest;
 import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyIterativeTest;
 import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyNativeTest;
 import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyVoteGrTest;
@@ -22,7 +22,7 @@ import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyVoteTest;
 @RunWith(Suite.class)
 // algorithm classes tests
 @Suite.SuiteClasses({ GreedyNativeTest.class, GreedyIterativeTest.class, GreedyVoteTest.class, GreedyVoteGrTest.class,
-		GreedyDSM0V1Test.class, GreedyDSMVSV1Test.class })
+		GreedyDSM0Test.class, GreedyDSMVSTest.class })
 public class AlgorithmSuite {
 
 }
