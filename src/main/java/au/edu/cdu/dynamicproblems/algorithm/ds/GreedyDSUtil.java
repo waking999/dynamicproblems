@@ -29,12 +29,13 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
  *
  */
 public class GreedyDSUtil {
+
+	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
 	/*
 	 * when a graph has more than such number of vertices, we will not apply
 	 * poly rr 2 on it.
 	 */
-	public static final int POLY_RR_2_VALVE = 1500;
-	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
+	public static final int POLY_RR_2_VALVE = 2000;
 
 	/**
 	 * 
@@ -243,8 +244,9 @@ public class GreedyDSUtil {
 			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
 
 			return gRR;
+		}else{
+			return g;
 		}
-		return g;
 	}
 
 	/**
@@ -427,65 +429,37 @@ public class GreedyDSUtil {
 	 * @throws MOutofNException
 	 * @throws ExceedLongMaxException
 	 * @throws ArraysNotSameLengthException
-	 * @throws InterruptedException
 	 */
-
+	@Deprecated
 	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> vertexSolutionList,
-			List<Graph<Integer, String>> graphList, Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI,
-			String indicator, int rUpperBoundary, Map<String, Long> runningTimeMap, boolean ifGuarantee)
-					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
-					InterruptedException {
+			Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI, String indicator, int rUpperBoundary,
+			Map<String, Long> runningTimeMap)
+					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException {
 		// log.debug("invoke dds");
 		long start = System.nanoTime();
 		/*
 		 * get the solution at the back up point for future usage in dds fpt
 		 */
 		List<Integer> dK = vertexSolutionList.get(previousIndex);
-		// Graph<Integer, String> gK = graphList.get(previousIndex);
+		/*
+		 * get the current sub-graph as G' for future usage in dds fpt, but it
+		 * should be a copy rather than the original one because the sub-graph
+		 * will be changed during dds fpt
+		 */
+		Graph<Integer, String> gICopy = AlgorithmUtil.copyGraph(gI);
+		DDSFPT ag = new DDSFPT(indicator, gICopy, dK, rUpperBoundary);
 
-		int dKSize = dK.size();
-		int dISize = dI.size();
-		int dIdiff = dISize - dKSize;
-		/* being less than 2 is too trivial */
-		if (dIdiff >= 2) {
-			/*
-			 * get the current sub-graph as G' for future usage in dds fpt, but
-			 * it should be a copy rather than the original one because the
-			 * sub-graph will be changed during dds fpt
-			 */
-			int r = Math.min(dIdiff - 1, rUpperBoundary);
-			Graph<Integer, String> gICopy = AlgorithmUtil.copyGraph(gI);
+		/*
+		 * the difference between the current solution and the solution at back
+		 * up point could be a considerable solution in dds fpt
+		 */
+		Collection<Integer> dsDiff = CollectionUtils.subtract(dI, dK);
 
-			int gDISize = 0;
-			List<Integer> gDI = null;
-			if (ifGuarantee) {
-				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopy, runningTimeMap);
+		ag.setConsiderableCandidateVertices4DS(dsDiff);
+		ag.computing();
 
-				gDISize = gDI.size();
+		ddsI = ag.getDs2();
 
-				r = Math.min(gDISize - dKSize, r);
-			}
-
-			DDSFPT ag = new DDSFPT(indicator, gICopy, dK, r);
-
-			/*
-			 * the difference between the current solution and the solution at
-			 * back up point could be a considerable solution in dds fpt
-			 */
-			Collection<Integer> dsDiff = CollectionUtils.subtract(dI, dK);
-
-			ag.setConsiderableCandidateVertices4DS(dsDiff);
-			ag.computing();
-
-			ddsI = ag.getDs2();
-
-			int ddsISize = ddsI.size();
-			if (ifGuarantee) {
-				if (gDISize > 0 && ddsISize > gDISize) {
-					ddsI = gDI;
-				}
-			}
-		}
 		long end = System.nanoTime();
 		Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
 		if (existingRunningTime == null) {
@@ -670,9 +644,9 @@ public class GreedyDSUtil {
 
 		Collection<Integer> gIVertices = gI.getVertices();
 
-		// B
+		// V
 		Collection<Integer> dominatedVertices = CollectionUtils.subtract(gIVertices, dI);
-		// Bk
+		// Vk
 		List<Integer> kVertices = new ArrayList<Integer>();
 
 		int count = kCount;
@@ -686,7 +660,7 @@ public class GreedyDSUtil {
 				}
 			}
 		}
-		// Bl
+		// Vl
 		dominatedVertices.removeAll(kVertices);
 
 		// Dk
@@ -712,6 +686,7 @@ public class GreedyDSUtil {
 		Graph<Integer, String> gICopyDDS = null;
 		/* being less than 2 is too trivial */
 		if (dominatingKVerticesSize >= 2) {
+			log.debug("dominatedVerticesSize="+dominatedVerticesSize+",k="+k);
 			long start = System.nanoTime();
 			// Dl
 			List<Integer> dICopy = new ArrayList<Integer>();
@@ -728,33 +703,31 @@ public class GreedyDSUtil {
 				gICopyNextRound.removeVertex(w);
 			}
 
-			/*
-			 * a copy of gI for dds fpt because the graph will be modified;
-			 */
+			// a copy of gI for dds fpt because the graph will
+			// be
+			// modified;
 			gICopyDDS = AlgorithmUtil.copyGraph(gI);
-
 			// log.debug("m="+dominatingKVerticesSize);
 			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
 
+			int gDISize = 0;
 			if (ifGuarantee) {
 				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
 
-				int gDISize = gDI.size();
+				gDISize = gDI.size();
 
 				realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
 			}
 			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
 
-			ag.setConsiderableCandidateVertices4DS(dominatedVertices);
+			ag.setConsiderableCandidateVertices4DS(dominatingKVertices);
 			ag.computing();
 
 			ddsI = ag.getDs2();
 
-			GreedyDSUtil.applyMinimal(gI, ddsI, runningTimeMap);
-
 			if (ifGuarantee) {
 				int ddsISize = ddsI.size();
-				if (ddsISize > ddsISize) {
+				if (gDISize > 0 && ddsISize > gDISize) {
 					ddsI = gDI;
 				}
 			}
@@ -769,12 +742,5 @@ public class GreedyDSUtil {
 
 		mrr = new MomentRegretReturn<Integer, String>(ddsI, gICopyNextRound);
 		return mrr;
-	}
-
-	public static List<Integer> putUVInList(Integer v, Integer u) {
-		List<Integer> uList = new ArrayList<Integer>();
-		AlgorithmUtil.addElementToList(uList, u);
-		AlgorithmUtil.addElementToList(uList, v);
-		return uList;
 	}
 }

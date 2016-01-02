@@ -52,7 +52,7 @@ public class GreedyDSMVSTest {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
