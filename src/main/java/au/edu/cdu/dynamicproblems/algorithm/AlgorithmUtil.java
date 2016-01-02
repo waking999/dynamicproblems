@@ -50,6 +50,8 @@ public class AlgorithmUtil {
 	public final static String RUNNING_TIME_MINI = "Minimal";
 	public final static String RUNNING_TIME_LS = "LS";
 	public final static String RUNNING_TIME_POLYRR = "Poly-RR";
+	public final static String RUNNING_TIME_POLYRR_1 = "Poly-RR-1";
+	public final static String RUNNING_TIME_POLYRR_2 = "Poly-RR-2";
 	public final static String RUNNING_TIME_DEGREERR = "Degree-RR";
 	public final static String RUNNING_TIME_GUARANTEE = "Guarantee";
 	// used for left pad for binary string of an integer
@@ -1518,7 +1520,8 @@ public class AlgorithmUtil {
 	 * @return reduced graph
 	 */
 
-	public static Graph<Integer, String> applySingleVertexReductionRule(Graph<Integer, String> g) {
+	public static Graph<Integer, String> applySingleVertexReductionRule(Graph<Integer, String> g,Map<String,Long> runningTimeMap) {
+		long start = System.nanoTime();
 		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
 
 		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
@@ -1597,7 +1600,9 @@ public class AlgorithmUtil {
 			}
 
 		}
-
+		log.debug("poly rr end");
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR_1, (end - start));
 		return gPrime;
 	}
 
@@ -1824,7 +1829,9 @@ public class AlgorithmUtil {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public static Graph<Integer, String> applyPairVerticesReductionRule(Graph<Integer, String> g) {
+	public static Graph<Integer, String> applyPairVerticesReductionRule(Graph<Integer, String> g,Map<String,Long> runningTimeMap) {
+		long start = System.nanoTime();
+		
 		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
 
 		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
@@ -2021,6 +2028,12 @@ public class AlgorithmUtil {
 			}
 			visited.put(v, true);
 		}
+		
+		
+		 
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR_2, (end - start));
+		
 		return gPrime;
 	}
 

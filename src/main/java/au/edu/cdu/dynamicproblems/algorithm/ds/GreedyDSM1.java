@@ -120,7 +120,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 
 		/* apply poly-rr */
 		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
-		//		Graph<Integer, String> g = gOriginal;
+
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 

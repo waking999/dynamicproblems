@@ -235,9 +235,9 @@ public class GreedyDSUtil {
 		if (g.getVertexCount() < valve) {
 			long start = System.nanoTime();
 
-			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
+			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g,runningTimeMap);
 
-			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
+			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR,runningTimeMap);
 
 			long end = System.nanoTime();
 			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
