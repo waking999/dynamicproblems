@@ -27,77 +27,77 @@ public class TestUtil {
 
 	public static final String DIMACS_PATH = "src/test/resources/DIMACS/";
 
-	public static final TestParameter[] DIMACS_TP = { new TestParameter("C1000.9.clq", 1000, 10, false),
-			new TestParameter("C125.9.clq", 120, 10, false), new TestParameter("C2000.5.clq", 1000, 10, true),
-			new TestParameter("C2000.9.clq", 1900, 10, true), new TestParameter("C250.9.clq", 250, 10, false),
-			new TestParameter("C4000.5.clq", 3200, 10, true), new TestParameter("C500.9.clq", 500, 10, false),
-			new TestParameter("DSJC1000.5.clq", 850, 10, false), new TestParameter("DSJC500.5.clq", 450, 10, false),
-			new TestParameter("MANN_a27.clq", 370, 10, false), new TestParameter("MANN_a81.clq", 100, 10, false),
-			new TestParameter("brock200_2.clq", 180, 10, false), new TestParameter("brock200_4.clq", 200, 10, false),
-			new TestParameter("brock400_2.clq", 400, 10, false), new TestParameter("brock400_4.clq", 400, 10, false),
-			new TestParameter("brock800_2.clq", 750, 10, true), new TestParameter("brock800_4.clq", 750, 10, false),
-			new TestParameter("gen200_p0.9_44.clq", 200, 10, false),
-			new TestParameter("gen200_p0.9_55.clq", 200, 10, false),
-			new TestParameter("gen400_p0.9_55.clq", 400, 10, false),
-			new TestParameter("gen400_p0.9_65.clq", 400, 10, false),
-			new TestParameter("gen400_p0.9_75.clq", 400, 10, false),
-			new TestParameter("hamming10-4.clq", 1000, 10, false), new TestParameter("hamming8-4.clq", 250, 10, false),
-			new TestParameter("keller4.clq", 170, 10, false), new TestParameter("keller5.clq", 770, 10, false),
-			new TestParameter("keller6.clq", 100, 10, false), new TestParameter("p_hat1500-1.clq", 1000, 10, false),
-			new TestParameter("p_hat1500-2.clq", 1400, 10, false), new TestParameter("p_hat1500-3.clq", 1500, 10, false),
-			new TestParameter("p_hat300-1.clq", 200, 10, false), new TestParameter("p_hat300-2.clq", 280, 10, false),
-			new TestParameter("p_hat300-3.clq", 300, 10, false), new TestParameter("p_hat700-1.clq", 500, 10, false),
-			new TestParameter("p_hat700-2.clq", 650, 10, false), new TestParameter("p_hat700-3.clq", 700, 10, false), };
+	public static final TestParameter[] DIMACS_TP = { new TestParameter("C1000.9.clq", 3,3, true),
+			new TestParameter("C125.9.clq", 3,3, true), new TestParameter("C2000.5.clq", 3,3, true),
+			new TestParameter("C2000.9.clq", 3,3, true), new TestParameter("C250.9.clq", 3,3, true),
+			new TestParameter("C4000.5.clq", 3,3, true), new TestParameter("C500.9.clq", 3,3, true),
+			new TestParameter("DSJC1000.5.clq", 3,3, true), new TestParameter("DSJC500.5.clq", 3,3, true),
+			new TestParameter("MANN_a27.clq", 3,3, true), new TestParameter("MANN_a81.clq", 3,3, true),
+			new TestParameter("brock200_2.clq", 3,3, true), new TestParameter("brock200_4.clq", 3,3, true),
+			new TestParameter("brock400_2.clq", 3,3, true), new TestParameter("brock400_4.clq", 3,3, true),
+			new TestParameter("brock800_2.clq", 3,3, true), new TestParameter("brock800_4.clq", 3,3, true),
+			new TestParameter("gen200_p0.9_44.clq", 3,3, true),
+			new TestParameter("gen200_p0.9_55.clq", 3,3, true),
+			new TestParameter("gen400_p0.9_55.clq", 3,3, true),
+			new TestParameter("gen400_p0.9_65.clq", 3,3, true),
+			new TestParameter("gen400_p0.9_75.clq", 3,3, true), new TestParameter("hamming10-4.clq", 3,3, true),
+			new TestParameter("hamming8-4.clq", 3,3, true), new TestParameter("keller4.clq", 3,3, true),
+			new TestParameter("keller5.clq", 3,3, true), new TestParameter("keller6.clq", 3,3, true),
+			new TestParameter("p_hat1500-1.clq", 3,3, true), new TestParameter("p_hat1500-2.clq", 3,3, true),
+			new TestParameter("p_hat1500-3.clq", 3,3, true), new TestParameter("p_hat300-1.clq", 3,3, true),
+			new TestParameter("p_hat300-2.clq", 3,3, true), new TestParameter("p_hat300-3.clq", 3,3, true),
+			new TestParameter("p_hat700-1.clq", 3,3, true), new TestParameter("p_hat700-2.clq", 3,3, true),
+			new TestParameter("p_hat700-3.clq", 3,3, true), };
 
 	public static final String BHOSLIB_PATH = "src/test/resources/BHOSLIB/";
 
-	public static final TestParameter[] BHOSLIB_TP = { new TestParameter("frb30-15-mis/frb30-15-1.mis", 300, 10, true),
-			new TestParameter("frb30-15-mis/frb30-15-2.mis", 200, 10, true),
-			new TestParameter("frb30-15-mis/frb30-15-3.mis", 300, 10, true),
-			new TestParameter("frb30-15-mis/frb30-15-4.mis", 300, 10, true),
-			new TestParameter("frb30-15-mis/frb30-15-5.mis", 200, 10, true),
-			new TestParameter("frb35-17-mis/frb35-17-1.mis", 300, 10, true),
-			new TestParameter("frb35-17-mis/frb35-17-2.mis", 300, 10, true),
-			new TestParameter("frb35-17-mis/frb35-17-3.mis", 300, 10, true),
-			new TestParameter("frb35-17-mis/frb35-17-4.mis", 300, 10, true),
-			new TestParameter("frb35-17-mis/frb35-17-5.mis", 300, 10, true),
-			new TestParameter("frb40-19-mis/frb40-19-1.mis", 300, 10, true),
-			new TestParameter("frb40-19-mis/frb40-19-2.mis", 300, 10, true),
-			new TestParameter("frb40-19-mis/frb40-19-3.mis", 300, 10, true),
-			new TestParameter("frb40-19-mis/frb40-19-4.mis", 300, 10, true),
-			new TestParameter("frb40-19-mis/frb40-19-5.mis", 300, 10, true),
-			new TestParameter("frb45-21-mis/frb45-21-1.mis", 400, 10, true),
-			new TestParameter("frb45-21-mis/frb45-21-2.mis", 400, 10, true),
-			new TestParameter("frb45-21-mis/frb45-21-3.mis", 400, 10, true),
-			new TestParameter("frb45-21-mis/frb45-21-4.mis", 400, 10, true),
-			new TestParameter("frb45-21-mis/frb45-21-5.mis", 400, 10, true),
-			new TestParameter("frb53-24-mis/frb53-24-1.mis", 500, 10, true),
-			new TestParameter("frb53-24-mis/frb53-24-2.mis", 500, 10, true),
-			new TestParameter("frb53-24-mis/frb53-24-3.mis", 400, 10, true),
-			new TestParameter("frb53-24-mis/frb53-24-4.mis", 400, 10, true),
-			new TestParameter("frb53-24-mis/frb53-24-5.mis", 400, 10, true),
-			new TestParameter("frb56-25-mis/frb56-25-1.mis", 500, 10, true),
-			new TestParameter("frb56-25-mis/frb56-25-2.mis", 400, 10, true),
-			new TestParameter("frb56-25-mis/frb56-25-3.mis", 500, 10, true),
-			new TestParameter("frb56-25-mis/frb56-25-4.mis", 400, 10, true),
-			new TestParameter("frb56-25-mis/frb56-25-5.mis", 500, 10, true),
-			new TestParameter("frb59-26-mis/frb59-26-1.mis", 500, 10, true),
-			new TestParameter("frb59-26-mis/frb59-26-2.mis", 500, 10, true),
-			new TestParameter("frb59-26-mis/frb59-26-3.mis", 500, 10, true),
-			new TestParameter("frb59-26-mis/frb59-26-4.mis", 500, 10, true),
-			new TestParameter("frb59-26-mis/frb59-26-5.mis", 500, 10, true), };
+	public static final TestParameter[] BHOSLIB_TP = { new TestParameter("frb30-15-mis/frb30-15-1.mis", 10, 10, true),
+			new TestParameter("frb30-15-mis/frb30-15-2.mis", 10, 10, true),
+			new TestParameter("frb30-15-mis/frb30-15-3.mis", 10, 10, true),
+			new TestParameter("frb30-15-mis/frb30-15-4.mis", 10, 10, true),
+			new TestParameter("frb30-15-mis/frb30-15-5.mis", 10, 10, true),
+			new TestParameter("frb35-17-mis/frb35-17-1.mis", 10, 10, true),
+			new TestParameter("frb35-17-mis/frb35-17-2.mis", 10, 10, true),
+			new TestParameter("frb35-17-mis/frb35-17-3.mis", 10, 10, true),
+			new TestParameter("frb35-17-mis/frb35-17-4.mis", 10, 10, true),
+			new TestParameter("frb35-17-mis/frb35-17-5.mis", 10, 10, true),
+			new TestParameter("frb40-19-mis/frb40-19-1.mis", 10, 10, true),
+			new TestParameter("frb40-19-mis/frb40-19-2.mis", 10, 10, true),
+			new TestParameter("frb40-19-mis/frb40-19-3.mis", 10, 10, true),
+			new TestParameter("frb40-19-mis/frb40-19-4.mis", 10, 10, true),
+			new TestParameter("frb40-19-mis/frb40-19-5.mis", 10, 10, true),
+			new TestParameter("frb45-21-mis/frb45-21-1.mis", 10, 10, true),
+			new TestParameter("frb45-21-mis/frb45-21-2.mis", 10, 10, true),
+			new TestParameter("frb45-21-mis/frb45-21-3.mis", 10, 10, true),
+			new TestParameter("frb45-21-mis/frb45-21-4.mis", 10, 10, true),
+			new TestParameter("frb45-21-mis/frb45-21-5.mis", 10, 10, true),
+			new TestParameter("frb53-24-mis/frb53-24-1.mis", 10, 10, true),
+			new TestParameter("frb53-24-mis/frb53-24-2.mis", 10, 10, true),
+			new TestParameter("frb53-24-mis/frb53-24-3.mis", 10, 10, true),
+			new TestParameter("frb53-24-mis/frb53-24-4.mis", 10, 10, true),
+			new TestParameter("frb53-24-mis/frb53-24-5.mis", 10, 10, true),
+			new TestParameter("frb56-25-mis/frb56-25-1.mis", 10, 10, true),
+			new TestParameter("frb56-25-mis/frb56-25-2.mis", 10, 10, true),
+			new TestParameter("frb56-25-mis/frb56-25-3.mis", 10, 10, true),
+			new TestParameter("frb56-25-mis/frb56-25-4.mis", 10, 10, true),
+			new TestParameter("frb56-25-mis/frb56-25-5.mis", 10, 10, true),
+			new TestParameter("frb59-26-mis/frb59-26-1.mis", 10, 10, true),
+			new TestParameter("frb59-26-mis/frb59-26-2.mis", 10, 10, true),
+			new TestParameter("frb59-26-mis/frb59-26-3.mis", 10, 10, true),
+			new TestParameter("frb59-26-mis/frb59-26-4.mis", 10, 10, true),
+			new TestParameter("frb59-26-mis/frb59-26-5.mis", 10, 10, true), };
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
 
-	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 20, 20, false),
-			new TestParameter("000034_zachary.konet", 30, 30, false),
-			new TestParameter("000062_dolphins.konet", 30, 30, false),
-			new TestParameter("000112_David_Copperfield.konet", 40, 40, false),
-			new TestParameter("000198_Jazz_musicians.konet", 70, 70, false),
-			new TestParameter("000212_pdzbase.konet", 20, 20, false),
-			new TestParameter("001133_rovira.konet", 20, 20, false),
-			new TestParameter("001174_euroroad.konet", 12, 12, true),
-			new TestParameter("001858_hamster.konet", 40, 40, true), };
+	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 10, 10, false),
+			new TestParameter("000034_zachary.konet", 10, 10, false),
+			new TestParameter("000062_dolphins.konet", 10, 10, false),
+			new TestParameter("000112_David_Copperfield.konet", 10, 10, false),
+			new TestParameter("000198_Jazz_musicians.konet", 10, 10, false),
+			new TestParameter("000212_pdzbase.konet", 10, 10, false),
+			new TestParameter("001133_rovira.konet", 10, 10, false),
+			new TestParameter("001174_euroroad.konet", 10, 10, true),
+			new TestParameter("001858_hamster.konet", 10, 10, false), };
 
 	public static List<String[]> simpleAM0() {
 		List<String[]> am = new ArrayList<String[]>();
@@ -148,8 +148,8 @@ public class TestUtil {
 
 		Result r = ag.run();
 
-		//List<V> ds = ag.getDominatingSet();
-		//Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
+		List<V> ds = ag.getDominatingSet();
+		Assert.assertTrue(AlgorithmUtil.isDS(g, ds));
 
 		StringBuffer sb = new StringBuffer();
 		sb.append(inputFile).append(AlgorithmUtil.COMMA).append(r.getString());

@@ -33,7 +33,7 @@ public class GreedyDSUtil {
 	 * when a graph has more than such number of vertices, we will not apply
 	 * poly rr 2 on it.
 	 */
-	public static final int POLY_RR_2_VALVE = 1500;
+	public static final int POLY_RR_2_VALVE = 2000;
 	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
 
 	/**
@@ -232,19 +232,18 @@ public class GreedyDSUtil {
 	 */
 	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g,
 			Map<String, Long> runningTimeMap, int valve) {
+		long start = System.nanoTime();
+
+		Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
+
 		if (g.getVertexCount() < valve) {
-			long start = System.nanoTime();
-
-			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g,runningTimeMap);
-
-			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR,runningTimeMap);
-
-			long end = System.nanoTime();
-			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
-
-			return gRR;
+			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
 		}
-		return g;
+
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
+
+		return gRR;
 	}
 
 	/**
@@ -416,7 +415,7 @@ public class GreedyDSUtil {
 	/**
 	 * 
 	 * @param previousIndex
-	 * @param vertexSolutionList
+	 * @param solutionList
 	 * @param gI
 	 * @param dI
 	 * @param ddsI
@@ -430,7 +429,7 @@ public class GreedyDSUtil {
 	 * @throws InterruptedException
 	 */
 
-	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> vertexSolutionList,
+	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> solutionList,
 			List<Graph<Integer, String>> graphList, Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI,
 			String indicator, int rUpperBoundary, Map<String, Long> runningTimeMap, boolean ifGuarantee)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
@@ -440,7 +439,7 @@ public class GreedyDSUtil {
 		/*
 		 * get the solution at the back up point for future usage in dds fpt
 		 */
-		List<Integer> dK = vertexSolutionList.get(previousIndex);
+		List<Integer> dK = solutionList.get(previousIndex);
 		// Graph<Integer, String> gK = graphList.get(previousIndex);
 
 		int dKSize = dK.size();
@@ -485,13 +484,16 @@ public class GreedyDSUtil {
 					ddsI = gDI;
 				}
 			}
+			
+			
+			long end = System.nanoTime();
+			Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
+			if (existingRunningTime == null) {
+				existingRunningTime = Long.valueOf(0);
+			}
+			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
 		}
-		long end = System.nanoTime();
-		Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
-		if (existingRunningTime == null) {
-			existingRunningTime = Long.valueOf(0);
-		}
-		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
+		
 		return ddsI;
 	}
 
@@ -736,10 +738,11 @@ public class GreedyDSUtil {
 			// log.debug("m="+dominatingKVerticesSize);
 			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
 
+			int gDISize=0;
 			if (ifGuarantee) {
 				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
 
-				int gDISize = gDI.size();
+				gDISize = gDI.size();
 
 				realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
 			}
@@ -750,11 +753,9 @@ public class GreedyDSUtil {
 
 			ddsI = ag.getDs2();
 
-			GreedyDSUtil.applyMinimal(gI, ddsI, runningTimeMap);
-
 			if (ifGuarantee) {
 				int ddsISize = ddsI.size();
-				if (ddsISize > ddsISize) {
+				if (gDISize>0 && ddsISize > gDISize) {
 					ddsI = gDI;
 				}
 			}
