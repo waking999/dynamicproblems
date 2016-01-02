@@ -31,11 +31,6 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 public class GreedyDSUtil {
 
 	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
-	/*
-	 * when a graph has more than such number of vertices, we will not apply
-	 * poly rr 2 on it.
-	 */
-	public static final int POLY_RR_2_VALVE = 2000;
 
 	/**
 	 * 
@@ -107,50 +102,49 @@ public class GreedyDSUtil {
 		return uList;
 	}
 
-	// /**
-	// *
-	// * put solution to be built, and sub-graph at the pos-th position in the
-	// * storage of the queue
-	// *
-	// * @param pos,
-	// * the position,
-	// * @param vertexSolutionList,
-	// * a list for storing the solutions in each iteration
-	// * @param dI,
-	// * a solutions in each iteration
-	// * @param vertexGraphList,a
-	// * list for storing the sub-graph in each iteration
-	// * @param gI,
-	// * a sub-graph in each iteration
-	// *
-	// * @param dominatedMapList
-	// * @param dominatedMap
-	// */
-	// public static <V, E> void setStatusOfIthVertexInQueue(int pos,
-	// List<List<V>> solutionList, List<V> dI,
-	// List<Graph<V, E>> subGraphList, Graph<V, E> gI, List<Map<V, Boolean>>
-	// dominatedMapList,
-	// Map<V, Boolean> dominatedMap) {
-	// try {
-	// solutionList.set(pos, dI);
-	// } catch (Exception e) {
-	// solutionList.add(pos, dI);
-	// }
-	//
-	// try {
-	// subGraphList.set(pos, gI);
-	// } catch (Exception e) {
-	// subGraphList.add(pos, gI);
-	// }
-	//
-	// try {
-	// dominatedMapList.set(pos, dominatedMap);
-	// } catch (Exception e) {
-	// dominatedMapList.add(pos, dominatedMap);
-	// }
-	//
-	// }
-
+//	/**
+//	 * 
+//	 * put solution to be built, and sub-graph at the pos-th position in the
+//	 * storage of the queue
+//	 * 
+//	 * @param pos,
+//	 *            the position,
+//	 * @param vertexSolutionList,
+//	 *            a list for storing the solutions in each iteration
+//	 * @param dI,
+//	 *            a solutions in each iteration
+//	 * @param vertexGraphList,a
+//	 *            list for storing the sub-graph in each iteration
+//	 * @param gI,
+//	 *            a sub-graph in each iteration
+//	 * 
+//	 * @param dominatedMapList
+//	 * @param dominatedMap
+//	 */
+//	public static <V, E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> solutionList, List<V> dI,
+//			List<Graph<V, E>> subGraphList, Graph<V, E> gI, List<Map<V, Boolean>> dominatedMapList,
+//			Map<V, Boolean> dominatedMap) {
+//		try {
+//			solutionList.set(pos, dI);
+//		} catch (Exception e) {
+//			solutionList.add(pos, dI);
+//		}
+//
+//		try {
+//			subGraphList.set(pos, gI);
+//		} catch (Exception e) {
+//			subGraphList.add(pos, gI);
+//		}
+//
+//		try {
+//			dominatedMapList.set(pos, dominatedMap);
+//		} catch (Exception e) {
+//			dominatedMapList.add(pos, dominatedMap);
+//		}
+//
+//	}
+	
+	
 	public static <V, E> void setStatusOfIthVertexInQueue(int pos, List<List<V>> solutionList, List<V> dI,
 			List<Graph<V, E>> subGraphList, Graph<V, E> gI) {
 		try {
@@ -232,21 +226,16 @@ public class GreedyDSUtil {
 	 * @return
 	 */
 	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g,
-			Map<String, Long> runningTimeMap, int valve) {
-		if (g.getVertexCount() < valve) {
-			long start = System.nanoTime();
+			Map<String, Long> runningTimeMap) {
+		long start = System.nanoTime();
 
-			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
+		Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
+		gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
 
-			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
+		long end = System.nanoTime();
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
 
-			long end = System.nanoTime();
-			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
-
-			return gRR;
-		}else{
-			return g;
-		}
+		return gRR;
 	}
 
 	/**
@@ -574,7 +563,8 @@ public class GreedyDSUtil {
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_LS, Long.valueOf(0));
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_TOTAL, Long.valueOf(0));
 	}
-
+	
+	
 	public static Integer getTheFirstItemInOrderedListAndInAnotherList(Collection<Integer> orderedList,
 			Collection<Integer> anotherLst) {
 		for (Integer v : orderedList) {
@@ -584,7 +574,8 @@ public class GreedyDSUtil {
 		}
 		return null;
 	}
-
+	
+	
 	public static <V> List<V> getUndominatedVertices(Map<V, Boolean> dominatedMap) {
 		List<V> rtnList = new ArrayList<V>();
 
@@ -598,7 +589,8 @@ public class GreedyDSUtil {
 
 		return rtnList;
 	}
-
+	
+	
 	public static void addCloseNeighborToSubgraph(Graph<Integer, String> gRef, Graph<Integer, String> gI, Integer u) {
 		List<Integer> verticesToAddInGraph = new ArrayList<Integer>();
 
@@ -628,11 +620,9 @@ public class GreedyDSUtil {
 		}
 		AlgorithmUtil.prepareGraph(gRef, gI, verticesToAddInGraph);
 	}
-
+	
 	public static MomentRegretReturn<Integer, String> applyAtMomentOfRegret(List<Integer> vList, List<Integer> dI,
-			Graph<Integer, String> gI, String indicator, int k, int rUpperBoundary, Map<String, Long> runningTimeMap,
-			boolean ifGuarantee) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
-					InterruptedException {
+			Graph<Integer, String> gI,String indicator,int k,int rUpperBoundary,Map<String, Long>  runningTimeMap) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		MomentRegretReturn<Integer, String> mrr;
 		int gISize = gI.getVertexCount();
 		int dISize = dI.size();
@@ -650,7 +640,7 @@ public class GreedyDSUtil {
 		List<Integer> kVertices = new ArrayList<Integer>();
 
 		int count = kCount;
-		int vListSize = vList.size();
+		int vListSize=vList.size();
 		for (int j = vListSize - 1; j >= 0; j--) {
 			if (count > 0) {
 				Integer w = vList.get(j);
@@ -680,13 +670,12 @@ public class GreedyDSUtil {
 
 		int dominatingKVerticesSize = dominatingKVertices.size();
 
-		List<Integer> ddsI = null;
-		Graph<Integer, String> gICopyNextRound = null;
-		List<Integer> gDI = null;
-		Graph<Integer, String> gICopyDDS = null;
+		List<Integer> ddsI=null;
+		Graph<Integer, String> gICopyNextRound=null;
+		List<Integer> gDI=null;
+		Graph<Integer, String> gICopyDDS =null;
 		/* being less than 2 is too trivial */
 		if (dominatingKVerticesSize >= 2) {
-			log.debug("dominatedVerticesSize="+dominatedVerticesSize+",k="+k);
 			long start = System.nanoTime();
 			// Dl
 			List<Integer> dICopy = new ArrayList<Integer>();
@@ -710,26 +699,22 @@ public class GreedyDSUtil {
 			// log.debug("m="+dominatingKVerticesSize);
 			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
 
-			int gDISize = 0;
-			if (ifGuarantee) {
-				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
-
-				gDISize = gDI.size();
-
-				realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
-			}
+			gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
+			
+			int gDISize=gDI.size();
+			
+			realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
+			
 			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
 
-			ag.setConsiderableCandidateVertices4DS(dominatingKVertices);
+			ag.setConsiderableCandidateVertices4DS(dominatedVertices);
 			ag.computing();
 
 			ddsI = ag.getDs2();
-
-			if (ifGuarantee) {
-				int ddsISize = ddsI.size();
-				if (gDISize > 0 && ddsISize > gDISize) {
-					ddsI = gDI;
-				}
+			
+			int ddsISize=ddsI.size();
+			if(ddsISize>ddsISize){
+				ddsI=gDI;
 			}
 
 			long end = System.nanoTime();
@@ -740,7 +725,7 @@ public class GreedyDSUtil {
 			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
 		}
 
-		mrr = new MomentRegretReturn<Integer, String>(ddsI, gICopyNextRound);
+		mrr = new MomentRegretReturn<Integer,String>(ddsI, gICopyNextRound);
 		return mrr;
 	}
 }

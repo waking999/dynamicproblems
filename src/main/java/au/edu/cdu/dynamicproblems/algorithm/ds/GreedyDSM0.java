@@ -187,7 +187,7 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap,false);
+							this.runningTimeMap);
 
 				}
 
