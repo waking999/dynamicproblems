@@ -184,6 +184,8 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 				GreedyDSUtil.addCloseNeighborToSubgraph(g, gICopyNextRound, dI);
 				gI = gICopyNextRound;
 			}
+			
+		
 
 			// viii)
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);

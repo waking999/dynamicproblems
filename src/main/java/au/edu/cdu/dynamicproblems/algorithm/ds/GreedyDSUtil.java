@@ -235,9 +235,9 @@ public class GreedyDSUtil {
 		if (g.getVertexCount() < valve) {
 			long start = System.nanoTime();
 
-			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g,runningTimeMap);
+			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
 
-			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR,runningTimeMap);
+			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
 
 			long end = System.nanoTime();
 			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
@@ -736,25 +736,27 @@ public class GreedyDSUtil {
 			// log.debug("m="+dominatingKVerticesSize);
 			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
 
+			int gDISize=0;
 			if (ifGuarantee) {
 				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
 
-				int gDISize = gDI.size();
+				gDISize = gDI.size();
 
 				realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
 			}
 			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
 
-			ag.setConsiderableCandidateVertices4DS(dominatedVertices);
+			ag.setConsiderableCandidateVertices4DS(dominatingKVertices);
 			ag.computing();
 
 			ddsI = ag.getDs2();
 
 			GreedyDSUtil.applyMinimal(gI, ddsI, runningTimeMap);
-
+			GreedyDSUtil.applyLS(gI, dI, runningTimeMap);
+			
 			if (ifGuarantee) {
 				int ddsISize = ddsI.size();
-				if (ddsISize > ddsISize) {
+				if (gDISize>0 && ddsISize > gDISize) {
 					ddsI = gDI;
 				}
 			}

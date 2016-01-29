@@ -50,8 +50,6 @@ public class AlgorithmUtil {
 	public final static String RUNNING_TIME_MINI = "Minimal";
 	public final static String RUNNING_TIME_LS = "LS";
 	public final static String RUNNING_TIME_POLYRR = "Poly-RR";
-	public final static String RUNNING_TIME_POLYRR_1 = "Poly-RR-1";
-	public final static String RUNNING_TIME_POLYRR_2 = "Poly-RR-2";
 	public final static String RUNNING_TIME_DEGREERR = "Degree-RR";
 	public final static String RUNNING_TIME_GUARANTEE = "Guarantee";
 	// used for left pad for binary string of an integer
@@ -1520,8 +1518,7 @@ public class AlgorithmUtil {
 	 * @return reduced graph
 	 */
 
-	public static Graph<Integer, String> applySingleVertexReductionRule(Graph<Integer, String> g,Map<String,Long> runningTimeMap) {
-		long start = System.nanoTime();
+	public static Graph<Integer, String> applySingleVertexReductionRule(Graph<Integer, String> g) {
 		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
 
 		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
@@ -1561,9 +1558,9 @@ public class AlgorithmUtil {
 				Collection<Integer> n3 = CollectionUtils.subtract(vNeig, CollectionUtils.union(n1, n2));
 
 				/*
-				 * Rule 1 If N3(v) = ∅ for some vertex v, then : i) remove
-				 * N2(v) and N3(v) from G and; ii) add a new vertex v with the
-				 * edge {v, v}.
+				 * Rule 1 If N3(v) != ∅ for some vertex v, then : i) remove
+				 * N2(v) and N3(v) from G and; ii) add a new vertex v' with the
+				 * edge {v, v'}.
 				 * 
 				 * An equivlant way of ii) is ii.1) to keep a vertex w in N2(v)
 				 * ∪ N3(v)), ii.2) remove edges between w and N(w)\{v}
@@ -1600,9 +1597,7 @@ public class AlgorithmUtil {
 			}
 
 		}
-		log.debug("poly rr end");
-		long end = System.nanoTime();
-		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR_1, (end - start));
+
 		return gPrime;
 	}
 
@@ -1829,9 +1824,7 @@ public class AlgorithmUtil {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public static Graph<Integer, String> applyPairVerticesReductionRule(Graph<Integer, String> g,Map<String,Long> runningTimeMap) {
-		long start = System.nanoTime();
-		
+	public static Graph<Integer, String> applyPairVerticesReductionRule(Graph<Integer, String> g) {
 		Graph<Integer, String> gPrime = AlgorithmUtil.copyGraph(g);
 
 		Map<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
@@ -1848,11 +1841,12 @@ public class AlgorithmUtil {
 
 				for (Integer w : vertices) {
 					if (!visited.get(w)) {
-						Collection<Integer> vNeig = gPrime.getNeighbors(v);
 
 						if (v.equals(w)) {
 							continue;
 						}
+
+						Collection<Integer> vNeig = gPrime.getNeighbors(v);
 
 						if (vNeig.contains(w)) {
 							continue;
@@ -2028,12 +2022,6 @@ public class AlgorithmUtil {
 			}
 			visited.put(v, true);
 		}
-		
-		
-		 
-		long end = System.nanoTime();
-		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR_2, (end - start));
-		
 		return gPrime;
 	}
 

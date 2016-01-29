@@ -3,9 +3,7 @@ package au.edu.cdu.dynamicproblems.algorithm;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -100,7 +98,9 @@ public class AlgorithmUtilTest {
 	@Test
 	public void testPrepareGraph() {
 		List<String[]> am = new ArrayList<String[]>();
-
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
 		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
@@ -115,7 +115,9 @@ public class AlgorithmUtilTest {
 	public void testSortVertexAccordingToDegree() {
 
 		List<String[]> am = new ArrayList<String[]>();
-
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
 		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
@@ -168,7 +170,6 @@ public class AlgorithmUtilTest {
 	//
 	// }
 
-	@SuppressWarnings("deprecation")
 	@Ignore
 	@Test
 	public void tesRandomInRang() {
@@ -203,6 +204,10 @@ public class AlgorithmUtilTest {
 	@Test
 	public void testGetNeighborsOfS() {
 		List<String[]> am = new ArrayList<String[]>();
+		// am.add(new String[] { "0", "1", "0" });
+		// am.add(new String[] { "1", "0", "1" });
+		// am.add(new String[] { "0", "1", "0" });
+
 		AlgorithmUtil.addElementToList(am, new String[] { "0", "1", "0" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
 		AlgorithmUtil.addElementToList(am, new String[] { "1", "0", "1" });
@@ -210,6 +215,7 @@ public class AlgorithmUtilTest {
 		Graph<Integer, Integer> g = AlgorithmUtil.prepareGraph(am);
 
 		List<Integer> S = new ArrayList<Integer>();
+		// S.add(0);
 		AlgorithmUtil.addElementToList(S, 0);
 
 		List<Integer> nList = AlgorithmUtil.getNeighborsOfS(g, S);
@@ -306,6 +312,11 @@ public class AlgorithmUtilTest {
 		log.debug("-------------------------");
 
 		List<Integer> vl = new ArrayList<Integer>();
+		// vl.add(1);
+		// vl.add(2);
+		// vl.add(3);
+		// vl.add(23);
+		// vl.add(38);
 
 		AlgorithmUtil.addElementToList(vl, 1);
 		AlgorithmUtil.addElementToList(vl, 2);
@@ -380,9 +391,8 @@ public class AlgorithmUtilTest {
 		List<String[]> am = AlgorithmUtil.transferEdgePairToMatrix(lines);
 
 		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
-		Map<String,Long> runningTimeMap=new HashMap<String,Long>();
 
-		Graph<Integer, String> g1 = AlgorithmUtil.applyPairVerticesReductionRule(g,runningTimeMap);
+		Graph<Integer, String> g1 = AlgorithmUtil.applyPairVerticesReductionRule(g);
 
 		GreedyNative ag = new GreedyNative(g1);
 		ag.run();
@@ -392,30 +402,21 @@ public class AlgorithmUtilTest {
 	}
 
 	@Test
-	public void testConnectComponent() throws FileNotFoundException, IOException {
-		String path=TestUtil.KONECT_PATH;
-		for (TestParameter tp : TestUtil.KONECT_TP) {
+	public void testConnectedComponent() throws FileNotFoundException, IOException {
+		String path=TestUtil.DIMACS_PATH;
+		for (TestParameter tp : TestUtil.DIMACS_TP) {
 			if (tp.isBeTest()) {
-				FileOperation fo = IOUtil.getProblemInfoByEdgePair(path+tp.getFile());
+				FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + tp.getFile());
 				List<String[]> am = fo.getAdjacencyMatrix();
 
 				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
-
-				int gSize = g.getVertexCount();
-
 				List<Set<Integer>> components = Components.getAllConnectedComponent(g);
-				log.debug(tp.getFile()+":"+components.size());
-				int totalComponentSize = 0;
-				for (Set<Integer> component : components) {
-					int componentSize = component.size();
-					totalComponentSize += componentSize;
-
+				int componentsSize=components.size();
+				if(componentsSize>1){
+					log.debug(tp.getFile()+":"+componentsSize);
 				}
-
-				Assert.assertEquals(gSize, totalComponentSize);
 			}
 
 		}
-
 	}
 }

@@ -27,27 +27,28 @@ public class TestUtil {
 
 	public static final String DIMACS_PATH = "src/test/resources/DIMACS/";
 
-	public static final TestParameter[] DIMACS_TP = { new TestParameter("C1000.9.clq", 1000,1000, true),
-			new TestParameter("C125.9.clq", 125,125, true), new TestParameter("C2000.5.clq", 1595,1595, true),
-			new TestParameter("C2000.9.clq", 2000,2000, true), new TestParameter("C250.9.clq", 250,250, true),
-			new TestParameter("C4000.5.clq", 3135,3135, true), new TestParameter("C500.9.clq", 500,500, true),
-			new TestParameter("DSJC1000.5.clq", 815,815, true), new TestParameter("DSJC500.5.clq", 420,420, true),
-			new TestParameter("MANN_a27.clq", 380,380, true), new TestParameter("MANN_a81.clq", 3325,3325, true),
-			new TestParameter("brock200_2.clq", 175,175, true), new TestParameter("brock200_4.clq", 195,195, true),
-			new TestParameter("brock400_2.clq", 395,395, true), new TestParameter("brock400_4.clq", 395,395, true),
-			new TestParameter("brock800_2.clq", 745,745, true), new TestParameter("brock800_4.clq", 745,745, true),
-			new TestParameter("gen200_p0.9_44.clq", 200,200, false),
-			new TestParameter("gen200_p0.9_55.clq", 200,200, false),
-			new TestParameter("gen400_p0.9_55.clq", 400,400, false),
-			new TestParameter("gen400_p0.9_65.clq", 400,400, false),
-			new TestParameter("gen400_p0.9_75.clq", 400,400, false), new TestParameter("hamming10-4.clq", 1024,1024, false),
-			new TestParameter("hamming8-4.clq", 256,256, false), new TestParameter("keller4.clq", 175,175, false),
-			new TestParameter("keller5.clq", 780,780, false), new TestParameter("keller6.clq", 3365,3365, false),
-			new TestParameter("p_hat1500-1.clq", 970,970, false), new TestParameter("p_hat1500-2.clq", 1410,1410, false),
-			new TestParameter("p_hat1500-3.clq", 1490,1490, false), new TestParameter("p_hat300-1.clq", 205,205, false),
-			new TestParameter("p_hat300-2.clq", 285,285, false), new TestParameter("p_hat300-3.clq", 300,300, false),
-			new TestParameter("p_hat700-1.clq", 465,465, false), new TestParameter("p_hat700-2.clq", 665,665, false),
-			new TestParameter("p_hat700-3.clq", 700,700, false), };
+	public static final TestParameter[] DIMACS_TP = { new TestParameter("C1000.9.clq", 1000, 1000, true),
+			new TestParameter("C125.9.clq", 125, 125, true), new TestParameter("C2000.5.clq", 1595, 1595, true),
+			new TestParameter("C2000.9.clq", 2000, 2000, true), new TestParameter("C250.9.clq", 250, 250, true),
+			new TestParameter("C4000.5.clq", 3135, 3135, true), new TestParameter("C500.9.clq", 500, 500, true),
+			new TestParameter("DSJC1000.5.clq", 815, 815, true), new TestParameter("DSJC500.5.clq", 420, 420, true),
+			new TestParameter("MANN_a27.clq", 380, 380, true), new TestParameter("MANN_a81.clq", 3325, 3325, true),
+			new TestParameter("brock200_2.clq", 175, 175, true), new TestParameter("brock200_4.clq", 195, 195, true),
+			new TestParameter("brock400_2.clq", 395, 395, true), new TestParameter("brock400_4.clq", 395, 395, true),
+			new TestParameter("brock800_2.clq", 745, 745, true), new TestParameter("brock800_4.clq", 745, 745, true),
+			new TestParameter("gen200_p0.9_44.clq", 200, 200, true),
+			new TestParameter("gen200_p0.9_55.clq", 200, 200, true),
+			new TestParameter("gen400_p0.9_55.clq", 400, 400, true),
+			new TestParameter("gen400_p0.9_65.clq", 400, 400, true),
+			new TestParameter("gen400_p0.9_75.clq", 400, 400, true),
+			new TestParameter("hamming10-4.clq", 1024, 1024, true), new TestParameter("hamming8-4.clq", 256, 256, true),
+			new TestParameter("keller4.clq", 175, 175, true), new TestParameter("keller5.clq", 780, 780, true),
+			new TestParameter("keller6.clq", 3365, 3365, true), new TestParameter("p_hat1500-1.clq", 970, 970, true),
+			new TestParameter("p_hat1500-2.clq", 1410, 1410, true),
+			new TestParameter("p_hat1500-3.clq", 1490, 1490, true), new TestParameter("p_hat300-1.clq", 205, 205, true),
+			new TestParameter("p_hat300-2.clq", 285, 285, true), new TestParameter("p_hat300-3.clq", 300, 300, true),
+			new TestParameter("p_hat700-1.clq", 465, 465, true), new TestParameter("p_hat700-2.clq", 665, 665, true),
+			new TestParameter("p_hat700-3.clq", 700, 700, true), };
 
 	public static final String BHOSLIB_PATH = "src/test/resources/BHOSLIB/";
 
@@ -89,15 +90,17 @@ public class TestUtil {
 
 	public static final String KONECT_PATH = "src/test/resources/KONECT/";
 
-	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 25, 25, true),
-			new TestParameter("000034_zachary.konet", 35, 35, true),
-			new TestParameter("000062_dolphins.konet", 25, 25, true),
-			new TestParameter("000112_David_Copperfield.konet", 20, 20, true),
-			new TestParameter("000198_Jazz_musicians.konet", 30, 30, true),
+	public static final TestParameter[] KONECT_TP = { new TestParameter("000027_zebra.konet", 25, 25, false),
+			new TestParameter("000034_zachary.konet", 35, 35, false),
+			new TestParameter("000062_dolphins.konet", 25, 25, false),
+			new TestParameter("000112_David_Copperfield.konet", 20, 20, false),
+			new TestParameter("000198_Jazz_musicians.konet", 30, 30, false),
 			new TestParameter("000212_pdzbase.konet", 20, 20, true),
 			new TestParameter("001133_rovira.konet", 20, 20, true),
-			new TestParameter("001174_euroroad.konet", 20, 20, true),
-			new TestParameter("001858_hamster.konet", 40, 40, true), };
+			new TestParameter("001174_euroroad.konet", 15, 15, true),
+			new TestParameter("001858_hamster.konet", 40, 40, true),
+			new TestParameter("002426_hamster_ful.konet", 10, 10, false),
+			new TestParameter("002888_facebook.konet", 10, 10, false), };
 
 	public static List<String[]> simpleAM0() {
 		List<String[]> am = new ArrayList<String[]>();

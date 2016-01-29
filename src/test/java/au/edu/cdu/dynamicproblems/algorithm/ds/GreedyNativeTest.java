@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
@@ -22,7 +23,7 @@ public class GreedyNativeTest {
 	private Logger log = LogUtil.getLogger(GreedyNativeTest.class);
 	private static final String CLASS_NAME = GreedyNativeTest.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException, FileNotFoundException {
 		List<String[]> am = TestUtil.simpleAM0();
@@ -48,29 +49,29 @@ public class GreedyNativeTest {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.KONECT_TP, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.KONECT_TP, destFile, 1, 1, log);
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "DIMACS";
 		String path = TestUtil.DIMACS_PATH;
-		 
+
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1, log);
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
-		 
+
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.BHOSLIB_TP, destFile, 1, 1,log);
+		basicFunc(path, TestUtil.BHOSLIB_TP, destFile, 1, 1, log);
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class GreedyNativeTest {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper,Logger log)
+	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper, Logger log)
 			throws FileNotFoundException, IOException, InterruptedException {
 
 		for (int i = iLower; i <= iUpper; i++) {
@@ -98,15 +99,17 @@ public class GreedyNativeTest {
 				FileOperation.saveCVSFile(destFile, sbStr);
 			}
 			for (TestParameter tp : tps) {
-				String inputFile=path+tp.getFile();
-				FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
-				List<String[]> am = fo.getAdjacencyMatrix();
+				if (tp.isBeTest()) {
+					String inputFile = path + tp.getFile();
+					FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
+					List<String[]> am = fo.getAdjacencyMatrix();
 
-				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+					Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-				IGreedyDS<Integer> ag = new GreedyNative(g);
+					IGreedyDS<Integer> ag = new GreedyNative(g);
 
-				TestUtil.run(inputFile, destFile, g, ag, log);
+					TestUtil.run(inputFile, destFile, g, ag, log);
+				}
 			}
 		}
 	}
