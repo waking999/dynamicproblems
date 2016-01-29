@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
@@ -23,7 +22,7 @@ public class GreedyVoteGrTest {
 	private Logger log = LogUtil.getLogger(GreedyVoteGrTest.class);
 	private static final String CLASS_NAME = GreedyVoteGrTest.class.getSimpleName();
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void test0() throws InterruptedException, IOException, FileNotFoundException {
 		List<String[]> am = TestUtil.simpleAM0();
@@ -37,17 +36,18 @@ public class GreedyVoteGrTest {
 		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
 
+		
 		log.debug(r.getString());
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testKONECT() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
-
+	 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
-
+		
 		basicFunc(path, TestUtil.KONECT_TP, destFile, 1, 1, log);
 	}
 
@@ -56,18 +56,18 @@ public class GreedyVoteGrTest {
 	public void testDIMACS() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "DIMACS";
 		String path = TestUtil.DIMACS_PATH;
-
+		 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
 		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1, log);
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testBHOSLIB() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
-
+		 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
 		basicFunc(path, TestUtil.BHOSLIB_TP, destFile, 1, 1, log);
@@ -85,7 +85,7 @@ public class GreedyVoteGrTest {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper, Logger log)
+	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper,Logger log)
 			throws FileNotFoundException, IOException, InterruptedException {
 
 		for (int i = iLower; i <= iUpper; i++) {
@@ -98,17 +98,15 @@ public class GreedyVoteGrTest {
 				FileOperation.saveCVSFile(destFile, sbStr);
 			}
 			for (TestParameter tp : tps) {
-				if (tp.isBeTest()) {
-					String inputFile = path + tp.getFile();
-					FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
-					List<String[]> am = fo.getAdjacencyMatrix();
+				String inputFile=path+tp.getFile();
+				FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
+				List<String[]> am = fo.getAdjacencyMatrix();
 
-					Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-					IGreedyDS<Integer> ag = new GreedyVoteGr(g);
+				IGreedyDS<Integer> ag = new GreedyVoteGr(g);
 
-					TestUtil.run(inputFile, destFile, g, ag, log);
-				}
+				TestUtil.run(inputFile, destFile, g, ag, log);
 			}
 		}
 	}

@@ -119,8 +119,9 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
 
 		/* apply poly-rr */
-		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap);
-
+		 Graph<Integer, String> g =
+		 GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
+		//Graph<Integer, String> g = gOriginal;
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 
@@ -174,7 +175,7 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 			MomentRegretReturn<Integer, String> mrr = null;
 			if (isMomentOfRegret()) {
 				mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-						this.runningTimeMap);
+						this.runningTimeMap,true);
 
 			}
 
