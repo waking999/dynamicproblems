@@ -119,9 +119,8 @@ public class GreedyDSM2 implements ITask, IGreedyDS<Integer> {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
 
 		/* apply poly-rr */
-		 Graph<Integer, String> g =
-		 GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
-		//Graph<Integer, String> g = gOriginal;
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
+
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import agape.tools.Components;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.DegreeRRReturn;
 import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
@@ -18,27 +21,22 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
+import junit.framework.Assert;
 
-/**
- * implement michael's original idea
- * 
- * @author kwang1
- *
- */
-public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
+public class GreedyDSM4 implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSM0.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSM4.class);
 	private Map<String, Long> runningTimeMap;
+
+	public Map<String, Long> getRunningTimeMap() {
+		return runningTimeMap;
+	}
 
 	private TaskLock lock;
 
 	public TaskLock getLock() {
 		return lock;
-	}
-
-	public Map<String, Long> getRunningTimeMap() {
-		return null;
 	}
 
 	public void setLock(TaskLock lock) {
@@ -63,11 +61,6 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 		return GreedyDSUtil.getResult(this.k, this.rUpperBoundary, this.dominatingSet, this.runningTimeMap);
 	}
 
-	/**
-	 * the graph
-	 */
-	private Graph<Integer, String> g;
-
 	private String indicator;
 
 	/**
@@ -78,8 +71,6 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 	public List<Integer> getDominatingSet() {
 		return dominatingSet;
 	}
-
-	
 
 	/**
 	 * the adjacency matrix of the graph
@@ -92,9 +83,8 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 	private int k;
 	private int rUpperBoundary;
 
-	public GreedyDSM0(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
+	public GreedyDSM4(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
-		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
 		this.k = k;
 		this.rUpperBoundary = rUpperBoundary;
@@ -104,63 +94,71 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 	/**
 	 * the major function do the computing to get the desired solution. In this
 	 * case, the desired result is a dominating set
-	 * @throws InterruptedException 
+	 * 
+	 * @throws InterruptedException
 	 */
-	public void computing() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+	public void computing()
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		long start = System.nanoTime();
 		initialization();
 		greedy();
 		long end = System.nanoTime();
 		long runningTime = end - start;
-		this.runningTimeMap.put("Total", runningTime);
+		this.runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_TOTAL, runningTime);
 
 	}
 
 	private void initialization() {
 		dominatingSet = new ArrayList<Integer>();
+
 		this.runningTimeMap = new HashMap<String, Long>();
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
+
 	}
 
-	private void greedy() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void greedy()
+			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
+		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
 
-		/* sort a list of vertex from lowest degree to highest */
-		List<Integer> vList = OrderPackageUtil.getVertexListDegreeAsc(g);
+		/* apply poly-rr */
+		Graph<Integer, String> gPolyRR = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
 
-		/*
-		 * i) get the first vertex v0 in the list(the lowest degree); and ii)
-		 * get its highest utility neighbor u0 and iii) put u0 in D0; and iv)
-		 * initialize a G0 with N[u0];
-		 * 
-		 */
-		// i)
-		int i = 0;
-		Integer v = vList.get(i);
-		// ii)
-		Map<Integer, Boolean> gDominatedMap = GreedyDSUtil.presetDominatedMap(vList);
-		Integer u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, gDominatedMap);
-		// iii)
-		List<Integer> dI = new ArrayList<Integer>();
-		AlgorithmUtil.addElementToList(dI, u);
-		// iv)
-		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
-		GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
+		List<Set<Integer>> components = Components.getAllConnectedComponent(gPolyRR);
+		int componentsSize = components.size();
 
-		List<Integer> undominatedVertices =null;
-		do {
+		List<Integer> allDs = new ArrayList<Integer>(componentsSize);
+		for (Set<Integer> component : components) {
+			Graph<Integer, String> g = new SparseMultigraph<Integer, String>();
+			AlgorithmUtil.prepareGraph(gPolyRR, g, component);
+
+			/* apply degree-rr */
+			DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
+
+			Map<Integer, Boolean> gDominatedMap = drrr.getDominatedMap();
+			List<Integer> dI = drrr.getDsAfterDegreeRR();
 			/*
-			 * this dominated map is for the whole graph to satisfy quit
-			 * condition
+			 * it is possible that a graph has been dominated at this point, so
+			 * a if branch is needed here
 			 */
-			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
-			if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
-				break;
-			}
-			undominatedVertices = GreedyDSUtil.getUndominatedVertices(gDominatedMap);
-			/* get the undominated vertex of the lowest degree */
-			v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
 
-			if (!gDominatedMap.get(v)) {
+			// sort a list of vertex from lowest degree to highest
+			List<Integer> vList = OrderPackageUtil.getVertexListDegreeAsc(g);
+
+			Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
+			// AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix, gI, dI);
+			GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, dI);
+			List<Integer> undominatedVertices = null;
+			Integer v;
+			Integer u;
+			do {
+
+				gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
+				if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
+					break;
+				}
+				undominatedVertices = GreedyDSUtil.getUndominatedVertices(gDominatedMap);
+				v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
 				/*
 				 * if vi is not dominated, i) get its highest utility neighbor
 				 * vi;ii) put ui in DI; and iii) construct a GI with N[ui]; and
@@ -187,7 +185,7 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap,false);
+							this.runningTimeMap,true);
 
 				}
 
@@ -200,24 +198,30 @@ public class GreedyDSM0 implements ITask, IGreedyDS<Integer> {
 
 				// viii)
 				gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
-				
 
-			}
+			} while (!AlgorithmUtil.isAllDominated(gDominatedMap));
 
-		} while (!AlgorithmUtil.isAllDominated(gDominatedMap));
+			allDs.addAll(dI);
 
-		this.dominatingSet = dI;
+		}
+
+		// do guarantee, minimal, ls at the last step;
+		List<Integer> gDI = GreedyDSUtil.useGreedyToCalcDS(gPolyRR, this.runningTimeMap);
+		if (allDs.size() > gDI.size()) {
+			allDs = gDI;
+		}
+
+		this.dominatingSet=allDs;
+		
+		GreedyDSUtil.applyMinimal(gPolyRR, this.dominatingSet, this.runningTimeMap);
+		GreedyDSUtil.applyLS(gPolyRR, this.dominatingSet, this.runningTimeMap);
 
 	}
 
-	
-
 	private boolean isMomentOfRegret() {
-		IMomentOfRegret mor = new MomentOfRegretTrue();
+		IMomentOfRegret mor = new MomentOfRegretDelta();
 		return mor.isMomentOfRegret(null);
 
 	}
-
-	
 
 }
