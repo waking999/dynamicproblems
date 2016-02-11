@@ -1,6 +1,7 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.apache.log4j.Logger;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.order.DegreeRRReturn;
 import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.control.TaskLock;
@@ -19,11 +21,18 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-
-public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
+/**
+ * implement fpt2 idea
+ * 
+ * order list L by Vote(V) and get highest Vote(V) neighbor
+ * 
+ * @author kwang1
+ *
+ */
+public class GreedyDSM1VV implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSM1.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSM1VV.class);
 	private Map<String, Long> runningTimeMap;
 
 	public Map<String, Long> getRunningTimeMap() {
@@ -68,6 +77,14 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	public List<Integer> getDominatingSet() {
 		return dominatingSet;
 	}
+	/**
+	 * a map keeps pair of(vertex, vote)
+	 */
+	Map<Integer, Float> voteMap;
+	/**
+	 * a map keeps pair of(vertex, weight)
+	 */
+	Map<Integer, Float> weightMap;
 
 	/**
 	 * the adjacency matrix of the graph
@@ -80,7 +97,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	private int k;
 	private int rUpperBoundary;
 
-	public GreedyDSM1(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
+	public GreedyDSM1VV(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
 
 		this.k = k;
@@ -110,6 +127,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 
 		this.runningTimeMap = new HashMap<String, Long>();
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
+		
 
 	}
 
@@ -117,22 +135,51 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	private void greedy()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
-
+		
 		/* apply poly-rr */
 		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
 
+		Collection<Integer> vertices = g.getVertices();
+		int verticesSize=vertices.size();
+		
+		voteMap = new HashMap<Integer, Float>(verticesSize);
+		weightMap = new HashMap<Integer, Float>(verticesSize);
+		
+		
+		for (Integer v : vertices) {			
+			int degree = g.degree(v);
+			float vote = 1.0f / (1 + degree);
+			voteMap.put(v, vote);
+			weightMap.put(v, vote);
+		}
+		// calculate weight for each vertex
+		for (Integer v : vertices) {
+			Collection<Integer> vNeig = g.getNeighbors(v);
+			float weightv = weightMap.get(v);
+			for (Integer u : vNeig) {
+				float voteu = voteMap.get(u);
+				weightv += voteu;
+			}
+			weightMap.put(v, weightv);
+		}
+		
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 
 		Map<Integer, Boolean> gDominatedMap = drrr.getDominatedMap();
 		List<Integer> dI = drrr.getDsAfterDegreeRR();
+		
+		
+		for(Integer v:vertices){
+			AlgorithmUtil.adjustWeight(g,gDominatedMap,weightMap,voteMap,v);
+		}
 		/*
 		 * it is possible that a graph has been dominated at this point, so a if
 		 * branch is needed here
 		 */
 
-		// sort a list of vertex from lowest degree to highest
-		List<Integer> vList = OrderPackageUtil.getVertexListDegreeAsc(g);
+		// sort a list of vertex from lowest vote to highest
+		List<Integer> vList = OrderPackageUtil.getVertexListVoteAsc(weightMap);
 
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
 		// AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix, gI, dI);
@@ -165,7 +212,9 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 			 */
 
 			// i)
-			u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g, gDominatedMap);
+			u = AlgorithmUtil.getHighestVoteNeighborOfAVertex(v, g, weightMap);
+			
+			AlgorithmUtil.adjustWeight(g,gDominatedMap,weightMap,voteMap,u);
 			// ii)
 			AlgorithmUtil.addElementToList(dI, u);
 			// iii)
@@ -210,5 +259,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 		return mor.isMomentOfRegret(null);
 
 	}
+	
+	
 
 }

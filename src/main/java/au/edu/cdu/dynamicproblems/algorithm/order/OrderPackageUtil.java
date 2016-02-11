@@ -108,12 +108,37 @@ public class OrderPackageUtil {
 		IPriorityOrder<V, E> pocb = new UtilityDesc<V, E>();
 		/*
 		 * there is no need for a weight map (<vertex(V), weigh(float)>) for
-		 * ordering by degree
+		 * ordering by utility
 		 */
 		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, dominatedMap, null));
 		return vList;
 	}
-
+	/**
+	 * 
+	 * @param g
+	 * @param dominatedMap
+	 * @param weightMap
+	 * @param voteMap
+	 * @return
+	 */
+	public static <V, E> List<V> getVertexListVoteDesc(Graph<V, E> g, Map<V, Boolean> dominatedMap,Map<V,Float> weightMap,Map<V,Float> voteMap) {
+		IPriorityOrder<V, E> pocb = new VoteDesc<V, E>();
+		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, dominatedMap, weightMap,voteMap));
+		return vList;
+	}
+	/**
+	 * 
+	 * @param g
+	 * @param dominatedMap
+	 * @param weightMap
+	 * @param voteMap
+	 * @return
+	 */
+	public static <V, E> List<V> getVertexListVoteAsc(Map<V,Float> weightMap) {
+		IPriorityOrder<V, E> pocb = new VoteAsc<V, E>();
+		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(weightMap));
+		return vList;
+	}
 	/**
 	 * 
 	 * @param g

@@ -19,10 +19,10 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyDSM5Test {
+public class GreedyDSM0VVTest {
 
-	private Logger log = LogUtil.getLogger(GreedyDSM5Test.class);
-	private static final String CLASS_NAME = GreedyDSM5Test.class.getSimpleName();
+	private Logger log = LogUtil.getLogger(GreedyDSM0VVTest.class);
+	private static final String CLASS_NAME = GreedyDSM0VVTest.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -34,7 +34,7 @@ public class GreedyDSM5Test {
 
 		int k = 10;
 		int r = 10;
-		IGreedyDS<Integer> ag = new GreedyDSM0V0(am, k, r);
+		IGreedyDS<Integer> ag = new GreedyDSM0DU(am, k, r);
 		Result result = ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
@@ -58,17 +58,16 @@ public class GreedyDSM5Test {
 
 	}
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
 
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
-		
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path,  destFile, 1, 1, TestUtil.KONECT_TP);
+		basicFunc(path, destFile, 1, 1, TestUtil.KONECT_TP);
 	}
 
 	@Ignore
@@ -82,49 +81,18 @@ public class GreedyDSM5Test {
 		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	@Ignore
+	 @Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
 		String path = TestUtil.BHOSLIB_PATH;
 
-
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path,  destFile, 1, 1, TestUtil.BHOSLIB_TP);
+		basicFunc(path, destFile, 1, 1, TestUtil.BHOSLIB_TP);
 	}
-	
-	// @Ignore
-		@Test
-		public void testKONECT_differentK() throws InterruptedException, IOException, FileNotFoundException {
 
-			String datasetName = "KONECT";
-			String path = TestUtil.KONECT_PATH;
-
-			String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
-
-			StringBuilder sb = new StringBuilder();
-			sb.append("------------");
-			String sbStr = sb.toString();
-
-			log.debug(sbStr);
-			if (destFile != null) {
-				FileOperation.saveCVSFile(destFile, sbStr);
-			}
-
-			for (TestParameter tp : TestUtil.KONECT_TP) {
-				if (tp.isBeTest()) {
-					int kLow = 2;
-					int kUp=50;
-					for (int j = kLow; j < kUp; j++) {
-						basicFunc(path + tp.getFile(), destFile, j, j);
-					}
-				}
-
-			}
-		}
-
-	private void basicFunc(String path,  String destFile, int iLower, int iUpper, TestParameter[] tps)
+	private void basicFunc(String path, String destFile, int iLower, int iUpper, TestParameter[] tps)
 			throws FileNotFoundException, IOException, InterruptedException {
 		for (int i = iLower; i <= iUpper; i++) {
 			StringBuilder sb = new StringBuilder();
@@ -137,10 +105,10 @@ public class GreedyDSM5Test {
 			}
 
 			for (TestParameter tp : tps) {
-			if(tp.isBeTest()){
-				basicFunc(path + tp.getFile(), destFile, tp.getK(), tp.getR());
-			}
-				
+				if (tp.isBeTest()) {
+					basicFunc(path + tp.getFile(), destFile, tp.getK(), tp.getR());
+				}
+
 			}
 		}
 	}
@@ -153,7 +121,7 @@ public class GreedyDSM5Test {
 
 		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-		IGreedyDS<Integer> ag = new GreedyDSM0V0(am, k, r);
+		IGreedyDS<Integer> ag = new GreedyDSM0VV(am, k, r);
 		TestUtil.run(inputFile, destFile, g, ag, log);
 
 	}

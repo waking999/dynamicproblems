@@ -1,4 +1,4 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds.va;
+package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,11 +8,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.GreedyDSUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.IGreedyDS;
-import au.edu.cdu.dynamicproblems.algorithm.ds.IMomentOfRegret;
-import au.edu.cdu.dynamicproblems.algorithm.ds.MomentOfRegretTrue;
-import au.edu.cdu.dynamicproblems.algorithm.ds.MomentRegretReturn;
 import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
 import au.edu.cdu.dynamicproblems.control.ITask;
 import au.edu.cdu.dynamicproblems.control.Result;
@@ -27,13 +22,15 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 /**
  * implement michael's original idea
  * 
+ * order list L by degree(D) and get highest utility(U) neighbor
+ * 
  * @author kwang1
  *
  */
-public class GreedyDSM0V1VA implements ITask, IGreedyDS<Integer> {
+public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSM0V1VA.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSM0DU.class);
 	private Map<String, Long> runningTimeMap;
 
 	private TaskLock lock;
@@ -97,7 +94,7 @@ public class GreedyDSM0V1VA implements ITask, IGreedyDS<Integer> {
 	private int k;
 	private int rUpperBoundary;
 
-	public GreedyDSM0V1VA(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
+	public GreedyDSM0DU(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.g = AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix);
 
@@ -192,7 +189,7 @@ public class GreedyDSM0V1VA implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap,true);
+							this.runningTimeMap,false);
 
 				}
 

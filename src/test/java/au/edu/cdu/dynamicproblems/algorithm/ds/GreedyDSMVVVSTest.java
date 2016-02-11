@@ -21,11 +21,11 @@ import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 
-public class GreedyDSMVSV0Test {
-	private Logger log = LogUtil.getLogger(GreedyDSMVSV0Test.class);
-	private static final String CLASS_NAME = GreedyDSMVSV0Test.class.getSimpleName();
+public class GreedyDSMVVVSTest {
+	private Logger log = LogUtil.getLogger(GreedyDSMVVVSTest.class);
+	private static final String CLASS_NAME = GreedyDSMVVVSTest.class.getSimpleName();
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -37,7 +37,7 @@ public class GreedyDSMVSV0Test {
 		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -93,14 +93,14 @@ public class GreedyDSMVSV0Test {
 
 					StringBuilder sb = new StringBuilder();
 
-					IGreedyDS<Integer> ag01 = new GreedyDSM1V0(am, k, r);
+					IGreedyDS<Integer> ag01 = new GreedyDSM1VV(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
-//
-//					IGreedyDS<Integer> ag02 = new GreedyDSM2V1(am, k, r);
+
+//					IGreedyDS<Integer> ag02 = new GreedyDSM2DU(am, k, r);
 //					Result result02 = ag02.run();
 //					List<Integer> ds02 = ag02.getDominatingSet();
 //					int ds02Size = ds02.size();

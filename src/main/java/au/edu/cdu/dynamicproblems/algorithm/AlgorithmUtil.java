@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -15,6 +18,7 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
@@ -498,6 +502,66 @@ public class AlgorithmUtil {
 
 		return null;
 
+	}
+
+	/**
+	 * get the highest vote neighbor of a vertex
+	 * 
+	 * @param v,
+	 *            the vertex
+	 * @param g,
+	 *            the graph instance
+	 * @param dominatedMap,
+	 *            the dominated map (a map keeping pair of <vertex, dominated>)
+	 * @param weightMap,
+	 * @param voteMap
+	 * @return
+	 */
+	public static <V, E> V getHighestVoteNeighborOfAVertex(V v, Graph<V, E> g, 
+			Map<V, Float> weightMap) {
+		//
+		// List<V> vList = OrderPackageUtil.getVertexListVoteDesc(g,
+		// dominatedMap, weightMap, voteMap);
+		//
+		// Collection<V> vNeg = g.getNeighbors(v);
+		// vNeg.add(v);
+		//
+		// for (V u : vList) {
+		// if (vNeg.contains(u)) {
+		// return u;
+		// }
+		// }
+		//
+		// return null;
+
+		Collection<V> vNeg = g.getNeighbors(v);
+		vNeg.add(v);
+		weightMap=sortByValue(weightMap);
+		Set<V> keySet=weightMap.keySet();
+		for(V u:keySet){
+			if(vNeg.contains(u)){
+				return u;
+			}
+		}
+		return null;
+
+	}
+
+	private static <K, L extends Comparable<? super L>>
+
+	Map<K, L> sortByValue(Map<K, L> map) {
+		List<Map.Entry<K, L>> list = new LinkedList<Map.Entry<K, L>>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<K, L>>() {
+			public int compare(Map.Entry<K, L> o1, Map.Entry<K, L> o2) {
+				return (o1.getValue()).compareTo(o2.getValue());
+			}
+		});
+
+		Map<K, L> result = new LinkedHashMap<K, L>();
+		for (Map.Entry<K, L> entry : list) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
 	}
 
 	@Deprecated
@@ -2217,5 +2281,46 @@ public class AlgorithmUtil {
 			return true;
 		}
 
+	}
+	
+	
+	/**
+	 * adjust weight of a vertex, implemented according to the algorithm
+	 * description in the paper
+	 * 
+	 * @param v,
+	 *            the vertex
+	 */
+	public static void adjustWeight(Graph<Integer,String> g, Map<Integer,Boolean> dominatedMap, Map<Integer,Float> weightMap,Map<Integer,Float> voteMap,Integer v) {
+		Collection<Integer> vNeigs = g.getNeighbors(v);
+		boolean coveredv = dominatedMap.get(v);
+		weightMap.put(v, 0.0f);
+		float votev = voteMap.get(v);
+		for (Integer u : vNeigs) {
+			float weightu = weightMap.get(u);
+			if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+				float voteu = voteMap.get(u);
+				if (!coveredv) {
+					weightMap.put(u, weightu - votev);
+				}
+				boolean coveredu = dominatedMap.get(u);
+				if (!coveredu) {
+					dominatedMap.put(u, true);
+					weightu = weightMap.get(u);
+					weightMap.put(u, weightu - voteu);
+
+					Collection<Integer> uNeigs = g.getNeighbors(u);
+					for (Integer w : uNeigs) {
+						float weightw = weightMap.get(w);
+						if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+							weightMap.put(w, weightw - voteu);
+						}
+					}
+
+				}
+			}
+
+		}
+		dominatedMap.put(v, true);
 	}
 }

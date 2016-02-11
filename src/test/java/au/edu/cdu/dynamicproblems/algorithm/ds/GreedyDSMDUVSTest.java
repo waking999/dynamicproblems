@@ -1,4 +1,4 @@
-package au.edu.cdu.dynamicproblems.algorithm.ds.va;
+package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,8 +13,6 @@ import org.junit.Test;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.TestParameter;
 import au.edu.cdu.dynamicproblems.algorithm.TestUtil;
-import au.edu.cdu.dynamicproblems.algorithm.ds.IGreedyDS;
-import au.edu.cdu.dynamicproblems.algorithm.ds.va.GreedyDSM1V0VA;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
@@ -23,9 +21,9 @@ import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 
-public class GreedyDSMVSV0VATest {
-	private Logger log = LogUtil.getLogger(GreedyDSMVSV0VATest.class);
-	private static final String CLASS_NAME = GreedyDSMVSV0VATest.class.getSimpleName();
+public class GreedyDSMDUVSTest {
+	private Logger log = LogUtil.getLogger(GreedyDSMDUVSTest.class);
+	private static final String CLASS_NAME = GreedyDSMDUVSTest.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -95,19 +93,19 @@ public class GreedyDSMVSV0VATest {
 
 					StringBuilder sb = new StringBuilder();
 
-					IGreedyDS<Integer> ag01 = new GreedyDSM1V0VA(am, k, r);
+					IGreedyDS<Integer> ag01 = new GreedyDSM1DU(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
-//
-//					IGreedyDS<Integer> ag02 = new GreedyDSM2V1(am, k, r);
-//					Result result02 = ag02.run();
-//					List<Integer> ds02 = ag02.getDominatingSet();
-//					int ds02Size = ds02.size();
-//					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
-//					sb.append(result02.getString()).append("\n");
+
+					IGreedyDS<Integer> ag02 = new GreedyDSM2DU(am, k, r);
+					Result result02 = ag02.run();
+					List<Integer> ds02 = ag02.getDominatingSet();
+					int ds02Size = ds02.size();
+					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
+					sb.append(result02.getString()).append("\n");
 
 					int minDSSize = ds01Size;
 					int chooseDS = 1;
@@ -117,16 +115,16 @@ public class GreedyDSMVSV0VATest {
 						chooseDS = 1;
 					}
 
-//					if (minDSSize >= ds02Size) {
-//						minDSSize = ds02Size;
-//						chooseDS = 2;
-//					}
+					if (minDSSize >= ds02Size) {
+						minDSSize = ds02Size;
+						chooseDS = 2;
+					}
 
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					//setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
-					setRunningTime(sb, ag01RunningTimeMap);
+					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					//setRunningTime(sb, ag02RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {
