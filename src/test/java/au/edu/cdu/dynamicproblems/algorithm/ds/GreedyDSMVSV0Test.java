@@ -21,11 +21,11 @@ import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 
-public class GreedyDSMVSTest {
-	private Logger log = LogUtil.getLogger(GreedyDSMVSTest.class);
-	private static final String CLASS_NAME = GreedyDSMVSTest.class.getSimpleName();
+public class GreedyDSMVSV0Test {
+	private Logger log = LogUtil.getLogger(GreedyDSMVSV0Test.class);
+	private static final String CLASS_NAME = GreedyDSMVSV0Test.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -93,19 +93,19 @@ public class GreedyDSMVSTest {
 
 					StringBuilder sb = new StringBuilder();
 
-					IGreedyDS<Integer> ag01 = new GreedyDSM1(am, k, r);
+					IGreedyDS<Integer> ag01 = new GreedyDSM1V0(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
-
-					IGreedyDS<Integer> ag02 = new GreedyDSM2(am, k, r);
-					Result result02 = ag02.run();
-					List<Integer> ds02 = ag02.getDominatingSet();
-					int ds02Size = ds02.size();
-					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
-					sb.append(result02.getString()).append("\n");
+//
+//					IGreedyDS<Integer> ag02 = new GreedyDSM2V1(am, k, r);
+//					Result result02 = ag02.run();
+//					List<Integer> ds02 = ag02.getDominatingSet();
+//					int ds02Size = ds02.size();
+//					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
+//					sb.append(result02.getString()).append("\n");
 
 					int minDSSize = ds01Size;
 					int chooseDS = 1;
@@ -115,16 +115,16 @@ public class GreedyDSMVSTest {
 						chooseDS = 1;
 					}
 
-					if (minDSSize >= ds02Size) {
-						minDSSize = ds02Size;
-						chooseDS = 2;
-					}
+//					if (minDSSize >= ds02Size) {
+//						minDSSize = ds02Size;
+//						chooseDS = 2;
+//					}
 
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
-					//setRunningTime(sb, ag02RunningTimeMap);
+					//setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					setRunningTime(sb, ag01RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {

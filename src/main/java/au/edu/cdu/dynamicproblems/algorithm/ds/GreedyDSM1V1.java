@@ -20,10 +20,10 @@ import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 
-public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
+public class GreedyDSM1V1 implements ITask, IGreedyDS<Integer> {
 
 	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSM1.class);
+	private static Logger log = LogUtil.getLogger(GreedyDSM1V1.class);
 	private Map<String, Long> runningTimeMap;
 
 	public Map<String, Long> getRunningTimeMap() {
@@ -80,7 +80,7 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	private int k;
 	private int rUpperBoundary;
 
-	public GreedyDSM1(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
+	public GreedyDSM1V1(List<String[]> adjacencyMatrix, int k, int rUpperBoundary) {
 		this.adjacencyMatrix = adjacencyMatrix;
 
 		this.k = k;
@@ -117,9 +117,10 @@ public class GreedyDSM1 implements ITask, IGreedyDS<Integer> {
 	private void greedy()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
-		Graph<Integer, String> g = gOriginal;
+
 		/* apply poly-rr */
-		// Graph<Integer, String> g =		 GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
+		//		Graph<Integer, String> g = gOriginal;
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 
