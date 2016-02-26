@@ -33,7 +33,7 @@ public class GreedyDSUtil {
 	 * when a graph has more than such number of vertices, we will not apply
 	 * poly rr 2 on it.
 	 */
-	public static final int POLY_RR_2_VALVE = 2000;
+	public static final int POLY_RR_2_VALVE = 1500;
 	private static Logger log = LogUtil.getLogger(GreedyDSUtil.class);
 
 	/**
@@ -232,18 +232,19 @@ public class GreedyDSUtil {
 	 */
 	public static Graph<Integer, String> applyPolyReductionRules(Graph<Integer, String> g,
 			Map<String, Long> runningTimeMap, int valve) {
-		long start = System.nanoTime();
-
-		Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
-
 		if (g.getVertexCount() < valve) {
+			long start = System.nanoTime();
+
+			Graph<Integer, String> gRR = AlgorithmUtil.applySingleVertexReductionRule(g);
+
 			gRR = AlgorithmUtil.applyPairVerticesReductionRule(gRR);
+
+			long end = System.nanoTime();
+			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
+
+			return gRR;
 		}
-
-		long end = System.nanoTime();
-		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_POLYRR, (end - start));
-
-		return gRR;
+		return g;
 	}
 
 	/**
@@ -281,6 +282,68 @@ public class GreedyDSUtil {
 						addDominatingVertexAndItsNeigbors(g, dsAfterDegreeRR, verticesAfterDegreeRR, u, dominatedMap);
 					}
 				}
+			}
+		}
+
+		boolean ruleApplied = true;
+		while (ruleApplied) {
+			ruleApplied = false;
+			for (Integer v : vertices) {
+				if (!dominatedMap.get(v)) {
+					int degree = g.degree(v);
+
+					if (degree == 2) {
+						Collection<Integer> vNegb = g.getNeighbors(v);
+
+						List<Integer> vNegbList = new ArrayList<Integer>();
+						for (Integer x : vNegb) {
+							vNegbList.add(x);
+						}
+
+						Integer u = vNegbList.get(0);
+						Integer w = vNegbList.get(1);
+
+						List<Integer> uUnNeig = AlgorithmUtil.getUndominatedNeighbors(g, u, dominatedMap);
+						uUnNeig.add(u);
+						List<Integer> wUnNeig = AlgorithmUtil.getUndominatedNeighbors(g, w, dominatedMap);
+						wUnNeig.add(w);
+
+						Collection<Integer> uNeig=g.getNeighbors(u);
+						Collection<Integer> wNeig=g.getNeighbors(w);
+						
+						if (CollectionUtils.isSubCollection(uUnNeig, wNeig)) {
+							ruleApplied = true;
+							// if all undominated neighbors of u are in N(w),
+							// add w;
+							addDominatingVertexAndItsNeigbors(g, dsAfterDegreeRR, verticesAfterDegreeRR, w,
+									dominatedMap);
+
+						} else if (CollectionUtils.isSubCollection(wUnNeig, uNeig)) {
+							ruleApplied = true;
+							addDominatingVertexAndItsNeigbors(g, dsAfterDegreeRR, verticesAfterDegreeRR, u,
+									dominatedMap);
+
+						} else {
+							if (!dominatedMap.get(u) && !dominatedMap.get(w)) {
+								uUnNeig.remove(v);
+								wUnNeig.remove(v);
+								if (uUnNeig.isEmpty() && wUnNeig.isEmpty()) {
+
+									// if N(u)\v and N(w)\v are dominated but u
+									// and w are un-dominated, add v
+									ruleApplied = true;
+									addDominatingVertexAndItsNeigbors(g, dsAfterDegreeRR, verticesAfterDegreeRR, v,
+											dominatedMap);
+								}
+							} else {
+
+								continue;
+							}
+							/// continue;
+						}
+					}
+				}
+
 			}
 		}
 
@@ -326,6 +389,7 @@ public class GreedyDSUtil {
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (end - start));
 
 		return new DegreeRRReturn(dsAfterDegreeRR, verticesAfterDegreeRR, dominatedMap);
+
 	}
 
 	private static void addDominatingVertex(List<Integer> ds, List<Integer> vList, Integer u,
@@ -415,7 +479,7 @@ public class GreedyDSUtil {
 	/**
 	 * 
 	 * @param previousIndex
-	 * @param solutionList
+	 * @param vertexSolutionList
 	 * @param gI
 	 * @param dI
 	 * @param ddsI
@@ -429,7 +493,7 @@ public class GreedyDSUtil {
 	 * @throws InterruptedException
 	 */
 
-	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> solutionList,
+	public static List<Integer> invokeDDSFPT(int previousIndex, List<List<Integer>> vertexSolutionList,
 			List<Graph<Integer, String>> graphList, Graph<Integer, String> gI, List<Integer> dI, List<Integer> ddsI,
 			String indicator, int rUpperBoundary, Map<String, Long> runningTimeMap, boolean ifGuarantee)
 					throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
@@ -439,7 +503,7 @@ public class GreedyDSUtil {
 		/*
 		 * get the solution at the back up point for future usage in dds fpt
 		 */
-		List<Integer> dK = solutionList.get(previousIndex);
+		List<Integer> dK = vertexSolutionList.get(previousIndex);
 		// Graph<Integer, String> gK = graphList.get(previousIndex);
 
 		int dKSize = dK.size();
@@ -484,16 +548,13 @@ public class GreedyDSUtil {
 					ddsI = gDI;
 				}
 			}
-			
-			
-			long end = System.nanoTime();
-			Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
-			if (existingRunningTime == null) {
-				existingRunningTime = Long.valueOf(0);
-			}
-			runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
 		}
-		
+		long end = System.nanoTime();
+		Long existingRunningTime = runningTimeMap.get(AlgorithmUtil.RUNNING_TIME_DDS);
+		if (existingRunningTime == null) {
+			existingRunningTime = Long.valueOf(0);
+		}
+		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DDS, existingRunningTime + (end - start));
 		return ddsI;
 	}
 
@@ -709,7 +770,7 @@ public class GreedyDSUtil {
 		int dominatingKVerticesSize = dominatingKVertices.size();
 
 		List<Integer> ddsI = null;
-		Graph<Integer, String> gICopyNextRound = null;
+		Graph<Integer, String> gICopyNextRound = gI;
 		List<Integer> gDI = null;
 		Graph<Integer, String> gICopyDDS = null;
 		/* being less than 2 is too trivial */
@@ -738,24 +799,30 @@ public class GreedyDSUtil {
 			// log.debug("m="+dominatingKVerticesSize);
 			int realRUpperBoundary = Math.min(dominatingKVerticesSize - 1, rUpperBoundary);
 
-			int gDISize=0;
+			int gDISize = 0;
 			if (ifGuarantee) {
 				gDI = GreedyDSUtil.useGreedyToCalcDS(gICopyDDS, runningTimeMap);
 
 				gDISize = gDI.size();
-
+				if(gDISize<dICopy.size()){
+					mrr = new MomentRegretReturn<Integer, String>(gDI, gICopyNextRound);
+					return mrr;
+				}
 				realRUpperBoundary = Math.min(gDISize - dICopy.size(), realRUpperBoundary);
 			}
 			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
 
-			ag.setConsiderableCandidateVertices4DS(dominatedVertices);
+			ag.setConsiderableCandidateVertices4DS(dominatingKVertices);
 			ag.computing();
 
 			ddsI = ag.getDs2();
 
+			GreedyDSUtil.applyMinimal(gI, ddsI, runningTimeMap);
+			//GreedyDSUtil.applyLS(gI, dI, runningTimeMap);
+
 			if (ifGuarantee) {
 				int ddsISize = ddsI.size();
-				if (gDISize>0 && ddsISize > gDISize) {
+				if (gDISize > 0 && ddsISize > gDISize) {
 					ddsI = gDI;
 				}
 			}

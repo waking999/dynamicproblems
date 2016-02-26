@@ -108,27 +108,38 @@ public class OrderPackageUtil {
 		IPriorityOrder<V, E> pocb = new UtilityDesc<V, E>();
 		/*
 		 * there is no need for a weight map (<vertex(V), weigh(float)>) for
-		 * ordering by degree
+		 * ordering by utility
 		 */
 		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, dominatedMap, null));
 		return vList;
 	}
-
 	/**
 	 * 
 	 * @param g
+	 * @param dominatedMap
 	 * @param weightMap
+	 * @param voteMap
 	 * @return
 	 */
-	public static <V, E> List<V> getVertexListWeightDesc(Graph<V, E> g, Map<V, Float> weightMap) {
+	public static <V, E> List<V> getVertexListWeightDesc(Graph<V, E> g,  Map<V,Float> weightMap ) {
 		IPriorityOrder<V, E> pocb = new WeightDesc<V, E>();
-		/*
-		 * there is no need for a dominated map (<vertex(V),
-		 * dominated(boolean)>) for ordering by degree
-		 */
-		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, null, weightMap));
+		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, null, weightMap,null));
 		return vList;
 	}
+	/**
+	 * 
+	 * @param g
+	 * @param dominatedMap
+	 * @param weightMap
+	 * @param voteMap
+	 * @return
+	 */
+	public static <V, E> List<V> getVertexListWeightAsc(Graph<V, E> g, Map<V,Float> weightMap ) {
+		IPriorityOrder<V, E> pocb = new WeightAsc<V, E>();
+		List<V> vList = pocb.getOrderedVertexList(new PriorityBean<V, E>(g, null, weightMap,null));
+		return vList;
+	}
+	
 
 	/**
 	 * get vertices from an ordered vertex priority queue obtained by pcb and

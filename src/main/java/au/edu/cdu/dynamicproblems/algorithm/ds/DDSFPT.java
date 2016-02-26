@@ -196,7 +196,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 			throws MOutofNException, NChooseMNoSolutionException, ExceedLongMaxException, ArraysNotSameLengthException {
 
 		int tryR = R_START;
-
+		// int tryR=r;
 		if (r < tryR) {
 			tryR = r;
 		}
@@ -236,10 +236,9 @@ public class DDSFPT implements IAlgorithm, ITask {
 				}
 			}
 		} while (!this.hasLessR);
-		int considerableCandidateVertices4DSSize = this.considerableCandidateVertices4DS.size();
 		if (this.hasLessR) {
 			Collection<Integer> SStar = ag.getDominatingVertexCoverSet();
-
+			int considerableCandidateVertices4DSSize = this.considerableCandidateVertices4DS.size();
 			int SStarSize = SStar.size();
 
 			if (considerableCandidateVertices4DSSize > 0 && SStarSize >= considerableCandidateVertices4DSSize) {
@@ -248,8 +247,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 			this.ds2 = (List<Integer>) CollectionUtils.union(ds1, SStar);
 		} else {
-			int vertexCoverSize = vertexCover.size();
-			if (considerableCandidateVertices4DSSize > 0 && vertexCoverSize > considerableCandidateVertices4DSSize) {
+			if (this.considerableCandidateVertices4DS != null) {
 				this.ds2 = (List<Integer>) CollectionUtils.union(ds1, this.considerableCandidateVertices4DS);
 			} else {
 				this.ds2 = (List<Integer>) CollectionUtils.union(ds1, vertexCover);

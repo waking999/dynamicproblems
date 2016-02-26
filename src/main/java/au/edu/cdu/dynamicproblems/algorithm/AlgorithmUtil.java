@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -15,6 +18,7 @@ import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.VertexPriority;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
@@ -500,6 +504,65 @@ public class AlgorithmUtil {
 
 	}
 
+	/**
+	 * get the highest vote neighbor of a vertex
+	 * 
+	 * @param v,
+	 *            the vertex
+	 * @param g,
+	 *            the graph instance
+	 * @param dominatedMap,
+	 *            the dominated map (a map keeping pair of <vertex, dominated>)
+	 * @param weightMap,
+	 * @param voteMap
+	 * @return
+	 */
+	public static <V, E> V getHighestWeightNeighborOfAVertex(V v, Graph<V, E> g, Map<V, Float> weightMap) {
+		//
+		// List<V> vList = OrderPackageUtil.getVertexListVoteDesc(g,
+		// dominatedMap, weightMap, voteMap);
+		//
+		// Collection<V> vNeg = g.getNeighbors(v);
+		// vNeg.add(v);
+		//
+		// for (V u : vList) {
+		// if (vNeg.contains(u)) {
+		// return u;
+		// }
+		// }
+		//
+		// return null;
+
+		Collection<V> vNeg = g.getNeighbors(v);
+		vNeg.add(v);
+		weightMap = sortByValueDesc(weightMap);
+		Set<V> keySet = weightMap.keySet();
+		for (V u : keySet) {
+			if (vNeg.contains(u)) {
+				return u;
+			}
+		}
+		return null;
+
+	}
+
+	private static <K, L extends Comparable<? super L>>
+
+	Map<K, L> sortByValueDesc(Map<K, L> map) {
+		List<Map.Entry<K, L>> list = new LinkedList<Map.Entry<K, L>>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<K, L>>() {
+			public int compare(Map.Entry<K, L> o1, Map.Entry<K, L> o2) {
+				return (o2.getValue()).compareTo(o1.getValue());
+			}
+		});
+
+		Map<K, L> result = new LinkedHashMap<K, L>();
+		for (Map.Entry<K, L> entry : list) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
+	}
+
 	@Deprecated
 	public static TreeMap<Integer, Integer> sortVertexMapAccordingToDegree(Graph<Integer, Integer> g) {
 		return sortVertexMapAccordingToDegreeInclude(g, null, ASC_ORDER);
@@ -612,6 +675,26 @@ public class AlgorithmUtil {
 			}
 		}
 		return unDominatedDegree;
+	}
+
+	/**
+	 * 
+	 * @param g
+	 * @param v
+	 * @param dominatedMap
+	 * @return
+	 */
+	public static <V, E> List<V> getUndominatedNeighbors(Graph<V, E> g, V v, Map<V, Boolean> dominatedMap) {
+		List<V> list = new ArrayList<V>();
+
+		Collection<V> vNeigs = g.getNeighbors(v);
+
+		for (V u : vNeigs) {
+			if (!dominatedMap.get(u)) {
+				list.add(u);
+			}
+		}
+		return list;
 	}
 
 	/**
@@ -1558,9 +1641,9 @@ public class AlgorithmUtil {
 				Collection<Integer> n3 = CollectionUtils.subtract(vNeig, CollectionUtils.union(n1, n2));
 
 				/*
-				 * Rule 1 If N3(v) = ∅ for some vertex v, then : i) remove
-				 * N2(v) and N3(v) from G and; ii) add a new vertex v with the
-				 * edge {v, v}.
+				 * Rule 1 If N3(v) != ∅ for some vertex v, then : i) remove
+				 * N2(v) and N3(v) from G and; ii) add a new vertex v' with the
+				 * edge {v, v'}.
 				 * 
 				 * An equivlant way of ii) is ii.1) to keep a vertex w in N2(v)
 				 * ∪ N3(v)), ii.2) remove edges between w and N(w)\{v}
@@ -1841,11 +1924,12 @@ public class AlgorithmUtil {
 
 				for (Integer w : vertices) {
 					if (!visited.get(w)) {
-						Collection<Integer> vNeig = gPrime.getNeighbors(v);
 
 						if (v.equals(w)) {
 							continue;
 						}
+
+						Collection<Integer> vNeig = gPrime.getNeighbors(v);
 
 						if (vNeig.contains(w)) {
 							continue;
@@ -2217,4 +2301,60 @@ public class AlgorithmUtil {
 		}
 
 	}
+
+	/**
+	 * adjust weight of a vertex, implemented according to the algorithm
+	 * description in the paper
+	 * 
+	 * @param v,
+	 *            the vertex
+	 */
+	public static void adjustWeight(Graph<Integer, String> g, Map<Integer, Boolean> dominatedMap,
+			Map<Integer, Float> weightMap, Map<Integer, Float> voteMap, Integer v) {
+		Collection<Integer> vNeigs = g.getNeighbors(v);
+		boolean coveredv = dominatedMap.get(v);
+		weightMap.put(v, 0.0f);
+		float votev = voteMap.get(v);
+		for (Integer u : vNeigs) {
+			float weightu = weightMap.get(u);
+			if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+				float voteu = voteMap.get(u);
+				if (!coveredv) {
+					weightMap.put(u, weightu - votev);
+				}
+				boolean coveredu = dominatedMap.get(u);
+				if (!coveredu) {
+					dominatedMap.put(u, true);
+					weightu = weightMap.get(u);
+					weightMap.put(u, weightu - voteu);
+
+					Collection<Integer> uNeigs = g.getNeighbors(u);
+					for (Integer w : uNeigs) {
+						float weightw = weightMap.get(w);
+						if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+							weightMap.put(w, weightw - voteu);
+						}
+					}
+
+				}
+			}
+
+		}
+		dominatedMap.put(v, true);
+	}
+	
+//	public static <V, E> boolean hasUndominatedDegreeTwo(Graph<V, E> g, Map<V, Boolean> dominatedMap) {
+//		Collection<V> vertices = g.getVertices();
+//		for (V v : vertices) {
+//			int degree = g.degree(v);
+//			if (degree == 2) {
+//				boolean dominated = dominatedMap.get(v);
+//				if (!dominated) {
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//
+//	}
 }

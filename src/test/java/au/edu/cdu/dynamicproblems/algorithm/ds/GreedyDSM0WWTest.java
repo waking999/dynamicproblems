@@ -12,16 +12,17 @@ import org.junit.Test;
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.TestParameter;
 import au.edu.cdu.dynamicproblems.algorithm.TestUtil;
+import au.edu.cdu.dynamicproblems.algorithm.order.OrderPackageUtil;
 import au.edu.cdu.dynamicproblems.control.Result;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyNativeTest {
+public class GreedyDSM0WWTest {
 
-	private Logger log = LogUtil.getLogger(GreedyNativeTest.class);
-	private static final String CLASS_NAME = GreedyNativeTest.class.getSimpleName();
+	private Logger log = LogUtil.getLogger(GreedyDSM0WWTest.class);
+	private static final String CLASS_NAME = GreedyDSM0WWTest.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -31,25 +32,42 @@ public class GreedyNativeTest {
 		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 		Graph<Integer, String> gCopy = AlgorithmUtil.copyGraph(g);
 
-		GreedyNative ag = new GreedyNative(g);
-		ag.run();
+		int k = 10;
+		int r = 10;
+		IGreedyDS<Integer> ag = new GreedyDSM0DU(am, k, r);
+		Result result = ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
 
-		Result r = ag.getResult();
-		log.debug(r.getString());
+		log.debug(result.getString());
+	}
+
+	@Ignore
+	@Test
+	public void test1() {
+		List<String[]> am = TestUtil.simpleAM0();
+
+		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+
+		List<Integer> vList = OrderPackageUtil.getVertexListDegreeAsc(g);
+		Assert.assertTrue(5 == vList.get(0));
+
+		vList = OrderPackageUtil.getVertexListDegreeDesc(g);
+		Assert.assertTrue(4 == vList.get(0));
+
 	}
 
 	// @Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
+
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.KONECT_TP, destFile, 1, 1, log);
+		basicFunc(path, destFile, 1, 1, TestUtil.KONECT_TP);
 	}
 
 	@Ignore
@@ -60,10 +78,10 @@ public class GreedyNativeTest {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1, log);
+		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	@Ignore
+	 @Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
@@ -71,24 +89,11 @@ public class GreedyNativeTest {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		basicFunc(path, TestUtil.BHOSLIB_TP, destFile, 1, 1, log);
+		basicFunc(path, destFile, 1, 1, TestUtil.BHOSLIB_TP);
 	}
 
-	/**
-	 * 
-	 * @param path
-	 * @param files
-	 * @param destFile
-	 * @param iLower
-	 * @param iUpper
-	 * @param log
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
-	private static void basicFunc(String path, TestParameter[] tps, String destFile, int iLower, int iUpper, Logger log)
+	private void basicFunc(String path, String destFile, int iLower, int iUpper, TestParameter[] tps)
 			throws FileNotFoundException, IOException, InterruptedException {
-
 		for (int i = iLower; i <= iUpper; i++) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(i).append("------------");
@@ -98,20 +103,27 @@ public class GreedyNativeTest {
 			if (destFile != null) {
 				FileOperation.saveCVSFile(destFile, sbStr);
 			}
+
 			for (TestParameter tp : tps) {
 				if (tp.isBeTest()) {
-					String inputFile = path + tp.getFile();
-					FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
-					List<String[]> am = fo.getAdjacencyMatrix();
-
-					Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
-
-					IGreedyDS<Integer> ag = new GreedyNative(g);
-
-					TestUtil.run(inputFile, destFile, g, ag, log);
+					basicFunc(path + tp.getFile(), destFile, tp.getK(), tp.getR());
 				}
+
 			}
 		}
+	}
+
+	private void basicFunc(String inputFile, String destFile, int k, int r)
+			throws InterruptedException, IOException, FileNotFoundException {
+
+		FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
+		List<String[]> am = fo.getAdjacencyMatrix();
+
+		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+
+		IGreedyDS<Integer> ag = new GreedyDSM0WW(am, k, r);
+		TestUtil.run(inputFile, destFile, g, ag, log);
+
 	}
 
 }

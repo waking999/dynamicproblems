@@ -18,10 +18,10 @@ import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
-public class GreedyNativeTest {
+public class GreedyNativeVoteCompareTest {
 
-	private Logger log = LogUtil.getLogger(GreedyNativeTest.class);
-	private static final String CLASS_NAME = GreedyNativeTest.class.getSimpleName();
+	private Logger log = LogUtil.getLogger(GreedyNativeVoteCompareTest.class);
+	private static final String CLASS_NAME = GreedyNativeVoteCompareTest.class.getSimpleName();
 
 	@Ignore
 	@Test
@@ -31,17 +31,16 @@ public class GreedyNativeTest {
 		Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 		Graph<Integer, String> gCopy = AlgorithmUtil.copyGraph(g);
 
-		GreedyNative ag = new GreedyNative(g);
-		ag.run();
+		IGreedyDS<Integer> ag = new GreedyVote(g);
+		Result r = ag.run();
 
 		List<Integer> ds = ag.getDominatingSet();
 		Assert.assertTrue(AlgorithmUtil.isDS(gCopy, ds));
 
-		Result r = ag.getResult();
 		log.debug(r.getString());
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "KONECT";
@@ -63,7 +62,7 @@ public class GreedyNativeTest {
 		basicFunc(path, TestUtil.DIMACS_TP, destFile, 1, 1, log);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
@@ -99,16 +98,31 @@ public class GreedyNativeTest {
 				FileOperation.saveCVSFile(destFile, sbStr);
 			}
 			for (TestParameter tp : tps) {
-				if (tp.isBeTest()) {
-					String inputFile = path + tp.getFile();
-					FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
-					List<String[]> am = fo.getAdjacencyMatrix();
+				String inputFile = path + tp.getFile();
+				FileOperation fo = IOUtil.getProblemInfoByEdgePair(inputFile);
+				List<String[]> am = fo.getAdjacencyMatrix();
 
-					Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
 
-					IGreedyDS<Integer> ag = new GreedyNative(g);
+				// greedy native
+				IGreedyDS<Integer> ag01 = new GreedyNative(g);
+				Result r01 = ag01.run();
+				List<Integer> ds01 = ag01.getDominatingSet();
+				Assert.assertTrue(AlgorithmUtil.isDS(g, ds01));
 
-					TestUtil.run(inputFile, destFile, g, ag, log);
+				// greedy vote
+				IGreedyDS<Integer> ag02 = new GreedyVote(g);
+				Result r02 = ag02.run();
+				List<Integer> ds02 = ag02.getDominatingSet();
+				Assert.assertTrue(AlgorithmUtil.isDS(g, ds02));
+
+				StringBuffer sbout = new StringBuffer();
+				sbout.append(tp.getFile()).append(r01.getString()).append(r02.getString());
+				
+				sbStr = sbout.toString();
+				log.debug(sbStr);
+				if (destFile != null) {
+					FileOperation.saveCVSFile(destFile, sbStr);
 				}
 			}
 		}
