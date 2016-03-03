@@ -184,17 +184,22 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
 		// AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix, gI, dI);
 		GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, dI);
-		List<Integer> undominatedVertices = null;
+		// List<Integer> undominatedVertices = null;
 		Integer v;
 		Integer u;
+		int i = -1;
 		do {
-
+			i++;
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
 			if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
 				break;
 			}
-			undominatedVertices = GreedyDSUtil.getUndominatedVertices(gDominatedMap);
-			v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
+			// undominatedVertices =
+			// GreedyDSUtil.getUndominatedVertices(gDominatedMap);
+			// v =
+			// GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList,
+			// undominatedVertices);
+			v = vList.get(i);
 			if (!gDominatedMap.get(v)) {
 				/*
 				 * if vi is not dominated, i) get its highest utility neighbor
@@ -237,9 +242,10 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 
 				if ((mrr.getDds() != null && mrr.getDds().size() > 0) && mrr.getDds().size() < dI.size()) {
 					dI = mrr.getDds();
-//					Graph<Integer, String> gICopyNextRound = mrr.getGraph();
-//					GreedyDSUtil.addCloseNeighborToSubgraph(g, gICopyNextRound, dI);
-//					gI = gICopyNextRound;
+					// Graph<Integer, String> gICopyNextRound = mrr.getGraph();
+					// GreedyDSUtil.addCloseNeighborToSubgraph(g,
+					// gICopyNextRound, dI);
+					// gI = gICopyNextRound;
 				}
 
 				// viii)

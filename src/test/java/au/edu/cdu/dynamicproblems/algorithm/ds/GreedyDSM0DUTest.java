@@ -24,7 +24,7 @@ public class GreedyDSM0DUTest {
 	private Logger log = LogUtil.getLogger(GreedyDSM0DUTest.class);
 	private static final String CLASS_NAME = GreedyDSM0DUTest.class.getSimpleName();
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testDifferentKR() throws InterruptedException, IOException, FileNotFoundException {
 
@@ -97,7 +97,7 @@ public class GreedyDSM0DUTest {
 		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";

@@ -147,15 +147,16 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 		AlgorithmUtil.addElementToList(dI, u);
 		// iv)
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
-		//GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
+		// GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
 		// only add u,v to new graph
 		List<Integer> addedToNewGraph = new ArrayList<Integer>();
 		addedToNewGraph.add(u);
 		addedToNewGraph.add(v);
 		AlgorithmUtil.prepareGraph(g, gI, addedToNewGraph);
 
-		List<Integer> undominatedVertices = null;
+		//List<Integer> undominatedVertices = null;
 		do {
+			i++;
 			/*
 			 * this dominated map is for the whole graph to satisfy quit
 			 * condition
@@ -164,10 +165,13 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 			if (AlgorithmUtil.isAllDominated(gDominatedMap)) {
 				break;
 			}
-			undominatedVertices = GreedyDSUtil.getUndominatedVertices(gDominatedMap);
+			// undominatedVertices =
+			// GreedyDSUtil.getUndominatedVertices(gDominatedMap);
 			/* get the undominated vertex of the lowest degree */
-			v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
-
+			// v =
+			// GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList,
+			// undominatedVertices);
+			v = vList.get(i);
 			if (!gDominatedMap.get(v)) {
 				/*
 				 * if vi is not dominated, i) get its highest utility neighbor
@@ -192,7 +196,7 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 				// iii)
 				// GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
 				// only add u,v to new graph
-				//List<Integer> addedToNewGraph=new ArrayList<Integer>();
+				// List<Integer> addedToNewGraph=new ArrayList<Integer>();
 				addedToNewGraph.clear();
 				addedToNewGraph.add(u);
 				addedToNewGraph.add(v);
@@ -203,7 +207,7 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
 							this.runningTimeMap, false);
-					//gI = mrr.getGraph();
+					// gI = mrr.getGraph();
 				}
 
 				if ((mrr.getDds() != null && mrr.getDds().size() > 0) && mrr.getDds().size() < dI.size()) {
@@ -213,18 +217,17 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 				// viii)
 				gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
 
-				//GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, dI);
+				// GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, dI);
 
-			}else{
-				 addedToNewGraph.clear();
-			 
+			} else {
+				addedToNewGraph.clear();
+
 				addedToNewGraph.add(v);
 				AlgorithmUtil.prepareGraph(g, gI, addedToNewGraph);
 			}
 
 		} while (!AlgorithmUtil.isAllDominated(gDominatedMap));
 
-		
 		this.dominatingSet = dI;
 
 		GreedyDSUtil.applyMinimal(g, this.dominatingSet, this.runningTimeMap);

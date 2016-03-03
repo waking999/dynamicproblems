@@ -1,0 +1,12 @@
+1------------
+src/test/resources/KONECT/000027_zebra.konet,0:,4,10,10,4290285,DDS,0,Poly-RR,0,LS,23205697,Total,0,Guarantee,0,Degree-RR,684816,Minimal,
+src/test/resources/KONECT/000034_zachary.konet,0:,4,10,10,1686003,DDS,0,Poly-RR,0,LS,5759065,Total,0,Guarantee,0,Degree-RR,337646,Minimal,
+src/test/resources/KONECT/000062_dolphins.konet,0:,14,10,10,1393573200,DDS,0,Poly-RR,0,LS,1406251143,Total,0,Guarantee,0,Degree-RR,3378361,Minimal,
+src/test/resources/KONECT/000112_David_Copperfield.konet,0:,18,10,10,2804632683,DDS,0,Poly-RR,0,LS,2819287208,Total,0,Guarantee,0,Degree-RR,4721115,Minimal,
+src/test/resources/KONECT/000198_Jazz_musicians.konet,0:,14,10,10,212043147,DDS,0,Poly-RR,0,LS,249153594,Total,0,Guarantee,0,Degree-RR,3203490,Minimal,
+src/test/resources/KONECT/000212_pdzbase.konet,0:,52,10,20,138289070,DDS,0,Poly-RR,0,LS,181238236,Total,0,Guarantee,0,Degree-RR,52289442,Minimal,
+src/test/resources/KONECT/001133_rovira.konet,0:,215,10,10,5290309933,DDS,0,Poly-RR,0,LS,7188997602,Total,0,Guarantee,0,Degree-RR,3680285326,Minimal,
+src/test/resources/KONECT/001174_euroroad.konet,0:,419,10,10,13820586456,DDS,0,Poly-RR,0,LS,15349424020,Total,0,Guarantee,0,Degree-RR,7607411655,Minimal,
+src/test/resources/KONECT/001858_hamster.konet,0:,242,10,10,17261752916,DDS,0,Poly-RR,0,LS,23237004667,Total,0,Guarantee,0,Degree-RR,13823701472,Minimal,
+src/test/resources/KONECT/002426_hamster_ful.konet,0:,417,10,10,51528941985,DDS,0,Poly-RR,0,LS,63006912970,Total,0,Guarantee,0,Degree-RR,47351213788,Minimal,
+src/test/resources/KONECT/002888_facebook.konet,0:,10,10,10,22962567,DDS,0,Poly-RR,0,LS,307201121,Total,0,Guarantee,0,Degree-RR,24556265,Minimal,
