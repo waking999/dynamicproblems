@@ -20,12 +20,14 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
+import edu.uci.ics.jung.graph.Graph;
+import junit.framework.Assert;
 
 public class GreedyDSM0HWWTest {
 	private Logger log = LogUtil.getLogger(GreedyDSM0HWWTest.class);
 	private static final String CLASS_NAME = GreedyDSM0HWWTest.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -50,7 +52,7 @@ public class GreedyDSM0HWWTest {
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -77,6 +79,8 @@ public class GreedyDSM0HWWTest {
 				int rUpper = tp.getR();
 				int r = rUpper;
 
+				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
+				 
 				for (int i = iStart; i <= iEnd; i++) {
 
 					String msg;
@@ -91,6 +95,7 @@ public class GreedyDSM0HWWTest {
 					IGreedyDS<Integer> ag01 = new GreedyDSM01WW(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
+					Assert.assertTrue(AlgorithmUtil.isDS(g, ds01));
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
@@ -98,6 +103,7 @@ public class GreedyDSM0HWWTest {
 					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
 					Result result02 = ag02.run();
 					List<Integer> ds02 = ag02.getDominatingSet();
+					Assert.assertTrue(AlgorithmUtil.isDS(g, ds01));
 					int ds02Size = ds02.size();
 					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
 					sb.append(result02.getString()).append("\n");
