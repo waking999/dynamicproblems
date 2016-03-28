@@ -20,8 +20,6 @@ import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.io.FileOperation;
 import au.edu.cdu.dynamicproblems.io.IOUtil;
 import au.edu.cdu.dynamicproblems.util.LogUtil;
-import edu.uci.ics.jung.graph.Graph;
-import junit.framework.Assert;
 
 public class GreedyDSM0HWWTest {
 	private Logger log = LogUtil.getLogger(GreedyDSM0HWWTest.class);
@@ -51,8 +49,22 @@ public class GreedyDSM0HWWTest {
 		runStrategies(path, TestUtil.BHOSLIB_TP, destFile, 1, 1);
 
 	}
+	@Test
+	public void testDifferentKR() throws MOutofNException, InterruptedException, IOException, FileNotFoundException,ArraysNotSameLengthException , ExceedLongMaxException{
 
-	//@Ignore
+		String datasetName = "KONECT";
+		String path = TestUtil.KONECT_PATH;
+
+		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
+
+		int kUpper = 20;
+		for (int k = 2; k <= kUpper; k++) {
+			log.debug("k=" + k + ",r=" + (k - 1));
+			runStrategies(path, TestUtil.KONECT_TP, destFile, 1, 1, k, k-1);
+		}
+	}
+	
+	@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -79,8 +91,6 @@ public class GreedyDSM0HWWTest {
 				int rUpper = tp.getR();
 				int r = rUpper;
 
-				Graph<Integer, String> g = AlgorithmUtil.prepareGenericGraph(am);
-				 
 				for (int i = iStart; i <= iEnd; i++) {
 
 					String msg;
@@ -95,7 +105,6 @@ public class GreedyDSM0HWWTest {
 					IGreedyDS<Integer> ag01 = new GreedyDSM01WW(am, k, r);
 					Result result01 = ag01.run();
 					List<Integer> ds01 = ag01.getDominatingSet();
-					Assert.assertTrue(AlgorithmUtil.isDS(g, ds01));
 					int ds01Size = ds01.size();
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
@@ -103,7 +112,6 @@ public class GreedyDSM0HWWTest {
 					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
 					Result result02 = ag02.run();
 					List<Integer> ds02 = ag02.getDominatingSet();
-					Assert.assertTrue(AlgorithmUtil.isDS(g, ds01));
 					int ds02Size = ds02.size();
 					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
 					sb.append(result02.getString()).append("\n");
@@ -137,6 +145,71 @@ public class GreedyDSM0HWWTest {
 		}
 	}
 
+	private void runStrategies(String path, TestParameter[] tps, String destFile, int iStart, int iEnd,int k,int r)
+			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
+			ArraysNotSameLengthException, InterruptedException {
+
+		log.debug(destFile);
+
+		for (TestParameter tp : tps) {
+			FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + tp.getFile());
+			List<String[]> am = fo.getAdjacencyMatrix();
+			if (tp.isBeTest()) {
+				 
+
+				for (int i = iStart; i <= iEnd; i++) {
+
+					String msg;
+
+					msg = setMessage(tp.getFile(), i);
+
+					log.debug(msg);
+					FileOperation.saveCVSFile(destFile, msg);
+
+					StringBuilder sb = new StringBuilder();
+
+					IGreedyDS<Integer> ag01 = new GreedyDSM01WW(am, k, r);
+					Result result01 = ag01.run();
+					List<Integer> ds01 = ag01.getDominatingSet();
+					int ds01Size = ds01.size();
+					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
+					sb.append(result01.getString()).append("\n");
+
+					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
+					Result result02 = ag02.run();
+					List<Integer> ds02 = ag02.getDominatingSet();
+					int ds02Size = ds02.size();
+					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
+					sb.append(result02.getString()).append("\n");
+
+					int minDSSize = ds01Size;
+					int chooseDS = 1;
+
+					if (minDSSize >= ds01Size) {
+						minDSSize = ds01Size;
+						chooseDS = 1;
+					}
+
+					if (minDSSize >= ds02Size) {
+						minDSSize = ds02Size;
+						chooseDS = 2;
+					}
+
+					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
+					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
+
+					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					// setRunningTime(sb, ag01RunningTimeMap);
+
+					log.debug(sb.toString());
+					if (destFile != null) {
+						FileOperation.saveCVSFile(destFile, sb.toString());
+					}
+				}
+
+			}
+		}
+	}
 	private String setMessage(String file, int i) {
 		StringBuilder msgSb = new StringBuilder();
 		msgSb.append(file).append("-i=").append(i);

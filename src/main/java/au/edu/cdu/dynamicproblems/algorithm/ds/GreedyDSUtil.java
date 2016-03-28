@@ -347,43 +347,43 @@ public class GreedyDSUtil {
 			}
 		}
 
-		for (Integer v : vertices) {
-			if (!dominatedMap.get(v)) {
-				int degree = g.degree(v);
-
-				if (degree == 2) {
-					// get v's neighbor u,w
-					Collection<Integer> vNegb = g.getNeighbors(v);
-
-					List<Integer> vNegbList = new ArrayList<Integer>();
-					for (Integer x : vNegb) {
-						vNegbList.add(x);
-					}
-
-					Integer u = vNegbList.get(0);
-					Integer w = vNegbList.get(1);
-
-					// get u,w's utility
-					int uUtility = AlgorithmUtil.getVertexUtility(g, u, dominatedMap);
-					int wUtility = AlgorithmUtil.getVertexUtility(g, w, dominatedMap);
-
-					Collection<Integer> uNegb = getClosedNeighborsWithoutV(g, v, u);
-
-					Collection<Integer> wNegb = getClosedNeighborsWithoutV(g, v, w);
-
-					if (uUtility > wUtility) {
-						// u has the higher priority to be added into
-						// dominating
-						// set than w
-						addHigherNeighborOfVToDS(dsAfterDegreeRR, v, u, w, uNegb, wNegb, verticesAfterDegreeRR,
-								uUtility, wUtility, dominatedMap);
-					} else {
-						addHigherNeighborOfVToDS(dsAfterDegreeRR, v, w, u, wNegb, uNegb, verticesAfterDegreeRR,
-								wUtility, uUtility, dominatedMap);
-					}
-				}
-			}
-		}
+//		for (Integer v : vertices) {
+//			if (!dominatedMap.get(v)) {
+//				int degree = g.degree(v);
+//
+//				if (degree == 2) {
+//					// get v's neighbor u,w
+//					Collection<Integer> vNegb = g.getNeighbors(v);
+//
+//					List<Integer> vNegbList = new ArrayList<Integer>();
+//					for (Integer x : vNegb) {
+//						vNegbList.add(x);
+//					}
+//
+//					Integer u = vNegbList.get(0);
+//					Integer w = vNegbList.get(1);
+//
+//					// get u,w's utility
+//					int uUtility = AlgorithmUtil.getVertexUtility(g, u, dominatedMap);
+//					int wUtility = AlgorithmUtil.getVertexUtility(g, w, dominatedMap);
+//
+//					Collection<Integer> uNegb = getClosedNeighborsWithoutV(g, v, u);
+//
+//					Collection<Integer> wNegb = getClosedNeighborsWithoutV(g, v, w);
+//
+//					if (uUtility > wUtility) {
+//						// u has the higher priority to be added into
+//						// dominating
+//						// set than w
+//						addHigherNeighborOfVToDS(dsAfterDegreeRR, v, u, w, uNegb, wNegb, verticesAfterDegreeRR,
+//								uUtility, wUtility, dominatedMap);
+//					} else {
+//						addHigherNeighborOfVToDS(dsAfterDegreeRR, v, w, u, wNegb, uNegb, verticesAfterDegreeRR,
+//								wUtility, uUtility, dominatedMap);
+//					}
+//				}
+//			}
+//		}
 
 		long end = System.nanoTime();
 		runningTimeMap.put(AlgorithmUtil.RUNNING_TIME_DEGREERR, (end - start));

@@ -58,7 +58,7 @@ public class GreedyDSM0WWTest {
 
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testKONECT_verify() throws InterruptedException, IOException, FileNotFoundException {
 
@@ -81,7 +81,7 @@ public class GreedyDSM0WWTest {
 		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	 @Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";
@@ -90,6 +90,21 @@ public class GreedyDSM0WWTest {
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
 		basicFunc(path, destFile, 1, 1, TestUtil.BHOSLIB_TP);
+	}
+
+	@Test
+	public void testDifferentKR() throws InterruptedException, IOException, FileNotFoundException {
+
+		String datasetName = "KONECT";
+		String path = TestUtil.KONECT_PATH;
+
+		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
+
+		int kUpper = 20;
+		for (int k = 2; k <= kUpper; k++) {
+			log.debug("k=" + k + ",r=" + (k - 1));
+			basicFunc(path + "001174_euroroad.konet", destFile, k, k - 1);
+		}
 	}
 
 	private void basicFunc(String path, String destFile, int iLower, int iUpper, TestParameter[] tps)
