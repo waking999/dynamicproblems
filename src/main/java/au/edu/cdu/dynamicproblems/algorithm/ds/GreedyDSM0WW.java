@@ -249,7 +249,7 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 		} while (!AlgorithmUtil.isAllDominated(dominatedMap));
 
 		this.dominatingSet = dI;
-
+		//GreedyDSUtil.applyMinimal(g, this.dominatingSet, this.runningTimeMap);
 	}
 
 	private boolean isMomentOfRegret() {

@@ -24,7 +24,7 @@ public class GreedyDSM0DUTest {
 	private Logger log = LogUtil.getLogger(GreedyDSM0DUTest.class);
 	private static final String CLASS_NAME = GreedyDSM0DUTest.class.getSimpleName();
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDifferentKR() throws InterruptedException, IOException, FileNotFoundException {
 
@@ -33,8 +33,8 @@ public class GreedyDSM0DUTest {
 
 		String destFile = TestUtil.getOutputFileName(datasetName, CLASS_NAME);
 
-		int kUpper = 20;
-		for (int k = 2; k <= kUpper; k++) {
+		int kUpper = 100;
+		for (int k = 30; k <= kUpper; k = k + 10) {
 			log.debug("k=" + k + ",r=" + (k - 1));
 			basicFunc(path + "001174_euroroad.konet", destFile, k, k - 1);
 		}
@@ -97,7 +97,7 @@ public class GreedyDSM0DUTest {
 		basicFunc(path, destFile, 1, 1, TestUtil.DIMACS_TP);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws InterruptedException, IOException, FileNotFoundException {
 		String datasetName = "BHOSLIB";

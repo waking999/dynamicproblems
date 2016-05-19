@@ -25,7 +25,7 @@ public class GreedyDSMHWWTest {
 	private Logger log = LogUtil.getLogger(GreedyDSMHWWTest.class);
 	private static final String CLASS_NAME = GreedyDSMHWWTest.class.getSimpleName();
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -37,7 +37,7 @@ public class GreedyDSMHWWTest {
 		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {

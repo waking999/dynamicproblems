@@ -324,7 +324,7 @@ public class GreedyDSUtil {
 									dominatedMap);
 
 						} else {
-							if (!dominatedMap.get(u) && !dominatedMap.get(w)) {
+							if (!dominatedMap.get(u) || !dominatedMap.get(w)) {
 								uUnNeig.remove(v);
 								wUnNeig.remove(v);
 								if (uUnNeig.isEmpty() && wUnNeig.isEmpty()) {

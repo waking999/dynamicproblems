@@ -37,7 +37,7 @@ public class GreedyDSM0HWWTest {
 		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -49,6 +49,7 @@ public class GreedyDSM0HWWTest {
 		runStrategies(path, TestUtil.BHOSLIB_TP, destFile, 1, 1);
 
 	}
+	//@Ignore
 	@Test
 	public void testDifferentKR() throws MOutofNException, InterruptedException, IOException, FileNotFoundException,ArraysNotSameLengthException , ExceedLongMaxException{
 
@@ -63,6 +64,7 @@ public class GreedyDSM0HWWTest {
 			runStrategies(path, TestUtil.KONECT_TP, destFile, 1, 1, k, k-1);
 		}
 	}
+	 
 	
 	@Ignore
 	@Test

@@ -1,0 +1,8 @@
+1------------
+src/test/resources/KONECT/000027_zebra.konet,0:,4,10,10,0,DDS,0,Poly-RR,0,LS,18673031,Total,0,Guarantee,0,Degree-RR,0,Minimal,
+src/test/resources/KONECT/000034_zachary.konet,0:,4,10,10,0,DDS,0,Poly-RR,0,LS,4313889,Total,0,Guarantee,0,Degree-RR,0,Minimal,
+src/test/resources/KONECT/000062_dolphins.konet,0:,14,10,10,0,DDS,0,Poly-RR,0,LS,10936388,Total,0,Guarantee,0,Degree-RR,0,Minimal,
+src/test/resources/KONECT/000112_David_Copperfield.konet,0:,18,10,10,0,DDS,0,Poly-RR,0,LS,27022148,Total,0,Guarantee,0,Degree-RR,0,Minimal,
+src/test/resources/KONECT/000198_Jazz_musicians.konet,0:,14,10,10,115742360,DDS,0,Poly-RR,0,LS,172418275,Total,0,Guarantee,0,Degree-RR,18181143,Minimal,
+src/test/resources/KONECT/001174_euroroad.konet,0:,404,30,29,56787554248,DDS,0,Poly-RR,0,LS,58570083731,Total,0,Guarantee,0,Degree-RR,48174611995,Minimal,
+src/test/resources/KONECT/001174_euroroad.konet,0:,404,40,39,68731203516,DDS,0,Poly-RR,0,LS,70662895400,Total,0,Guarantee,0,Degree-RR,58177352710,Minimal,
