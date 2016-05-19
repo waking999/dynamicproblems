@@ -25,7 +25,7 @@ public class GreedyDSMHWWTest {
 	private Logger log = LogUtil.getLogger(GreedyDSMHWWTest.class);
 	private static final String CLASS_NAME = GreedyDSMHWWTest.class.getSimpleName();
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDIMACS_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException, InterruptedException {
@@ -37,7 +37,7 @@ public class GreedyDSMHWWTest {
 		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -95,12 +95,12 @@ public class GreedyDSMHWWTest {
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
 
-//					IGreedyDS<Integer> ag02 = new GreedyDSM2WW(am, k, r);
-//					Result result02 = ag02.run();
-//					List<Integer> ds02 = ag02.getDominatingSet();
-//					int ds02Size = ds02.size();
-//					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
-//					sb.append(result02.getString()).append("\n");
+					IGreedyDS<Integer> ag02 = new GreedyDSMH2WW(am, k, r);
+					Result result02 = ag02.run();
+					List<Integer> ds02 = ag02.getDominatingSet();
+					int ds02Size = ds02.size();
+					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
+					sb.append(result02.getString()).append("\n");
 
 					int minDSSize = ds01Size;
 					int chooseDS = 1;
@@ -110,16 +110,16 @@ public class GreedyDSMHWWTest {
 						chooseDS = 1;
 					}
 
-//					if (minDSSize >= ds02Size) {
-//						minDSSize = ds02Size;
-//						chooseDS = 2;
-//					}
+					if (minDSSize >= ds02Size) {
+						minDSSize = ds02Size;
+						chooseDS = 2;
+					}
 
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					//setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
-					 setRunningTime(sb, ag01RunningTimeMap);
+					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					// setRunningTime(sb, ag01RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {
