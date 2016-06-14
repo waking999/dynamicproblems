@@ -1,7 +1,9 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -126,6 +128,7 @@ public class GreedyDSMDC implements ITask, IGreedyDS<Integer> {
 
 		List<Set<Integer>> components = Components.getAllConnectedComponent(gPoly);
 
+		//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
 		
 
 		for (Set<Integer> component : components) {
@@ -159,6 +162,7 @@ public class GreedyDSMDC implements ITask, IGreedyDS<Integer> {
 			List<Integer> undominatedVertices = null;
 			Integer v;
 			Integer u;
+			Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
 			do {
 
 				gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
@@ -193,7 +197,7 @@ public class GreedyDSMDC implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap, true);
+							this.runningTimeMap, true,historyVertexCover);
 
 				}
 

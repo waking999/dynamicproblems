@@ -37,7 +37,7 @@ public class GreedyDSM0HWWTest {
 		runStrategies(path, TestUtil.DIMACS_TP, destFile, 1, 1);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testBHOSLIB_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -49,9 +49,11 @@ public class GreedyDSM0HWWTest {
 		runStrategies(path, TestUtil.BHOSLIB_TP, destFile, 1, 1);
 
 	}
-	//@Ignore
+
+	 @Ignore
 	@Test
-	public void testDifferentKR() throws MOutofNException, InterruptedException, IOException, FileNotFoundException,ArraysNotSameLengthException , ExceedLongMaxException{
+	public void testDifferentKR() throws MOutofNException, InterruptedException, IOException, FileNotFoundException,
+			ArraysNotSameLengthException, ExceedLongMaxException {
 
 		String datasetName = "KONECT";
 		String path = TestUtil.KONECT_PATH;
@@ -61,12 +63,11 @@ public class GreedyDSM0HWWTest {
 		int kUpper = 20;
 		for (int k = 2; k <= kUpper; k++) {
 			log.debug("k=" + k + ",r=" + (k - 1));
-			runStrategies(path, TestUtil.KONECT_TP, destFile, 1, 1, k, k-1);
+			runStrategies(path, TestUtil.KONECT_TP, destFile, 1, 1, k, k - 1);
 		}
 	}
-	 
-	
-	@Ignore
+
+	//@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -111,12 +112,12 @@ public class GreedyDSM0HWWTest {
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
 
-					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
-					Result result02 = ag02.run();
-					List<Integer> ds02 = ag02.getDominatingSet();
-					int ds02Size = ds02.size();
-					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
-					sb.append(result02.getString()).append("\n");
+//					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
+//					Result result02 = ag02.run();
+//					List<Integer> ds02 = ag02.getDominatingSet();
+//					int ds02Size = ds02.size();
+//					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
+//					sb.append(result02.getString()).append("\n");
 
 					int minDSSize = ds01Size;
 					int chooseDS = 1;
@@ -126,16 +127,16 @@ public class GreedyDSM0HWWTest {
 						chooseDS = 1;
 					}
 
-					if (minDSSize >= ds02Size) {
-						minDSSize = ds02Size;
-						chooseDS = 2;
-					}
+//					if (minDSSize >= ds02Size) {
+//						minDSSize = ds02Size;
+//						chooseDS = 2;
+//					}
 
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
-					// setRunningTime(sb, ag01RunningTimeMap);
+					//setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					  setRunningTime(sb, ag01RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {
@@ -147,7 +148,8 @@ public class GreedyDSM0HWWTest {
 		}
 	}
 
-	private void runStrategies(String path, TestParameter[] tps, String destFile, int iStart, int iEnd,int k,int r)
+	@SuppressWarnings("unchecked")
+	private void runStrategies(String path, TestParameter[] tps, String destFile, int iStart, int iEnd, int k, int r)
 			throws FileNotFoundException, IOException, MOutofNException, ExceedLongMaxException,
 			ArraysNotSameLengthException, InterruptedException {
 
@@ -157,7 +159,6 @@ public class GreedyDSM0HWWTest {
 			FileOperation fo = IOUtil.getProblemInfoByEdgePair(path + tp.getFile());
 			List<String[]> am = fo.getAdjacencyMatrix();
 			if (tp.isBeTest()) {
-				 
 
 				for (int i = iStart; i <= iEnd; i++) {
 
@@ -177,12 +178,13 @@ public class GreedyDSM0HWWTest {
 					Map<String, Long> ag01RunningTimeMap = ag01.getRunningTimeMap();
 					sb.append(result01.getString()).append("\n");
 
-					IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
-					Result result02 = ag02.run();
-					List<Integer> ds02 = ag02.getDominatingSet();
-					int ds02Size = ds02.size();
-					Map<String, Long> ag02RunningTimeMap = ag02.getRunningTimeMap();
-					sb.append(result02.getString()).append("\n");
+					 IGreedyDS<Integer> ag02 = new GreedyDSM02WW(am, k, r);
+					 Result result02 = ag02.run();
+					 List<Integer> ds02 = ag02.getDominatingSet();
+					 int ds02Size = ds02.size();
+					 Map<String, Long> ag02RunningTimeMap =
+					 ag02.getRunningTimeMap();
+					 sb.append(result02.getString()).append("\n");
 
 					int minDSSize = ds01Size;
 					int chooseDS = 1;
@@ -192,16 +194,16 @@ public class GreedyDSM0HWWTest {
 						chooseDS = 1;
 					}
 
-					if (minDSSize >= ds02Size) {
-						minDSSize = ds02Size;
-						chooseDS = 2;
-					}
+					 if (minDSSize >= ds02Size) {
+					 minDSSize = ds02Size;
+					 chooseDS = 2;
+					 }
 
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
-					// setRunningTime(sb, ag01RunningTimeMap);
+					 setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					//setRunningTime(sb, ag01RunningTimeMap);
 
 					log.debug(sb.toString());
 					if (destFile != null) {
@@ -212,6 +214,7 @@ public class GreedyDSM0HWWTest {
 			}
 		}
 	}
+
 	private String setMessage(String file, int i) {
 		StringBuilder msgSb = new StringBuilder();
 		msgSb.append(file).append("-i=").append(i);

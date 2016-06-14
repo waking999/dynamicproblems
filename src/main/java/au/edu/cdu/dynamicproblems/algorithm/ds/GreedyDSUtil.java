@@ -412,40 +412,40 @@ public class GreedyDSUtil {
 		}
 	}
 
-	private static <V, E> Collection<V> getClosedNeighborsWithoutV(Graph<V, E> g, V v, V w) {
-		Collection<V> wNegb = g.getNeighbors(w); // N(w)
-		wNegb.add(w); // N[w]
-		wNegb.remove(v); // N[w]\v
-		return wNegb;
-	}
+//	private static <V, E> Collection<V> getClosedNeighborsWithoutV(Graph<V, E> g, V v, V w) {
+//		Collection<V> wNegb = g.getNeighbors(w); // N(w)
+//		wNegb.add(w); // N[w]
+//		wNegb.remove(v); // N[w]\v
+//		return wNegb;
+//	}
 
-	private static void addHigherNeighborOfVToDS(List<Integer> ds, Integer v, Integer u, Integer w,
-			Collection<Integer> uNegb, Collection<Integer> wNegb, List<Integer> initalVerteices, int uUtility,
-			int wUtility, Map<Integer, Boolean> dominatedMap) {
-		if (AlgorithmUtil.isAllDominated(dominatedMap, wNegb) && (wUtility - 1) == 0) {
+//	private static void addHigherNeighborOfVToDS(List<Integer> ds, Integer v, Integer u, Integer w,
+//			Collection<Integer> uNegb, Collection<Integer> wNegb, List<Integer> initalVerteices, int uUtility,
+//			int wUtility, Map<Integer, Boolean> dominatedMap) {
+//		if (AlgorithmUtil.isAllDominated(dominatedMap, wNegb) && (wUtility - 1) == 0) {
+//
+//			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices, dominatedMap);
+//		} else if (AlgorithmUtil.isAllDominated(dominatedMap, uNegb) && (uUtility - 1) == 0) {
+//			addNeighborOfVToDS(ds, v, w, wNegb, initalVerteices, dominatedMap);
+//		} else {
+//			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices, dominatedMap);
+//		}
+//	}
 
-			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices, dominatedMap);
-		} else if (AlgorithmUtil.isAllDominated(dominatedMap, uNegb) && (uUtility - 1) == 0) {
-			addNeighborOfVToDS(ds, v, w, wNegb, initalVerteices, dominatedMap);
-		} else {
-			addNeighborOfVToDS(ds, v, u, uNegb, initalVerteices, dominatedMap);
-		}
-	}
-
-	private static void addNeighborOfVToDS(List<Integer> ds, Integer v, Integer w, Collection<Integer> wNegb,
-			List<Integer> initalVerteices, Map<Integer, Boolean> dominatedMap) {
-		/*
-		 * if N[u]\v (including u) are dominated: add w to gOperated and
-		 * dominating set and mark it dominated add w's neighbors to gOperated
-		 * and mark them dominated(including v)
-		 */
-		AlgorithmUtil.addElementToList(ds, w);
-
-		for (Integer x : wNegb) {
-			addDominatedVertex(initalVerteices, x, dominatedMap);
-		}
-		addDominatedVertex(initalVerteices, v, dominatedMap);
-	}
+//	private static void addNeighborOfVToDS(List<Integer> ds, Integer v, Integer w, Collection<Integer> wNegb,
+//			List<Integer> initalVerteices, Map<Integer, Boolean> dominatedMap) {
+//		/*
+//		 * if N[u]\v (including u) are dominated: add w to gOperated and
+//		 * dominating set and mark it dominated add w's neighbors to gOperated
+//		 * and mark them dominated(including v)
+//		 */
+//		AlgorithmUtil.addElementToList(ds, w);
+//
+//		for (Integer x : wNegb) {
+//			addDominatedVertex(initalVerteices, x, dominatedMap);
+//		}
+//		addDominatedVertex(initalVerteices, v, dominatedMap);
+//	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void setG0(int pos, Graph<Integer, String> g, DegreeRRReturn drrr, Map<Integer, Boolean> dominatedMap,
@@ -720,7 +720,7 @@ public class GreedyDSUtil {
 
 	public static MomentRegretReturn<Integer, String> applyAtMomentOfRegret(List<Integer> vList, List<Integer> dI,
 			Graph<Integer, String> gI, String indicator, int k, int rUpperBoundary, Map<String, Long> runningTimeMap,
-			boolean ifGuarantee) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
+			boolean ifGuarantee,Set<Collection<Integer>> historyVertexCover) throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 					InterruptedException {
 		MomentRegretReturn<Integer, String> mrr;
 		int gISize = gI.getVertexCount();
@@ -773,6 +773,8 @@ public class GreedyDSUtil {
 		Graph<Integer, String> gICopyNextRound = gI;
 		List<Integer> gDI = null;
 		Graph<Integer, String> gICopyDDS = null;
+		
+		 
 		/* being less than 2 is too trivial */
 		if (dominatingKVerticesSize >= 2) {
 			long start = System.nanoTime();
@@ -813,10 +815,14 @@ public class GreedyDSUtil {
 			DDSFPT ag = new DDSFPT(indicator, gICopyDDS, dICopy, realRUpperBoundary);
 
 			ag.setConsiderableCandidateVertices4DS(dominatingKVertices);
+			//ag.setHistoryCandidateDomVerMap(historyCandidateDomVerMap);
+			ag.setHistoryVertexCover(historyVertexCover);
 			ag.computing();
 
 			ddsI = ag.getDs2();
-
+			//historyCandidateDomVerMap=ag.getHistoryCandidateDomVerMap();
+			historyVertexCover=ag.getHistoryVertexCover();
+			
 			GreedyDSUtil.applyMinimal(gI, ddsI, runningTimeMap);
 			//GreedyDSUtil.applyLS(gI, dI, runningTimeMap);
 

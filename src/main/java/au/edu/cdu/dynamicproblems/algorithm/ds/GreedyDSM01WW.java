@@ -3,8 +3,10 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -130,6 +132,29 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
 
 	}
+//	/**
+//	 * move degree 2 vertices to the top of the list;
+//	 * @param vList
+//	 * @param g
+//	 * @return
+//	 */
+//	private List<Integer> reorderVList(List<Integer> vList,Graph<Integer,String> g){
+//		List<Integer> rtnList=new ArrayList<Integer>();
+//		
+//		for(Integer v: vList){
+//			if(g.degree(v)==2){
+//				rtnList.add(v);
+//			}
+//		}
+//		
+//		for(Integer v:vList){
+//			if(!rtnList.contains(v)){
+//				rtnList.add(v);
+//			}
+//		}
+//		
+//		return rtnList;
+//	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void greedy()
@@ -137,10 +162,9 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
 
 		/* apply poly-rr */
-//		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,
-//				GreedyDSUtil.POLY_RR_2_VALVE);
-		Graph<Integer, String> g = gOriginal;
-		
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,
+				GreedyDSUtil.POLY_RR_2_VALVE);
+
 		Collection<Integer> vertices = g.getVertices();
 		int verticesSize = vertices.size();
 
@@ -180,6 +204,7 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 
 		// sort a list of vertex from lowest vote to highest
 		List<Integer> vList = OrderPackageUtil.getVertexListWeightAsc(g, weightMap);
+		//vList=reorderVList(vList,g);
 		// List<Integer> vList = OrderPackageUtil.getVertexListDegreeDesc(g);
 
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
@@ -189,6 +214,8 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 		Integer v;
 		Integer u;
 		int i = -1;
+		//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
 		do {
 			i++;
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
@@ -237,7 +264,7 @@ public class GreedyDSM01WW implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap, true);
+							this.runningTimeMap, true,historyVertexCover);
 
 				}
 

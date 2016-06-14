@@ -3,8 +3,10 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -169,6 +171,8 @@ public class GreedyDSM3WW implements ITask, IGreedyDS<Integer> {
 		GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
 
 		List<Integer> undominatedVertices = null;
+		//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
 		do {
 			/*
 			 * this dominated map is for the whole graph to satisfy quit
@@ -210,7 +214,7 @@ public class GreedyDSM3WW implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap, false);
+							this.runningTimeMap, false,historyVertexCover);
 
 				}
 

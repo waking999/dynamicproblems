@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections15.CollectionUtils;
-import org.apache.log4j.Logger;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.order.DegreeDesc;
@@ -19,7 +18,6 @@ import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
 import au.edu.cdu.dynamicproblems.exception.NChooseMNoSolutionException;
-import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 
 /**
@@ -31,8 +29,7 @@ import edu.uci.ics.jung.graph.Graph;
  */
 public class DomAVCFPT {
 
-	@SuppressWarnings("unused")
-	private Logger log = LogUtil.getLogger(DomAVCFPT.class);
+	//private Logger log = LogUtil.getLogger(DomAVCFPT.class);
 
 	// used for n choose m to show if the element has been chosen or not
 	private final static boolean CHOSEN = true;
@@ -103,6 +100,15 @@ public class DomAVCFPT {
 
 			getCandidateDomVerMap();
 
+//			if (historyCandidateDomVerMap.contains(candidateDomVerMap)&&this.hasLessR) {
+//				 
+//					return;
+//				 
+//			} else {
+//
+//				historyCandidateDomVerMap.add(candidateDomVerMap);
+//			}
+
 			getAttemptRSizeSolution(r);
 			// getAttemptRSizeSolutionSC(r);
 
@@ -144,7 +150,7 @@ public class DomAVCFPT {
 			// m always <= n;
 			m = n;
 		}
-	//log.debug(n + " choose " + m);
+		//log.debug("after subset rule :  n=" + n + ",m=" + m);
 
 		boolean isSolution = false;
 		boolean isEnd = false;
@@ -221,6 +227,17 @@ public class DomAVCFPT {
 	}
 
 	private Map<String, List<Integer>> candidateDomVerMap;
+
+//	private Set<Map<String, List<Integer>>> historyCandidateDomVerMap;
+	
+	
+//	public Set<Map<String, List<Integer>>> getHistoryCandidateDomVerMap() {
+//		return historyCandidateDomVerMap;
+//	}
+//
+//	public void setHistoryCandidateDomVerMap(Set<Map<String, List<Integer>>> historyCandidateDomVerMap) {
+//		this.historyCandidateDomVerMap = historyCandidateDomVerMap;
+//	}
 
 	private void getCandidateDomVerMap() throws ExceedLongMaxException {
 		candidateDomVerMap = new LinkedHashMap<String, List<Integer>>();
@@ -316,6 +333,36 @@ public class DomAVCFPT {
 
 		}
 
+		applySubsetRule(candidateDomVerMap);
+
+	}
+
+	private void applySubsetRule(Map<String, List<Integer>> candidateDomVerMap) {
+		List<String> removeKeyList = new ArrayList<String>();
+		Set<String> keySet = candidateDomVerMap.keySet();
+		for (String key1 : keySet) {
+			byte[] keyArr1 = AlgorithmUtil.stringToBinaryArray(key1);
+			List<Integer> keyList1 = AlgorithmUtil.binaryArrayToList(keyArr1);
+			for (String key2 : keySet) {
+				if (key1 != key2) {
+					byte[] keyArr2 = AlgorithmUtil.stringToBinaryArray(key2);
+					List<Integer> keyList2 = AlgorithmUtil.binaryArrayToList(keyArr2);
+
+					if (CollectionUtils.isSubCollection(keyList1, keyList2)) {
+						AlgorithmUtil.addElementToList(removeKeyList, key1);
+					} else if (CollectionUtils.isSubCollection(keyList2, keyList1)) {
+						AlgorithmUtil.addElementToList(removeKeyList, key2);
+					} else {
+						continue;
+					}
+				}
+			}
+		}
+
+		for (String key : removeKeyList) {
+			candidateDomVerMap.remove(key);
+		}
+
 	}
 
 	private void getAttemptRSizeSolution(int attemptR)
@@ -329,7 +376,7 @@ public class DomAVCFPT {
 	}
 
 	private boolean verifyChosen(boolean[] chosen, int m, int n) throws ArraysNotSameLengthException {
-	
+
 		List<Integer> possibleDomVCSet = new ArrayList<Integer>(m);
 
 		int vertexCoverSize = vertexCover.size();
@@ -393,7 +440,7 @@ public class DomAVCFPT {
 		// AlgorithmUtil.sortVertexAccordingToDegreeInclude(this.g, verList);
 		// return vdList.get(0).getVertex();
 		IPriorityOrder<Integer, String> pocb = new DegreeDesc<Integer, String>();
-		List<Integer> allVList = pocb.getOrderedVertexList(new PriorityBean<Integer,String>(g,null,null));
+		List<Integer> allVList = pocb.getOrderedVertexList(new PriorityBean<Integer, String>(g, null, null));
 		for (Integer v : allVList) {
 			if (verList.contains(v)) {
 				return v;

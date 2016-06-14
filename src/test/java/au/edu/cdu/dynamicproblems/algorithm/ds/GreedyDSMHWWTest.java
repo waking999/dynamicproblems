@@ -50,7 +50,7 @@ public class GreedyDSMHWWTest {
 
 	}
 
-	// @Ignore
+	//@Ignore
 	@Test
 	public void testKONECT_verify() throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException,
 			IOException, InterruptedException {
@@ -118,7 +118,7 @@ public class GreedyDSMHWWTest {
 					sb.append(chooseDS).append(AlgorithmUtil.COMMA).append(minDSSize).append(AlgorithmUtil.COMMA);
 					sb.append(k).append(AlgorithmUtil.COMMA).append(r).append(AlgorithmUtil.COMMA);
 
-					setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
+					 setRunningTime(sb, ag01RunningTimeMap, ag02RunningTimeMap);
 					// setRunningTime(sb, ag01RunningTimeMap);
 
 					log.debug(sb.toString());

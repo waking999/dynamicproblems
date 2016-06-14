@@ -3,10 +3,10 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
+import java.util.Set;
 
 import au.edu.cdu.dynamicproblems.algorithm.AlgorithmUtil;
 import au.edu.cdu.dynamicproblems.algorithm.order.DegreeRRReturn;
@@ -17,9 +17,9 @@ import au.edu.cdu.dynamicproblems.control.TaskLock;
 import au.edu.cdu.dynamicproblems.exception.ArraysNotSameLengthException;
 import au.edu.cdu.dynamicproblems.exception.ExceedLongMaxException;
 import au.edu.cdu.dynamicproblems.exception.MOutofNException;
-import au.edu.cdu.dynamicproblems.util.LogUtil;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
+
 /**
  * implement fpt2 idea
  * 
@@ -30,8 +30,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
  */
 public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 
-	@SuppressWarnings("unused")
-	private static Logger log = LogUtil.getLogger(GreedyDSMH1WW.class);
+	// private static Logger log = LogUtil.getLogger(GreedyDSMH1WW.class);
 	private Map<String, Long> runningTimeMap;
 
 	public Map<String, Long> getRunningTimeMap() {
@@ -76,6 +75,7 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 	public List<Integer> getDominatingSet() {
 		return dominatingSet;
 	}
+
 	/**
 	 * a map keeps pair of(vertex, vote)
 	 */
@@ -126,7 +126,6 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 
 		this.runningTimeMap = new HashMap<String, Long>();
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
-		
 
 	}
 
@@ -134,18 +133,18 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 	private void greedy()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Graph<Integer, String> gOriginal = AlgorithmUtil.prepareGenericGraph(adjacencyMatrix);
-		
+
 		/* apply poly-rr */
-		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,GreedyDSUtil.POLY_RR_2_VALVE);
+		Graph<Integer, String> g = GreedyDSUtil.applyPolyReductionRules(gOriginal, this.runningTimeMap,
+				GreedyDSUtil.POLY_RR_2_VALVE);
 
 		Collection<Integer> vertices = g.getVertices();
-		int verticesSize=vertices.size();
-		
+		int verticesSize = vertices.size();
+
 		voteMap = new HashMap<Integer, Float>(verticesSize);
 		weightMap = new HashMap<Integer, Float>(verticesSize);
-		
-		
-		for (Integer v : vertices) {			
+
+		for (Integer v : vertices) {
 			int degree = g.degree(v);
 			float vote = 1.0f / (1 + degree);
 			voteMap.put(v, vote);
@@ -161,16 +160,15 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 			}
 			weightMap.put(v, weightv);
 		}
-		
+
 		/* apply degree-rr */
 		DegreeRRReturn drrr = GreedyDSUtil.applyDegreeReductionRules(g, this.runningTimeMap);
 
 		Map<Integer, Boolean> gDominatedMap = drrr.getDominatedMap();
 		List<Integer> dI = drrr.getDsAfterDegreeRR();
-		
-		
-		for(Integer v:vertices){
-			AlgorithmUtil.adjustWeight(g,gDominatedMap,weightMap,voteMap,v);
+
+		for (Integer v : vertices) {
+			AlgorithmUtil.adjustWeight(g, gDominatedMap, weightMap, voteMap, v);
 		}
 		/*
 		 * it is possible that a graph has been dominated at this point, so a if
@@ -178,8 +176,8 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 		 */
 
 		// sort a list of vertex from lowest vote to highest
-		List<Integer> vList = OrderPackageUtil.getVertexListWeightAsc(g,weightMap);
-		//List<Integer> vList = OrderPackageUtil.getVertexListDegreeDesc(g);
+		List<Integer> vList = OrderPackageUtil.getVertexListWeightAsc(g, weightMap);
+		// List<Integer> vList = OrderPackageUtil.getVertexListDegreeDesc(g);
 
 		Graph<Integer, String> gI = new SparseMultigraph<Integer, String>();
 		// AlgorithmUtil.prepareGenericGraph(this.adjacencyMatrix, gI, dI);
@@ -187,6 +185,9 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 		List<Integer> undominatedVertices = null;
 		Integer v;
 		Integer u;
+
+		//Set<Map<String, List<Integer>>> historyCandidateDomVerMap = new HashSet<Map<String, List<Integer>>>();
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
 		do {
 
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
@@ -194,6 +195,7 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 				break;
 			}
 			undominatedVertices = GreedyDSUtil.getUndominatedVertices(gDominatedMap);
+			//log.debug(undominatedVertices.size()+","+dI.size());
 			v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
 			/*
 			 * if vi is not dominated, i) get its highest utility neighbor
@@ -213,9 +215,10 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 
 			// i)
 			u = AlgorithmUtil.getHighestWeightNeighborOfAVertex(v, g, weightMap);
-			//u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g ,gDominatedMap);
-				
-			AlgorithmUtil.adjustWeight(g,gDominatedMap,weightMap,voteMap,u);
+			// u = AlgorithmUtil.getHighestUtilityNeighborOfAVertex(v, g
+			// ,gDominatedMap);
+
+			AlgorithmUtil.adjustWeight(g, gDominatedMap, weightMap, voteMap, u);
 			// ii)
 			AlgorithmUtil.addElementToList(dI, u);
 			// iii)
@@ -224,7 +227,7 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 			MomentRegretReturn<Integer, String> mrr = null;
 			if (isMomentOfRegret()) {
 				mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-						this.runningTimeMap,true);
+						this.runningTimeMap, true, historyVertexCover);
 
 			}
 
@@ -234,9 +237,37 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 				GreedyDSUtil.addCloseNeighborToSubgraph(g, gICopyNextRound, dI);
 				gI = gICopyNextRound;
 			}
+ 
+			// calculate weight for each vertex
+			//boolean changeFlag=false;
+//			for (Integer x : vertices) {
+//				
+//				Collection<Integer> xNeig = g.getNeighbors(x);
+//				float weightx = weightMap.get(x);
+//				float weightxOld=weightx;
+//				
+//				for (Integer y : xNeig) {
+//					float votey = voteMap.get(y);
+//					weightx += votey;
+//				}
+//				weightMap.put(x, weightx);
+////				if(Math.abs(weightx-weightxOld)>0.000001){
+////					changeFlag=true;
+////				}
+//			}
+			
+//			if(changeFlag){
+//				log.debug("weight changes");
+//			}
+
+//			for (Integer x : vertices) {
+//				AlgorithmUtil.adjustWeight(g, gDominatedMap, weightMap, voteMap, x);
+//			}
+			
+			vList = OrderPackageUtil.getVertexListWeightAsc(g, weightMap);
 			
 		
-
+			
 			// viii)
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
 
@@ -260,7 +291,5 @@ public class GreedyDSMH1WW implements ITask, IGreedyDS<Integer> {
 		return mor.isMomentOfRegret(null);
 
 	}
-	
-	
 
 }

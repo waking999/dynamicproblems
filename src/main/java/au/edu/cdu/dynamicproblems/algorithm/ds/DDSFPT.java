@@ -3,6 +3,7 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -142,22 +143,30 @@ public class DDSFPT implements IAlgorithm, ITask {
 		initialization();
 		reductionRulesOnGraph2();
 
-		int vertexCoverSize = vertexCover.size();
-		log.debug("n=" + vertexCoverSize + ",m=" + r);
-		try {
-			if (vertexCoverSize > 0) {
+		if (!historyVertexCover.contains(vertexCover)) {
 
-				domAVcFpt(vertexCover, g2, r);
+			int vertexCoverSize = vertexCover.size();
+			// log.debug("before subset rule : n=" + vertexCoverSize + ",m=" +
+			// r);
+			try {
+				if (vertexCoverSize > 0) {
 
-			} else {
-				this.hasLessR = true;
-				this.ds2 = ds1;
+					domAVcFpt(vertexCover, g2, r);
+
+				} else {
+					this.hasLessR = true;
+					this.ds2 = ds1;
+				}
+			} catch (NChooseMNoSolutionException e) {
+				this.eMsg = e.getMessage();
+			} finally {
+				long end = System.nanoTime();
+				this.runningTime = end - start;
 			}
-		} catch (NChooseMNoSolutionException e) {
-			this.eMsg = e.getMessage();
-		} finally {
-			long end = System.nanoTime();
-			this.runningTime = end - start;
+			
+			historyVertexCover.add(vertexCover);
+		}else{
+			this.ds2=(List<Integer>)CollectionUtils.union(ds1, this.considerableCandidateVertices4DS);
 		}
 
 	}
@@ -192,6 +201,26 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 	}
 
+	//private Set<Map<String, List<Integer>>> historyCandidateDomVerMap;
+
+//	public Set<Map<String, List<Integer>>> getHistoryCandidateDomVerMap() {
+//		return historyCandidateDomVerMap;
+//	}
+//
+//	public void setHistoryCandidateDomVerMap(Set<Map<String, List<Integer>>> historyCandidateDomVerMap) {
+//		this.historyCandidateDomVerMap = historyCandidateDomVerMap;
+//	}
+
+	private Set<Collection<Integer>> historyVertexCover;
+
+	public Set<Collection<Integer>> getHistoryVertexCover() {
+		return historyVertexCover;
+	}
+
+	public void setHistoryVertexCover(Set<Collection<Integer>> historyVertexCover) {
+		this.historyVertexCover = historyVertexCover;
+	}
+
 	private void domAVcFpt(Collection<Integer> vertexCover, Graph<Integer, String> gStar, int r)
 			throws MOutofNException, NChooseMNoSolutionException, ExceedLongMaxException, ArraysNotSameLengthException {
 
@@ -205,9 +234,10 @@ public class DDSFPT implements IAlgorithm, ITask {
 
 			ag = new DomAVCFPT(gStar, (List<Integer>) vertexCover, tryR);
 			ag.setConsiderableCandidateVertices4DS(considerableCandidateVertices4DS);
+			// ag.setHistoryCandidateDomVerMap(historyCandidateDomVerMap);
 			try {
 				ag.computing();
-
+				// historyCandidateDomVerMap=ag.getHistoryCandidateDomVerMap();
 				if (ag.hasLessR()) {
 
 					this.hasLessR = true;
@@ -237,6 +267,7 @@ public class DDSFPT implements IAlgorithm, ITask {
 			}
 		} while (!this.hasLessR);
 		if (this.hasLessR) {
+			log.debug("got smaller solution.");
 			Collection<Integer> SStar = ag.getDominatingVertexCoverSet();
 			int considerableCandidateVertices4DSSize = this.considerableCandidateVertices4DS.size();
 			int SStarSize = SStar.size();

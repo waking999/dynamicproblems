@@ -1282,6 +1282,16 @@ public class AlgorithmUtil {
 		return rtn;
 	}
 
+	public static List<Integer> binaryArrayToList(byte[] binary){
+		List<Integer> rtnList=new ArrayList<Integer>();
+		int binarySize=binary.length;
+		for(int i=0;i<binarySize;i++){
+			if(binary[i]==MARKED){
+				rtnList.add(i);
+			}
+		}
+		return rtnList;
+	}
 	/**
 	 * 
 	 * @param binaryStr
@@ -2311,13 +2321,16 @@ public class AlgorithmUtil {
 	 */
 	public static void adjustWeight(Graph<Integer, String> g, Map<Integer, Boolean> dominatedMap,
 			Map<Integer, Float> weightMap, Map<Integer, Float> voteMap, Integer v) {
+		
+		 
+		
 		Collection<Integer> vNeigs = g.getNeighbors(v);
 		boolean coveredv = dominatedMap.get(v);
 		weightMap.put(v, 0.0f);
 		float votev = voteMap.get(v);
 		for (Integer u : vNeigs) {
 			float weightu = weightMap.get(u);
-			if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+			if (Math.abs(weightu - 0.0f) > VertexPriority.ZERO_DIFF) {
 				float voteu = voteMap.get(u);
 				if (!coveredv) {
 					weightMap.put(u, weightu - votev);
@@ -2331,7 +2344,7 @@ public class AlgorithmUtil {
 					Collection<Integer> uNeigs = g.getNeighbors(u);
 					for (Integer w : uNeigs) {
 						float weightw = weightMap.get(w);
-						if (weightu - 0.0f > VertexPriority.ZERO_DIFF) {
+						if (Math.abs(weightu - 0.0f) > VertexPriority.ZERO_DIFF) {
 							weightMap.put(w, weightw - voteu);
 						}
 					}

@@ -3,8 +3,10 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -187,6 +189,10 @@ public class GreedyDSMH2WW implements ITask, IGreedyDS<Integer> {
 		List<Integer> undominatedVertices = null;
 		Integer v;
 		Integer u;
+		//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
+		
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
+		
 		do {
 
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
@@ -224,7 +230,7 @@ public class GreedyDSMH2WW implements ITask, IGreedyDS<Integer> {
 			MomentRegretReturn<Integer, String> mrr = null;
 			if (isMomentOfRegret()) {
 				mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-						this.runningTimeMap,true);
+						this.runningTimeMap,true,historyVertexCover);
 
 			}
 
@@ -235,7 +241,8 @@ public class GreedyDSMH2WW implements ITask, IGreedyDS<Integer> {
 				gI = gICopyNextRound;
 			}
 			
-		
+			vList = OrderPackageUtil.getVertexListWeightAsc(g, weightMap);
+			
 
 			// viii)
 			gDominatedMap = GreedyDSUtil.getDominatedMap(g, dI);

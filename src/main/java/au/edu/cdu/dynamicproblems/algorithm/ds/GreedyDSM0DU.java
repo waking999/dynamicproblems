@@ -1,9 +1,12 @@
 package au.edu.cdu.dynamicproblems.algorithm.ds;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -155,6 +158,9 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 		AlgorithmUtil.prepareGraph(g, gI, addedToNewGraph);
 
 		//List<Integer> undominatedVertices = null;
+		//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
+		
 		do {
 			i++;
 			/*
@@ -206,7 +212,7 @@ public class GreedyDSM0DU implements ITask, IGreedyDS<Integer> {
 
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap, false);
+							this.runningTimeMap, false,historyVertexCover);
 					// gI = mrr.getGraph();
 				}
 

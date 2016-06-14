@@ -3,8 +3,10 @@ package au.edu.cdu.dynamicproblems.algorithm.ds;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -134,7 +136,7 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 		this.runningTimeMap = new HashMap<String, Long>();
 		GreedyDSUtil.initRunningTimeMap(this.runningTimeMap);
 	}
-
+	
 	private void greedy()
 			throws MOutofNException, ExceedLongMaxException, ArraysNotSameLengthException, InterruptedException {
 		Collection<Integer> vertices = g.getVertices();
@@ -189,6 +191,8 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 		GreedyDSUtil.addCloseNeighborToSubgraph(g, gI, u);
 
 		List<Integer> undominatedVertices = null;
+		Set<Collection<Integer>> historyVertexCover=new HashSet<Collection<Integer>>();
+		
 		do {
 			/*
 			 * this dominated map is for the whole graph to satisfy quit
@@ -202,6 +206,7 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 			/* get the undominated vertex of the lowest degree */
 			v = GreedyDSUtil.getTheFirstItemInOrderedListAndInAnotherList(vList, undominatedVertices);
 
+			//Set<Map<String,List<Integer>>> historyCandidateDomVerMap=new HashSet<Map<String,List<Integer>>>();
 			if (!dominatedMap.get(v)) {
 				/*
 				 * if vi is not dominated, i) get its highest utility neighbor
@@ -230,7 +235,7 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 				MomentRegretReturn<Integer, String> mrr = null;
 				if (isMomentOfRegret()) {
 					mrr = GreedyDSUtil.applyAtMomentOfRegret(vList, dI, gI, this.indicator, k, this.rUpperBoundary,
-							this.runningTimeMap, false);
+							this.runningTimeMap, false,historyVertexCover);
 
 				}
 
@@ -241,6 +246,9 @@ public class GreedyDSM0WW implements ITask, IGreedyDS<Integer> {
 					gI = gICopyNextRound;
 				}
 
+				
+				vList = OrderPackageUtil.getVertexListWeightAsc(g, weightMap);
+				
 				// viii)
 				dominatedMap = GreedyDSUtil.getDominatedMap(g, dI);
 
